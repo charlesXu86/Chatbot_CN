@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+        <style>
+        a{text-decoration: none}
+    </style>
+</head>
+<body>
+{% if error %}
+    {{ error }}
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ uf.as_p }}
+    <input type="submit" value="登录">
+</form>
+<a href="http://127.0.0.1:8000/regist/" >没有账号? 去注册</a>
+</body>
+</html>
