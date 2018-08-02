@@ -30,7 +30,7 @@ urlpatterns = [
     # path(r'^admin/', admin.site.urls),
     # path(r'index/$', index, name='index'),
     path('', index, name='index'),
-    path(r'^login/$', login, name='login'),
+    path('', login, name='login'),
     path(r'^logout/$', logout, name='logout'),
     path(r'^regist/$', regist, name='regist'),
 ]
