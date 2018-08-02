@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页展示</title>
+    <style>
+        a{text-decoration: none}
+    </style>
+</head>
+
+<body>
+<p>Welcome {{ username }}</p>
+    {% if not username %}
+        <div><a href='http://127.0.0.1:8000/login/'>登录</a></div>
+        <div><a href='http://127.0.0.1:8000/regist/'>注册</a></div>
+    {% else %}
+
+        <div><a href='http://127.0.0.1:8000/logout/'>退出登录</a></div>
+    {% endif %}
+</body>
+</html>
