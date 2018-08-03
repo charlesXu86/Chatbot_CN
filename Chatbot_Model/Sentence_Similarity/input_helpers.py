@@ -12,17 +12,18 @@
 -------------------------------------------------
 """
 
+import sys
 import numpy as np
 import pickle as pkl
+import re
+import itertools
+import time
+import gc
+import gzip
 
-from nltk.tokenize import word_tokenize
 
-def load_set(embed, datapath, embed_dim):
-    '''
+from collections import Counter
+from tensorflow.contrib import learn
+from gensim.models.word2vec import Word2Vec
+from random import random
 
-    :param embed:
-    :param datapath:
-    :param embed_dim:
-    :return:
-    '''
-    with open(datapath, 'rb') as f:
