@@ -6,11 +6,13 @@
     <style>
         a{text-decoration: none}
     </style>
+
 </head>
 
 <body>
-<p>Welcome {{ username }}</p>
+<p style="align-content: center">欢迎来到聊天机器人管理后台 {{ username }}</p>
     {% if not username %}
+        <div></div>
         <div><a href='http://127.0.0.1:8000/login/'>登录</a></div>
         <div><a href='http://127.0.0.1:8000/regist/'>注册</a></div>
     {% else %}
