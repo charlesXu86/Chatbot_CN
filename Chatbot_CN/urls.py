@@ -18,7 +18,7 @@ from django.urls import path
 
 from . import view
 from Chatbot_Web.login import views
-from Chatbot_Web.login.views import index, login, logout, regist
+from Chatbot_Web.login.views import index, login, logout, regist, register2
 from django.urls import path
 
 # urlpatterns = [
@@ -31,6 +31,6 @@ urlpatterns = [
     # path(r'index/$', index, name='index'),
     path('', index, name='index'),
     path('login/', login, name='login'),
-    path('regist/', regist, name='regist'),
+    path('regist/', register2, name='regist'),
     path('logout/', logout, name='logout'),
 ]

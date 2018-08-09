@@ -4,6 +4,7 @@ from django import forms
 from django.http import request, response
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib import auth
 
 from .models import User
 
@@ -37,6 +38,33 @@ def regist(request):
         uf = UserForm()
         return render(request, 'regist.html', {'uf': uf, 'Method': Method})
 
+# regist 方法
+def register2(request):
+    errors = []
+    account = None
+    password = None
+
+    if request.method == 'POST':
+        if not request.POST.get('account'):
+            errors.append('用户名不能为空')
+        else:
+            account = request.POST.get('account')
+
+        if not request.POST.get('password'):
+            errors.append('密码不能为空')
+        else:
+            password = request.POST.get('password')
+
+        if account is not None and password is not None :
+            user = User.objects.create_user(account,password)
+            user.save()
+
+            userlogin = auth.authenticate(username = account,password = password)
+            auth.login(request,userlogin)
+            return HttpResponseRedirect('/')
+
+    return render(request,'regist.html', {'errors': errors})
+
 def login(request):
     if request.method == 'POST':
         uf = UserForm(request.POST)
@@ -47,7 +75,7 @@ def login(request):
             userPassJudge = User.objects.filter(name=username, pwd=password)
 
             if userPassJudge:
-                response = HttpResponseRedirect('homepage/')
+                response = HttpResponseRedirect('/')
                 response.set_cookie('cookie_username', username, 300)
                 return response
             else:
@@ -62,6 +90,6 @@ def index(request):
     return render(request, 'index.html', {'username': username})
 
 def logout(request):
-    response = HttpResponseRedirect('/index/')
+    response = HttpResponseRedirect('/')
     response.delete_cookie('cookie_username')
     return response
