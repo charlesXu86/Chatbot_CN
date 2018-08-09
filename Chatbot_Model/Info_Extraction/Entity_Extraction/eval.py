@@ -2,7 +2,7 @@
 """
 @author:charlesXu
 @file: main.py
-@desc: 数据预处理
+@desc: 脚本处理
 @time: 2018/08/08
 """
 
