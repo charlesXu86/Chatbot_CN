@@ -133,5 +133,8 @@ elif args.mode == 'demo':
 
                 # 调用money处理方法，获取金额实体
                 tr = proprecess_money.wash_data(demo_sent)
+                sent = proprecess_money.split_sentence(tr)
+                for sentence in sent:
+                    MON = proprecess_money.get_properties_and_values(sentence)
 
-                pprint.pprint('PER: {}\nLOC: {}\nORG: {}'.format(PER, LOC, ORG))
+                pprint.pprint('PER: {}\nLOC: {}\nORG: {}\nMON: {}'.format(PER, LOC, ORG, MON))
