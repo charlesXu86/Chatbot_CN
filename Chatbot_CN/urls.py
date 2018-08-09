@@ -31,6 +31,6 @@ urlpatterns = [
     # path(r'index/$', index, name='index'),
     path('', index, name='index'),
     path('login/', login, name='login'),
-    path('logout/', logout, name='logout'),
     path('regist/', regist, name='regist'),
+    path('logout/', logout, name='logout'),
 ]

@@ -47,7 +47,7 @@ def login(request):
             userPassJudge = User.objects.filter(name=username, pwd=password)
 
             if userPassJudge:
-                response = HttpResponseRedirect('/index/')
+                response = HttpResponseRedirect('homepage/')
                 response.set_cookie('cookie_username', username, 300)
                 return response
             else:
