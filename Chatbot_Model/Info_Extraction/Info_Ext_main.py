@@ -10,11 +10,11 @@ import tensorflow as tf
 import numpy as np
 import os, argparse, time, random
 import pprint
-import proprecess_money
+from Entity_Extraction import proprecess_money
 
-from Enext_model import BiLSTM_CRF
-from utils import str2bool, get_logger, get_entity
-from data import read_corpus, read_dictionary, tag2label, random_embedding
+from Entity_Extraction.Enext_model import BiLSTM_CRF
+from Entity_Extraction.utils import str2bool, get_logger, get_entity
+from Entity_Extraction.data import read_corpus, read_dictionary, tag2label, random_embedding
 
 
 ## Session configuration
@@ -27,8 +27,8 @@ config.gpu_options.per_process_gpu_memory_fraction = 0.2  # need ~700MB GPU memo
 
 ## hyperparameters
 parser = argparse.ArgumentParser(description='BiLSTM-CRF for Chinese NER task')
-parser.add_argument('--train_data', type=str, default='data_path', help='train data source')
-parser.add_argument('--test_data', type=str, default='data_path', help='test data source')
+parser.add_argument('--train_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='train data source')
+parser.add_argument('--test_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='test data source')
 parser.add_argument('--batch_size', type=int, default=64, help='#sample of each minibatch')
 parser.add_argument('--epoch', type=int, default=40, help='#epoch of training')
 parser.add_argument('--hidden_dim', type=int, default=300, help='#dim of hidden state')
@@ -60,7 +60,8 @@ if args.mode != 'demo':
     train_path = os.path.join('.', args.train_data, 'train_data')
     test_path = os.path.join('.', args.test_data, 'test_data')
     train_data = read_corpus(train_path)
-    test_data = read_corpus(test_path); test_size = len(test_data)
+    test_data = read_corpus(test_path);
+    test_size = len(test_data)
 
 
 ## paths setting
@@ -83,7 +84,7 @@ paths['log_path'] = log_path
 get_logger(log_path).info(str(args))
 
 
-## training model
+## training Entity Extraction model
 if args.mode == 'train':
     model = BiLSTM_CRF(args, embeddings, tag2label, word2id, paths, config=config)
     model.build_graph()
@@ -110,8 +111,9 @@ elif args.mode == 'test':
 
 ## demo
 elif args.mode == 'demo':
+    model_path = 'D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction_save\\1533871370\checkpoints'
     ckpt_file = tf.train.latest_checkpoint(model_path)
-    print(ckpt_file)
+    print('>>>>>>>>>>>',ckpt_file)
     paths['model_path'] = ckpt_file
     model = BiLSTM_CRF(args, embeddings, tag2label, word2id, paths, config=config)
     model.build_graph()
@@ -119,6 +121,7 @@ elif args.mode == 'demo':
     with tf.Session(config=config) as sess:
         print('============= demo =============')
         saver.restore(sess, ckpt_file)
+        # saver.restore(sess, tf.train.latest_checkpoint("Chatbot_Data/Info_Extraction_save"))
         while(1):
             print('Please input your sentence:')
             demo_sent = input()
@@ -126,15 +129,17 @@ elif args.mode == 'demo':
                 print('See you next time!')
                 break
             else:
-                demo_sent = list(demo_sent.strip())
-                demo_data = [(demo_sent, ['O'] * len(demo_sent))]
+                demo_sents = list(demo_sent.strip())
+                demo_data = [(demo_sents, ['O'] * len(demo_sents))]
                 tag = model.demo_one(sess, demo_data)
-                PER, LOC, ORG = get_entity(tag, demo_sent)
+                PER, LOC, ORG = get_entity(tag, demo_sents)
 
                 # 调用money处理方法，获取金额实体
                 tr = proprecess_money.wash_data(demo_sent)
                 sent = proprecess_money.split_sentence(tr)
+                MON = []
                 for sentence in sent:
-                    MON = proprecess_money.get_properties_and_values(sentence)
+                    money = proprecess_money.get_properties_and_values(sentence)
+                    MON.append(money)
 
-                pprint.pprint('PER: {}\nLOC: {}\nORG: {}\nMON: {}'.format(PER, LOC, ORG, MON))
+                print('PER: {}\nDATE: {}\nLOC: {}\nORG: {}\nMON: {}'.format(PER, LOC, ORG, MON))
