@@ -1,4 +1,11 @@
-# coding: utf-8
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: log.py
+@desc: 金额提取日志记录
+@time: 2018/08/08
+"""
+
 from datetime import datetime
 import operator
 

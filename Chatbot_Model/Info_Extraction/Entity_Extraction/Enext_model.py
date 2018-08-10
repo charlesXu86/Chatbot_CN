@@ -10,9 +10,13 @@ import tensorflow as tf
 from tensorflow.contrib.rnn import LSTMCell
 from tensorflow.contrib.crf import crf_log_likelihood
 from tensorflow.contrib.crf import viterbi_decode
-from data import pad_sequences, batch_yield
-from utils import get_logger
-from eval import conlleval
+from Entity_Extraction.data import pad_sequences, batch_yield
+from Entity_Extraction.utils import get_logger
+from Entity_Extraction.eval import conlleval
+
+# 解决与win10系统不兼容的row_write返回无效长度问题。
+import win_unicode_console
+win_unicode_console.enable()
 
 
 class BiLSTM_CRF(object):

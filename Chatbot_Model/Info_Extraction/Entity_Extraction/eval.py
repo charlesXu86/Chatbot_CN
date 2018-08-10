@@ -1,7 +1,7 @@
 #-*- coding:utf-8 _*-
 """
 @author:charlesXu
-@file: main.py
+@file: Info_Ext_main.py
 @desc: 脚本处理
 @time: 2018/08/08
 """

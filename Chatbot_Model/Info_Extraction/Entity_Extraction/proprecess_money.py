@@ -11,8 +11,8 @@ import csv
 from enum import Enum, unique
 import jieba
 import re
-import log
 
+from Entity_Extraction import log
 
 @unique
 class Consts(Enum):

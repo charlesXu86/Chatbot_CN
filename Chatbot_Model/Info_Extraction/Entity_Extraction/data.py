@@ -1,7 +1,7 @@
 #-*- coding:utf-8 _*-
 """
 @author:charlesXu
-@file: main.py
+@file: Info_Ext_main.py
 @desc: 数据预处理
 @time: 2018/08/08
 """
@@ -9,6 +9,8 @@
 
 import sys, pickle, os, random
 import numpy as np
+
+import pdb
 
 ## tags, BIO
 tag2label = {"O": 0,
