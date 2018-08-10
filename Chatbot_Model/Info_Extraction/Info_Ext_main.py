@@ -9,9 +9,9 @@
 import tensorflow as tf
 import numpy as np
 import os, argparse, time, random
-import pprint
-from Entity_Extraction import proprecess_money
+import pymysql
 
+from Entity_Extraction import proprecess_money
 from Entity_Extraction.Enext_model import BiLSTM_CRF
 from Entity_Extraction.utils import str2bool, get_logger, get_entity
 from Entity_Extraction.data import read_corpus, read_dictionary, tag2label, random_embedding
@@ -122,24 +122,39 @@ elif args.mode == 'demo':
         print('============= demo =============')
         saver.restore(sess, ckpt_file)
         # saver.restore(sess, tf.train.latest_checkpoint("Chatbot_Data/Info_Extraction_save"))
-        while(1):
-            print('Please input your sentence:')
-            demo_sent = input()
-            if demo_sent == '' or demo_sent.isspace():
-                print('See you next time!')
-                break
-            else:
-                demo_sents = list(demo_sent.strip())
-                demo_data = [(demo_sents, ['O'] * len(demo_sents))]
-                tag = model.demo_one(sess, demo_data)
-                PER, LOC, ORG = get_entity(tag, demo_sents)
+        # while(1):
+            # print('Please input your sentence:')
+            # demo_sent = input()
 
-                # 调用money处理方法，获取金额实体
-                tr = proprecess_money.wash_data(demo_sent)
-                sent = proprecess_money.split_sentence(tr)
-                MON = []
-                for sentence in sent:
-                    money = proprecess_money.get_properties_and_values(sentence)
-                    MON.append(money)
+            # 连接mysql
+        db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
+        cursor = db.cursor()
+        sql = "SELECT doc_result from doc_test LIMIT 10"
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            for result in results:
+                demo_sent = result[0]
 
-                print('PER: {}\nDATE: {}\nLOC: {}\nORG: {}\nMON: {}'.format(PER, LOC, ORG, MON))
+                if demo_sent == '' or demo_sent.isspace():
+                    print('See you next time!')
+                    break
+                else:
+                    demo_sents = list(demo_sent.strip())
+                    demo_data = [(demo_sents, ['O'] * len(demo_sents))]
+                    tag = model.demo_one(sess, demo_data)
+                    PER, LOC, ORG = get_entity(tag, demo_sents)
+
+                    # 调用money处理方法，获取金额实体
+                    tr = proprecess_money.wash_data(demo_sent)
+                    sent = proprecess_money.split_sentence(tr)
+                    MON = []
+                    for sentence in sent:
+                        money = proprecess_money.get_properties_and_values(sentence)
+                        MON.append(money)
+
+                    print('PER: {}\nLOC: {}\nORG: {}\nMON: {}'.format(PER, LOC, ORG, MON))
+        except:
+            print("Error: unable to fecth data")
+
+        db.close()
