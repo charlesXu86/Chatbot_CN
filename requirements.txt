@@ -1,0 +1,5 @@
+tenssorflow_gpu==1.9
+numpy==1.15.0+mkl
+pandas==0.23.4
+jieba==0.39
+django==2.0.7
