@@ -1,7 +1,7 @@
 #-*- coding:utf-8 _*-
 """
 @author:charlesXu
-@file: get_data.py
+@file: conn_mysql.py
 @desc: 连接数据库
 @time: 2018/08/08
 """
