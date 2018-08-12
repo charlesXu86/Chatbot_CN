@@ -12,7 +12,7 @@ import numpy as np
 
 import pdb
 
-## tags, BIO
+## tags, BIO 标注策略
 tag2label = {"O": 0,
              "B-PER": 1, "I-PER": 2,
              "B-LOC": 3, "I-LOC": 4,
