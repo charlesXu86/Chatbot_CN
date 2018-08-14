@@ -13,6 +13,8 @@
 """
 
 import re
+import jieba
+import pprint
 
 # 分句方式一
 def cut_sentence_one(self, sentence):
@@ -68,3 +70,38 @@ def cut_sentence_two(self, line, max_len):
         tags_result.extend(self.simple_cut(sentence, self.sess))
 
     return tags_result
+
+def my_split(str):
+    seg_list = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '、']
+    cut_list = []
+    cut_text = jieba.lcut(str)
+    for i in range(len(cut_text) - 2):
+        cut_after_0 = cut_text[i]   #
+        cut_after_1 = cut_text[i+1]
+        cut_after_2 = cut_text[i+2]
+
+        if cut_after_0 in seg_list and cut_after_1 in seg_list and cut_after_2 not in seg_list:
+            txt = cut_after_0 + cut_after_1
+            cut_list.append(txt)
+    return cut_list
+
+def split_sentence_thr(text):
+    cut = ['一、','二、', '三、', '四、', '五、', '六、', '七、']
+    lists = []
+    for i in cut[1:]:
+        txt1 = text.split(i)[0]
+        text = text.replace(txt1, "")
+        lists.append(txt1)
+    while '' in lists:
+        lists.remove('')
+    # lists.append(text)
+    return lists
+
+
+
+
+# text = '一、被告浙江驰江工贸有限公司于本十日内归还原告中国；二、原告中国银行股份有限公司武行优先受偿权；三、被告浙江驰江工贸有限公司十行股份；四、被限公司对上述款江驰有限公司追偿。五、司达之日起十院递交上诉状上诉于浙江省金华市中级人民法院。"'
+# text = my_split(text)
+# text2 = split_sentence_thr(text)
+# print(te)
+# print(t)
