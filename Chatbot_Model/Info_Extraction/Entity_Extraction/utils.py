@@ -46,6 +46,7 @@ def get_PER_entity(tag_seq, char_seq):
                 PER.append(per)
                 del per
             continue
+    PER = list(set(PER))     #  去重
     return PER
 
 
