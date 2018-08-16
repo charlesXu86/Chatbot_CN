@@ -1,12 +1,13 @@
 #-*- coding:utf-8 _*-
 """
 @author:charlesXu
-@file: conn_mysql.py
+@file: get_data.py
 @desc: 连接数据库
 @time: 2018/08/08
 """
 
 import pymysql
+import split_sentence
 
 
 def get_addr():
@@ -27,7 +28,7 @@ def get_addr():
     with conn.cursor() as cur1:
 
         # sql1 = """SELECT id, doc_assets FROM sm_document_copy WHERE doc_assets not like "%\'name\': None%" limit 100;"""
-        sql1 = """SELECT id,obligors,doc_result from sm_document limit 100"""
+        sql1 = """SELECT doc_result from doc_test limit 10"""
 
         cur1.execute(sql1)
         #设定游标从第一个开始移动
@@ -51,4 +52,33 @@ def conn():
         charset='utf8',
         cursorclass=pymysql.cursors.DictCursor)  # 默认返回元祖，加上这个参数返回的是字典结构
     return conn
+
+def get_datas():
+    result_list = []
+    db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
+    cursor = db.cursor()
+    sql = "SELECT doc_result from doc_test LIMIT 5"
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        for result in results:
+            demo_sent = result[0]
+            text_sent = split_sentence.split_sentence_thr(demo_sent)
+            for text in text_sent:
+                result_list.append(text)
+
+                to_str = str(text)
+                # if text == '' or text.isspace():
+                #     print('See you next time!')
+                #     break
+                # else:
+                #     text = list(text.strip())
+        print(result_list)
+        return result_list
+
+    except:
+        print("Error: unable to fecth data")
+    db.close()
+
+get_datas()
 
