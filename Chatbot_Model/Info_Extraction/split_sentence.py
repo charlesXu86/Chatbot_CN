@@ -94,7 +94,6 @@ def split_sentence_thr(text):
         lists.append(txt1)
     while '' in lists:
         lists.remove('')
-    # lists.append(text)
     return lists
 
 
