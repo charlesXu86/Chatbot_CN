@@ -230,7 +230,7 @@ def init():
     test_y = []
 
     print('organizing train data')
-    f = open('./data/train_q&a.txt', 'w', encoding='utf-8')
+    f = open('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_q&a.txt', 'w', encoding='utf-8')
     temp = 0
     for i in train_sen:
         if len(train_ans[i]) != len(train_sen[i]):
@@ -244,7 +244,7 @@ def init():
     f.close()
 
     print('organizing test data')
-    f = open('./data/test_q&a.txt', 'w', encoding='utf-8')
+    f = open('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_q&a.txt', 'w', encoding='utf-8')
     temp = 0
     for i in test_sen:
         test_x.append(test_sen[i])
@@ -262,16 +262,16 @@ def init():
     test_x = np.array(test_x)
     test_y = np.array(test_y)
 
-    np.save('./data/vec.npy', vec)
-    np.save('./data/train_x.npy', train_x)
-    np.save('./data/train_y.npy', train_y)
-    np.save('./data/testall_x.npy', test_x)
-    np.save('./data/testall_y.npy', test_y)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\vec.npy', vec)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_x.npy', train_x)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_y.npy', train_y)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\testall_x.npy', test_x)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\testall_y.npy', test_y)
 
 
 def seperate():
     print('reading training data')
-    x_train = np.load('./data/train_x.npy')
+    x_train = np.load('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_x.npy')
 
     train_word = []
     train_pos1 = []
@@ -300,12 +300,12 @@ def seperate():
     train_word = np.array(train_word)
     train_pos1 = np.array(train_pos1)
     train_pos2 = np.array(train_pos2)
-    np.save('./data/train_word.npy', train_word)
-    np.save('./data/train_pos1.npy', train_pos1)
-    np.save('./data/train_pos2.npy', train_pos2)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_word.npy', train_word)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_pos1.npy', train_pos1)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\train_pos2.npy', train_pos2)
 
     print('seperating test all data')
-    x_test = np.load('./data/testall_x.npy')
+    x_test = np.load('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\testall_x.npy')
     test_word = []
     test_pos1 = []
     test_pos2 = []
@@ -333,21 +333,21 @@ def seperate():
     test_pos1 = np.array(test_pos1)
     test_pos2 = np.array(test_pos2)
 
-    np.save('./data/testall_word.npy', test_word)
-    np.save('./data/testall_pos1.npy', test_pos1)
-    np.save('./data/testall_pos2.npy', test_pos2)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\testall_word.npy', test_word)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\testall_pos1.npy', test_pos1)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\testall_pos2.npy', test_pos2)
 
 # get answer metric for PR curve evaluation
 def getans():
-    test_y = np.load('./data/testall_y.npy')
+    test_y = np.load('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\testall_y.npy')
     eval_y = []
     for i in test_y:
         eval_y.append(i[1:])
     allans = np.reshape(eval_y, (-1))
-    np.save('./data/allans.npy', allans)
+    np.save('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\allans.npy', allans)
 
 def get_metadata():
-    fwrite = open('./data/metadata.tsv', 'w', encoding='utf-8')
+    fwrite = open('D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\metadata.tsv', 'w', encoding='utf-8')
     f = open('Chatbot_Data/Info_Extraction/re_extraction/vec.txt', encoding='utf-8')
     f.readline()
     while True:
