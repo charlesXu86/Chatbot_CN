@@ -34,7 +34,7 @@ def p(seg):
         __properties[seg] += 1
     else:
         __properties[seg] = 1
-    print('Property:', seg)
+    # print('Property:', seg)   # 此处打印金额提取的属性信息
 
 def n(seg):
     """
