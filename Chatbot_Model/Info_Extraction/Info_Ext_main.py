@@ -10,6 +10,8 @@ import tensorflow as tf
 import numpy as np
 import os, argparse, time, random
 import pymysql
+import split_sentence
+import Aip_config
 
 from Entity_Extraction import proprecess_money
 from Entity_Extraction.Enext_model import BiLSTM_CRF
@@ -113,7 +115,7 @@ elif args.mode == 'test':
 elif args.mode == 'demo':
     model_path = 'D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction_save\\1533871370\checkpoints'
     ckpt_file = tf.train.latest_checkpoint(model_path)
-    print('>>>>>>>>>>>',ckpt_file)
+    # print('>>>>>>>>>>>',ckpt_file)
     paths['model_path'] = ckpt_file
     model = BiLSTM_CRF(args, embeddings, tag2label, word2id, paths, config=config)
     model.build_graph()
@@ -129,24 +131,30 @@ elif args.mode == 'demo':
             # 连接mysql
         db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
         cursor = db.cursor()
-        sql = "SELECT doc_result from doc_test LIMIT 10"
-        try:
-            cursor.execute(sql)
-            results = cursor.fetchall()
-            for result in results:
-                demo_sent = result[0]
-
-                if demo_sent == '' or demo_sent.isspace():
+        sql = "SELECT doc_result from doc_test LIMIT 2"
+        # try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        for result in results:
+            demo_sent = result[0]
+            text_sent = split_sentence.split_sentence_thr(demo_sent)
+            for text in text_sent:
+                print(text)
+                to_str = str(text)
+                if text == '' or text.isspace():
                     print('See you next time!')
                     break
                 else:
-                    demo_sents = list(demo_sent.strip())
-                    demo_data = [(demo_sents, ['O'] * len(demo_sents))]
+                    text = list(text.strip())
+                    demo_data = [(text, ['O'] * len(text))]
                     tag = model.demo_one(sess, demo_data)
-                    PER, LOC, ORG = get_entity(tag, demo_sents)
+                    PER, LOC, ORG = get_entity(tag, text)
+
+                    # 获取时间和LOC
+                    # DATE, LOC_ITEM = Aip_config.get_LOC_DATE(to_str)
 
                     # 调用money处理方法，获取金额实体
-                    tr = proprecess_money.wash_data(demo_sent)
+                    tr = proprecess_money.wash_data(to_str)
                     sent = proprecess_money.split_sentence(tr)
                     MON = []
                     for sentence in sent:
@@ -154,7 +162,8 @@ elif args.mode == 'demo':
                         MON.append(money)
 
                     print('PER: {}\nLOC: {}\nORG: {}\nMON: {}'.format(PER, LOC, ORG, MON))
-        except:
-            print("Error: unable to fecth data")
+                    # print('DATE: {}\nLOC_ITEM: {}'.format(DATE, LOC_ITEM))
+        # except:
+        #     print("Error: unable to fecth data")
 
         db.close()
