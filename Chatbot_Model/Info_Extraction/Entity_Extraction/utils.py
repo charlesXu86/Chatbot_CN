@@ -93,6 +93,7 @@ def get_ORG_entity(tag_seq, char_seq):
                 ORG.append(org)
                 del org
             continue
+    ORG = list(set(ORG))  # 去重
     return ORG
 
 
