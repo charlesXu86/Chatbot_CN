@@ -11,12 +11,16 @@ import numpy as np
 import os, argparse, time, random
 import pymysql
 import split_sentence
-import Aip_config
+# import Aip_config
+
+# import pdb
 
 from Entity_Extraction import proprecess_money
 from Entity_Extraction.Enext_model import BiLSTM_CRF
 from Entity_Extraction.utils import str2bool, get_logger, get_entity
 from Entity_Extraction.data import read_corpus, read_dictionary, tag2label, random_embedding
+from Entity_Extraction.get_data import get_datas
+from Entity_Extraction.get_location import get_add, cut_addr
 
 
 ## Session configuration
@@ -24,7 +28,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # default: 0
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
-config.gpu_options.per_process_gpu_memory_fraction = 0.2  # need ~700MB GPU memory
+config.gpu_options.per_process_gpu_memory_fraction = 0.4  # need ~700MB GPU memory
 
 
 ## hyperparameters
@@ -128,42 +132,22 @@ elif args.mode == 'demo':
             # print('Please input your sentence:')
             # demo_sent = input()
 
-            # 连接mysql
-        db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
-        cursor = db.cursor()
-        sql = "SELECT doc_result from doc_test LIMIT 2"
-        # try:
-        cursor.execute(sql)
-        results = cursor.fetchall()
-        for result in results:
-            demo_sent = result[0]
-            text_sent = split_sentence.split_sentence_thr(demo_sent)
-            for text in text_sent:
-                print(text)
-                to_str = str(text)
-                if text == '' or text.isspace():
-                    print('See you next time!')
-                    break
-                else:
-                    text = list(text.strip())
-                    demo_data = [(text, ['O'] * len(text))]
-                    tag = model.demo_one(sess, demo_data)
-                    PER, LOC, ORG = get_entity(tag, text)
+        texts = get_datas()      # 数据库返回的按“一、二、三、四、”切割返回的文本
+        for text in texts:
+            print(text)
+            text_strip = list(text.strip())    #
+            demo_data = [(text, ['O'] * len(text))]
+            tag = model.demo_one(sess, demo_data)
+            PER, LOC, ORG = get_entity(tag, text)
+            LOC_RE = get_add(text)
+            # LOC_RE = cut_addr()
+            # 调用money处理方法，获取金额实体
+            tr = proprecess_money.wash_data(text)
+            sent = proprecess_money.split_sentence(tr)
+            MON = []
+            for sentence in sent:
+                money = proprecess_money.get_properties_and_values(sentence)
+                MON.append(money)
 
-                    # 获取时间和LOC
-                    # DATE, LOC_ITEM = Aip_config.get_LOC_DATE(to_str)
-
-                    # 调用money处理方法，获取金额实体
-                    tr = proprecess_money.wash_data(to_str)
-                    sent = proprecess_money.split_sentence(tr)
-                    MON = []
-                    for sentence in sent:
-                        money = proprecess_money.get_properties_and_values(sentence)
-                        MON.append(money)
-
-                    print('PER: {}\nLOC: {}\nORG: {}\nMON: {}'.format(PER, LOC, ORG, MON))
-                    # print('DATE: {}\nLOC_ITEM: {}'.format(DATE, LOC_ITEM))
-        # except:
-        #     print("Error: unable to fecth data")
-
-        db.close()
+            print('PER: {}\nLOC_RE: {}\nORG: {}\nMON: {}'.format(PER, LOC_RE, ORG, MON))
+            # print('LOC_RE :{}\n')
