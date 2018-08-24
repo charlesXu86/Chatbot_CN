@@ -25,7 +25,7 @@ SECRET_KEY = 'ivn=h(3#0efy(qx%q^x^@w+#yj1#fe#jfti)4q@q6!s!5nnss*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Chatbot_Web.impl.login.apps.RegisterLoginConfig',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'Chatbot_CN.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangodb',
+        'NAME': 'chatbot_cn',
         'USER': 'root',
         'PASSWORD': 'Aa123456',
         'HOST': 'localhost',
@@ -109,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us'  # zh-hans
 
 TIME_ZONE = 'UTC'
 
