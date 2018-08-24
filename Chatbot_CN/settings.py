@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+# 在这里注册应用
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Chatbot_Web.login.apps.RegisterLoginConfig',
+    'Chatbot_Web.impl.login.apps.RegisterLoginConfig',
 ]
 
 MIDDLEWARE = [
