@@ -7,18 +7,18 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
-<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="dist/js/adminlte.min.js"></script>
+<script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="./dist/js/adminlte.min.js"></script>
 
 <script type="text/javascript" src="dist/js/adminlte.min.js"></script>
 
 
-<link rel="stylesheet" type="text/css" href="dist/css/AdminLTE.min.css">
-<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="bower_components/Ionicons/css/ionicons.min.css">
-<link rel="stylesheet" type="text/css" href="dist/css/skins/skin-blue.min.css">
+<link rel="stylesheet" type="text/css" href="./dist/css/AdminLTE.min.css">
+<link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="./bower_components/Ionicons/css/ionicons.min.css">
+<link rel="stylesheet" type="text/css" href="./dist/css/skins/skin-blue.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -27,7 +27,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="AdminLTE-2.4.5/index2.html" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -252,10 +252,28 @@
             <li><a href="#">术语抽取</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>知识图谱(KG)</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>对话状态跟踪(DST)</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>对话管理(DM)</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>强化学习(RL)</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>知识图谱(KG)</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">知识图谱概述</a></li>
+            <li><a href="#">知识表示</a></li>
+            <li><a href="#">知识建模</a></li>
+            <li><a href="#">知识抽取</a></li>
+            <li><a href="#">知识挖掘</a></li>
+            <li><a href="#">知识融合</a></li>
+            <li><a href="#">知识推理</a></li>
+            <li><a href="#">语义搜索</a></li>
+            <li><a href="#">KBQA</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>核心架构</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>人机对话(Chatbot)</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
