@@ -10,6 +10,8 @@ from sklearn.metrics import average_precision_score
 
 FLAGS = tf.app.flags.FLAGS
 
+data_path = 'D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\data\\'
+origin_path = 'Chatbot_Data/Info_Extraction/re_extraction\\'
 
 # embedding the position
 def pos_embed(x):
@@ -24,7 +26,7 @@ def pos_embed(x):
 def main_for_evaluation():
     pathname = "./model/ATT_GRU_model-"
 
-    wordembedding = np.load('./data/vec.npy')
+    wordembedding = np.load(data_path + 'vec.npy')
 
     test_settings = re_network.Settings()
     test_settings.vocab_size = 16693
@@ -93,10 +95,10 @@ def main_for_evaluation():
                 print(time_str)
                 print('Evaluating all test data and save data for PR curve')
 
-                test_y = np.load('./data/testall_y.npy')
-                test_word = np.load('./data/testall_word.npy')
-                test_pos1 = np.load('./data/testall_pos1.npy')
-                test_pos2 = np.load('./data/testall_pos2.npy')
+                test_y = np.load(data_path + 'testall_y.npy')
+                test_word = np.load(data_path + 'testall_word.npy')
+                test_pos1 = np.load(data_path + 'testall_pos1.npy')
+                test_pos2 = np.load(data_path + 'testall_pos2.npy')
                 allprob = []
                 acc = []
                 for i in range(int(len(test_word) / float(test_settings.big_num))):
@@ -116,7 +118,7 @@ def main_for_evaluation():
 
                 
                 np.save('./out/allprob_iter_' + str(current_step) + '.npy', allprob)
-                allans = np.load('./data/allans.npy')
+                allans = np.load(data_path + 'allans.npy')
 
                 # caculate the pr curve area
                 average_precision = average_precision_score(allans, allprob)
@@ -126,9 +128,9 @@ def main_for_evaluation():
 def main(_):
 
     #If you retrain the model, please remember to change the path to your own model below:
-    pathname = "./model/ATT_GRU_model-9000"
+    pathname = "D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Relation_Extraction\model/ATT_GRU_model-9000"
     
-    wordembedding = np.load('./data/vec.npy')
+    wordembedding = np.load(data_path + 'vec.npy')
     test_settings = re_network.Settings()
     test_settings.vocab_size = 16693
     test_settings.num_classes = 12
@@ -183,7 +185,7 @@ def main(_):
             print('reading word embedding data...')
             vec = []
             word2id = {}
-            f = open('./origin_data/vec.txt', encoding='utf-8')
+            f = open(origin_path + 'vec.txt', encoding='utf-8')
             content = f.readline()
             content = content.strip().split()
             dim = int(content[1])
@@ -203,7 +205,7 @@ def main(_):
             print('reading relation to id')
             relation2id = {}
             id2relation = {}
-            f = open('./origin_data/relation2id.txt', 'r', encoding='utf-8')
+            f = open(origin_path + 'relation2id.txt', 'r', encoding='utf-8')
             while True:
                 content = f.readline()
                 if content == '':
