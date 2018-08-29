@@ -31,7 +31,7 @@ It looks like a portion of [MSRA corpus](http://sighan.cs.uchicago.edu/bakeoff20
 
 `python Info_Ext_main.py --mode=train `
 
-### test
+### 模型测试
 
 `python Info_Ext_main.py --mode=test --demo_model=1521112368`
 
