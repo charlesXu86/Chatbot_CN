@@ -1,0 +1,280 @@
+<div class="row" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+    <div class="col-md-4">
+        <div class="box box-solid" id="humanListBox" >
+            <div class="box-header with-border">
+
+                <h3 class="box-title">人员列表</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <ul id="human-tree-list" class="ztree"></ul>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- ./col -->
+    <div class="col-md-8">
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs " style="width: 400px">
+            <li class="active"><a href="#humaninfo-tab" data-toggle="tab"><i class="fa fa-home"><span>基本信息</span></i></a></li>
+            <li><a href="#human-list-tab" data-toggle="tab"><i class="fa fa-list"><span>岗位配置</span></i></a></li>
+            <li><a href="#right-list-tab" data-toggle="tab"><i class="fa fa-unlock"><span>查看权限</span></i></a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="humaninfo-tab" class="tab-pane active">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+
+                        <h3 class="box-title" data-bind="text:formTitle"></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <!--编辑人员信息-->
+                        <form class="form-horizontal" data-bind="visible:!isUnitNode() && showHumanForm">
+                            <div class="box-body">
+                                <input  data-bind="value:humanInfo.unitid" type="hidden" name="unitid"/>
+                                <div class="form-group">
+                                    <label tab class="col-sm-2 control-label">人员标识</label>
+
+                                    <div class="col-sm-4">
+                                        <input data-bind="value:humanInfo.humanid"   type="text" class="form-control" id="humanid" name="humanid" disabled>
+                                    </div>
+                                    <label for="humancode" class="col-sm-2 control-label">人员代码</label>
+
+                                    <div class="col-sm-4">
+                                        <input data-bind="value:humanInfo.humancode"   type="text" class="form-control" id="humancode" name="humancode">
+                                    </div>
+                                </div>
+                                <div  class="form-group">
+                                    <label for="humanname" class="col-sm-2 control-label">人员名称</label>
+
+                                    <div class="col-sm-4" data-bind="css:{'has-error': !humanInfo.humanname()}">
+                                        <input data-bind="value:humanInfo.humanname,valueUpdate:'keyup'" type="text" class="form-control" id="humanname" name="humanname"
+                                               placeholder="人员名称">
+                                        <span class="help-block" data-bind="visible:!humanInfo.humanname()">该项不能为空</span>
+                                    </div>
+                                    <label for="humancode" class="col-sm-2 control-label">人员描述</label>
+
+                                    <div class="col-sm-4">
+                                        <textarea data-bind="value:humanInfo.humandescription"   type="text" class="form-control" id="humandescription" name="humandescription">
+                                        </textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="humanpassword" class="col-sm-2 control-label">人员密码</label>
+
+                                    <div class="col-sm-4">
+                                <input type="password"  data-bind="value:humanInfo.humanpassword,valueUpdate:'keyup'"  class="form-control" id="humanpassword" name="humanpassword"
+                                           placeholder="人员密码"></input>
+                                    </div>
+                                    <label for="humandescription" class="col-sm-2 control-label">确认密码</label>
+
+                                    <div class="col-sm-4">
+                                <input type="password"  data-bind="value:humanInfo.humanpassword,valueUpdate:'keyup'"  class="form-control" id="confoimhumanpassword" name="humanpassword"
+                                           placeholder="确认密码"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">手机号码</label>
+
+                                    <div class="col-sm-4">
+                                        <input  data-bind="value:humanInfo.telmobile,valueUpdate:'keyup'" type="text" class="form-control" id="telmobile" name="telmobile"
+                                                placeholder="手机号码">
+                                    </div>
+                                    <label  class="col-sm-2 control-label">Mac地址	</label>
+
+                                    <div class="col-sm-4">
+                                        <input  data-bind="value:humanInfo.macaddress,valueUpdate:'keyup'" type="text" class="form-control" id="macaddress" name="macaddress"
+                                                placeholder="Mac地址">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">人员职务</label>
+
+                                    <div class="col-sm-4">
+                                        <select class="form-control" style="display: block" data-bind="options: humanInfo.dutyList, optionsText: 'dutyname',optionsValue:'dutyid', value: humanInfo.dutyid">
+                                        </select>
+                                       <!-- <input  data-bind="value:humanInfo.dutyid,valueUpdate:'keyup'" type="text" class="form-control" id="dutyid" name="dutyid"
+                                                placeholder="人员职务">-->
+                                    </div>
+                                    <label  class="col-sm-2 control-label">显示次序</label>
+
+                                    <div class="col-sm-4">
+                                        <input  data-bind="value:humanInfo.displayorder,valueUpdate:'keyup'" type="text" class="form-control"  name="displayorder"
+                                                placeholder="序号">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <!--shiro:hasPermission="/human/delHuman" shiro:hasPermission="/human/addHuman"-->
+                                <button type="button" class="btn btn-default" id="resetHumanInfo" data-bind="click:resetHumanInfo">重置</button>
+                                <button type="button"  class="btn btn-danger pull-right" id="delHumanInfo" data-bind="click:delHumanInfo">删除</button>
+                                <button type="button"  class="btn btn-info pull-right" id="saveHumanInfo" data-bind="click:updateHumanInfo">保存</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                        <!--展示部门信息-->
+                        <form class="form-horizontal" data-bind="visible:isUnitNode() && showUnitForm">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label tab class="col-sm-2 control-label">部门标识</label>
+
+                                    <div class="col-sm-10">
+                                        <input data-bind="value:unitInfo.unitid"   type="text" class="form-control"  name="unitid" disabled>
+                                    </div>
+                                </div>
+                                <div  data-bind="css:{'form-group':true,'has-error': !unitInfo.unitname()}">
+                                    <label  class="col-sm-2 control-label">部门名称</label>
+
+                                    <div class="col-sm-10">
+                                        <input disabled  data-bind="value:unitInfo.unitname,valueUpdate:'keyup'" type="text" class="form-control"  name="unitname"
+                                               placeholder="部门名称">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label tab class="col-sm-2 control-label">建立时间</label>
+
+                                    <div class="col-sm-10">
+                                        <input  disabled data-bind="value:unitInfo.createdate"   type="text" class="form-control" tab name="createdate" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">显示次序</label>
+
+                                    <div class="col-sm-10">
+                                        <input  disabled  data-bind="value:unitInfo.displayorder,valueUpdate:'keyup'" type="text" class="form-control"  name="displayorder"
+                                                placeholder="序号">
+                                    </div>
+                                </div>
+                                <div data-bind="css:{'form-group':true,'has-error': !unitInfo.unitdescription()}">
+                                    <label  class="col-sm-2 control-label">部门描述</label>
+
+                                    <div class="col-sm-10">
+                                <textarea  disabled  data-bind="value:unitInfo.unitdescription,valueUpdate:'keyup'"  class="form-control"  name="unitdescription"
+                                           placeholder="机构描述"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">行政区划</label>
+
+                                    <div class="col-sm-10">
+                                        <input disabled  data-bind="value:unitInfo.cantonid,valueUpdate:'keyup'" type="text" class="form-control" tab name="cantonid"
+                                               placeholder="行政区划">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!--展示岗位信息-->
+                        <form class="form-horizontal" data-bind="visible:isUnitNode() && showRoleForm">
+                            <div class="box-body">
+                                <input  data-bind="value:roleInfo.unitid" type="hidden" name="unitid"/>
+                                <div class="form-group">
+                                    <label tab class="col-sm-2 control-label">岗位标识</label>
+
+                                    <div class="col-sm-10">
+                                        <input  data-bind="value:roleInfo.roleid"   type="text" class="form-control"  name="roleid" disabled>
+                                    </div>
+                                </div>
+                                <div  data-bind="css:{'form-group':true,'has-error': !roleInfo.rolename()}">
+                                    <label  class="col-sm-2 control-label">岗位名称</label>
+
+                                    <div class="col-sm-10">
+                                        <input disabled data-bind="value:roleInfo.rolename,valueUpdate:'keyup'" type="text" class="form-control"  name="rolename"
+                                               placeholder="岗位名称">
+                                        <span class="help-block" data-bind="visible:!roleInfo.rolename()">该项不能为空</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">显示次序</label>
+
+                                    <div class="col-sm-10">
+                                        <input disabled  data-bind="value:roleInfo.displayorder,valueUpdate:'keyup'" type="text" class="form-control"  name="displayorder"
+                                                placeholder="序号">
+                                    </div>
+                                </div>
+                                <div data-bind="css:{'form-group':true,'has-error': !roleInfo.roledescription()}">
+                                    <label  class="col-sm-2 control-label">岗位描述</label>
+
+                                    <div class="col-sm-10">
+                                <textarea disabled data-bind="value:roleInfo.roledescription,valueUpdate:'keyup'"  class="form-control"  name="roledescription"
+                                           placeholder="岗位描述"></textarea>
+                                        <span class="help-block" data-bind="visible:!roleInfo.roledescription()">该项不能为空</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <div id="human-list-tab" class="tab-pane">
+                <div class="box box-solid" >
+                    <div class="box-header with-border">
+                        <h3 class="box-title">已分配岗位<span class="pull-right-container">
+                        <span class="label label-primary pull-right" data-bind="text:allocated()"></span></span>
+                        </h3>
+
+                        <div class="btn-group pull-right" data-bind="visible:!isUnitNode() && showHumanForm">
+                            <!--shiro:hasPermission="/human/allocateRoles"-->
+                            <button type="button"  class="btn btn-sm btn-info" data-bind="click:allocateRoles">保存</button>
+                            <button type="button" class="btn btn-sm btn-default" data-bind="click:resetHumanRoles">重置</button>
+                        </div>
+                        <div class="checkbox pull-right" title="只显示已分配的岗位" style="margin-right: 5px">
+                            <label >
+                                <input type="checkbox" data-bind="checked:filterRoles"> 过滤
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+                        <ul class="ztree"  data-bind="visible:!isUnitNode()" id="roleList"  >
+                            <div id="role-tree-list-human"></div>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <div id="right-list-tab" class="tab-pane">
+                <div class="row" id="sysMenuTree" >
+                    <div class="col-md-12">
+                        <!-- Custom Tabs -->
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#human-nav-menu-tab" data-toggle="tab" aria-expanded="true">系统菜单<span class="pull-right-container">
+                        <span class="label label-primary pull-right" data-bind="text:navMenuRes"></span></span></a></li>
+                                <li class=""><a href="#human-app-menu-tab" data-toggle="tab" aria-expanded="true">应用菜单<span class="pull-right-container">
+                        <span class="label label-primary pull-right" data-bind="text:appMenuRes"></span></span></a></li>
+
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="human-nav-menu-tab">
+                                    <div class="ztree">
+                                        <ul id="human-resource-tree-list">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="human-app-menu-tab">
+                                    <div class="ztree">
+                                        <ul id="human-app-tree-list">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                        <!-- nav-tabs-custom -->
+                    </div>
+                    <!-- /.col -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

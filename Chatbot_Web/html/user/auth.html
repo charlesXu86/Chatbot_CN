@@ -1,0 +1,148 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-solid" >
+            <div class="box-header">
+               <div class="btn-group pull-right">
+                   <button class="btn btn-success" data-toggle="modal" data-target="#modal-apply-auth">分配</button>
+                   <button class="btn btn-primary" data-toggle="modal" data-target="#modal-add-auth" data-bind="click:openAddAuthWin">新增</button>
+                   <button class="btn btn-danger" data-bind="click:deleteResource">删除</button>
+               </div>
+            </div>
+            <div class="box-body" id="authListBox">
+                <table id="auth-list-table">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-add-auth">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" data-bind="text:popTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <input type="hidden" data-bind="authInfo:parentid"/>
+                            <div class="form-group">
+                                <label for="resourceid" class="col-sm-2 control-label">权限标识</label>
+
+                                <div class="col-sm-10">
+                                    <input data-bind="value:authInfo.resourceid"   type="text" class="form-control" id="resourceid" name="resourceid" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="parentResName" class="col-sm-2 control-label">父级权限</label>
+
+                                <div class="col-sm-10">
+                                    <input data-bind="{value:parentResName,click:triggerSelectTree}"   type="text" class="form-control" id="parentResName" name="parentResName">
+                                    <div class="ztree" data-bind="visible:showAuthTree"
+                                         style="height: 150px;overflow-y: scroll">
+                                        <ul id="auth-resource-tree-list">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  data-bind="css:{'form-group':true,'has-error': !authInfo.name()}">
+                                <label for="name" class="col-sm-2 control-label">权限名称</label>
+
+                                <div class="col-sm-10">
+                                    <input data-bind="value:authInfo.name,valueUpdate:'keyup'" type="text" class="form-control" id="name" name="name"
+                                           placeholder="权限名称">
+                                    <span class="help-block" data-bind="visible:!authInfo.name()">该项不能为空</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="typeid" class="col-sm-2 control-label">资源类型</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="typeid" data-bind="options: typeList,
+                       optionsText: 'typename',optionsValue:'typeid',
+                       value: authInfo.type">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" data-bind="visible:authInfo.type() != 2">
+                                <label for="resIco" class="col-sm-2 control-label">图标</label>
+                                <div class="col-sm-10">
+                                    <input  data-bind="value:authInfo.resIco,valueUpdate:'keyup'" type="text" class="form-control" id="resIco" name="resIco"
+                                            placeholder="图标">
+                                </div>
+                            </div>
+                            <div class="form-group" data-bind="visible:authInfo.type() == 1">
+                                <label for="hrefUrl" class="col-sm-2 control-label">导航地址</label>
+
+                                <div class="col-sm-10">
+                                    <input data-bind="value:authInfo.hrefUrl,valueUpdate:'keyup'" type="text" class="form-control" id="hrefUrl" name="hrefUrl"
+                                           placeholder="导航地址">
+                                </div>
+                            </div>
+                            <div class="form-group" data-bind="visible:authInfo.type() == 1">
+                                <label for="routeUrl" class="col-sm-2 control-label">路由地址</label>
+
+                                <div class="col-sm-10">
+                                    <input data-bind="value:authInfo.routeUrl,valueUpdate:'keyup'" type="text" class="form-control" id="routeUrl" name="routeUrl"
+                                           placeholder="路由地址">
+                                </div>
+                            </div>
+                            <div  data-bind="css:{'form-group':true,'has-error': !authInfo.resurl()}">
+                                <label for="resurl" class="col-sm-2 control-label">资源地址</label>
+
+                                <div class="col-sm-10">
+                                    <input data-bind="value:authInfo.resurl,valueUpdate:'keyup'" type="text" class="form-control" id="resurl" name="resurl"
+                                           placeholder="资源地址">
+                                    <span class="help-block" data-bind="visible:!authInfo.resurl()">该项不能为空</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">显示次序</label>
+
+                                <div class="col-sm-10">
+                                    <input  data-bind="value:authInfo.displayorder,valueUpdate:'keyup'" type="text" class="form-control"  name="displayorder"
+                                            placeholder="序号">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary"  data-bind="click:addResource">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-apply-auth">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">岗位授权</h4>
+                <span class="pull-right-container">
+                        <span class="label label-primary pull-right" data-bind="text:allocated()"></span></span>
+
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ul id="role-tree-list-auth" class="ztree"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary"  data-bind="click:updateResourceRoles">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
