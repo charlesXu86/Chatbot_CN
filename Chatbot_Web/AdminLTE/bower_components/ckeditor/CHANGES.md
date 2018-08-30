@@ -466,7 +466,7 @@ Fixed Issues:
 
 * [#10685](https://dev.ckeditor.com/ticket/10685): Fixed: Unreadable toolbar icons after updating to the new editor version. Fixed with [6876179](https://github.com/ckeditor/ckeditor-dev/commit/6876179db4ee97e786b07b8fd72e6b4120732185) in [ckeditor-dev](https://github.com/ckeditor/ckeditor-dev) and [6c9189f4](https://github.com/ckeditor/ckeditor-presets/commit/6c9189f46392d2c126854fe8889b820b8c76d291) in [ckeditor-presets](https://github.com/ckeditor/ckeditor-presets).
 * [#14573](https://dev.ckeditor.com/ticket/14573): Fixed: Missing [Widget](https://ckeditor.com/cke4/addon/widget) drag handler CSS when there are multiple editor instances.
-* [#14620](https://dev.ckeditor.com/ticket/14620): Fixed: Setting both the `min-height` style for the `<body>` element and the `height` style for the `<html>` element breaks the [Auto Grow](https://ckeditor.com/cke4/addon/autogrow) plugin.
+* [#14620](https://dev.ckeditor.com/ticket/14620): Fixed: Setting both the `min-height` style for the `<body>` element and the `height` style for the `<templates>` element breaks the [Auto Grow](https://ckeditor.com/cke4/addon/autogrow) plugin.
 * [#14538](https://dev.ckeditor.com/ticket/14538): Fixed: Keyboard focus goes into an embedded `<iframe>` element.
 * [#14602](https://dev.ckeditor.com/ticket/14602): Fixed: The [`dom.element.removeAttribute()`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.dom.element-method-removeAttribute) method does not remove all attributes if no parameter is given.
 * [#8679](https://dev.ckeditor.com/ticket/8679): Fixed: Better focus indication and ability to style the selected color in the [color picker dialog](https://ckeditor.com/cke4/addon/colordialog).
@@ -1434,7 +1434,7 @@ New Features:
   * Based on [`config.allowedContent`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.config-cfg-allowedContent) rules - the data
   will be filtered and the editor features (toolbar items, commands, keystrokes) will be enabled if they are allowed.
 
-  See the `datafiltering.html` sample, [guides](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_advanced_content_filter) and [`CKEDITOR.filter` API documentation](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.filter).
+  See the `datafiltering.templates` sample, [guides](https://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_advanced_content_filter) and [`CKEDITOR.filter` API documentation](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR.filter).
 * [#9387](https://dev.ckeditor.com/ticket/9387): Reintroduced [Shared Spaces](https://ckeditor.com/cke4/addon/sharedspace) - the ability to display toolbar and bottom editor space in selected locations and to share them by different editor instances.
 * [#9907](https://dev.ckeditor.com/ticket/9907): Added the [`contentPreview`](https://docs.ckeditor.com/ckeditor4/docs/#!/api/CKEDITOR-event-contentPreview) event for preview data manipulation.
 * [#9713](https://dev.ckeditor.com/ticket/9713): Introduced the [Source Dialog](https://ckeditor.com/cke4/addon/sourcedialog) plugin that brings raw HTML editing for inline editor instances.

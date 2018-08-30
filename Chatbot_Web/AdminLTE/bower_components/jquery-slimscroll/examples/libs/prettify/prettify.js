@@ -15,7 +15,7 @@
 
 /**
  * @fileoverview
- * some functions for browser-side pretty printing of code contained in html.
+ * some functions for browser-side pretty printing of code contained in templates.
  *
  * <p>
  * For a fairly comprehensive set of languages see the
@@ -27,12 +27,12 @@
  * Smalltalk, Lisp-like, or CAML-like languages without an explicit lang class.
  * <p>
  * Usage: <ol>
- * <li> include this source file in an html page via
+ * <li> include this source file in an templates page via
  *   {@code <script type="text/javascript" src="/path/to/prettify.js"></script>}
  * <li> define style rules.  See the example page for examples.
  * <li> mark the {@code <pre>} and {@code <code>} tags in your source with
  *    {@code class=prettyprint.}
- *    You can also use the (html deprecated) {@code <xmp>} tag, but the pretty
+ *    You can also use the (templates deprecated) {@code <xmp>} tag, but the pretty
  *    printer needs to do more substantial DOM manipulations to support that, so
  *    some css styles may not be preserved.
  * </ol>
@@ -1448,8 +1448,8 @@ var REGEXP_PRECEDER_PATTERN = '(?:^^\\.?|[+-]|\\!|\\!=|\\!==|\\#|\\%|\\%=|&|&&|&
    /**
     * Pretty print a chunk of code.
     *
-    * @param {string} sourceCodeHtml code as html
-    * @return {string} code as html, but prettier
+    * @param {string} sourceCodeHtml code as templates
+    * @return {string} code as templates, but prettier
     */
   window['prettyPrint'] = prettyPrint;
    /**

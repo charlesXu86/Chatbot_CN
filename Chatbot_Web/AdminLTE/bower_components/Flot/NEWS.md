@@ -482,7 +482,7 @@ also surfaced, if your graphs are slow in IE, you may want to give it a spin:
  - New fillbetween plugin that can compute a bottom for a series from another
    series, useful for filling areas between lines.
 
-   See new example percentiles.html for a use case.
+   See new example percentiles.templates for a use case.
 
  - More predictable handling of gaps for the stacking plugin, now all
    undefined ranges are skipped.
@@ -603,7 +603,7 @@ also surfaced, if your graphs are slow in IE, you may want to give it a spin:
  - Fix errors in JSON in examples so they work with jQuery 1.4.2
    (fix reported by honestbleeps, issue 357).
 
- - Fix bug with tooltip in interacting.html, this makes the tooltip
+ - Fix bug with tooltip in interacting.templates, this makes the tooltip
    much smoother (fix by bdkahn). Fix related bug inside highlighting
    handler in Flot.
 

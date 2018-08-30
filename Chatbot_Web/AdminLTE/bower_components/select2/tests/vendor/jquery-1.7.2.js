@@ -134,7 +134,7 @@ jQuery.fn = jQuery.prototype = {
 			// Verify a match, and that no context was specified for #id
 			if ( match && (match[1] || !context) ) {
 
-				// HANDLE: $(html) -> $(array)
+				// HANDLE: $(templates) -> $(array)
 				if ( match[1] ) {
 					context = context instanceof jQuery ? context[0] : context;
 					doc = ( context ? context.ownerDocument || context : document );
@@ -6382,7 +6382,7 @@ jQuery.extend({
 				continue;
 			}
 
-			// Convert html string into DOM nodes
+			// Convert templates string into DOM nodes
 			if ( typeof elem === "string" ) {
 				if ( !rhtml.test( elem ) ) {
 					elem = context.createTextNode( elem );
@@ -6407,7 +6407,7 @@ jQuery.extend({
 						createSafeFragment( context ).appendChild( div );
 					}
 
-					// Go to html and back, then peel off extra wrappers
+					// Go to templates and back, then peel off extra wrappers
 					div.innerHTML = wrap[1] + elem + wrap[2];
 
 					// Move to the right depth
@@ -7324,7 +7324,7 @@ jQuery.extend({
 			// Convert anything to text
 			"* text": window.String,
 
-			// Text to html (true = no transformation)
+			// Text to templates (true = no transformation)
 			"text html": true,
 
 			// Evaluate text as a json expression
@@ -9037,7 +9037,7 @@ function defaultDisplay( nodeName ) {
 			// document to it; WebKit & Firefox won't allow reusing the iframe document.
 			if ( !iframeDoc || !iframe.createElement ) {
 				iframeDoc = ( iframe.contentWindow || iframe.contentDocument ).document;
-				iframeDoc.write( ( jQuery.support.boxModel ? "<!doctype html>" : "" ) + "<html><body>" );
+				iframeDoc.write( ( jQuery.support.boxModel ? "<!doctype templates>" : "" ) + "<templates><body>" );
 				iframeDoc.close();
 			}
 

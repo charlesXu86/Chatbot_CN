@@ -26,7 +26,7 @@ define(['common', 'knockout-multimodels', 'tab', 'jquery', 'router', 'routes', '
                 id: route.resurl,
                 title: route.name,
                 close: route.resurl == '/dashboard' ? false : true,
-                url: paths[route.routeUrl + '-html'],
+                url: paths[route.routeUrl + '-templates'],
                 isIframe: route.isIframe,
                 urlType: "relative",
                 modelId: route.routeUrl,

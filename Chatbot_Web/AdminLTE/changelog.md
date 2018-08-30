@@ -62,7 +62,7 @@
 - Fix sidebar li.active fa-angle-left rotate.
 - Fix link to changelog
 - Merge pull request #1 from liamgall/liamgall-patch-1
-- changed index2.html to ../index2.html
+- changed index2.templates to ../index2.templates
 - Fix issue #1008
 - Update sidebar.less
 

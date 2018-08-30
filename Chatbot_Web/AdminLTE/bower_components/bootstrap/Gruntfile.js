@@ -396,7 +396,7 @@ module.exports = function (grunt) {
           throttled: 10,
           maxRetries: 3,
           maxPollRetries: 4,
-          urls: ['http://127.0.0.1:3000/js/tests/login.html?hidepassed'],
+          urls: ['http://127.0.0.1:3000/js/tests/login.templates?hidepassed'],
           browsers: grunt.file.readYAML('grunt/sauce_browsers.yml')
         }
       }
@@ -435,7 +435,7 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Docs HTML validation task
-  grunt.registerTask('validate-html', ['jekyll:docs', 'htmllint']);
+  grunt.registerTask('validate-templates', ['jekyll:docs', 'htmllint']);
 
   var runSubset = function (subset) {
     return !process.env.TWBS_TEST || process.env.TWBS_TEST === subset;
@@ -453,10 +453,10 @@ module.exports = function (grunt) {
     testSubtasks = testSubtasks.concat(['dist-css', 'dist-js', 'csslint:dist', 'test-js', 'docs']);
   }
   // Skip HTML validation if running a different subset of the test suite
-  if (runSubset('validate-html') &&
+  if (runSubset('validate-templates') &&
       // Skip HTML5 validator on Travis when [skip validator] is in the commit message
       isUndefOrNonZero(process.env.TWBS_DO_VALIDATOR)) {
-    testSubtasks.push('validate-html');
+    testSubtasks.push('validate-templates');
   }
   // Only run Sauce Labs tests if there's a Sauce access key
   if (typeof process.env.SAUCE_ACCESS_KEY !== 'undefined' &&
@@ -486,8 +486,8 @@ module.exports = function (grunt) {
   grunt.registerTask('build-glyphicons-data', function () { generateGlyphiconsData.call(this, grunt); });
 
   // task for building customizer
-  grunt.registerTask('build-customizer', ['build-customizer-html', 'build-raw-files']);
-  grunt.registerTask('build-customizer-html', 'pug');
+  grunt.registerTask('build-customizer', ['build-customizer-templates', 'build-raw-files']);
+  grunt.registerTask('build-customizer-templates', 'pug');
   grunt.registerTask('build-raw-files', 'Add scripts/less files to customizer.', function () {
     var banner = grunt.template.process('<%= banner %>');
     generateRawFiles(grunt, banner);

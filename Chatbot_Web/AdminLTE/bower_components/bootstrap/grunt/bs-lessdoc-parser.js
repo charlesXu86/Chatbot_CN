@@ -24,7 +24,7 @@ Mini-language:
 
   //=== This is a subheading.
 
-  //** Optional description for the following variable. You **can** use Markdown in descriptions to discuss `<html>` stuff.
+  //** Optional description for the following variable. You **can** use Markdown in descriptions to discuss `<templates>` stuff.
   @foo: #fff;
 
   //-- This is a heading for a section whose variables shouldn't be customizable

@@ -66,7 +66,7 @@
 
   * add: unified diff (#862)
   * add: set MOCHA_COLORS env var to use colors (#965)
-  * add: able to override tests links in html reporters (#776)
+  * add: able to override tests links in templates reporters (#776)
   * remove: teamcity reporter (#954)
   * update: commander dependency to 2.0.0 (#1010)
   * fix: mocha --ui will try to require the ui if not built in, as --reporter does (#1022)
@@ -124,7 +124,7 @@
  * add support to pass through flags such as --debug-brk=1234. Closes #852
  * add test.only, test.skip to qunit interface
  * change to always use word-based diffs for now. Closes #733
- * change `mocha init` tests.html to index.html
+ * change `mocha init` tests.templates to index.templates
  * fix `process` global leak in the browser
  * fix: use resolve() instead of join() for --require
  * fix: filterLeaks() condition to not consider indices in global object as leaks
@@ -187,7 +187,7 @@
   * add `--async-only` support to prevent false positives for missing `done()`
   * add sorting by filename in code coverage
   * add HTML 5 doctype to browser template.
-  * add play button to html reporter to rerun a single test
+  * add play button to templates reporter to rerun a single test
   * add `this.timeout(ms)` as Suite#timeout(ms). Closes #599
   * update growl dependency to 1.6.x
   * fix encoding of test-case ?grep. Closes #637
@@ -350,8 +350,8 @@
   * Added: initial run of tests with `--watch`. Closes #345
   * Added: mark `location` as a global on the CS. Closes #311
   * Added `markdown` reporter (github flavour)
-  * Added: scrolling menu to coverage.html. Closes #335
-  * Added source line to html report for Safari [Tyson Tate]
+  * Added: scrolling menu to coverage.templates. Closes #335
+  * Added source line to templates report for Safari [Tyson Tate]
   * Added "min" reporter, useful for `--watch` [Jakub Nešetřil]
   * Added support for arbitrary compilers via . Closes #338 [Ian Young]
   * Added Teamcity export to lib/reporters/index [Michael Riley]
@@ -598,8 +598,8 @@ Closes #247
 ==================
 
   * Fixed global leak detection due to Safari bind() change
-  * Fixed: escape html entities in Doc reporter
-  * Fixed: escape html entities in HTML reporter
+  * Fixed: escape templates entities in Doc reporter
+  * Fixed: escape templates entities in HTML reporter
   * Fixed pending test support for HTML reporter. Closes #66
 
 0.0.1 / 2011-11-22

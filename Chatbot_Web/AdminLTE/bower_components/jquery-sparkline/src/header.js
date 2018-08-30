@@ -44,7 +44,7 @@
 * Usage:
 *  $(selector).sparkline(values, options)
 *
-* If values is undefined or set to 'html' then the data values are read from the specified tag:
+* If values is undefined or set to 'templates' then the data values are read from the specified tag:
 *   <p>Sparkline: <span class="sparkline">1,4,6,6,8,5,3,5</span></p>
 *   $('.sparkline').sparkline();
 * There must be no spaces in the enclosed data set
@@ -193,7 +193,7 @@
 *
 *   Examples:
 *   $('#sparkline1').sparkline(myvalues, { lineColor: '#f00', fillColor: false });
-*   $('.barsparks').sparkline('html', { type:'bar', height:'40px', barWidth:5 });
+*   $('.barsparks').sparkline('templates', { type:'bar', height:'40px', barWidth:5 });
 *   $('#tristate').sparkline([1,1,-1,1,0,0,-1], { type:'tristate' }):
 *   $('#discrete').sparkline([1,3,4,5,5,3,4,5], { type:'discrete' });
 *   $('#bullet').sparkline([10,12,12,9,7], { type:'bullet' });

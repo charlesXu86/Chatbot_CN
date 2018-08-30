@@ -32,7 +32,7 @@ Ion.RangeSlider. Is an easy, flexible and responsive range slider with tons of o
 * Postfixes and prefixes for your numbers ($20, 20 &euro; etc.)
 * Additional postfix for maximum value (eg. $0 — $100<b>+</b>)
 * Ability to prettify large numbers (eg. 10000000 -> 10 000 000 or 10.000.000)
-* Slider writes its value right into input value field. This makes it easy to use in any html form
+* Slider writes its value right into input value field. This makes it easy to use in any templates form
 * Any slider value can be set through input data-attribute (eg. data-min="10")
 * Slider supports disable param. You can set it true to make slider inactive
 * Slider supports external methods (update, reset and remove) to control it after creation

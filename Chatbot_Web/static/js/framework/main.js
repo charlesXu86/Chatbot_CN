@@ -1,6 +1,6 @@
 /**
  * 异步加载模块入口，每个js库的css也作为依赖进行按需加载
- * @type {{jquery: string, routes: string, knockout: string, router: string, moment: string, controller: string, appRouter: string, "knockout-mapping": string, "knockout-amd-helpers": string, "knockout-multimodels": string, text: string, bootstrap: string, icheck: string, "icheck-css": string, "jquery.livequery": string, "datatables.net": string, "dataTables.select-css": string, "dataTables.select": string, "datatables.net-bs": string, "datatables.net-bs-css": string, "responsive.bootstrap": string, "responsive.bootstrap-css": string, "dataTables.responsive": string, select2: string, "select2-css": string, "ztree-css": string, "jquery.ztree.core": string, "jquery.ztree.excheck": string, "jquery.ztree.exedit": string, "jquery.ztree.exhide": string, gotoTop: string, pushMenu: string, controlSidebar: string, layout: string, tree: string, "jquery.slimscroll": string, "jquery.storageapi.min": string, app: string, common: string, dialog: string, "404-html": string, "404-js": string, "404-css": string, "dashboard-html": string, "dashboard-js": string, "dashboard-css": string, "tenant-html": string, "tenant-js": string, "tenant-css": string, "unit-html": string, "unit-js": string, "unit-css": string, "role-html": string, "role-js": string, "role-css": string, "human-html": string, "human-js": string, "human-css": string}}
+ * @type {{jquery: string, routes: string, knockout: string, router: string, moment: string, controller: string, appRouter: string, "knockout-mapping": string, "knockout-amd-helpers": string, "knockout-multimodels": string, text: string, bootstrap: string, icheck: string, "icheck-css": string, "jquery.livequery": string, "datatables.net": string, "dataTables.select-css": string, "dataTables.select": string, "datatables.net-bs": string, "datatables.net-bs-css": string, "responsive.bootstrap": string, "responsive.bootstrap-css": string, "dataTables.responsive": string, select2: string, "select2-css": string, "ztree-css": string, "jquery.ztree.core": string, "jquery.ztree.excheck": string, "jquery.ztree.exedit": string, "jquery.ztree.exhide": string, gotoTop: string, pushMenu: string, controlSidebar: string, layout: string, tree: string, "jquery.slimscroll": string, "jquery.storageapi.min": string, app: string, common: string, dialog: string, "404-templates": string, "404-js": string, "404-css": string, "dashboard-templates": string, "dashboard-js": string, "dashboard-css": string, "tenant-templates": string, "tenant-js": string, "tenant-css": string, "unit-templates": string, "unit-js": string, "unit-css": string, "role-templates": string, "role-js": string, "role-css": string, "human-templates": string, "human-js": string, "human-css": string}}
  */
 var paths = {
     //framework
@@ -33,7 +33,7 @@ var paths = {
     //ie9以下hacker
     'highcharts-oldie': "js/lib/highcharts/oldie",
     'highcharts-map': "js/lib/highcharts/modules/map",
-    'highcharts-drilldown': "js/lib/highcharts/modules/drilldown",
+    'highcharts-drilldown': "/js/lib/highcharts/modules/drilldown",
     'highcharts-exporting': "js/lib/highcharts/modules/exporting",
     //treegrid
     'jquery.treegrid-css': 'css/lib/jquery.treegrid',
@@ -78,34 +78,58 @@ var paths = {
     'dashboard-html': 'templates/dashboard/dashboard.html',
     'dashboard-js': 'templates/dashboard/dashboard',
     'dashboard-css': 'templates/dashboard/dashboard',
-    //租户管理
-    'tenant-html': 'templates/tenant/tenant.html',
-    'tenant-js': 'templates/tenant/tenant',
-    'tenant-css': 'templates/tenant/tenant',
-    //机构管理
+    //中文分词
+    'cws-html': 'templates/cws/cws.html',
+    'cws-js': 'templates/cws/cws',
+    'cws-css': 'templates/cws/cws',
+    //词性标注
     'unit-html': 'templates/user/unit.html',
     'unit-js': 'templates/user/unit/unit',
     'unit-css': 'templates/user/unit/unit',
-    //岗位管理
+    //信息抽取
     'role-html': 'templates/user/role.html',
     'role-js': 'templates/user/role/role',
     'role-css': 'templates/user/role/role',
-    //人员管理
+    //自然语言理解
     'human-html': 'templates/user/human.html',
     'human-js': 'templates/user/human/human',
     'human-css': 'templates/user/human/human',
-    //权限管理
+    //句法分析
     'auth-html': 'templates/user/auth.html',
     'auth-js': 'templates/user/auth/auth',
     'auth-css': 'templates/user/auth/auth',
-    //demo
+    //语义分析
     'demo-html': 'templates/demo/demo.html',
     'demo-js': 'templates/demo/demo',
     'demo-css': 'templates/demo/demo',
-    //test
-    'test-html': 'templates/demo/test.html',
-    'test-js': 'templates/test/test',
-    'test-css': 'templates/test/test'
+    //自然语言生成
+    'demo-html': 'templates/demo/demo.html',
+    'demo-js': 'templates/demo/demo',
+    'demo-css': 'templates/demo/demo',
+    //多伦对话
+    'demo-html': 'templates/demo/demo.html',
+    'demo-js': 'templates/demo/demo',
+    'demo-css': 'templates/demo/demo',
+    //强化学习
+    'demo-html': 'templates/demo/demo.html',
+    'demo-js': 'templates/demo/demo',
+    'demo-css': 'templates/demo/demo',
+    //知识图谱
+    'demo-html': 'templates/demo/demo.html',
+    'demo-js': 'templates/demo/demo',
+    'demo-css': 'templates/demo/demo',
+    //核心架构
+    'demo-html': 'templates/demo/demo.html',
+    'demo-js': 'templates/demo/demo',
+    'demo-css': 'templates/demo/demo',
+    //人机对话
+    'demo-html': 'templates/demo/demo.html',
+    'demo-js': 'templates/demo/demo',
+    'demo-css': 'templates/demo/demo',
+    //用户管理
+    'demo-html': 'templates/demo/demo.html',
+    'demo-js': 'templates/demo/demo',
+    'demo-css': 'templates/demo/demo',
 };
 
 var baseUrl = '/adminlte-plus/';

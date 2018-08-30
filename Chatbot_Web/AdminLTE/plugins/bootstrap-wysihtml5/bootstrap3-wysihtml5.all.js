@@ -1417,7 +1417,7 @@ var wysihtml5 = {
                 }
 
                 // "If either element is null or element's ownerDocument is an HTML document
-                // and element's local name is "html" and element's namespace is the HTML
+                // and element's local name is "templates" and element's namespace is the HTML
                 // namespace"
                 if (el === null || (
                     el.nodeName == "HTML" &&
@@ -4237,7 +4237,7 @@ wysihtml5.browser = (function() {
      */
     supported: function() {
       var userAgent                   = this.USER_AGENT.toLowerCase(),
-          // Essential for making html elements editable
+          // Essential for making templates elements editable
           hasContentEditableSupport   = "contentEditable" in testElement,
           // Following methods are needed in order to interact with the contentEditable area
           hasEditingApiSupport        = document.execCommand && document.queryCommandSupported && document.queryCommandState,
@@ -4566,7 +4566,7 @@ wysihtml5.browser = (function() {
 
     /**
       IE (at least up to 11) does not support clipboardData on event.
-      It is on window but cannot return text/html
+      It is on window but cannot return text/templates
       Should actually check for clipboardData on paste event, but cannot in firefox
     */
     supportsModenPaste: function () {
@@ -5376,13 +5376,13 @@ wysihtml5.dom.copyAttributes = function(attributesToCopy) {
     };
   };
 })(wysihtml5);;/**
- * Returns the given html wrapped in a div element
+ * Returns the given templates wrapped in a div element
  *
  * Fixing IE's inability to treat unknown elements (HTML5 section, article, ...) correctly
  * when inserted via innerHTML
  *
- * @param {String} html The html which should be wrapped in a dom element
- * @param {Obejct} [context] Document object of the context the html belongs to
+ * @param {String} templates The templates which should be wrapped in a dom element
+ * @param {Obejct} [context] Document object of the context the templates belongs to
  *
  * @example
  *    wysihtml5.dom.getAsDom("<article>foo</article>");
@@ -5815,9 +5815,9 @@ wysihtml5.dom.observe = function(element, eventNames, handler) {
  * @param {Object} [rules] List of rules for rewriting the HTML, if there's no rule for an element it will
  *    be converted to a "span". Each rule is a key/value pair where key is the tag to convert, and value the
  *    desired substitution.
- * @param {Object} context Document object in which to parse the html, needed to sandbox the parsing
+ * @param {Object} context Document object in which to parse the templates, needed to sandbox the parsing
  *
- * @return {Element|String} Depends on the elementOrHtml parameter. When html then the sanitized html as string elsewise the element.
+ * @return {Element|String} Depends on the elementOrHtml parameter. When templates then the sanitized templates as string elsewise the element.
  *
  * @example
  *    var userHTML = '<div id="foo" onclick="alert(1);"><p><font color="red">foo</font><script>alert(1);</script></p></div>';
@@ -6066,7 +6066,7 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
 
     /**
      * We already parsed that element
-     * ignore it! (yes, this sometimes happens in IE8 when the html is invalid)
+     * ignore it! (yes, this sometimes happens in IE8 when the templates is invalid)
      */
     if (oldNode._wysihtml5) {
       return null;
@@ -6531,7 +6531,7 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
     })()
   };
 
-  // ------------ style converter (converts an html attribute to a style) ------------ \\
+  // ------------ style converter (converts an templates attribute to a style) ------------ \\
   var addStyleMethods = {
     align_text: (function() {
       var mapping = {
@@ -6545,7 +6545,7 @@ wysihtml5.dom.parse = function(elementOrHtml_current, config_current) {
     })(),
   };
 
-  // ------------ class converter (converts an html attribute to a class name) ------------ \\
+  // ------------ class converter (converts an templates attribute to a class name) ------------ \\
   var addClassMethods = {
     align_img: (function() {
       var mapping = {
@@ -6830,7 +6830,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
  *  - Partially secure in other browsers (Firefox, Opera, Safari, Chrome, ...)
  *
  * Please note that this class can't benefit from the HTML5 sandbox attribute for the following reasons:
- *    - sandboxing doesn't work correctly with inlined content (src="javascript:'<html>...</html>'")
+ *    - sandboxing doesn't work correctly with inlined content (src="javascript:'<templates>...</templates>'")
  *    - sandboxing of physical documents causes that the dom isn't accessible anymore from the outside (iframe.contentWindow, ...)
  *    - setting the "allow-same-origin" flag would fix that, but then still javascript and dom events refuse to fire
  *    - therefore the "allow-scripts" flag is needed, which then would deactivate any security, as the js executed inside the iframe
@@ -6921,7 +6921,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
      *    But then there's another problem, DOM events (focus, blur, change, keypress, ...) aren't fired.
      *    In order to make this happen we need to set the "allow-scripts" flag.
      *    A combination of allow-scripts and allow-same-origin is almost the same as setting no sandbox attribute at all.
-     *  - Chrome & Safari, doesn't seem to support sandboxing correctly when the iframe's html is inlined (no physical document)
+     *  - Chrome & Safari, doesn't seem to support sandboxing correctly when the iframe's templates is inlined (no physical document)
      *  - IE needs to have the security="restricted" attribute set before the iframe is
      *    inserted into the dom tree
      *  - Believe it or not but in IE "security" in document.createElement("iframe") is false, even
@@ -6946,7 +6946,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
 
       // Setting the src like this prevents ssl warnings in IE6
       if (wysihtml5.browser.throwsMixedContentWarningWhenIframeSrcIsEmpty()) {
-        iframe.src = "javascript:'<html></html>'";
+        iframe.src = "javascript:'<templates></templates>'";
       }
 
       iframe.onload = function() {
@@ -7040,9 +7040,9 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
       templateVars.stylesheets = html;
 
       return wysihtml5.lang.string(
-        '<!DOCTYPE html><html><head>'
+        '<!DOCTYPE templates><templates><head>'
         + '<meta charset="#{charset}">#{stylesheets}</head>'
-        + '<body></body></html>'
+        + '<body></body></templates>'
       ).interpolate(templateVars);
     },
 
@@ -8302,7 +8302,7 @@ wysihtml5.dom.query = function(elements, query) {
     node.parentNode.removeChild(node);
   }
 };;/* 
- * Methods for fetching pasted html before it gets inserted into content
+ * Methods for fetching pasted templates before it gets inserted into content
 **/
 
 /* Modern event.clipboardData driven approach.
@@ -8342,7 +8342,7 @@ wysihtml5.dom.getPastedHtmlWithDiv = function (composer, f) {
     cleanerDiv.parentNode.removeChild(cleanerDiv);
   }, 0);
 };;/**
- * Fix most common html formatting misbehaviors of browsers implementation when inserting
+ * Fix most common templates formatting misbehaviors of browsers implementation when inserting
  * content via copy & paste contentEditable
  *
  * @author Christopher Blum
@@ -9152,7 +9152,7 @@ wysihtml5.quirks.ensureProperClearing = (function() {
     },
 
     /**
-     * Insert html at the caret position and move the cursor after the inserted html
+     * Insert templates at the caret position and move the cursor after the inserted templates
      *
      * @param {String} html HTML string to insert
      * @example
@@ -10613,7 +10613,7 @@ wysihtml5.Commands = Base.extend(
   var dom                     = wysihtml5.dom,
       // Following elements are grouped
       // when the caret is within a H1 and the H4 is invoked, the H1 should turn into H4
-      // instead of creating a H4 within a H1 which would result in semantically invalid html
+      // instead of creating a H4 within a H1 which would result in semantically invalid templates
       BLOCK_ELEMENTS_GROUP    = ["H1", "H2", "H3", "H4", "H5", "H6", "P", "PRE", "DIV"];
 
   /**
@@ -10837,7 +10837,7 @@ wysihtml5.Commands = Base.extend(
  *
  * Usage:
  *
- * editorInstance.composer.commands.exec("formatCode", "language-html");
+ * editorInstance.composer.commands.exec("formatCode", "language-templates");
 */
 
 wysihtml5.commands.formatCode = {
@@ -11533,7 +11533,7 @@ wysihtml5.commands.formatCode = {
           }
           html += "</tbody></table>";
           composer.commands.exec("insertHTML", html);
-          //composer.selection.insertHTML(html);
+          //composer.selection.insertHTML(templates);
       }
 
 
@@ -12193,7 +12193,7 @@ wysihtml5.views.View = Base.extend(
           this.textarea           = this.parent.textarea;
           this.element.innerHTML  = this.textarea.getValue(true, false);
       } else {
-          this.cleanUp(); // cleans contenteditable on initiation as it may contain html
+          this.cleanUp(); // cleans contenteditable on initiation as it may contain templates
       }
 
       // Make sure our selection handler is ready
@@ -12521,7 +12521,7 @@ wysihtml5.views.View = Base.extend(
         "width", "height"
       ],
       ADDITIONAL_CSS_RULES = [
-        "html                 { height: 100%; }",
+        "templates                 { height: 100%; }",
         "body                 { height: 100%; padding: 1px 0 0 0; margin: -1px 0 0 0; }",
         "body > p:first-child { margin-top: 0; }",
         "._wysihtml5-temp     { display: none; }",
@@ -13038,9 +13038,9 @@ wysihtml5.views.View = Base.extend(
     },
 
     /**
-     * Sync html from composer to textarea
+     * Sync templates from composer to textarea
      * Takes care of placeholders
-     * @param {Boolean} shouldParseHtml Whether the html should be sanitized before inserting it into the textarea
+     * @param {Boolean} shouldParseHtml Whether the templates should be sanitized before inserting it into the textarea
      */
     fromComposerToTextarea: function(shouldParseHtml) {
       this.textarea.setValue(wysihtml5.lang.string(this.composer.getValue(false, false)).trim(), shouldParseHtml);
@@ -13049,7 +13049,7 @@ wysihtml5.views.View = Base.extend(
     /**
      * Sync value of textarea to composer
      * Takes care of placeholders
-     * @param {Boolean} shouldParseHtml Whether the html should be sanitized before inserting it into the composer
+     * @param {Boolean} shouldParseHtml Whether the templates should be sanitized before inserting it into the composer
      */
     fromTextareaToComposer: function(shouldParseHtml) {
       var textareaValue = this.textarea.getValue(false, false);
@@ -13063,7 +13063,7 @@ wysihtml5.views.View = Base.extend(
 
     /**
      * Invoke syncing based on view state
-     * @param {Boolean} shouldParseHtml Whether the html should be sanitized before inserting it into the composer/textarea
+     * @param {Boolean} shouldParseHtml Whether the templates should be sanitized before inserting it into the composer/textarea
      */
     sync: function(shouldParseHtml) {
       if (this.editor.currentView.name === "textarea") {
@@ -13238,7 +13238,7 @@ wysihtml5.views.View = Base.extend(
     handleTables:         true,
     // Tab key inserts tab into text as default behaviour. It can be disabled to regain keyboard navigation
     handleTabKey:         true,
-    // Object which includes parser rules to apply when html gets cleaned
+    // Object which includes parser rules to apply when templates gets cleaned
     // See parser_rules/*.js for examples
     parserRules:          { tags: { br: {}, span: {}, div: {}, p: {} }, classes: {} },
     // Object which includes parser when the user inserts content via copy & paste. If null parserRules will be used instead
@@ -13389,7 +13389,7 @@ wysihtml5.views.View = Base.extend(
     },
 
     /**
-     * Prepare html parser logic
+     * Prepare templates parser logic
      *  - Observes for paste and drop
      */
     _initParser: function() {

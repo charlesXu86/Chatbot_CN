@@ -15,6 +15,6 @@ This will install the requirements needed for the generating the docs. Afterward
 $ make html
 ```
 
-The docs will be generated, the output files will be placed in the `_build/html/` directory, and can be browsed (locally) with any browser.
+The docs will be generated, the output files will be placed in the `_build/templates/` directory, and can be browsed (locally) with any browser.
 
 The docs can also be found online at <http://bootstrap-datepicker.readthedocs.org/>.

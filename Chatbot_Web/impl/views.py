@@ -26,17 +26,17 @@ def regist(request):
             password = uf.cleaned_data['pwd']
             pattern = re.compile(r'\\w')
             if not re.match(pattern, username):
-                return render(request, 'regist.html', {'uf': uf, 'registError': "用户名只能是字母,数字,或者下划线组成"})
+                return render(request, 'regist.templates', {'uf': uf, 'registError': "用户名只能是字母,数字,或者下划线组成"})
 
             try:
                 registJudge = User.objects.filter(name=username).get()
-                return render(request, 'regist.html', {'registJudge': registJudge})
+                return render(request, 'regist.templates', {'registJudge': registJudge})
             except :
                 registAdd = User.objects.create(name=username, pwd=password)
-                return render(request, 'regist.html', {'registAdd': registAdd, 'name': username})
+                return render(request, 'regist.templates', {'registAdd': registAdd, 'name': username})
     else:
         uf = UserForm()
-        return render(request, 'regist.html', {'uf': uf, 'Method': Method})
+        return render(request, 'regist.templates', {'uf': uf, 'Method': Method})
 
 # regist 方法
 def register2(request):
@@ -63,7 +63,7 @@ def register2(request):
             auth.login(request,userlogin)
             return HttpResponseRedirect('/')
 
-    return render(request,'regist.html', {'errors': errors})
+    return render(request,'regist.templates', {'errors': errors})
 
 def login(request):
     if request.method == 'POST':
@@ -79,10 +79,10 @@ def login(request):
                 response.set_cookie('cookie_username', username, 300)
                 return response
             else:
-                return render(request, 'login.html', {'uf': uf, 'error': "用户名或密码错误"})
+                return render(request, 'login.templates', {'uf': uf, 'error': "用户名或密码错误"})
     else:
         uf = UserForm()
-        return render(request, 'login.html', {'uf': uf})
+        return render(request, 'login.templates', {'uf': uf})
 
 
 def index(request):

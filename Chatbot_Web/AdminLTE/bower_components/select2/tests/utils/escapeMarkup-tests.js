@@ -9,7 +9,7 @@ test('text passes through', function (assert) {
   assert.equal(text, escaped);
 });
 
-test('html tags are escaped', function (assert) {
+test('templates tags are escaped', function (assert) {
   var text = '<script>alert("bad");</script>';
   var escaped = Utils.escapeMarkup(text);
 

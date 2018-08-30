@@ -56,7 +56,7 @@ Bugfixes:
 - when custom view navigates completely into hidden weekends, JS error ([scheduler-375])
 
 Other:
-- in themes.html demo, fixed broken Bootswatch themes (#3917)
+- in themes.templates demo, fixed broken Bootswatch themes (#3917)
 - moved JavaScript codebase over to TypeScript
   (same external API; embedded typedefs coming soon)
 

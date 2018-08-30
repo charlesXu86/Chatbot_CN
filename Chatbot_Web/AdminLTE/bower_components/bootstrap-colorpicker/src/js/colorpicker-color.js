@@ -2,7 +2,7 @@
 if (typeof module === "object" && typeof module.exports === "object") {
   var jsdom = require("jsdom");
   var JSDOM = jsdom.JSDOM;
-  var $ = require('jquery')((new JSDOM('<!DOCTYPE html><p>Hello world</p>')).window);
+  var $ = require('jquery')((new JSDOM('<!DOCTYPE templates><p>Hello world</p>')).window);
 }
 /* end-test-code */
 /**

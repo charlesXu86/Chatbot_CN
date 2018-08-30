@@ -2487,7 +2487,7 @@ Dot.prototype.constructor = Dot;
 
 }); // module: reporters/dot.js
 
-require.register("reporters/html-cov.js", function(module, exports, require){
+require.register("reporters/templates-cov.js", function(module, exports, require){
 
 /**
  * Module dependencies.
@@ -2539,9 +2539,9 @@ function coverageClass(n) {
   if (n >= 25) return 'low';
   return 'terrible';
 }
-}); // module: reporters/html-cov.js
+}); // module: reporters/templates-cov.js
 
-require.register("reporters/html.js", function(module, exports, require){
+require.register("reporters/templates.js", function(module, exports, require){
 
 /**
  * Module dependencies.
@@ -2751,7 +2751,7 @@ function error(msg) {
 }
 
 /**
- * Return a DOM fragment from `html`.
+ * Return a DOM fragment from `templates`.
  */
 
 function fragment(html) {
@@ -2817,7 +2817,7 @@ function on(el, event, fn) {
   }
 }
 
-}); // module: reporters/html.js
+}); // module: reporters/templates.js
 
 require.register("reporters/index.js", function(module, exports, require){
 
@@ -2826,7 +2826,7 @@ exports.Dot = require('./dot');
 exports.Doc = require('./doc');
 exports.TAP = require('./tap');
 exports.JSON = require('./json');
-exports.HTML = require('./html');
+exports.HTML = require('./templates');
 exports.List = require('./list');
 exports.Min = require('./min');
 exports.Spec = require('./spec');
@@ -2836,7 +2836,7 @@ exports.Markdown = require('./markdown');
 exports.Progress = require('./progress');
 exports.Landing = require('./landing');
 exports.JSONCov = require('./json-cov');
-exports.HTMLCov = require('./html-cov');
+exports.HTMLCov = require('./templates-cov');
 exports.JSONStream = require('./json-stream');
 
 }); // module: reporters/index.js
@@ -5373,7 +5373,7 @@ var fs = require('browser/fs')
 var ignore = ['node_modules', '.git'];
 
 /**
- * Escape special characters in the given string of html.
+ * Escape special characters in the given string of templates.
  *
  * @param  {String} html
  * @return {String}

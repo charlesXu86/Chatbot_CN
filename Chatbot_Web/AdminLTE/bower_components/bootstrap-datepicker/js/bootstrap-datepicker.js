@@ -196,11 +196,11 @@
 				if (tmp === undefined || tmp === "") {
 					return false;
 				}
-				// If no html, everything ok
+				// If no templates, everything ok
 				if ((tmp.match(/[<>]/g) || []).length <= 0) {
 					return true;
 				}
-				// Checking if html is fine
+				// Checking if templates is fine
 				var jDom = $(tmp);
 				return jDom.length > 0;
 			}

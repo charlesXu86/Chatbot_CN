@@ -173,8 +173,8 @@ define(['jquery.storageapi.min', 'jquery', 'controlSidebar', 'pushMenu', 'layout
 
     $('[data-toggle="tooltip"]').tooltip();
     return {
-        systemName: 'adminlte-plus',
-        admin: 'adminlte-plus',
+        systemName: 'chatbot_web',
+        admin: 'chatbot_CN',
         sysNavMenus: [{
             "resourceid": 1,
             "name": "首页",
