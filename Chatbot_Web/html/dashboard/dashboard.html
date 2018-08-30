@@ -1,0 +1,150 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-solid ">
+            <div class="box-header with-border">
+                <h3 class="box-title">应用入口<span class="pull-right-container">
+                        <span class="label label-success pull-right" data-bind="text:appList().length"></span></span>
+                </h3>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12" style="margin-bottom: 20px;">
+                    <!-- ko foreach:{data:appList,as:'app'} -->
+                    <div class="col-md-2 col-sm-2 col-xs-4">
+                        <a target="_blank" data-bind="attr:{'href':app.loginurl,'title':'登录应用：'+app.appname}">
+                            <div style="cursor: pointer;width: 100px;height: 180px;">
+                                <img data-bind="attr:{'src':app.appicon}"
+                                     style="width: 100px;height: 100px;border-radius: 100px"/>
+                                <h4 style="width: 100px;position: absolute;height: 20px;color: black;text-align: center"
+                                    data-bind="text:app.appname"></h4>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- /ko -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="box box-solid ">
+            <div class="box-header with-border">
+                <h3 class="box-title">租户数据</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <div class="info-box" title="超级管理员租户">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-link"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">租户</span>
+                                <span class="info-box-number"><span data-bind="text:statisic.tenantCount"></span><span
+                                        style="color: gray">个</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6" title="超级管理员租户">
+                        <div class="info-box-content"  style="margin-left: 0px">
+                            <span class="info-box-text">超级管理员</span>
+                            <span class="info-box-number"><span data-bind="text:statisic.superTenantCount"></span><span
+                                    style="color: gray">个</span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6" title="普通用户租户">
+                        <div class="info-box-content"  style="margin-left: 0px">
+                            <span class="info-box-text">普通用户</span>
+                            <span class="info-box-number"><span data-bind="text:statisic.normalTenantCount"></span><span
+                                    style="color: gray">个</span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-6" title="管理员租户">
+                        <div class="info-box-content" style="margin-left: 0px">
+                            <span class="info-box-text">管理员</span>
+                            <span class="info-box-number"><span data-bind="text:statisic.adminTenantCount"></span><span
+                                    style="color: gray">个</span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box box-solid ">
+            <div class="box-header with-border">
+                <h3 class="box-title">用户数据</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-university"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">部门</span>
+                                <span class="info-box-number"><span data-bind="text:statisic.unitCount"></span><span
+                                        style="color:gray">个</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-id-card-o"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">岗位</span>
+                                <span class="info-box-number"><span data-bind="text:statisic.roleCount"></span><span
+                                        style="color:gray">个</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">人员</span>
+                                <span class="info-box-number"><span data-bind="text:statisic.humanCount"></span><span
+                                        style="color:gray">个</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--shiro:hasRole="超级管理员"-->
+    <div class="col-md-12">
+        <div class="box box-solid ">
+            <div class="box-header with-border">
+                <h3 class="box-title">应用统计</h3>
+                <form role="form" style="width: 100px" class="pull-right">
+                    <div class="form-group">
+                        <select class="form-control" style="display: block"
+                                data-bind="options: yearList, optionsText: 'yearName',optionsValue:'year', value: queryYear">
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div id="app-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="box box-solid ">
+            <div class="box-header with-border">
+                <h3 class="box-title">租户统计</h3>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div id="tenant-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
