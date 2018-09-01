@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Chatbot_Web.impl.login.apps.RegisterLoginConfig',
+    'Chatbot_CN.apps.RegisterLoginConfig',
     'bootstrap3',
 ]
 
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'Chatbot_CN.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Chatbot_Web/AdminLTE')],
+        'DIRS': [os.path.join(BASE_DIR, 'Chatbot_Web/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
