@@ -11,4 +11,15 @@ import scrapy
 class ChatbotScrapyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    url = scrapy.Field()
+
+
+
+class data_redis_mongodb(scrapy.Item):
+    url = scrapy.Field()
+    title = scrapy.Field()
+    place = scrapy.Field()
+    types = scrapy.Field()
+    num = scrapy.Field()
+
+

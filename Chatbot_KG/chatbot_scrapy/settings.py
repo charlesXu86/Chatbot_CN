@@ -88,3 +88,17 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# mongodb
+MONGODB_URI = 'mongodb://127.0.0.1:27017/'
+MONGODB_SERVER="127.0.0.1"
+MONGODB_PORT=27017
+MONGODB_DB = "test"
+MONGODB_COLLECTION="redis_mg"
+
+
+#redis
+REDIS_SERVER = "127.0.0.1"
+REDIS_PORT = 6379
+REDIS_DB = 0
+MY_REDIS='myspider:start_urls' #redis数据表
