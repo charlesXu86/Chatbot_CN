@@ -43,8 +43,9 @@ def hand(poilist, result):
     :return:
     '''
     pois = result['pois']
-    for i in range(len(pois)):
-        poilist.append(pois[i])
+    # for i in range(len(pois)):
+    #     poilist.append(pois[i])
+    poilist.append(pois[0])
 
 def getpoi_page(keywords, page):
     '''
