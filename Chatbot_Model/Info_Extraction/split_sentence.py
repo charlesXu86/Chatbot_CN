@@ -86,7 +86,7 @@ def my_split(str):
     return cut_list
 
 def split_sentence_thr(text):
-    cut = ['一、','二、', '三、', '四、', '五、', '六、', '七、']
+    cut = ['一、','二、', '三、', '四、', '五、', '六、', '七、', '1、', '2、', '3、', '4、', '5、']
     lists = []
     for i in cut[1:]:
         txt1 = text.split(i)[0]
