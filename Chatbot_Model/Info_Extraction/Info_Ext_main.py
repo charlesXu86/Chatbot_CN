@@ -9,11 +9,14 @@
 import tensorflow as tf
 import numpy as np
 import os, argparse, time, random
+import redis
 import pymysql
 import split_sentence
 # import Aip_config
 
 # import pdb
+
+# os.environ['CUDA_VISIBLE_DEVICES']='0'   # 设置只用一块显卡
 
 from Entity_Extraction import proprecess_money
 from Entity_Extraction.Enext_model import BiLSTM_CRF
@@ -24,19 +27,25 @@ from Entity_Extraction.get_location import get_add, cut_addr
 
 
 ## Session configuration
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 设置只用一块显卡
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # default: 0
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
-config.gpu_options.per_process_gpu_memory_fraction = 0.4  # need ~700MB GPU memory
+# config.gpu_options.per_process_gpu_memory_fraction = 0.666 # need ~700MB GPU memory
+
+# 数据库操作
+# db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
+# print('Connect successful')
+# cursor = db.cursor()
+redis = redis.Redis(host='127.0.0.1', port=6379)
 
 
 ## hyperparameters
 parser = argparse.ArgumentParser(description='BiLSTM-CRF for Chinese NER task')
 parser.add_argument('--train_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='train data source')
 parser.add_argument('--test_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='test data source')
-parser.add_argument('--batch_size', type=int, default=64, help='#sample of each minibatch')
-parser.add_argument('--epoch', type=int, default=40, help='#epoch of training')
+parser.add_argument('--batch_size', type=int, default=16, help='#sample of each minibatch')
+parser.add_argument('--epoch', type=int, default=100, help='#epoch of training')
 parser.add_argument('--hidden_dim', type=int, default=300, help='#dim of hidden state')
 parser.add_argument('--optimizer', type=str, default='Adam', help='Adam/Adadelta/Adagrad/RMSProp/Momentum/SGD')
 parser.add_argument('--CRF', type=str2bool, default=True, help='use CRF at the top layer. if False, use Softmax')
@@ -48,7 +57,7 @@ parser.add_argument('--pretrain_embedding', type=str, default='random', help='us
 parser.add_argument('--embedding_dim', type=int, default=300, help='random init char embedding_dim')
 parser.add_argument('--shuffle', type=str2bool, default=True, help='shuffle training data before each epoch')
 parser.add_argument('--mode', type=str, default='demo', help='train/test/demo')
-parser.add_argument('--demo_model', type=str, default='1521112368', help='model for test and demo')
+parser.add_argument('--demo_model', type=str, default='1535444492', help='model for test and demo')
 args = parser.parse_args()
 
 
@@ -117,7 +126,9 @@ elif args.mode == 'test':
 
 ## demo
 elif args.mode == 'demo':
-    model_path = 'D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction_save\\1533871370\checkpoints'
+
+    # 这里指定了模型路径
+    model_path = 'D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction_save\\1535444492\checkpoints'
     ckpt_file = tf.train.latest_checkpoint(model_path)
     # print('>>>>>>>>>>>',ckpt_file)
     paths['model_path'] = ckpt_file
@@ -149,5 +160,16 @@ elif args.mode == 'demo':
                 money = proprecess_money.get_properties_and_values(sentence)
                 MON.append(money)
 
-            print('PER: {}\nLOC_RE: {}\nORG: {}\nMON: {}'.format(PER, LOC_RE, ORG, MON))
-            # print('LOC_RE :{}\n')
+            print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
+            print('LOC_RE :{}'.format(LOC_RE))
+
+            # 写入数据库
+            # insert_ner_result = "INSERT INTO ner_result(per, loc, org, re_loc)" "VALUES(%s, %s, %s, %s)"
+            # insert_data = (PER, LOC, ORG, LOC_RE)
+            # cursor.execute(insert_data, insert_ner_result)
+            # db.commit()
+            # print('插入成功')
+            redis.lpush(PER,LOC,ORG,LOC_RE)
+
+
+            # 调用关系抽取

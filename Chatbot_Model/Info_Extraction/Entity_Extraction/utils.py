@@ -8,6 +8,8 @@
 
 import logging, sys, argparse
 
+from functools import reduce
+
 
 def str2bool(v):
     # copy from StackOverflow
@@ -21,7 +23,8 @@ def str2bool(v):
 
 def get_entity(tag_seq, char_seq):
     PER = get_PER_entity(tag_seq, char_seq)
-    LOC = get_LOC_entity(tag_seq, char_seq)
+    # LOC = get_LOC_entity(tag_seq, char_seq)
+    LOC = get_loc_entitys(tag_seq, char_seq)
     ORG = get_ORG_entity(tag_seq, char_seq)
     return PER, LOC, ORG
 
@@ -29,30 +32,40 @@ def get_entity(tag_seq, char_seq):
 def get_PER_entity(tag_seq, char_seq):
     length = len(char_seq)
     PER = []
-    for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
-        if tag == 'B-PER':
-            if 'per' in locals().keys():
-                PER.append(per)
-                del per
-            per = char
-            if i+1 == length:
-                PER.append(per)
-        if tag == 'I-PER':
-            per += char
-            if i+1 == length:
-                PER.append(per)
-        if tag not in ['I-PER', 'B-PER']:
-            if 'per' in locals().keys():
-                PER.append(per)
-                del per
-            continue
+    try:
+        for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
+            if tag == 'B-PER':
+                if 'per' in locals().keys():
+                    PER.append(per)
+                    del per
+                per = char
+                if i+1 == length:
+                    PER.append(per)
+            if tag == 'I-PER':
+                per += char
+                if i+1 == length:
+                    PER.append(per)
+            if tag not in ['I-PER', 'B-PER']:
+                if 'per' in locals().keys():
+                    PER.append(per)
+                    del per
+                continue
+    except:
+        pass
     PER = list(set(PER))     #  去重
     return PER
 
 
 def get_LOC_entity(tag_seq, char_seq):
+    '''
+    这里需要对输出序列进行判断，对连续序列进行拼接
+    :param tag_seq:
+    :param char_seq:
+    :return:
+    '''
     length = len(char_seq)
     LOC = []
+    location = []
     for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
         if tag == 'B-LOC':
             if 'loc' in locals().keys():
@@ -61,6 +74,8 @@ def get_LOC_entity(tag_seq, char_seq):
             loc = char
             if i+1 == length:
                 LOC.append(loc)
+        # if tag_seq[i] == 'B-LOC' and tag_seq[i - 1] == 'I-LOC':
+        #     loc += char
         if tag == 'I-LOC':
             loc += char
             if i+1 == length:
@@ -72,29 +87,61 @@ def get_LOC_entity(tag_seq, char_seq):
             continue
     return LOC
 
+def get_loc_entitys(tag_seq, char_seq):
+    length = len(char_seq)
+    location = []
+    loc_set = []
+    LOC = []
+    try:
+        for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
+            if tag == 'B-LOC':
+                loc = char
+                location.append(loc)
+            # if tag_seq[i] == 'B-LOC' and tag_seq[i - 1] == 'I-LOC':
+            #     loc = char
+            #     location.append(loc)
+            if tag == 'I-LOC':
+                loc = char
+                location.append(loc)
+            # location = list(set(location))
+        # for j in location:
+        #     if j not in loc_set:
+        #         loc_set.append(j)
+
+        t = reduce(lambda x, y: str(x) + str(y), location)
+        LOC.append(t)
+    except:
+        pass
+    return LOC
 
 def get_ORG_entity(tag_seq, char_seq):
     length = len(char_seq)
     ORG = []
-    for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
-        if tag == 'B-ORG':
-            if 'org' in locals().keys():
-                ORG.append(org)
-                del org
-            org = char
-            if i+1 == length:
-                ORG.append(org)
-        if tag == 'I-ORG':
-            org += char
-            if i+1 == length:
-                ORG.append(org)
-        if tag not in ['I-ORG', 'B-ORG']:
-            if 'org' in locals().keys():
-                ORG.append(org)
-                del org
-            continue
+    try:
+        for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
+            if tag == 'B-ORG':
+                if 'org' in locals().keys():
+                    ORG.append(org)
+                    del org
+                org = char
+                if i+1 == length:
+                    ORG.append(org)
+            if tag == 'I-ORG':
+                org += char
+                if i+1 == length:
+                    ORG.append(org)
+            if tag not in ['I-ORG', 'B-ORG']:
+                if 'org' in locals().keys():
+                    ORG.append(org)
+                    del org
+                continue
+    except:
+        pass
     ORG = list(set(ORG))  # 去重
     return ORG
+
+def write_to_mysql():
+    pass
 
 
 def get_logger(filename):
