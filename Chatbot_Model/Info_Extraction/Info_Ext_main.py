@@ -9,10 +9,16 @@
 import tensorflow as tf
 import numpy as np
 import os, argparse, time, random
+import elasticsearch
 import redis
 import pymysql
 import split_sentence
 # import Aip_config
+
+from elasticsearch import Elasticsearch
+from datetime import datetime
+
+from numba import jit
 
 # import pdb
 
@@ -30,21 +36,33 @@ from Entity_Extraction.get_location import get_add, cut_addr
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 设置只用一块显卡
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # default: 0
 config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-# config.gpu_options.per_process_gpu_memory_fraction = 0.666 # need ~700MB GPU memory
+# config.gpu_options.allow_growth = True
+config.gpu_options.per_process_gpu_memory_fraction = 0.666 # need ~700MB GPU memory
 
 # 数据库操作
 # db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
 # print('Connect successful')
 # cursor = db.cursor()
-redis = redis.Redis(host='127.0.0.1', port=6379)
+# redis = redis.Redis(host='127.0.0.1', port=6379)
+
+# 连接ES
+es = Elasticsearch(
+    ['test.npacn.com'],
+    http_auth=('admin', 'u1PJTXyzjVqT'),
+    port=9200
+)
+# 创建索引
+es.indices.create(index='chatbot')
+print('索引创建成功。')
+
+count = 1
 
 
 ## hyperparameters
 parser = argparse.ArgumentParser(description='BiLSTM-CRF for Chinese NER task')
 parser.add_argument('--train_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='train data source')
 parser.add_argument('--test_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='test data source')
-parser.add_argument('--batch_size', type=int, default=16, help='#sample of each minibatch')
+parser.add_argument('--batch_size', type=int, default=4, help='#sample of each minibatch')
 parser.add_argument('--epoch', type=int, default=100, help='#epoch of training')
 parser.add_argument('--hidden_dim', type=int, default=300, help='#dim of hidden state')
 parser.add_argument('--optimizer', type=str, default='Adam', help='Adam/Adadelta/Adagrad/RMSProp/Momentum/SGD')
@@ -169,7 +187,20 @@ elif args.mode == 'demo':
             # cursor.execute(insert_data, insert_ner_result)
             # db.commit()
             # print('插入成功')
-            redis.lpush(PER,LOC,ORG,LOC_RE)
+            # redis.lpush(PER,LOC,ORG,LOC_RE)
+
+            # 将数据写入ES
+
+            # 插入数据
+            es.index(index='chatbot', doc_type='test_type', id=count,
+                     body={'PER': PER,
+                           'LOC': LOC,
+                           'ORG': ORG,
+                           'MON': MON,
+                           'LOC_RE': LOC_RE,
+                           'timestamp': datetime.now()})
+
+            count = count + 1
 
 
             # 调用关系抽取
