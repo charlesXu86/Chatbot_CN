@@ -293,7 +293,7 @@ class BiLSTM_CRF(object):
 
     def evaluate(self, label_list, seq_len_list, data, epoch=None):
         """
-
+        评估模型
         :param label_list:
         :param seq_len_list:
         :param data:
