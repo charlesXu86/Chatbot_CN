@@ -53,11 +53,17 @@ def conn():
         cursorclass=pymysql.cursors.DictCursor)  # 默认返回元祖，加上这个参数返回的是字典结构
     return conn
 
+
+# 从数据库获取数据
 def get_datas():
     result_list = []
-    db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
+    db = pymysql.Connect("data.npacn.com", "youtong", "duc06LEQpgoP", "sipai")
+    # db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
     cursor = db.cursor()
-    sql = "SELECT doc_result from doc_test LIMIT 5"
+    sql = "SELECT doc_result from sm_document"
+    # sql = "SELECT doc_result FROM ner_test where id=2"
+    # sql = "SELECT doc_result from doc_test where id like '%DE%'"
+    # sql = "SELECT doc_content from doc_test where uuid=666"
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
@@ -73,12 +79,19 @@ def get_datas():
                 #     break
                 # else:
                 #     text = list(text.strip())
-        print(result_list)
+        # print(result_list)
         return result_list
 
     except:
         print("Error: unable to fecth data")
     db.close()
+
+def write_data():
+    db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
+    cursor = db.cursor()
+    insert_ner_result = ("INSERT INTO doc_result(per, loc, org, re_loc)" "VALUES(%s, %s, %s, %s)")
+
+    cursor.execute(insert_ner_result)
 
 get_datas()
 
