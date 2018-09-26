@@ -49,13 +49,12 @@ config.gpu_options.per_process_gpu_memory_fraction = 0.666 # need ~700MB GPU mem
 es = Elasticsearch(
     ['test.npacn.com'],
     http_auth=('admin', 'u1PJTXyzjVqT'),
-    port=9200
+    port=9200,
+    timeout=15000
 )
 # 创建索引
-es.indices.create(index='chatbot')
+# es.indices.create(index='chatbot')
 print('索引创建成功。')
-
-count = 1
 
 
 ## hyperparameters
@@ -192,15 +191,13 @@ elif args.mode == 'demo':
             # 将数据写入ES
 
             # 插入数据
-            es.index(index='chatbot', doc_type='test_type', id=count,
+            es.index(index='test_sm', doc_type='test_type',
                      body={'PER': PER,
                            'LOC': LOC,
                            'ORG': ORG,
                            'MON': MON,
                            'LOC_RE': LOC_RE,
                            'timestamp': datetime.now()})
-
-            count = count + 1
 
 
             # 调用关系抽取
