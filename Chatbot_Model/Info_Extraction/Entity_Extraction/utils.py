@@ -102,14 +102,14 @@ def get_loc_entitys(tag_seq, char_seq):
             if tag == 'I-LOC':
                 loc = char
                 location.append(loc)
-            n = i - 1
-            if tag_seq[i] == '0' and tag_seq[n] == 'I-LOC':
-                t = reduce(lambda x, y: str(x) + str(y), location)
-                LOC.append(t)
-                del location
+            # n = i - 1
+            # if tag_seq[i] == '0' and tag_seq[n] == 'I-LOC':
+            #     t = reduce(lambda x, y: str(x) + str(y), location)
+            #     LOC.append(t)
+            #     del location
             # location = list(set(location))
-        # t = reduce(lambda x, y: str(x) + str(y), location)
-        # LOC.append(t)
+        t = reduce(lambda x, y: str(x) + str(y), location)
+        LOC.append(t)
     except:
         pass
     return LOC
