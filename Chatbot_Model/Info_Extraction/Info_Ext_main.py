@@ -37,7 +37,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 设置只用一块显卡
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # default: 0
 config = tf.ConfigProto()
 # config.gpu_options.allow_growth = True
-config.gpu_options.per_process_gpu_memory_fraction = 0.666 # need ~700MB GPU memory
+config.gpu_options.per_process_gpu_memory_fraction = 0.2 # need ~700MB GPU memory
 
 # 数据库操作
 # db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
@@ -53,7 +53,7 @@ es = Elasticsearch(
     timeout=15000
 )
 # 创建索引
-# es.indices.create(index='chatbot')
+# es.indices.create(index='test_sm')
 print('索引创建成功。')
 
 
@@ -175,7 +175,7 @@ elif args.mode == 'demo':
             MON = []
             for sentence in sent:
                 money = proprecess_money.get_properties_and_values(sentence)
-                MON.append(money)
+                MON = set(MON.append(money))    # 去重
 
             print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
             print('LOC_RE :{}'.format(LOC_RE))
@@ -192,7 +192,9 @@ elif args.mode == 'demo':
 
             # 插入数据
             es.index(index='test_sm', doc_type='test_type',
-                     body={'PER': PER,
+                     body={#'uuid': ,
+                           'text': text,    # 原文
+                           'PER': PER,
                            'LOC': LOC,
                            'ORG': ORG,
                            'MON': MON,
