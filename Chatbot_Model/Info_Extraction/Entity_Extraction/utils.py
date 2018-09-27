@@ -6,7 +6,7 @@
 @time: 2018/08/08
 """
 
-import logging, sys, argparse
+import logging, sys, argparse, re
 
 from functools import reduce
 
@@ -90,7 +90,6 @@ def get_LOC_entity(tag_seq, char_seq):
 def get_loc_entitys(tag_seq, char_seq):
     length = len(char_seq)
     location = []
-    loc_set = []
     LOC = []
     try:
         for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
@@ -103,13 +102,14 @@ def get_loc_entitys(tag_seq, char_seq):
             if tag == 'I-LOC':
                 loc = char
                 location.append(loc)
+            n = i - 1
+            if tag_seq[i] == '0' and tag_seq[n] == 'I-LOC':
+                t = reduce(lambda x, y: str(x) + str(y), location)
+                LOC.append(t)
+                del location
             # location = list(set(location))
-        # for j in location:
-        #     if j not in loc_set:
-        #         loc_set.append(j)
-
-        t = reduce(lambda x, y: str(x) + str(y), location)
-        LOC.append(t)
+        # t = reduce(lambda x, y: str(x) + str(y), location)
+        # LOC.append(t)
     except:
         pass
     return LOC
@@ -135,9 +135,16 @@ def get_ORG_entity(tag_seq, char_seq):
                     ORG.append(org)
                     del org
                 continue
+
+        ORG = list(set(ORG))  # 去重
+        for i in range(len(ORG)):
+            # rem = re.compile(r'.*(.*法院).*?')
+            str = '法院'
+            txt = ORG[i]
+            if str in txt:
+                ORG.remove(txt)
     except:
         pass
-    ORG = list(set(ORG))  # 去重
     return ORG
 
 def write_to_mysql():
