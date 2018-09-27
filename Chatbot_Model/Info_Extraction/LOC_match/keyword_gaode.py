@@ -91,9 +91,32 @@ def getBoundById(id):
                 dataList.append(innerList)
         return dataList
 
-keyword = "新华三集团"
-pois = getpois(keyword)
-pprint.pprint(pois)
+def get_detail_info(keyword):
+    '''
+    获取详细信息
+    :param keyword: 传入的关键词
+    :return:
+    '''
+    result = {}
+    pois = getpois(keyword)
 
+    # for i in range(len(pois)):
+    # 只取第0个数据
+    name = pois[0]['alias']  # 别名
+    location = pois[0]['entr_location']   # 经纬度
+    addr = pois[0]['pname'] + pois[0]['cityname'] + pois[0]['adname'] + pois[0]['address']   # 详细地址拼接
+    result['addr'] = addr
+    result['location'] = location
+    result['name'] = name
+    # pprint.pprint(result)
+    # pprint.pprint(len(pois))
+    return result
+
+keyword = "浙江大学紫荆港校区"
+# pois = getpois(keyword)
+# pprint.pprint(pois)
+
+if __name__ == "__main__":
+    get_detail_info(keyword)
 
 
