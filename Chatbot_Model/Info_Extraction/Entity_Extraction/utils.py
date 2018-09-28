@@ -10,6 +10,8 @@ import logging, sys, argparse, re
 
 from functools import reduce
 
+from Entity_Extraction import proprecess_money
+
 
 def str2bool(v):
     # copy from StackOverflow
@@ -141,6 +143,35 @@ def get_ORG_entity(tag_seq, char_seq):
     except:
         pass
     return ORG
+
+def get_TIM_entity(tag_seq, char_seq):
+    '''
+    获取时间实体
+    :param tag_seq:
+    :param char_seq:
+    :return:
+    '''
+    pass
+
+def get_MON_entity(text):
+    '''
+    获取金额实体
+    :param text:
+    :return:
+    '''
+    M = []
+    MON = []
+    tr = proprecess_money.wash_data(text)
+    sent = proprecess_money.split_sentence(tr)
+    for sentence in sent:
+        money = proprecess_money.get_properties_and_values(sentence)
+        M.append(money)
+        for i in range(len(M)):
+            if M[i]:
+                MON.append(M[i])
+    dup = lambda x, y: x if y in x else x + [y]  # 去重
+    MON = reduce(dup, [[], ] + MON)
+    return MON
 
 def write_to_mysql():
     pass
