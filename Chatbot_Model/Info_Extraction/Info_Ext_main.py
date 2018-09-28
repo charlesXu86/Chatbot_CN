@@ -170,8 +170,6 @@ elif args.mode == 'demo':
             creditors = one_text[2]   # 被告
             texts = one_text[3]
             text_sent = split_sentence.split_sentence_thr(texts)    # 分句
-            # for one_data in text_sent:
-            #     text_list.append(one_data)
             for text in text_sent:
                 print(text)
                 text_strip = list(text.strip())    #
@@ -179,16 +177,8 @@ elif args.mode == 'demo':
                 tag = model.demo_one(sess, demo_data)
                 PER, LOC, ORG = get_entity(tag, text)
                 LOC_RE = get_add(text)
-                # LOC_RE = cut_addr()
                 # 调用money处理方法，获取金额实体
                 MON = get_MON_entity(text)
-                # tr = proprecess_money.wash_data(text)
-                # sent = proprecess_money.split_sentence(tr)
-                # MON = []
-                # for sentence in sent:
-                #     money = proprecess_money.get_properties_and_values(sentence)
-                #     MON.append(money)
-                #     MON = list(MON)
 
                 print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
                 print('LOC_RE :{}'.format(LOC_RE))
