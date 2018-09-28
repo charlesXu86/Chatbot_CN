@@ -12,8 +12,9 @@ import os, argparse, time, random
 import elasticsearch
 import redis
 import pymysql
-import split_sentence
+import split_sentence   # 分句
 # import Aip_config
+import re
 
 from elasticsearch import Elasticsearch
 from datetime import datetime
@@ -26,7 +27,7 @@ from numba import jit
 
 from Entity_Extraction import proprecess_money
 from Entity_Extraction.Enext_model import BiLSTM_CRF
-from Entity_Extraction.utils import str2bool, get_logger, get_entity
+from Entity_Extraction.utils import str2bool, get_logger, get_entity, get_MON_entity
 from Entity_Extraction.data import read_corpus, read_dictionary, tag2label, random_embedding
 from Entity_Extraction.get_data import get_datas
 from Entity_Extraction.get_location import get_add, cut_addr
@@ -47,14 +48,16 @@ config.gpu_options.per_process_gpu_memory_fraction = 0.2 # need ~700MB GPU memor
 
 # 连接ES
 es = Elasticsearch(
-    ['test.npacn.com'],
-    http_auth=('admin', 'u1PJTXyzjVqT'),
+    ['192.168.11.251'],  # 192.168.11.251
+    # http_auth=('admin', 'u1PJTXyzjVqT'),
     port=9200,
     timeout=15000
 )
 # 创建索引
-# es.indices.create(index='test_sm')
+es.indices.create(index='chatbot')
 print('索引创建成功。')
+
+text_list = []   # 创建一个tuple，用来装分句后的数据
 
 
 ## hyperparameters
@@ -160,46 +163,48 @@ elif args.mode == 'demo':
             # print('Please input your sentence:')
             # demo_sent = input()
 
-        texts = get_datas()      # 数据库返回的按“一、二、三、四、”切割返回的文本
-        for text in texts:
-            print(text)
-            text_strip = list(text.strip())    #
-            demo_data = [(text, ['O'] * len(text))]
-            tag = model.demo_one(sess, demo_data)
-            PER, LOC, ORG = get_entity(tag, text)
-            LOC_RE = get_add(text)
-            # LOC_RE = cut_addr()
-            # 调用money处理方法，获取金额实体
-            tr = proprecess_money.wash_data(text)
-            sent = proprecess_money.split_sentence(tr)
-            MON = []
-            for sentence in sent:
-                money = proprecess_money.get_properties_and_values(sentence)
-                MON = set(MON.append(money))    # 去重
+        all_texts = get_datas()      # 数据库返回的按“一、二、三、四、”切割返回的文本
+        for one_text in all_texts:
+            uuid = one_text[0]        # 获取每条数据的uuid
+            obligors = one_text[1]    # 原告
+            creditors = one_text[2]   # 被告
+            texts = one_text[3]
+            text_sent = split_sentence.split_sentence_thr(texts)    # 分句
+            # for one_data in text_sent:
+            #     text_list.append(one_data)
+            for text in text_sent:
+                print(text)
+                text_strip = list(text.strip())    #
+                demo_data = [(text, ['O'] * len(text))]
+                tag = model.demo_one(sess, demo_data)
+                PER, LOC, ORG = get_entity(tag, text)
+                LOC_RE = get_add(text)
+                # LOC_RE = cut_addr()
+                # 调用money处理方法，获取金额实体
+                MON = get_MON_entity(text)
+                # tr = proprecess_money.wash_data(text)
+                # sent = proprecess_money.split_sentence(tr)
+                # MON = []
+                # for sentence in sent:
+                #     money = proprecess_money.get_properties_and_values(sentence)
+                #     MON.append(money)
+                #     MON = list(MON)
 
-            print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
-            print('LOC_RE :{}'.format(LOC_RE))
+                print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
+                print('LOC_RE :{}'.format(LOC_RE))
 
-            # 写入数据库
-            # insert_ner_result = "INSERT INTO ner_result(per, loc, org, re_loc)" "VALUES(%s, %s, %s, %s)"
-            # insert_data = (PER, LOC, ORG, LOC_RE)
-            # cursor.execute(insert_data, insert_ner_result)
-            # db.commit()
-            # print('插入成功')
-            # redis.lpush(PER,LOC,ORG,LOC_RE)
-
-            # 将数据写入ES
-
-            # 插入数据
-            es.index(index='test_sm', doc_type='test_type',
-                     body={#'uuid': ,
-                           'text': text,    # 原文
-                           'PER': PER,
-                           'LOC': LOC,
-                           'ORG': ORG,
-                           'MON': MON,
-                           'LOC_RE': LOC_RE,
-                           'timestamp': datetime.now()})
+                # 将数据写入ES
+                es.index(index='chatbot', doc_type='test_type',
+                         body={'uuid': uuid,
+                               'text': text,    # 原文
+                               'PER': PER,
+                               'LOC': LOC,
+                               'ORG': ORG,
+                               'MON': MON,
+                               'LOC_RE': LOC_RE,
+                               'obligors': obligors,
+                               'creditors': creditors,
+                               'timestamp': datetime.now()})
 
 
-            # 调用关系抽取
+                # 调用关系抽取
