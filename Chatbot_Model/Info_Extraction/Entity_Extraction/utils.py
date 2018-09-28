@@ -95,15 +95,15 @@ def get_loc_entitys(tag_seq, char_seq):
                 # tags = tag.strip().split('-')[1]
                 # loc = char
                 location.append(char)
-            if tag_seq[i] == 0 and tag_seq[i -1 ] == 'I-LOC':
+            if tag_seq[i] == 0 and tag_seq[i - 1 ] == 'I-LOC':
                 t = reduce(lambda x, y: str(x) + str(y), location)
                 LOC.append(t)
                 location = []
-        LOC = list(set(LOC))  # 去重
+        # LOC = list(set(LOC))  # 去重
         for i in range(len(LOC)):
-            str = '中华人民共和国'
+            strs = '中华人民共和国'
             txt = LOC[i]
-            if str in txt:
+            if strs in txt:
                 LOC.remove(txt)
     except:
         pass
