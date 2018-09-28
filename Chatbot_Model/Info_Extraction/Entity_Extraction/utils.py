@@ -74,8 +74,6 @@ def get_LOC_entity(tag_seq, char_seq):
             loc = char
             if i+1 == length:
                 LOC.append(loc)
-        # if tag_seq[i] == 'B-LOC' and tag_seq[i - 1] == 'I-LOC':
-        #     loc += char
         if tag == 'I-LOC':
             loc += char
             if i+1 == length:
@@ -93,23 +91,20 @@ def get_loc_entitys(tag_seq, char_seq):
     LOC = []
     try:
         for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
-            if tag == 'B-LOC':
-                loc = char
-                location.append(loc)
-            # if tag_seq[i] == 'B-LOC' and tag_seq[i - 1] == 'I-LOC':
-            #     loc = char
-            #     location.append(loc)
-            if tag == 'I-LOC':
-                loc = char
-                location.append(loc)
-            # n = i - 1
-            # if tag_seq[i] == '0' and tag_seq[n] == 'I-LOC':
-            #     t = reduce(lambda x, y: str(x) + str(y), location)
-            #     LOC.append(t)
-            #     del location
-            # location = list(set(location))
-        t = reduce(lambda x, y: str(x) + str(y), location)
-        LOC.append(t)
+            if tag == 'B-LOC' or tag == 'I-LOC':
+                # tags = tag.strip().split('-')[1]
+                # loc = char
+                location.append(char)
+            if tag_seq[i] == 0 and tag_seq[i -1 ] == 'I-LOC':
+                t = reduce(lambda x, y: str(x) + str(y), location)
+                LOC.append(t)
+                location = []
+        LOC = list(set(LOC))  # 去重
+        for i in range(len(LOC)):
+            str = '中华人民共和国'
+            txt = LOC[i]
+            if str in txt:
+                LOC.remove(txt)
     except:
         pass
     return LOC
