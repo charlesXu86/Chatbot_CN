@@ -8,6 +8,8 @@
 
 Python3安装requests库：pip3 install requests
 
+### 爬虫
+数据获取，依托新浪财经为基本数据源
 
 
 ### 数据获取方式
