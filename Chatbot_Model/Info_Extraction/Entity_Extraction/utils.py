@@ -151,7 +151,33 @@ def get_TIM_entity(tag_seq, char_seq):
     :param char_seq:
     :return:
     '''
-    pass
+    length = len(char_seq)
+    TIM = []
+    try:
+        for i, (char, tag) in enumerate(zip(char_seq, tag_seq)):
+            if tag == 'B-TIM':
+                if 'tim' in locals().keys():
+                    TIM.append(org)
+                    del org
+                org = char
+                if i + 1 == length:
+                    TIM.append(org)
+            if tag == 'I-TIM':
+                org += char
+                if i + 1 == length:
+                    TIM.append(org)
+            if tag not in ['I-TIM', 'B-TIM']:
+                if 'tim' in locals().keys():
+                    TIM.append(org)
+                    del org
+                continue
+
+        TIM = list(set(TIM))  # 去重
+
+    except Exception as e:
+        print('error is ', e)
+    return TIM
+
 
 def get_MON_entity(text):
     '''
@@ -173,11 +199,12 @@ def get_MON_entity(text):
     MON = reduce(dup, [[], ] + MON)
     return MON
 
-def write_to_mysql():
-    pass
-
-
 def get_logger(filename):
+    '''
+    日志处理
+    :param filename:
+    :return:
+    '''
     logger = logging.getLogger('logger')
     logger.setLevel(logging.DEBUG)
     logging.basicConfig(format='%(message)s', level=logging.DEBUG)
