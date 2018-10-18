@@ -26,7 +26,7 @@ def str2bool(v):
 def get_entity(tag_seq, char_seq):
     PER = get_PER_entity(tag_seq, char_seq)
     # LOC = get_LOC_entity(tag_seq, char_seq)
-    LOC = get_loc_entitys(tag_seq, char_seq)
+    LOC = get_LOC_entitys(tag_seq, char_seq)
     ORG = get_ORG_entity(tag_seq, char_seq)
     return PER, LOC, ORG
 
@@ -87,7 +87,7 @@ def get_LOC_entity(tag_seq, char_seq):
             continue
     return LOC
 
-def get_loc_entitys(tag_seq, char_seq):
+def get_LOC_entitys(tag_seq, char_seq):
     length = len(char_seq)
     location = []
     LOC = []
@@ -107,8 +107,8 @@ def get_loc_entitys(tag_seq, char_seq):
             txt = LOC[i]
             if strs in txt:
                 LOC.remove(txt)
-    except:
-        pass
+    except Exception as e:
+        print("Error is ", e)
     return LOC
 
 def get_ORG_entity(tag_seq, char_seq):
