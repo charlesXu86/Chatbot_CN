@@ -48,9 +48,6 @@ You can run the joint frame parsing (intent prediction and slot filling) experim
   bash script/run_joint.sh blstm theano 0 | sh
 ```
 
-## Contact
-Yun-Nung (Vivian) Chen, y.v.chen@ieee.org
-
 ## Reference
 
 Main papers to be cited
