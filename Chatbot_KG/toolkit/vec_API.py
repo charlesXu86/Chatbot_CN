@@ -1,4 +1,11 @@
-# coding: utf-8
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: vec_API.py
+@desc: 词向量处理
+@time: 2018/08/08
+"""
+
 import random
 
 #class word_vector :
