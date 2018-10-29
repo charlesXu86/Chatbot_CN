@@ -21,19 +21,35 @@ uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + '47.96.15.176' + ':' + '270
 client = MongoClient(uri)
 
 # 连接所需的数据库
-db = client.itslaw
+# db = client.itslaw
 
-collection = db.itslaw_collection   # 表名
+# collection = db.itslaw_collection   # 表名
 
 # 查询所有数据
-for item in collection.find():
-    print(item)
+# for item in collection.find():
+#     print(item)
 
-print(collection.find_one())
+# print(collection.find_one())
 
 # 向集合中插入数据  insert_one()  or   insert_many()
 # collection.insert_one({'name':'Tom', 'age': '25', 'desc': '你不是一个好人'})
 
 # 更新数据
 # collection.update_one({'name': 'Tom'}, {'name':'Tom', 'age': '18'})
+
+def get_MONGO_data():
+    '''
+    查询mongodb数据
+    :return:
+    '''
+    # client = MongoClient(uri)
+    db = client.itslaw      # 连接所需要的数据库
+    collection = db.itslaw_collection    # collection名
+    # 查询数据
+    for item in collection.find():
+        print(item)
+    return item
+
+get_MONGO_data()
+
 
