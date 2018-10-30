@@ -7,7 +7,11 @@
 """
 
 import pymysql
+import pprint
+import json
 import split_sentence
+
+from pymongo import MongoClient
 
 
 def get_addr():
@@ -54,37 +58,91 @@ def conn():
     return conn
 
 
-# 从数据库获取数据
+# 从数据库获取数据  mysql
 def get_datas():
+    one_data = {}   # 存放其中一条数据
     result_list = []
-    db = pymysql.Connect("data.npacn.com", "youtong", "duc06LEQpgoP", "sipai")
-    # db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
+    # db = pymysql.Connect("data.npacn.com", "youtong", "duc06LEQpgoP", "sipai")    # 阿里云mysql
+    db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
     cursor = db.cursor()
-    sql = "SELECT doc_result from sm_document"
-    # sql = "SELECT doc_result FROM ner_test where id=2"
+    # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where  140000 < uuid and uuid <= 200000"
+    # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where 280000 < uuid and uuid <= 300000"  # 线程2 结束
+    # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where 376937 < uuid"      # 正在运行
+    sql = "SELECT uuid, obligors, creditors, doc_result FROM doc_test limit 1"   #  obligors 原告    creditors 被告
     # sql = "SELECT doc_result from doc_test where id like '%DE%'"
     # sql = "SELECT doc_content from doc_test where uuid=666"
+    # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where uuid > 666690"    # 阿里云数据库查询
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
-        for result in results:
-            demo_sent = result[0]
-            text_sent = split_sentence.split_sentence_thr(demo_sent)
-            for text in text_sent:
-                result_list.append(text)
+        # for result in results:
+            # demo_sent = result[0]
+            # text_sent = split_sentence.split_sentence_thr(demo_sent)
+            # for text in text_sent:
+            #     result_list.append(text)
 
-                to_str = str(text)
+                # to_str = str(text)
                 # if text == '' or text.isspace():
                 #     print('See you next time!')
                 #     break
                 # else:
                 #     text = list(text.strip())
         # print(result_list)
-        return result_list
-
-    except:
-        print("Error: unable to fecth data")
+        return results
+    except Exception as e:
+        print("Exception is", e)
     db.close()
+
+# 从数据库获取数据  mongo
+uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + '47.96.15.176' + ':' + '27017' +'/'+ 'itslaw'
+client = MongoClient(uri)
+def get_MONGO_data():
+    '''
+    查询mongodb数据,并做预处理
+    :return: 嵌套的字典-提取后的信息
+    '''
+    result = {}   # 存放结果数据
+    try:
+        db = client.itslaw      # 连接所需要的数据库
+        collection = db.itslaw_collection    # collection名
+        # 查询数据
+        for item in collection.find():
+            judgementId = item['judgementId']   # 判决文书id   唯一标示
+            if 'doc_province' in item.keys() and 'doc_city' in item.keys():
+                addr = str(item['doc_province']) + str(item['doc_city'])  # 案件的归属地
+
+            # 获取罪名
+            if 'reason' in item['content'].keys():
+                charge = item['content']['reason']['name']
+            # 获取关键词
+            if 'keywords' in item['content'].keys():
+                keywords = item['content']['keywords']
+            # 获取当事人及判决等信息
+            detail = item['content']['paragraphs']  # 这是一个list
+            for i in range(len(detail)):
+                if 'typeText' in detail[i].keys():
+                    if detail[i]['typeText'] == '当事人信息':    # 识别原、被告
+                        litigant_text = []
+                        plaintiff = []   # 原告
+                        accused = []     # 被告
+                        litigant_texts = detail[i]['subParagraphs']
+                        for j in range(len(litigant_texts)):
+                            litigant_text.append(litigant_texts[j]['text'])
+                    if detail[i]['typeText'] == '裁判结果':
+                        judge_text = []
+                        texts = detail[i]['subParagraphs']
+                        for i in range(len(texts)):
+                            judge_text.append(texts[i]['text'])   # 判决文本内容，list形式存储
+            result['judgementId'] = judgementId
+            result['addr'] = addr
+            result['charge'] = charge
+            result['judge_text'] = judge_text
+            result['keywords'] = keywords
+            result['litigant_text'] = litigant_text  # 当事人信息，还需要进一步处理返回结果
+            pprint.pprint(result)
+    except Exception as e:
+        print('Error is', e)
+    return result
 
 def write_data():
     db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
@@ -93,5 +151,12 @@ def write_data():
 
     cursor.execute(insert_ner_result)
 
-get_datas()
+def write_to_mysql():
+    pass
+
+def write_to_mongo():
+    pass
+
+# get_datas()
+get_MONGO_data()
 
