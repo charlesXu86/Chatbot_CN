@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'Chatbot_CN.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chatbot_cn',
+        'NAME': 'djangodb',
         'USER': 'root',
         'PASSWORD': 'Aa123456',
         'HOST': 'localhost',
@@ -125,3 +125,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
