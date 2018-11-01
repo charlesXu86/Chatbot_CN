@@ -104,3 +104,8 @@ https://github.com/charlesXu86/PAPER-In-CODE
 
 #### 说明
 持续更新中。。。
+
+License(s)
+----------
+Various licenses apply. Please refer to the LICENSE and NOTICE files for more
+detailed information.
