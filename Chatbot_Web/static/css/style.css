@@ -73,21 +73,21 @@ table tr th { color: #688a7e;}
     background-color: #f1f2f7;
 }
 .login-img-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  background: url('../img/a-bj-1.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 .login-img2-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  background: url('../img/a-bj-1.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 .login-img3-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  background: url('../img/a-bj-1.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -627,7 +627,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     /* Safari and Chrome */
     .dropdown-menu.extended  {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
-    };
+    }
 }
 /* bootstrape editor*/
  #editor {
@@ -1198,7 +1198,7 @@ div[data-role="editor-toolbar"] {
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1);
   
 }
-}
+
 .panel.panel-default.panel-heading {
   background: #97d3c5;   
 }
@@ -1505,7 +1505,7 @@ div[data-role="editor-toolbar"] {
   -moz-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
 }
-* /Widget-Content */
+/* Widget-Content */
 
 .widget-content .error .form-inline button{
 	margin-left:-2px;
@@ -1683,7 +1683,7 @@ div[data-role="editor-toolbar"] {
   cursor:move;
 }
 /*-----	map-----*/
-* Google maps */
+* Google maps *
 
 .gmap iframe{
 	width: 100%;
@@ -1767,7 +1767,7 @@ div[data-role="editor-toolbar"] {
     transition: all .3s ease;
     border: 1px solid #fff;
     box-shadow: none;
-    background: url("../img/search-icon.jpg") no-repeat 10px 8px;
+    background: url("../img/gif-6-2.png") no-repeat 10px 8px;
     padding:0 5px 0 35px;
     color: #fff;
 }
@@ -1838,7 +1838,6 @@ div[data-role="editor-toolbar"] {
 
 .state-overview .value h1 {
     font-weight: 300;
-    font-weight: 30px;
 }
 
 .state-overview .symbol i {
@@ -2079,7 +2078,7 @@ div[data-role="editor-toolbar"] {
     /* Safari and Chrome */
     .panel-footer.revenue-foot {
         margin-bottom: -4px;
-    };
+    }
     }
 
 
@@ -2434,7 +2433,7 @@ ul.ft-link li a i {
 
 /*profile-widget image bg*/
 .profile-widget-img{
-    background: url('../img/backgrounds/bg-11-small.jpg') no-repeat !important;    
+    background: url('../img/chatbot.jpg') no-repeat !important;
 }
 .profile-nav .profile-widget-img .bg-layer {
     background: rgba(0,0,0,0.5) !important;
@@ -2771,7 +2770,7 @@ ul.ft-link li a i {
 }
 /*weather widget 2*/
 .weather-bg-img {
-    background: url(../img/backgrounds/bg-14-small.jpg) no-repeat center center;    
+    background: url(../img/gif-3.png) no-repeat center center;
     color: #fff;
     text-shadow: 0px 1px 5px #fed189;
     text-align: center;
@@ -4159,8 +4158,8 @@ table.sliders tr td {
     position: relative;
     text-align: left;
     width: 80px;
-    -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-    mask: url('../img/mask.png') 0 0 no-repeat;
+    -webkit-mask: url('../img/gif-3.png') 0 0 no-repeat;
+    mask: url('../img/gif-3.png') 0 0 no-repeat;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -4266,8 +4265,8 @@ table.sliders tr td {
 .switch-square {
     border-radius: 6px;
     -webkit-border-radius: 6px;
-    -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-    mask: url('../img/mask.png') 0 0 no-repeat;
+    -webkit-mask: url('../img/chatbot.jpg') 0 0 no-repeat;
+    mask: url('../img/chatbot.jpg') 0 0 no-repeat;
 }
 .switch-square > div.switch-off label {
     border-color: #7f8c9a;
@@ -4429,19 +4428,19 @@ table.sliders tr td {
 }
 
 .has-js .label_radio {
-    background: url(../img/checkbox/radio-off.png) no-repeat;
+    background: url(../img/gif-3.png) no-repeat;
 }
 
 .has-js .label_check {
-    background: url(../img/checkbox/check-off.png) no-repeat;
+    background: url(../img/gif-3.png) no-repeat;
 }
 
 .has-js label.c_on {
-    background: url(../img/checkbox/check-on.png) no-repeat;
+    background: url(../img/gif-3.png) no-repeat;
 }
 
 .has-js label.r_on {
-    background: url(../img/checkbox/radio-on.png) no-repeat;
+    background: url(../img/gif-3.png) no-repeat;
 }
 
 .has-js .label_check input,
@@ -4507,9 +4506,11 @@ table.sliders tr td {
 
 .cke_top, .cke_bottom {
     background: #F5F5F5 !important;
+    /**
     background: -moz-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
     background: -webkit-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
     background: -o-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
+    */
     box-shadow: none;
     padding: 6px 8px 2px;
 }
@@ -4936,5 +4937,5 @@ span.customSelect.changed {
     background-color: #fff;
 }
 .customSelectInner {
-    background:url(../img/customSelect-arrow.gif) no-repeat center right;
+    background:url(../img/gif-3.png) no-repeat center right;
 }
