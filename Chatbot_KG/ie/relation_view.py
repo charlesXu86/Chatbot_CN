@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from toolkit.pre_load import neo_con
+from Chatbot_KG.toolkit.pre_load import neo_con
 from django.http import JsonResponse
 import os
 
