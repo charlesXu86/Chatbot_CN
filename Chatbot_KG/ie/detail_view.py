@@ -7,7 +7,7 @@
 """
 from django.shortcuts import render
 from django.views.decorators import csrf
-import thulac
+
  
 import sys
 sys.path.append("..")
