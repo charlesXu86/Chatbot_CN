@@ -3,14 +3,14 @@
 """
 -------------------------------------------------
    File Name：     pre_load.py
-   Description :   预加载
+   Description :   模型预加载
    Author :       charl
    date：          2018/10/26
 -------------------------------------------------
    Change Activity: 2018/10/26:
 -------------------------------------------------
 """
-import thulac
+import thulac    # 是一个高效的中文词法分析工具包
 import csv
 import sys
 import os
@@ -64,3 +64,5 @@ print("get connection train_data")
 
 testDataCollection = mongo.getCollection("test_data")
 print("get connection test_data")
+
+# 预加载mysql
