@@ -87,7 +87,7 @@ def login(request):
 
 def index(request):
     username = request.COOKIES.get('cookie_username', '')
-    return render(request, 'homepage.html', {'username': username})
+    return render(request, 'base.html', {'username': username})
 
 def logout(request):
     response = HttpResponseRedirect('/')

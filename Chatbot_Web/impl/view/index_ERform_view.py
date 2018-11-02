@@ -80,9 +80,5 @@ def ER_post(request):
 			seg_word += t[0]+" <strong><small>["+t[1]+"]</small></strong> "
 		seg_word += ""
 		ctx['seg_word'] = seg_word
-		
-		
-		
-		
-	return render(request, "index.html", ctx)
+	return render(request, "ie/info_extraction.html", ctx)
 	
