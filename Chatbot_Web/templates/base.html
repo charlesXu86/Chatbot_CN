@@ -15,7 +15,7 @@
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-    <link rel="shortcut icon" href="../static/img/favicon.png">
+    <!--<link rel="shortcut icon" href="../static/img/chatbot.jpg"> -->
 
     <title>Chatbot_CN 聊天机器人开发实战</title>
 
@@ -90,12 +90,43 @@
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu">
+                    <!--<li class="active"><a class="" href="kg/detail"><i class="icon_house_alt"></i><span>首页</span></a></li> -->
+
+                    <li class="active"><a class="" href="/"><i class="icon_house_alt"></i><span>中文分词</span></a></li>
+
+                    <li class="active"><a class="" href="/"><i class="icon_house_alt"></i><span>词性标注</span></a></li>
+
                     <li class="active">
-                        <a class="" href="/">
-                            <i class="icon_house_alt"></i>
-                            <span>实体识别</span>
-                        </a>
+                        <a class="" href="/info_extraction_view"><i class="icon_house_alt"></i><span>信息抽取(IE)</span></a>
+                        <ul class="treeview-menu">
+                            <li><a href="/">实体抽取</a></li>
+                            <li><a href="#">事件抽取</a></li>
+                            <li><a href="#">术语抽取</a></li>
+                        </ul>
+
+
                     </li>
+
+                    <li class="active"><a class="" href="/"><i class="icon_house_alt"></i><span>句法分析(DP)</span></a></li>
+
+                    <li class="active"><a class="" href="/"><i class="icon_house_alt"></i><span>语义分析(SP)</span></a></li>
+
+                    <li class="active"><a class="" href="/"><i class="icon_house_alt"></i><span>自然语言生成(NLG)</span></a></li>
+
+                    <li class="treeview">
+                      <a href="#"><i class="fa fa-link"></i> <span>多伦对话</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                          </span>
+                      </a>
+                      <ul class="treeview-menu">
+                        <li><a href="#">对话状态跟踪</a></li>
+                        <li><a href="#">对话策略</a></li>
+                        <li><a href="#">对话管理</a></li>
+                      </ul>
+                    </li>
+
+
 
                     <li>
                         <a class="" href="/search_entity">
@@ -128,7 +159,11 @@
             <section class="wrapper">
 
                 {% block mainbody %}
-                <p>original page</p>
+                <p>基于Tensorflow的聊天机器人</p>
+                    <div>
+                        介绍：
+                    </div>
+
                 {% endblock %}
 
             </section>
