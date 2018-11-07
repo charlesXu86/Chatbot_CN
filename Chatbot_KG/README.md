@@ -4,13 +4,8 @@
 
 ## 项目介绍：
 
-本项目为金融和司法相关的知识图谱研究成果。
+本项目为金融和司法相关的知识图谱。
 
-
-
-
->
->
 >| Title               | Name | Homepage                                 |
 >| ------------------- | ---- | ---------------------------------------- |
 >| Associate Professor | 高　明  | [http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy](http://faculty.ecnu.edu.cn/s/2844/t/30305/main.jspy)<br>[http://dase.ecnu.edu.cn/mgao](http://dase.ecnu.edu.cn/mgao) |
@@ -22,25 +17,15 @@
 ## 目录结构：
 
 ```
-.
-├── MyCrawler      // scrapy爬虫项目路径(已爬好)
+Chatbot_KG
+├── chatbot_scrapy      // scrapy爬虫项目路径(已爬好)
 │   └── MyCrawler
 │       ├── data
 │       └── spiders
+│── common              // 普通的实现类
+│── doc                 // 文档
 ├── data\ processing    // 数据清洗(已无用)
 │   └── data
-├── demo     // django项目路径
-│   ├── Model  // 模型层，用于封装Item类，以及neo4j和csv的读取
-│   ├── demo   // 用于写页面的逻辑(View)
-│   ├── label_data    // 标注训练集页面的保存路径
-│   │   └── handwork
-│   ├── static    // 静态资源
-│   │   ├── css
-│   │   ├── js
-│   │   └── open-iconic
-│   ├── templates   // html页面
-│   └── toolkit   // 工具库，包括预加载，命名实体识别
-│   └── KNN_predict   
 ├── KNN_predict    // KNN算法预测标签
 ├── dfs_tree_crawler     // 爬取互动百科农业实体树形结构的爬虫
 └── wikidataSpider    //  爬取wiki中的关系
@@ -75,6 +60,29 @@
 
 
 （以上部分除了neo4j在官网下，wiki.zh.bin在亚马逊s3下载，其它均可直接用pip3 install 安装）
+
+* 构建本体
+    * protege构建本体并生成对应的owl文件
+
+* 结构化数据到 RDF   (strcut_to_rdf)
+    * Direct Mapping
+    * D2RQ: mapping 文件和 对应的NTriples 文件可以下载啦~您可以通过d2r-server进行查询使用
+
+* 非结构化文本的知识抽取
+   * 基于NER的知识抽取
+   *
+
+* Apache jena
+    * NTriples to TDB
+    * Apache jena fuseki 的运行
+    * Apache jena SPARQL endpoint
+
+* KBQA
+    * 基于 REfO 的简单KBQA
+
+* 语义搜索
+    * 基于elasticsearch 的简单语义搜索 支持实体检索、实体属性检索和条件检索
+
 
 
 
