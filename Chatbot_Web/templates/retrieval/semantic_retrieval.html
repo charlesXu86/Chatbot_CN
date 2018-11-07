@@ -1,0 +1,104 @@
+{% load staticfiles %}
+<html>
+<head>
+  <title>语义搜索</title>
+  <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" type="text/css"/>
+  <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+  <meta charset="utf-8">
+  <style>
+    #search-input {margin-top: 120px;}
+    .d_logo {text-align: center;margin-bottom: 40px;}
+    .d_logo img{width: 350px;}
+    .d_logo p{margin:0px; font-size:17px;}
+    .copyright{width: 100%;text-align: center;position: fixed;bottom: 5px;}
+    .copyright p{font-size: 12px;color: #717171;}
+    .main-pedia{text-align:center;margin-bottom:5px;}
+    .main-pedia a{margin:10px 5px 15px 5px; font-size:15px; text-decoration:none;color:#555;transition:0.5s;}
+    .main-pedia a:hover{background-color:black; color:white;}
+    .main-pedia #linkset:hover{background-color:#4cd2e7}
+    #social-icons{text-align: center;margin-top: 130px;}
+    #social-icons a{
+      position: relative;
+      padding-top: 40px;
+      padding-bottom: 24px;
+      padding-left: 11px;
+      padding-right: 8px;
+      margin-left: 20px;
+      border-radius: 100px;
+      color: black;
+      border: solid 3px black;
+      background-color: white;
+      transition: 0.2s;
+    }
+    #social-icons a:hover{color:#337ab7;border: solid 3px #337ab7;}
+    #social-icons a i{width: 60px;text-align: center;font-size: 35px;}
+
+    .sidebar-wrapper { position: relative; height: 100%; overflow: auto;}
+    #dowebok { background-color: white;}
+    #dowebok .nav { margin-top: 50px; line-height: 40px; list-style-type: none; text-align:center;}
+    #dowebok .nav a { display: block; padding: 0 20px; color: black; text-decoration: none;}
+    #dowebok .nav a:hover { background-color: #0883fd;}
+    [data-simplersidebar='active'] { box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, 0.5);}
+
+    .sidebar-icon{position: fixed; top: 30px; left:30px;}
+    .sidebar-icon #toggle-sidebar{cursor: pointer; font-size:30px;}
+
+    #examples p a{
+        font-size:16px;
+    }
+
+    #exm-div {
+        margin-top:20px; 
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3" id="search-input">
+        <form action="./search" method="get" onsubmit="return check()">
+          <div class="input-group input-group-lg">
+            <input type="text" id="inputtext" class="form-control" name="question" autofocus/>
+
+            <div class="input-group-btn">
+              <button class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="row" id="exm-div">
+    <div class="col-md-6 col-md-offset-4">
+    <div id="examples">
+        <p id='example_title'>示例查询</p>
+        <p id='example'><a href='/search?question=姚明是谁'>姚明是谁</p>
+        <p id='example'><a href='/search?question=姚明是在哪儿出生的'>姚明是在哪儿出生的</p>
+        <p id='example'><a href='/search?question=佟大为的身高是多少'>佟大为的身高是多少</p>
+        <p id='example'><a href='/search?question=姚明的女儿的母亲是谁'>姚明的女儿的母亲是谁</p>
+        <p id='example'><a href='/search?question=姚明的女儿的母亲的身高是多少'>姚明的女儿的母亲的身高是多少</p>
+        <p id='example'><a href='/search?question=中国足球运动员'>中国足球运动员</p>
+        <p id='example'><a href='/search?question=中国女运动员'>中国女运动员</p>
+        <p id='example'><a href='/search?question=身高大于170的中国或美国的作家'>身高大于170的中国或美国的作家</p>
+        <p id='example'><a href='/search?question=身高>180的中国演员'>身高>180的中国演员</p>
+        <p id='example'><a href='/search?question=身高>200,体重小于200的中国篮球运动员'>身高>200,体重小于200的中国篮球运动员</p>
+    </div>
+    </div>
+    </div>
+
+  </div>
+
+  <script src="{% static "jquery-1.11.3.min.js" %}"></script>
+  <script>
+    function check(){
+      var name = document.getElementById("inputtext").value;
+      if(name == "")
+        return false;
+    }
+  </script>
+</body>
+</html>
