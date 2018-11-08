@@ -16,11 +16,12 @@ import pickle as pkl
 
 from collections import defaultdict
 
-entity_list_file = './data/all_entity.txt'
-entity_out_path = './data/ent_ac.pkl'
-attr_list_file = './data/attr_mapping.txt'
-attr_out_path = './data/attr_ac.pkl'
-val_list_file = './data/Person_val.txt'
+data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\\'
+entity_list_file =data_path + 'all_entity.txt'
+entity_out_path =data_path + 'ent_ac.pkl'
+attr_list_file =data_path + 'attr_mapping.txt'
+attr_out_path =data_path + 'attr_ac.pkl'
+val_list_file =data_path + 'Person_val.txt'
 
 
 def dump_ac_entity_dict(list_file, out_path):
@@ -64,7 +65,7 @@ def load_ac_dict(out_path):
     return A
 
 def load_attr_map(attr_mapping_file):
-    f = open(attr_mapping_file)
+    f = open(attr_mapping_file, encoding='utf-8')
     mapping = defaultdict(list)
     for line in f:
         parts = line.strip().split(" ")
@@ -74,7 +75,7 @@ def load_attr_map(attr_mapping_file):
     return mapping
 
 def load_entity_dict(entity_file):
-    f = open(entity_file)
+    f = open(entity_file, encoding='utf-8')
     ents = {}
     for line in f:
         ents[line.strip()] = 1
