@@ -4,16 +4,13 @@
 -------------------------------------------------
    File Name：     semantic_retrieval_search.py
    Description :   用户查询解析，elasticsearch查询构造。
-   Author :       charl
+   Author :        charl
    date：          2018/11/7
 -------------------------------------------------
    Change Activity: 2018/11/7:
 -------------------------------------------------
 """
-
 from __future__ import unicode_literals
-
-
 
 import requests
 import json
@@ -23,16 +20,12 @@ import pickle as pkl
 
 from Chatbot_Model.Retrieval.sematic_retrieval.build_dict import load_attr_map, load_entity_dict, load_val_dict
 
-attr_map = load_attr_map("/mnt/demo/search/data/attr_mapping.txt")
-attr_ac = pkl.load(open("/mnt/demo/search/data/attr_ac.pkl","rb"))
-ent_dict = load_entity_dict("/mnt/demo/search/data/all_entity.txt")
-val_dict = load_val_dict("/mnt/demo/search/data/Person_val.txt")
 
-def search(request):
-    question = request.GET['question']
-    val_d = _val_linking(question)
-    lf_question = translate_NL2LF(question)
-    answer, msg, query_type = _parse_query(lf_question)
+data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\\'
+attr_map = load_attr_map(data_path + "attr_mapping.txt")
+attr_ac = pkl.load(open(data_path + "attr_ac.pkl","rb"), encoding='bytes')   # py3
+ent_dict = load_entity_dict(data_path + "all_entity.txt")
+val_dict = load_val_dict(data_path + "Person_val.txt")
 
 def _parse_query(question):
     '''
