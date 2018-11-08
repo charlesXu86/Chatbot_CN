@@ -1,0 +1,53 @@
+weight 重量 多重 体重 WEIGHT
+relatedTo 相关 有关 RELATEDTO
+telephone 电话 号码 电话号 电话号码 手机 手机号 手机号码 TELEPHONE
+birthDate 出生日期 出生时间 生日 时候出生 年出生 BIRTHDATE
+height 高度 海拔 多高 身高 HEIGHT
+sibling 兄弟 哥哥 姐姐 弟弟 妹妹 姐妹 SIBLING
+workLocation 工作地点 在哪工作 在哪上班 上班地点 WORKLOCATION
+children 子女 孩子 女儿 儿子 CHILDREN
+年龄 几岁 多大
+代表作品 代表作 著作 成就 作品
+homeLocation 家庭住址 住哪 住在哪 住在什么 HOMELOCATION
+职业 工作 做什么 干什么
+colleague 大学 高校 毕业于 COLLEAGUE
+birthPlace 出生地 在哪出生 在哪儿出生 出生在哪 出生在什 出生在 BIRTHPLACE
+parent 父母 双亲 爸爸 妈妈 母亲 父亲 PARENT
+jobTitle 工作 职业 JOBTITLE
+award 奖项 奖励 AWARD
+address 地址 在哪 位置 在什么地方 ADDRESS
+nationality 国籍 哪国人 NATIONALITY
+spouse  配偶 丈夫 妻子 老婆 老公 SPOUSE
+deathDate 去世日期 逝世日期 时候死 DEATHDATE
+affiliation 从属 AFFILIATION
+gender 性别 是男是女 GENDER
+民族
+deathPlace 去世地点 在哪死 在哪去世 DEATHPLACE
+memberOf 成员 MEMBEROF
+alumniOf 校友 毕业于 毕业 ALUMNIOF
+方言
+branchCode 银行编号 BRANCHCODE
+行政区类别
+著名景点
+面积 多大 大小
+海拔 高度 多高
+电话区号
+特产
+containedInPlace 属于
+知名产业
+人口
+名称 name 叫什么
+numberOfEmployees 员工数目
+aggregateRating
+parentOrganization 母公司
+foundingDate 成立日期
+公司行政
+founder 创建者
+法定代表人
+location 地址 位置
+legalName 法人名称
+hasOfferCatalog
+alternateName
+同意信用代码
+行业
+makesOffer
