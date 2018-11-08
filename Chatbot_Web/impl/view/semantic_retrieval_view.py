@@ -2,7 +2,7 @@
 
 """
 -------------------------------------------------
-   File Name：     semantic_retrieval_views.py
+   File Name：     semantic_retrieval_view.py
    Description :   语义检索视图跳转
    Author :       charl
    date：          2018/11/7
@@ -14,6 +14,7 @@
 from django.shortcuts import render
 
 def semantic_retrieval_view(request):
-    return render(request, "retrieval/semantic_retrieval.html", {})
+    context = {}
+    return render(request, 'retrieval/semantic_retrieval.html', context)
 
 
