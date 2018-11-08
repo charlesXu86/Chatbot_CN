@@ -1,0 +1,118 @@
+{% load staticfiles %}
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+
+  <title>语义搜索demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <link rel="stylesheet" href="{% static "searchpage/dist/amazeui.min.css" %}" />
+  <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" />
+  <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" type="text/css">
+
+  <style type="text/css">
+    .well{
+      min-height: 20px;
+      padding: 19px;
+      margin: 10px;
+      margin-bottom: 20px;
+      background-color: #f5f5f5;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    }
+
+    .well1{
+      min-height: 20px;
+      padding: 19px;
+      margin: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    }
+
+    #search-input{
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    #logo {
+      margin-top:57px;
+    }
+    #logo img{
+      width: 170px;
+    }
+    .am-panel-default>.am-panel-hd {
+      background-color: #e1e1e1;
+    }
+    .am-panel-default {
+      border-radius: 3px;
+    }
+    .am-panel-default:hover{
+      border:1px solid #bbb;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" style="width: 75%; margin-left: auto; margin-right: auto;">
+
+    <div class="row">
+      
+      <div class="col-md-8 col-md-offset-2" id="search-input">
+
+        <form action="./search" method="get">
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" name="question" value="{{question}}" />
+
+            <div class="input-group-btn">
+              <button class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="am-content">
+
+      <div class="am-animation-slide-left">
+        <div class="am-g">
+          <div class="am-u-md-12">
+            <div class="am-panel am-panel-default">
+              <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#list'}"></h4>
+              </div>
+              <div id="list" class="am-panel-collapse am-collapse am-in">
+                <div class="well1">
+                    <table class="table table-bordered table-hover table-striped">
+                        <tr>
+                            <th>实体名称</th>
+                            <th>查询链接</th>
+                        </tr>
+                        {% for k,v in ans.iteritems %}
+                            <tr>
+                                <td>{{ k }}</td>
+                                <td><a href={{ v }}>{{k}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <script src="{% static "searchpage/dist/jquery.min.js" %}"></script>
+  <script src="{% static "searchpage/dist/amazeui.min.js" %}"></script>
+  <script src="{% static "searchpage/dist/echarts.min.js" %}"></script>
+  <script src="{% static "searchpage/dist/t3.min.js" %}"></script>
+</body>
+</html>

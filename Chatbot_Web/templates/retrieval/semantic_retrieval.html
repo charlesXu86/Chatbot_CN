@@ -1,9 +1,9 @@
 {% load staticfiles %}
 <html>
 <head>
-  <title>语义搜索</title>
-  <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" type="text/css"/>
-  <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" type="text/css">
+  <title>语义检索</title>
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="../static/fonts/font-awesome/css/font-awesome.min.css" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
   <meta charset="utf-8">
   <style>
@@ -20,7 +20,7 @@
     #social-icons{text-align: center;margin-top: 130px;}
     #social-icons a{
       position: relative;
-      padding-top: 40px;
+      padding-top: 39px;
       padding-bottom: 24px;
       padding-left: 11px;
       padding-right: 8px;
@@ -49,7 +49,7 @@
     }
 
     #exm-div {
-        margin-top:20px; 
+        margin-top:20px;
     }
   </style>
 </head>
@@ -77,6 +77,7 @@
     <div id="examples">
         <p id='example_title'>示例查询</p>
         <p id='example'><a href='/search?question=姚明是谁'>姚明是谁</p>
+        <p id='example'><a href='/search?question=谁是佟大为'>谁是佟大为</p>
         <p id='example'><a href='/search?question=姚明是在哪儿出生的'>姚明是在哪儿出生的</p>
         <p id='example'><a href='/search?question=佟大为的身高是多少'>佟大为的身高是多少</p>
         <p id='example'><a href='/search?question=姚明的女儿的母亲是谁'>姚明的女儿的母亲是谁</p>
