@@ -72,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Chatbot_CN.wsgi.application'
 
+# AUTH_USER_MODEL = "Chatbot_Web.UserManage"
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
