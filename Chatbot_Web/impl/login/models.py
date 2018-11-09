@@ -16,7 +16,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Users(AbstractUser):
-    nickname = models.CharField(max_length=50, blank=True)
+    # nickname = models.CharField(max_length=50, blank=True)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    email = models.EmailField()
 
-    class Meta(AbstractUser.Meta):
-        pass
