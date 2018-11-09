@@ -11,7 +11,7 @@
 <div class="flex-center">
     <div class="container">
         <div>
-            <h1 class="logo"><a href="{% url 'index' %}">聊天机器人开发实战</a></h1>
+            <h1 class="logo"><a href="{% url 'index' %}">欢迎来到Chatbot_CN</a></h1>
             {% if user.is_authenticated %}
                 <p>你已登录，欢迎你：<a href="#">{{ user.username }}</a></p>
                 <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">注销登录</a>
@@ -23,7 +23,7 @@
                     <button class="btn btn-default"><a href="{% url 'login' %}?next={{ request.path }}">登录</a>
                     </button>
                     或者
-                    <button class="btn btn-default"><a href="{% url 'users:register' %}?next={{ request.path }}">注册</a>
+                    <button class="btn btn-default"><a href="{% url 'regist' %}?next={{ request.path }}">注册</a>
                     </button>
                 </p>
             {% endif %}
