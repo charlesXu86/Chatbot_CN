@@ -16,17 +16,17 @@ Including another URLconf
 from Chatbot_Web.impl.views import index, login, logout, register2
 from django.urls import path
 
-from Chatbot_Web.impl.view import ie_view,index_ERform_view,tagging_view,dp_view,cws_view,sp_view,semantic_retrieval_view
+from Chatbot_Web.impl.view import welcome_view,ie_view,index_ERform_view,tagging_view,dp_view,cws_view,sp_view,semantic_retrieval_view
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-# ]
 
 urlpatterns = [
     # path('', view.hello)
     # path(r'^admin/', admin.site.urls),
     # path(r'index/$', index, name='index'),
     # path('', index_view.index_view),
+    path('welcome_view/', welcome_view.welcome_view, name='welcome_view'), # 欢迎页
+    path('register/', welcome_view.register, name='register'),   # 注册
+    path('do_login/', welcome_view.do_login, name='do_login'),       # 登录
     path('', index, name='index'),   # 首页
     path('cws_view/', cws_view.cws_view, name='cws_view'),   # 中文分词
     path('tagging_view/', tagging_view.tagging_view, name='tagging_view'),   # 词性标注
@@ -35,7 +35,6 @@ urlpatterns = [
     path('dp_view/', dp_view.dp_view, name='dp_view'),  # 句法分析
     path('sp_view/', sp_view.sp_view, name='sp_view'),  # 语义分析
     path('semantic_retrieval_view/', semantic_retrieval_view.semantic_retrieval_view, name='semantic_retrieval_view'), # 信息检索
-    path('login/', login, name='login'),
-    path('regist/', register2, name='regist'),
+    path('search/', semantic_retrieval_view.search, name='search'),
     path('logout/', logout, name='logout'),
 ]
