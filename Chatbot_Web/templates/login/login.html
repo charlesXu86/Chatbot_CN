@@ -17,11 +17,11 @@
     <div class="container">
         <div class="flex-center">
             <div class="unit-1-2 unit-1-on-mobile">
-                <h1><a href="{% url 'index' %}">Django Auth Example</a></h1>
+                <h1><a href="{% url 'index' %}">聊天机器人 Chatbot_CN</a></h1>
                 <h3>登录</h3>
-                <form class="form" action="{% url 'login' %}" method="post">
+                <form class="form" action="{% url 'do_login' %}" method="post">
                     {% csrf_token %}
-                    {{ form.non_field_errors }}
+                    {% comment %}{{ form.non_field_errors }}
                     {% for field in form %}
                         {{ field.label_tag }}
                         {{ field }}
@@ -29,13 +29,17 @@
                         {% if field.help_text %}
                             <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
                         {% endif %}
-                    {% endfor %}
+                    {% endfor %}{% endcomment %}
+                    <label for="username">用户名：</label>
+                    <input id="username" type="text" name="username" value="{{ username }}"><br/>
+                    <label for="password">密码：</label>
+                    <input id="password" type="password" name="password" value="{{ password }}"><br/>
+
                     <button type="submit" class="btn btn-primary btn-block">登录</button>
                     <input type="hidden" name="next" value="{{ next }}"/>
                 </form>
                 <div class="flex-left top-gap text-small">
-                    <div class="unit-2-3"><span>没有账号？<a href="{% url 'users:register' %}">立即注册</a></span></div>
-                    <div class="unit-1-3 flex-right"><span><a href="{% url 'password_reset' %}">忘记密码？</a></span></div>
+                    <div class="unit-2-3"><span>没有账号？<a href="{% url 'register' %}">立即注册</a></span></div>
                 </div>
             </div>
         </div>
