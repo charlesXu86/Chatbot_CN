@@ -2,7 +2,7 @@
 
 """
 -------------------------------------------------
-   File Name：     conn_ES.py
+   File Name：     ES_API.py
    Description :   py连接es
    Author :       charl
    date：          2018/9/4
@@ -41,3 +41,10 @@ start = datetime.now()
 
 # 删除数据
 es.delete(index='chatbot_cn_retrieval', doc_type='Retrieval_type', id='AWbs4IThcGOxL98BAcTo')
+
+# 搜素所有数据
+es.search(index='chatbot_cn_retrieval', doc_type='Retrieval_type')
+
+# 或者
+body = {"query": {"match_all":{}}}
+es.search(index='chatbot_cn_retrieval', doc_type='Retrieval_type', body=body)
