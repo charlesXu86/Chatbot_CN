@@ -13,6 +13,6 @@
 
 from django.shortcuts import render
 
-def dp_view(request):  # index页面需要一开始就加载的内容写在这里
+def dp_page(request):  # index页面需要一开始就加载的内容写在这里
     context = {}
     return render(request, 'dependency_parsing/dependency_parsing.html', context)
