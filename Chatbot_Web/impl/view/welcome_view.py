@@ -17,11 +17,11 @@ from django import forms
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login
 
-from Chatbot_Web.impl.login.models import Users
+# from Chatbot_Web.impl.login.models import User
 
-def welcome_view(request):  # index页面需要一开始就加载的内容写在这里
+def welcome_views(request):  # index页面需要一开始就加载的内容写在这里
     context = {}
-    return render(request, 'index.html', context)
+    return render(request, 'welcome.html', context)
 
 def register(request):
     # 从 get 或者 post 请求中获取 next 参数值
@@ -81,7 +81,7 @@ def do_login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return redirect(reverse('base'))
+        return render(request, 'base.html')
     else:
         return render(request, 'login/login.html', {
             'username': username,
