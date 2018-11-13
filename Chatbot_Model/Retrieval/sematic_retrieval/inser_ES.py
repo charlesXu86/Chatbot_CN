@@ -19,7 +19,7 @@ def bulk_insert(base_url, data):
     response = requests.post(base_url, headers={"Content-Type":"application/x-ndjson"}, data=data)
 
 def begin_inset_job(index_name, type_name, json_filepath, bulk_size=1000):
-    base_url = "http://192.168.11.251:9200/" + index_name + "/" + type_name + "/bulk"
+    base_url = "http://192.168.11.251:9200/" + index_name + "/" + type_name + "/_bulk"
     f = open(json_filepath)
     cnt, es_id = 0, 1
     data = ""
@@ -34,8 +34,8 @@ def begin_inset_job(index_name, type_name, json_filepath, bulk_size=1000):
             cnt, data = 0, ""
         if not (es_id % bulk_size):
             print(es_id)
-        if cnt:
-            bulk_insert(base_url, data)
+    if cnt:
+        bulk_insert(base_url, data)
 
 if __name__ == '__main__':
     data = 'D:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\Person.json'
