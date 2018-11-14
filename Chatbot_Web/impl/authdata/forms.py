@@ -13,10 +13,10 @@
 
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Users
+from Chatbot_Web.impl.authdata.models import User
 
 
 class RegisterForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
-        model = Users
+        model = User
         fields = ("username", "email")
