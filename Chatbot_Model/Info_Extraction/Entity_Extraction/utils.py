@@ -10,7 +10,7 @@ import logging, sys, argparse, re
 
 from functools import reduce
 
-from Entity_Extraction import proprecess_money
+from Chatbot_Model.Info_Extraction.Entity_Extraction import proprecess_money
 
 
 def str2bool(v):
@@ -52,8 +52,8 @@ def get_PER_entity(tag_seq, char_seq):
                     PER.append(per)
                     del per
                 continue
-    except:
-        pass
+    except Exception as e:
+        print("Error is ", e)
     PER = list(set(PER))     #  去重
     return PER
 
@@ -140,8 +140,8 @@ def get_ORG_entity(tag_seq, char_seq):
             txt = ORG[i]
             if str in txt:
                 ORG.remove(txt)
-    except:
-        pass
+    except Exception as e:
+        print("Error is ", e)
     return ORG
 
 def get_TIM_entity(tag_seq, char_seq):
