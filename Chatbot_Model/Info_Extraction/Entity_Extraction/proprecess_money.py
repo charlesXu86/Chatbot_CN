@@ -12,7 +12,7 @@ from enum import Enum, unique
 import jieba
 import re
 
-from Entity_Extraction import log
+from Chatbot_Model.Info_Extraction.Entity_Extraction import log
 
 @unique
 class Consts(Enum):
