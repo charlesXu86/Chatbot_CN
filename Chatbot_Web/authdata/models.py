@@ -3,7 +3,7 @@
 """
 -------------------------------------------------
    File Name：     models.py
-   Description :
+   Description :  自定义用户类
    Author :       charl
    date：          2018/11/9
 -------------------------------------------------
@@ -17,9 +17,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-#     nickname = models.CharField(max_length=50, blank=True)
-#     event = models.ForeignKey(on_delete=models.DO_NOTHING)
-    username = models.CharField(max_length=50)
+    '''
+    用户信息表
+    '''
+    usernames = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     email = models.EmailField()
 

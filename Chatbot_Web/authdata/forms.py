@@ -13,8 +13,8 @@
 
 from django.contrib.auth.forms import UserCreationForm
 
-from Chatbot_Web.impl.authdata.models import User
-
+from Chatbot_Web.authdata.models import User
+# from django.contrib.auth import get_user_model
 
 class RegisterForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
