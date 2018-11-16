@@ -30,6 +30,22 @@
     <!-- http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#financial -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#financial"/>
+    
+
+
+    <!-- http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#sipai -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#sipai">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#Judicial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#stock -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#stock">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/charl/ontologies/2018/10/chatbot_cn-ontology#financial"/>
+    </owl:Class>
 </rdf:RDF>
 
 
