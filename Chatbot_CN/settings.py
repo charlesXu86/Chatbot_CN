@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Chatbot_CN.apps.RegisterLoginConfig',
     'bootstrap3',
+    #'rest_framework_swagger',
+    'rest_framework',
+    'rest_framework_docs',
+    'Chatbot_Web.authdata',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Chatbot_CN.wsgi.application'
 
-# AUTH_USER_MODEL = "Chatbot_Web.UserManage"
+AUTH_USER_MODEL = "authdata.User"    # 重写表
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -87,6 +91,14 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+# Pagination
+# pagination allows you to control how many objects per page are returned.
+# To enable it add follewing lines to the
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+    }
 
 
 # Password validation
