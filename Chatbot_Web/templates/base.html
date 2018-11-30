@@ -68,7 +68,7 @@
             </div>
 
             <!--logo start-->
-            <a href="/" class="logo"> 聊天机器人开发实战 </a>
+            <a href="/" class="logo"> 蜘蛛侠 </a>
             <!--logo end-->
 
 
@@ -90,14 +90,18 @@
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu">
-                    <!--<li class="active"><a class="" href="kg/detail"><i class="icon_house_alt"></i><span>首页</span></a></li> -->
+                    <!--<li class="active"><a class="" href="knowledge_graph/detail"><i class="icon_house_alt"></i><span>首页</span></a></li> -->
 
                     <li class="active"><a class="" href="/cws_view"><i class="icon_house_alt"></i><span>中文分词</span></a></li>
 
                     <li class="active"><a class="" href="/tagging_view"><i class="icon_house_alt"></i><span>词性标注</span></a></li>
 
-                    <li class="active">
-                        <a class="" href="/info_extraction_view"><i class="icon_house_alt"></i><span>信息抽取(IE)</span></a>
+                    <li class="active treeview-menu menu-open">
+                        <a class="treeview-menu" href="/info_extraction_view"><i class="icon_house_alt"></i><span>信息抽取(IE)</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
                         <ul class="treeview-menu">
                             <li><a href="/">实体抽取</a></li>
                             <li><a href="#">事件抽取</a></li>
@@ -125,14 +129,14 @@
                     </li> -->
 
                     <li class="active">
-                        <a class="" href="/"><i class="icon_house_alt"></i><span>知识图谱 K-G </span></a>
+                        <a class="" href="/kg_view"><i class="icon_house_alt" ></i><span>知识图谱 K-G </span></a>
                         <ul class="treeview-menu">
-                            <li><a href="/">实体抽取</a></li>
-                            <li><a href="#">事件抽取</a></li>
-                            <li><a href="#">金融K-G概览</a></li>
+                            <li><a href="/relation_view">关系查询</a></li>
+                            {% comment %}<li><a href="#">事件抽取</a></li>
+                            <li><a href="#">金融K-G概览</a></li>{% endcomment %}
                         </ul>
                     </li>
-                    <li>
+                    {% comment %}<li>
                         <a class="" href="/search_entity">
                             <i class="icon_genius"></i>
                             <span>实体查询</span>
@@ -151,7 +155,7 @@
                             <i class="icon_piechart"></i>
                             <span>金融K-G概览</span>
                         </a>
-                    </li>
+                    </li>{% endcomment %}
 
                 </ul>
                 <!-- sidebar menu end-->
