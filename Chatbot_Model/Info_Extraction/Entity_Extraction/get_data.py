@@ -71,7 +71,7 @@ def get_datas():
     sql = "SELECT uuid, obligors, creditors, doc_result FROM doc_test limit 1"   #  obligors 原告    creditors 被告
     # sql = "SELECT doc_result from doc_test where id like '%DE%'"
     # sql = "SELECT doc_content from doc_test where uuid=666"
-    # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where uuid > 666690"    # 阿里云数据库查询
+    # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document"    # 阿里云数据库查询
     try:
         cursor.execute(sql)
         results = cursor.fetchall()
@@ -94,19 +94,22 @@ def get_datas():
     db.close()
 
 # 从数据库获取数据  mongo
-uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + '47.96.15.176' + ':' + '27017' +'/'+ 'itslaw'
+uri = 'mongodb://' + 'wusong' + ':' + 'wusong' + '@' + '10.0.0.8' + ':' + '27017' +'/'+ 'wusong'
 client = MongoClient(uri)
 def get_MONGO_data():
     '''
     查询mongodb数据,并做预处理
     :return: 嵌套的字典-提取后的信息
     '''
+
     result = {}   # 存放结果数据
     try:
-        db = client.itslaw      # 连接所需要的数据库
+        db = client.wusong      # 连接所需要的数据库
         collection = db.itslaw_collection    # collection名
         # 查询数据
-        for item in collection.find():
+        data_result = collection.find({"content.caseType":"民事"}).limit(10)
+        for item in data_result:
+            datas = []
             judgementId = item['judgementId']   # 判决文书id   唯一标示
             if 'doc_province' in item.keys() and 'doc_city' in item.keys():
                 addr = str(item['doc_province']) + str(item['doc_city'])  # 案件的归属地
@@ -117,6 +120,9 @@ def get_MONGO_data():
             # 获取关键词
             if 'keywords' in item['content'].keys():
                 keywords = item['content']['keywords']
+            # 获取法院信息
+            if 'court' in item['content'].keys():
+                court = item['content']['court']['name']
             # 获取当事人及判决等信息
             detail = item['content']['paragraphs']  # 这是一个list
             for i in range(len(detail)):
@@ -138,11 +144,14 @@ def get_MONGO_data():
             result['charge'] = charge
             result['judge_text'] = judge_text
             result['keywords'] = keywords
+            result['court'] = court
             result['litigant_text'] = litigant_text  # 当事人信息，还需要进一步处理返回结果
-            pprint.pprint(result)
+            # pprint.pprint(result)
+            datas.append(result)
+            # pprint.pprint(datas)
     except Exception as e:
-        print('Error is', e)
-    return result
+        print('Mongo Error is', e)
+    return datas
 
 def write_data():
     db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
