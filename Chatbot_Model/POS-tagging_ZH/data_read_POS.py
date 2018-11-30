@@ -93,6 +93,32 @@ vocab_to_int_w = {word: ii for ii, word in enumerate(vocab_w, 1)}
 words_ints = []
 labels_ints = []
 
+for each in data.all_sentences:
+    words_ints.append([vocab_to_int_w[word] for word in each])  # 生成word2id
+for each in data.all_labels:
+    labels_ints.append([vocab_to_int_l[label] for label in each]) # 生成label2id
+
+non_zero_idx = [ii for ii, sent in enumerate(words_ints) if len(sent) != 0]
+
+words_ints = [words_ints[ii] for ii in non_zero_idx]
+labels_ints = [labels_ints[ii] for ii in non_zero_idx]
+
+seq_len = 200
+features_ = np.zeros((len(words_ints), seq_len), dtype=int)
+labels_ = np.zeros((len(labels_ints), seq_len), dtype=int)
+
+for i, row in enumerate(words_ints):
+    features_[i, :len(row)] = np.array(row)[:seq_len]
+for i, row in enumerate(labels_ints):
+    labels_[i :len(row)] = np.array(row)[:seq_len]
+
+save_p = FLAGS.dict_path
+with open(save_p, 'wb') as outp:
+    pickle.dump(features_, outp)
+    pickle.dump(labels_, outp)
+    pickle.dump(vocab_to_int_w, outp)
+    pickle.dump(vocab_to_int_l, outp)
+    print('** Finished saving the data.')
 
 
 
