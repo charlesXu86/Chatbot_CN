@@ -6,8 +6,11 @@
 @time: 2018/08/08
 """
 
-
+import pprint
 from pymongo import MongoClient
+
+uri = 'mongodb://' + 'wusong' + ':' + 'wusong' + '@' + '10.0.0.8' + ':' + '27017' +'/'+ 'wusong'
+client = MongoClient(uri)
 
 class Mongo():
 	clent = None
@@ -25,4 +28,19 @@ class Mongo():
 	def getCollection(self,collectionName):
 		self.collection = self.db[collectionName]
 		return self.collection
+
+def find_MONGO_one(ids):
+	'''
+	查询一条数据
+	:param ids:
+	:return:
+	'''
+	db = client.wusong
+	collection = db.itslaw_collection
+	datas = collection.find_one({'judgementId':ids})
+	pprint.pprint(datas)
+
+judgementId = 'cc37da75-3655-4155-9221-27bcae5bc393'
+find_MONGO_one(judgementId)
+
 
