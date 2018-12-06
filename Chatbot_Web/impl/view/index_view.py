@@ -15,4 +15,4 @@ from django.shortcuts import render
 
 def index_view(request):  # index页面需要一开始就加载的内容写在这里
     context = {}
-    return render(request, 'index.html', context)
+    return render(request, 'welcome.html', context)

@@ -11,10 +11,9 @@
 -------------------------------------------------
 """
 
-from django.shortcuts import render,redirect, reverse
-from Chatbot_Web.impl.login.forms import RegisterForm
+from django.shortcuts import render,redirect
+from Chatbot_Web.authdata.forms import RegisterForm
 from django import forms
-from django.http import HttpResponse
 from django.contrib.auth import authenticate,login
 
 # from Chatbot_Web.impl.login.models import User

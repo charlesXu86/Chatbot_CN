@@ -6,8 +6,9 @@ import os
 
 import json
 relationCountDict = {}
-filePath = os.path.abspath(os.path.join(os.getcwd(),"."))
-with open(filePath+"/toolkit/relationStaticResult.txt","r") as fr:
+# filePath = os.path.abspath(os.path.join(os.getcwd(),"."))
+filePath = 'D:\project\Chatbot_CN\Chatbot_KG\label_data\\'
+with open(filePath+"relationStaticResult.txt","r") as fr:
 	for line in fr:
 		relationNameCount = line.split(",")
 		relationName = relationNameCount[0][2:-1]
