@@ -50,8 +50,8 @@ urlpatterns = [
 
     # 知识图谱模块
     path('kg_view/', kg_view.knowledge_graph_view, name='kg_view'),  # kg预览页面
-    path('relation_view/', kg_view.relation_search_view, name='relation_view'),
-
+    path('relation_view/', kg_view.relation_search_view, name='relation_view'), # 关系查询页面
+    path('entity_view/', kg_view.entity_search_view, name='entity_view'), # 实体查询页面
 
 
     path('logout/', logout, name='logout'),
