@@ -46,7 +46,7 @@ def search_entity(request):
     ctx = {}
     # 根据传入的实体名称搜索出关系
     if (request.GET):
-        entity = request.GET['user_text']
+        entity = request.GET['entity_text']
         db = neo_con # 连接neo4j数据库
         entityRelation = db.getEntityRelationbyEntity(entity)
         if len(entityRelation) == 0:
