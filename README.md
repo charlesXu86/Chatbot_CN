@@ -1,8 +1,22 @@
-# Chatbot_CN
+# Chatbot_CN  (www.chatbotcn.com)
 
-#### 项目介绍
+#### 项目介绍(Chatbot_CN)
+该项目的目的为实现闲聊的聊天机器人，目前的领域主要针对金融领域
+
+项目共分为六个模块：
+
+    Chatbot_CN       存放项目的整理配置文件
+    Chatbot_Data     存放项目的数据文件以及模型训练文件
+    Chatbot_Doc      存放项目的参考文献等文档文件
+    Chatbot_Model    项目的模型实现
+    Chatbot_KG       知识图谱实现
+    Chatbot_Web      页面展示
 
 #### 安装教程
+
+    1、项目的依赖包请参考Chatbot_CN根目录下的requirement.txt文件。
+    2、导入sql文件到mysql
+    3、导入数据到Neo4J
 
 #### 项目结构图
 
@@ -101,6 +115,8 @@ https://github.com/charlesXu86/PAPER-In-CODE
 #### QQ群： [聊天机器人开发实战](点击链接加入群聊【聊天机器人开发实战】：https://jq.qq.com/?_wv=1027&k=5ypCd1S) (718607564)
 
 #### 微信公众号： 聊天机器人开发实战
+
+#### 域名：www.chatbotcn.com (目前尚未部署)
 
 #### 说明
 持续更新中。。。
