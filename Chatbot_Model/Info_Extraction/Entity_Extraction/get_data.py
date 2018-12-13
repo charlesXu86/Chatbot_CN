@@ -62,13 +62,13 @@ def conn():
 def get_datas():
     one_data = {}   # 存放其中一条数据
     result_list = []
-    # db = pymysql.Connect("data.npacn.com", "youtong", "duc06LEQpgoP", "sipai")    # 阿里云mysql
-    db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
+    db = pymysql.Connect("data.npacn.com", "youtong", "duc06LEQpgoP", "sipai")    # 阿里云mysql
+    # db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
     cursor = db.cursor()
-    # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where  140000 < uuid and uuid <= 200000"
+    sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where 661643 < uuid "
     # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where 280000 < uuid and uuid <= 300000"  # 线程2 结束
     # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document where 376937 < uuid"      # 正在运行
-    sql = "SELECT uuid, obligors, creditors, doc_result FROM doc_test limit 1"   #  obligors 原告    creditors 被告
+    # sql = "SELECT uuid, obligors, creditors, doc_result FROM doc_test limit 1"   #  obligors 原告    creditors 被告
     # sql = "SELECT doc_result from doc_test where id like '%DE%'"
     # sql = "SELECT doc_content from doc_test where uuid=666"
     # sql = "SELECT uuid, obligors, creditors, doc_result from sm_document"    # 阿里云数据库查询
@@ -94,7 +94,7 @@ def get_datas():
     db.close()
 
 # 从数据库获取数据  mongo
-uri = 'mongodb://' + 'wusong' + ':' + 'wusong' + '@' + '10.0.0.8' + ':' + '27017' +'/'+ 'wusong'
+uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + 'test.npacn.com' + ':' + '8017' +'/'+ 'itslaw'
 client = MongoClient(uri)
 def get_MONGO_data():
     '''
@@ -102,13 +102,18 @@ def get_MONGO_data():
     :return: 嵌套的字典-提取后的信息
     '''
     datas = []
-    judge_text = []
+    # judge_text = []
     # result = {}   # 存放结果数据
     try:
-        db = client.wusong      # 连接所需要的数据库
+        db = client.itslaw      # 连接所需要的数据库
         collection = db.itslaw_collection    # collection名
+        print('Connect Successfully')
         # 查询数据
-        data_result = collection.find({"content.caseType":"民事"}).limit(10000)
+        data_result = collection.find({"content.caseType":"民事"}).limit(20000)
+        # data_result = collection.find({"content.caseType": "行政"}).limit(10000)
+        # data_result = collection.find({"content.caseType": "民事"}).limit(10000)
+        # if len(data_result) < 500:
+
         for item in data_result:
             # datas = []
             result = {}
@@ -145,7 +150,7 @@ def get_MONGO_data():
                 if 'typeText' in detail[i].keys():
 
                     if detail[i]['typeText'] == '裁判结果':
-                        # judge_text = []
+                        judge_text = []
                         texts = detail[i]['subParagraphs']
                         for i in range(len(texts)):
                             judge_text.append(texts[i]['text'])   # 判决文本内容，list形式存储
@@ -170,7 +175,7 @@ def del_MONGO_data(judgementId):
     :param judgementId:
     :return:
     '''
-    db = client.wusong  # 连接所需要的数据库
+    db = client.itslaw  # 连接所需要的数据库
     collection = db.itslaw_collection  # collection名
     del_data = collection.delete_one({"judgementId": judgementId})
     # print('del success:', del_data)
@@ -190,6 +195,6 @@ def write_to_mongo():
     pass
 
 # get_datas()
-# get_MONGO_data()
+get_MONGO_data()
 # ju_id = 'bbebc4ba-a6a0-416e-a716-4c1205fa17d6'
 # del_MONGO_data(ju_id)
