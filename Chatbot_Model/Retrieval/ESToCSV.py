@@ -3,7 +3,7 @@
 """
 -------------------------------------------------
    File Name：     ESToCSV.py
-   Description :  从es中导出数据到csv
+   Description :  从es中导出数据到csv，构建知识库
    Author :       charl
    date：          2018/12/12
 -------------------------------------------------
@@ -13,7 +13,13 @@
 
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
+
+
 def getData():
+    '''
+    ES连接
+    :return:
+    '''
     es = Elasticsearch(["192.168.11.211:9200"])
     query = {
         "query":{"match_all":{}}
@@ -59,6 +65,25 @@ def write_file_attr(k):
     :param k:
     :return:
     '''
+    with open('D:\project\Chatbot_CN\\Ner_attr.csv', 'ab') as f:
+        k = dict(k)
+        f.write(k['_source']['opponents'].encode(encoding="utf-8"))  # 写入被告
+        f.write(b',')
+        f.write(k['_source']['judgementId'].encode(encoding="utf-8"))  # 写入Id
+        f.write(b',')
+        f.write('被告'.encode(encoding="utf-8"))
+        f.write(b',')
+        f.write(b'\n')
+
+        f.write(k['_source']['proponents'].encode(encoding="utf-8"))  # 写入原告
+        f.write(b',')
+        f.write(k['_source']['judgementId'].encode(encoding="utf-8"))  # 写入Id
+        f.write(b',')
+        f.write('原告'.encode(encoding="utf-8"))
+        f.write(b',')
+        f.write(b'\n')
+
+
 
 def write_file_relation(k):
     '''
@@ -113,6 +138,7 @@ if __name__=='__main__':
     datas = getData()
     for index, k in enumerate(datas, 1):
         # write_file_detail(k)
-        write_file_relation(k)
+        # write_file_relation(k)
         # write_file_node(k)
+        write_file_attr(k)
         print('正在导出' + str(index) + '条数据')
