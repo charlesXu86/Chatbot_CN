@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # file: lyrics.py
-# author: JinTian
+# author: CharlesXu
 # time: 08/03/2017 7:39 PM
 # Copyright 2017 JinTian. All Rights Reserved.
 #
@@ -18,11 +18,10 @@
 # ------------------------------------------------------------------------
 import collections
 import os
-import sys
 import numpy as np
-from utils.clean_cn import clean_cn_corpus
+from clean_cn import clean_cn_corpus
 import jieba
-import pickle
+
 
 start_token = 'G'
 end_token = 'E'
