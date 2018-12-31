@@ -37,7 +37,7 @@ from tensorflow.contrib.rnn import DropoutWrapper
 from tensorflow.contrib.rnn import ResidualWrapper
 # from tensorflow.contrib.rnn import LSTMStateTuple
 
-from Word_sequence import WordSequence
+from word_sequence import WordSequence
 from Data_utils import _get_embed_device
 
 
@@ -200,7 +200,7 @@ class SequenceToSequence(object):
         )
 
         self.use_beamsearch_decode = False
-        self.beam_width = beam_width
+        self.beam_width = beam_width    # 集束宽
         self.use_beamsearch_decode = True if self.beam_width > 0 else False
         self.max_decode_step = max_decode_step
 
