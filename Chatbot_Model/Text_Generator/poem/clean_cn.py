@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # file: clean_cn.py
-# author: JinTian
+# author: CharlesXu
 # time: 08/03/2017 8:02 PM
 # Copyright 2017 JinTian. All Rights Reserved.
 #
@@ -26,7 +26,7 @@ level='clean', this will remove all except Chinese and Chinese punctuations
 besides, if you want remove complex Chinese characters, just set this to be true:
 simple_only=True
 """
-import numpy as np
+
 import os
 import string
 
