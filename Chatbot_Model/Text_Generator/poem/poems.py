@@ -17,8 +17,6 @@
 # limitations under the License.
 # ------------------------------------------------------------------------
 import collections
-import os
-import sys
 import numpy as np
 
 start_token = 'G'
