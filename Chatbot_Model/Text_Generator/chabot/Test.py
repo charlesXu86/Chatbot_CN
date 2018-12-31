@@ -28,8 +28,8 @@ def test(bidirectional, cell_type, depth,
     """测试不同参数在生成的假数据上的运行结果"""
 
     from Sequence_to_sequence import SequenceToSequence
-    from data_utils import batch_flow
-    from Word_sequence import WordSequence # pylint: disable=unused-variable
+    from Data_utils import batch_flow
+    from word_sequence import WordSequence # pylint: disable=unused-variable
 
     x_data, _, ws = pickle.load(open('chatbot.pkl', 'rb'))
 

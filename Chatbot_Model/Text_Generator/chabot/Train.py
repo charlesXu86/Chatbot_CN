@@ -23,7 +23,7 @@ sys.path.append('..')
 
 from Sequence_to_sequence import SequenceToSequence
 from Data_utils import batch_flow_bucket
-from Threadedgenerator import ThreadedGenerator
+from threadedgenerator import ThreadedGenerator
 
 
 def test(bidirectional, cell_type, depth, attention_type, use_residual, use_dropout, time_major, hidden_units):
@@ -48,12 +48,12 @@ def test(bidirectional, cell_type, depth, attention_type, use_residual, use_drop
     x_data, y_data, ws = pickle.load(open(chatbot_path, 'rb'))
 
     # 训练部分
-    n_epoch = 5
-    batch_size = 120
+    n_epoch = 10
+    batch_size = 60
     # x_data, y_data = shuffle(x_data, y_data, random_state=0)
     # x_data = x_data[:10000]
     # y_data = y_data[:10000]
-    steps = int(len(x_data) / batch_size) + 1
+    steps = int(len(x_data) / batch_size) + 1   # 控制训练的步数
 
     config = tf.ConfigProto(
         # device_count={'CPU': 1, 'GPU': 0},
@@ -61,7 +61,7 @@ def test(bidirectional, cell_type, depth, attention_type, use_residual, use_drop
         log_device_placement=False
     )
 
-    save_path = './S2S_Chatbot.ckpt'
+    save_path = './chatbot/S2S_Chatbot.ckpt'
 
     tf.reset_default_graph()
     with tf.Graph().as_default():
@@ -117,7 +117,7 @@ def test(bidirectional, cell_type, depth, attention_type, use_residual, use_drop
 
                 model.save(sess, save_path)
 
-                flow.close()
+            flow.close()
 
         # 测试部分
         tf.reset_default_graph()

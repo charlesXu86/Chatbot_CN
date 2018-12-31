@@ -18,7 +18,7 @@ import jieba
 import numpy as np
 
 from tqdm import tqdm
-from Word_sequence import WordSequence
+from word_sequence import WordSequence
 
 # sys.path.append('..')
 
