@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # file: model.py
-# author: JinTian
+# author: CharlesXu
 # time: 07/03/2017 3:07 PM
 # Copyright 2017 JinTian. All Rights Reserved.
 #
@@ -17,8 +17,6 @@
 # limitations under the License.
 # ------------------------------------------------------------------------
 import tensorflow as tf
-import numpy as np
-
 
 def rnn_model(model, input_data, output_data, vocab_size, rnn_size=128, num_layers=2, batch_size=64,
               learning_rate=0.01):
