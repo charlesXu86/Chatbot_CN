@@ -2,9 +2,9 @@
 
 """
 -------------------------------------------------
-   File Name：     Threadedgenerator.py
+   File Name：     threadedgenerator.py
    Description :   多线程
-   Author :       charl
+   Author :       charlesXu
    date：          2018/12/28
 -------------------------------------------------
    Change Activity: 2018/12/28:
