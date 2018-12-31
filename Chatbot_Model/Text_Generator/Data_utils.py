@@ -1,11 +1,20 @@
+# -*- coding: utf-8 -*-
+
 """
-一些数据操作所需的模块
+-------------------------------------------------
+   File Name：     Data_utils.py
+   Description :   数据操作
+   Author :       charlesXu
+   date：          2018/12/28
+-------------------------------------------------
+   Change Activity: 2018/12/28:
+-------------------------------------------------
 """
 
 import random
 import numpy as np
 from tensorflow.python.client import device_lib
-from Word_sequence import WordSequence
+from word_sequence import WordSequence
 
 from Fake_data import generate
 
@@ -13,13 +22,16 @@ VOCAB_SIZE_THRESHOLD_CPU = 50000
 
 
 def _get_available_gpus():
-    """获取当前可用GPU数量"""
+    """
+    获取当前可用GPU数量
+    """
     local_device_protos = device_lib.list_local_devices()
     return [x.name for x in local_device_protos if x.device_type == 'GPU']
 
 
 def _get_embed_device(vocab_size):
-    """Decide on which device to place an embed matrix given its vocab size.
+    """
+    Decide on which device to place an embed matrix given its vocab size.
     根据输入输出的字典大小，选择在CPU还是GPU上初始化embedding向量
     """
     gpus = _get_available_gpus()
@@ -29,7 +41,8 @@ def _get_embed_device(vocab_size):
 
 
 def transform_sentence(sentence, ws, max_len=None, add_end=False):
-    """转换一个单独句子
+    """
+    转换一个单独句子
     Args:
         sentence: 一句话，例如一个数组['你', '好', '吗']
         ws: 一个WordSequence对象，转换器
@@ -51,7 +64,8 @@ def transform_sentence(sentence, ws, max_len=None, add_end=False):
 
 
 def batch_flow(data, ws, batch_size, raw=False, add_end=True):
-    """从数据中随机 batch_size 个的数据，然后 yield 出去
+    """
+    从数据中随机 batch_size 个的数据，然后 yield 出去
     Args:
         data:
             是一个数组，必须包含一个护着更多个同等的数据队列数组
@@ -139,12 +153,13 @@ def batch_flow_bucket(data, ws, batch_size, raw=False,
                       add_end=True,
                       n_buckets=5, bucket_ind=1,
                       debug=False):
-    """batch_flow的bucket版本
+    """
+    batch_flow的bucket版本
     多了两重要参数，一个是n_buckets，一个是bucket_ind
     n_buckets是分成几个buckets，理论上n_buckets == 1时就相当于没有进行buckets操作
     bucket_ind是指定哪一维度的输入数据作为bucket的依据
     """
-
+    i = 0
     all_data = list(zip(*data))
     lengths = sorted(list(set([len(x[bucket_ind]) for x in all_data])))
     if n_buckets > len(lengths):
@@ -232,10 +247,10 @@ def batch_flow_bucket(data, ws, batch_size, raw=False,
 
         yield batches
 
-
-
 def test_batch_flow():
-    """test batch_flow function"""
+    """
+    test batch_flow function
+    """
     x_data, y_data, ws_input, ws_target = generate(size=10000)
     flow = batch_flow([x_data, y_data], [ws_input, ws_target], 4)
     x, xl, y, yl = next(flow)
@@ -243,7 +258,9 @@ def test_batch_flow():
 
 
 def test_batch_flow_bucket():
-    """test batch_flow function"""
+    """
+    test batch_flow function
+    """
     x_data, y_data, ws_input, ws_target = generate(size=10000)
     flow = batch_flow_bucket(
         [x_data, y_data], [ws_input, ws_target], 4,
