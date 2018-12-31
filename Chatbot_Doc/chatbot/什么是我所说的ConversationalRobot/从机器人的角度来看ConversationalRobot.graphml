@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Created by yFiles for HTML 2.1-->
+<graphml xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.html/2.0/ygraphml.xsd " xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:demostyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/1.0" xmlns:bpmn="http://www.yworks.com/xml/yfiles-for-html/bpmn/2.0" xmlns:demotablestyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoTableStyle/1.0" xmlns:compat="http://www.yworks.com/xml/yfiles-compat-arrows/1.0" xmlns:VuejsNodeStyle="http://www.yworks.com/demos/yfiles-vuejs-node-style/1.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:yjs="http://www.yworks.com/xml/yfiles-for-html/2.0/xaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<key id="d0" for="node" attr.type="boolean" attr.name="Expanded" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
+		<default>true</default>
+	</key>
+	<key id="d1" for="node" attr.name="NodeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeLabels"/>
+	<key id="d2" for="node" attr.name="NodeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeGeometry"/>
+	<key id="d3" for="all" attr.name="UserTags" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/UserTags"/>
+	<key id="d4" for="node" attr.name="NodeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeStyle"/>
+	<key id="d5" for="node" attr.name="NodeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/NodeViewState"/>
+	<key id="d6" for="edge" attr.name="EdgeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeLabels"/>
+	<key id="d7" for="edge" attr.name="EdgeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeGeometry"/>
+	<key id="d8" for="edge" attr.name="EdgeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeStyle"/>
+	<key id="d9" for="edge" attr.name="EdgeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/EdgeViewState"/>
+	<key id="d10" for="port" attr.name="PortLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLabels"/>
+	<key id="d11" for="port" attr.name="PortLocationParameter" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLocationParameter">
+		<default>
+			<x:Static Member="y:FreeNodePortLocationModel.NodeCenterAnchored"/>
+		</default>
+	</key>
+	<key id="d12" for="port" attr.name="PortStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortStyle">
+		<default>
+			<x:Static Member="y:VoidPortStyle.Instance"/>
+		</default>
+	</key>
+	<key id="d13" for="port" attr.name="PortViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/PortViewState"/>
+	<key id="d14" attr.name="SharedData" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/SharedData"/>
+	<data key="d14">
+		<y:SharedData>
+			<y:RatioAnchoredLabelModelParameter x:Key="1" LayoutRatio="0.5,1" LabelRatio="0.5,0">
+				<y:RatioAnchoredLabelModelParameter.Model>
+					<y:FreeNodeLabelModel/>
+				</y:RatioAnchoredLabelModelParameter.Model>
+			</y:RatioAnchoredLabelModelParameter>
+			<yjs:Font x:Key="2" fontSize="12"/>
+			<yjs:Stroke x:Key="3" fill="#2DFF8C00"/>
+			<yjs:SolidColorFill x:Key="4" color="#2DFF8C00"/>
+			<yjs:Stroke x:Key="5" fill="#2E00FFB3"/>
+			<yjs:SolidColorFill x:Key="6" color="#2E00FFB3"/>
+			<yjs:Stroke x:Key="7" fill="#FF336699"/>
+			<yjs:PolylineEdgeStyle x:Key="8" stroke="{y:GraphMLReference 7}">
+				<yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:Arrow type="TRIANGLE" scale="0.75" stroke="{y:GraphMLReference 7}" fill="#FF336699" cropLength="1"/>
+				</yjs:PolylineEdgeStyle.targetArrow>
+			</yjs:PolylineEdgeStyle>
+		</y:SharedData>
+	</data>
+	<graph id="G" edgedefault="directed">
+		<node id="n0">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>机器人</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-153" Y="-276.5" Width="618" Height="457"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeRightAnchored"/>
+				</data>
+			</port>
+			<port name="p1">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeLeftAnchored"/>
+				</data>
+			</port>
+			<port name="p2">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeLeftAnchored"/>
+				</data>
+			</port>
+			<port name="p3">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeLeftAnchored"/>
+				</data>
+			</port>
+		</node>
+		<node id="n1">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>语音/语言输入</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-305" Y="-276.5" Width="122" Height="104"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0"/>
+			<port name="p1">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeRightAnchored"/>
+				</data>
+			</port>
+		</node>
+		<node id="n2">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>视频输入</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-305" Y="-135.5" Width="122" Height="104"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0"/>
+			<port name="p1">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeRightAnchored"/>
+				</data>
+			</port>
+		</node>
+		<node id="n3">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>其他输入</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-305" Y="5.5" Width="122" Height="104"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeBottomAnchored"/>
+				</data>
+			</port>
+			<port name="p1">
+				<data key="d11">
+					<x:Static Member="y:FreeNodePortLocationModel.NodeRightAnchored"/>
+				</data>
+			</port>
+		</node>
+		<node id="n4">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>执行部件</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="67.5" Y="-254.5" Width="177" Height="407"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0"/>
+			<port name="p1"/>
+		</node>
+		<node id="n5">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>理解部件</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-127.5" Y="-251.5" Width="177" Height="407"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0"/>
+		</node>
+		<node id="n6">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>输出部件</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="262.5" Y="-251.5" Width="177" Height="407"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0"/>
+		</node>
+		<node id="n7">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>语音/语言理解</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-109.5" Y="-235.5" Width="140" Height="104"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 5}" fill="{y:GraphMLReference 6}"/>
+			</data>
+		</node>
+		<node id="n8">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>语音/语言输出</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="281" Y="-232.5" Width="140" Height="104"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="#3000FFB3" fill="#3000FFB3"/>
+			</data>
+		</node>
+		<node id="n9">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text><![CDATA[这个颜色的是Conversational Robot的范畴]]></y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-66.5" Y="226.5" Width="320" Height="20"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 5}" fill="{y:GraphMLReference 6}"/>
+			</data>
+		</node>
+		<node id="n10">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 1}">
+						<y:Label.Text>人类</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 2}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="-490" Y="-135.5" Width="122" Height="104"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 3}" fill="{y:GraphMLReference 4}"/>
+			</data>
+			<port name="p0"/>
+			<port name="p1"/>
+			<port name="p2"/>
+			<port name="p3"/>
+		</node>
+		<edge id="e0" source="n5" target="n4" sourceport="p0" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e1" source="n4" target="n6" sourceport="p1" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e2" source="n10" target="n1" sourceport="p0" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e3" source="n10" target="n2" sourceport="p1" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e4" source="n10" target="n3" sourceport="p2" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e5" source="n0" target="n10" sourceport="p0" targetport="p3">
+			<data key="d7">
+				<x:List>
+					<y:Bend Location="594.75,-51"/>
+					<y:Bend Location="594.75,-360.75"/>
+					<y:Bend Location="-429,-360.75"/>
+				</x:List>
+			</data>
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e6" source="n2" target="n0" sourceport="p1" targetport="p1">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e7" source="n1" target="n0" sourceport="p1" targetport="p2">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+		<edge id="e8" source="n3" target="n0" sourceport="p1" targetport="p3">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="8"/>
+			</data>
+		</edge>
+	</graph>
+</graphml>
