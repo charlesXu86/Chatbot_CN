@@ -24,7 +24,7 @@ import os
 import sys
 import numpy as np
 import tensorflow as tf
-from models.model import rnn_model
+from Models.model import rnn_model
 from dataset.lyrics import process_lyrics, generate_batch
 
 tf.app.flags.DEFINE_integer('batch_size', 20, 'batch size.')

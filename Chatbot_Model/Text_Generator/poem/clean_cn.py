@@ -2,7 +2,6 @@
 # file: clean_cn.py
 # author: CharlesXu
 # time: 08/03/2017 8:02 PM
-# Copyright 2017 JinTian. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

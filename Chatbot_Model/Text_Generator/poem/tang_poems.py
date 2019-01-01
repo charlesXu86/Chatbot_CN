@@ -21,7 +21,7 @@ import os
 import sys
 import numpy as np
 import tensorflow as tf
-from models.model import rnn_model
+from Models.model import rnn_model
 from dataset.poems import process_poems, generate_batch
 import heapq
 
