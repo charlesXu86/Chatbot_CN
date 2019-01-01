@@ -1,22 +1,18 @@
 # -*- coding: utf-8 -*-
-# file: model.py
-# author: CharlesXu
-# time: 07/03/2017 3:07 PM
-# Copyright 2017 JinTian. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ------------------------------------------------------------------------
+
+"""
+-------------------------------------------------
+   File Name：     model.py
+   Description :   model
+   Author :       charlesXu
+   date：          2018/12/28
+-------------------------------------------------
+   Change Activity: 2018/12/28:
+-------------------------------------------------
+"""
 import tensorflow as tf
+from tensorflow.python.ops.rnn import dynamic_rnn
+
 
 def rnn_model(model, input_data, output_data, vocab_size, rnn_size=128, num_layers=2, batch_size=64,
               learning_rate=0.01):
@@ -55,7 +51,7 @@ def rnn_model(model, input_data, output_data, vocab_size, rnn_size=128, num_laye
         inputs = tf.nn.embedding_lookup(embedding, input_data)
 
     # [batch_size, ?, rnn_size] = [64, ?, 128]
-    outputs, last_state = tf.nn.dynamic_rnn(cell, inputs, initial_state=initial_state)
+    outputs, last_state = dynamic_rnn(cell, inputs, initial_state=initial_state)
     output = tf.reshape(outputs, [-1, rnn_size])
 
     weights = tf.Variable(tf.truncated_normal([rnn_size, vocab_size + 1]))

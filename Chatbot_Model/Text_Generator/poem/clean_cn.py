@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # file: clean_cn.py
-# author: CharlesXu
+# author: JinTian
 # time: 08/03/2017 8:02 PM
+# Copyright 2017 JinTian. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,7 +26,7 @@ level='clean', this will remove all except Chinese and Chinese punctuations
 besides, if you want remove complex Chinese characters, just set this to be true:
 simple_only=True
 """
-
+import numpy as np
 import os
 import string
 
