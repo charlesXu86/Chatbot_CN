@@ -12,20 +12,22 @@
 """
 import os
 import tensorflow as tf
+
+from tensorflow.python.platform import flags
 from model import rnn_model
 from poems import process_poems, generate_batch
 
 data_path = 'F:\project\Chatbot_CN\Chatbot_Data\Text_generator\poem\poems.txt'
 
-tf.app.flags.DEFINE_integer('batch_size', 64, 'batch size.')
-tf.app.flags.DEFINE_float('learning_rate', 0.01, 'learning rate.')
-tf.app.flags.DEFINE_string('model_dir', os.path.abspath('./model'), 'model save path.')
-tf.app.flags.DEFINE_string('file_path', os.path.abspath(data_path), 'file name of poems.')
-tf.app.flags.DEFINE_string('model_prefix', 'poems', 'model save prefix.')
-tf.app.flags.DEFINE_integer('epochs', 50, 'train how many epochs.')
+flags.DEFINE_integer('batch_size', 64, 'batch size.')
+flags.DEFINE_float('learning_rate', 0.01, 'learning rate.')
+flags.DEFINE_string('model_dir', os.path.abspath('./model'), 'model save path.')
+flags.DEFINE_string('file_path', os.path.abspath(data_path), 'file name of poems.')
+flags.DEFINE_string('model_prefix', 'poems', 'model save prefix.')
+flags.DEFINE_integer('epochs', 50, 'train how many epochs.')
 
-FLAGS = tf.app.flags.FLAGS
-
+# FLAGS = tf.app.flags.FLAGS
+FLAGS = flags.FLAGS
 
 def run_training():
     if not os.path.exists(FLAGS.model_dir):
