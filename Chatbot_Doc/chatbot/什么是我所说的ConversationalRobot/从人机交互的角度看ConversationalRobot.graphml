@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Created by yFiles for HTML 2.1-->
+<graphml xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.html/2.0/ygraphml.xsd " xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:demostyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/1.0" xmlns:bpmn="http://www.yworks.com/xml/yfiles-for-html/bpmn/2.0" xmlns:demotablestyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoTableStyle/1.0" xmlns:compat="http://www.yworks.com/xml/yfiles-compat-arrows/1.0" xmlns:VuejsNodeStyle="http://www.yworks.com/demos/yfiles-vuejs-node-style/1.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:yjs="http://www.yworks.com/xml/yfiles-for-html/2.0/xaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<key id="d0" for="node" attr.type="boolean" attr.name="Expanded" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
+		<default>true</default>
+	</key>
+	<key id="d1" for="node" attr.name="NodeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeLabels"/>
+	<key id="d2" for="node" attr.name="NodeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeGeometry"/>
+	<key id="d3" for="all" attr.name="UserTags" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/UserTags"/>
+	<key id="d4" for="node" attr.name="NodeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeStyle"/>
+	<key id="d5" for="node" attr.name="NodeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/NodeViewState"/>
+	<key id="d6" for="edge" attr.name="EdgeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeLabels"/>
+	<key id="d7" for="edge" attr.name="EdgeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeGeometry"/>
+	<key id="d8" for="edge" attr.name="EdgeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeStyle"/>
+	<key id="d9" for="edge" attr.name="EdgeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/EdgeViewState"/>
+	<key id="d10" for="port" attr.name="PortLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLabels"/>
+	<key id="d11" for="port" attr.name="PortLocationParameter" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLocationParameter">
+		<default>
+			<x:Static Member="y:FreeNodePortLocationModel.NodeCenterAnchored"/>
+		</default>
+	</key>
+	<key id="d12" for="port" attr.name="PortStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortStyle">
+		<default>
+			<x:Static Member="y:VoidPortStyle.Instance"/>
+		</default>
+	</key>
+	<key id="d13" for="port" attr.name="PortViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/PortViewState"/>
+	<key id="d14" attr.name="SharedData" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/SharedData"/>
+	<data key="d14">
+		<y:SharedData>
+			<yjs:Font x:Key="1" fontSize="12"/>
+			<yjs:Stroke x:Key="2" fill="#47FF8C00"/>
+			<yjs:SolidColorFill x:Key="3" color="#47FF8C00"/>
+			<y:RatioAnchoredLabelModelParameter x:Key="4" LayoutRatio="0.5,1" LabelRatio="0.5,0">
+				<y:RatioAnchoredLabelModelParameter.Model>
+					<y:FreeNodeLabelModel/>
+				</y:RatioAnchoredLabelModelParameter.Model>
+			</y:RatioAnchoredLabelModelParameter>
+		</y:SharedData>
+	</data>
+	<graph id="G" edgedefault="directed">
+		<node id="n0">
+			<data key="d1">
+				<x:List>
+					<y:Label>
+						<y:Label.Text>人机交互/机器与人的交互/机器人与人的交互</y:Label.Text>
+						<y:Label.LayoutParameter>
+							<y:RatioAnchoredLabelModelParameter LayoutRatio="0.5,1" LabelRatio="0.5,0">
+								<y:RatioAnchoredLabelModelParameter.Model>
+									<y:FreeNodeLabelModel/>
+								</y:RatioAnchoredLabelModelParameter.Model>
+							</y:RatioAnchoredLabelModelParameter>
+						</y:Label.LayoutParameter>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="103.5" Y="-301.5" Width="746" Height="483"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n1">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text>视频识别</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="133.5" Y="-278.5" Width="132" Height="61"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n2">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text>动作识别与交互</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="133.5" Y="-194.5" Width="132" Height="61"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n3">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text>其他交互行为</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="133.5" Y="-110.5" Width="132" Height="261"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n4">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text>语言交互/自然语言处理</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="296.5" Y="-278.5" Width="527" Height="429"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n5">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text>语音交互</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="315.5" Y="-262.5" Width="125" Height="393"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n6">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text>语音识别</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="330.5" Y="-247.5" Width="94" Height="146"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n7">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text>语音合成</y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="330.5" Y="-54.5" Width="94" Height="146"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+		<node id="n8">
+			<data key="d1">
+				<x:List>
+					<y:Label LayoutParameter="{y:GraphMLReference 4}">
+						<y:Label.Text><![CDATA[文字理解与意图/Conversational Robot]]></y:Label.Text>
+						<y:Label.Style>
+							<yjs:DefaultLabelStyle font="{y:GraphMLReference 1}" textFill="BLACK"/>
+						</y:Label.Style>
+					</y:Label>
+				</x:List>
+			</data>
+			<data key="d2">
+				<y:RectD X="459.5" Y="-262.5" Width="348" Height="393"/>
+			</data>
+			<data key="d4">
+				<yjs:ShapeNodeStyle stroke="{y:GraphMLReference 2}" fill="{y:GraphMLReference 3}"/>
+			</data>
+		</node>
+	</graph>
+</graphml>
