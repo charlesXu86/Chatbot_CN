@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
+#
+#
+#
+#
 # ========Attention机制实现类======
 """A powerful dynamic attention wrapper object."""
 
@@ -508,6 +512,9 @@ class BahdanauAttention(_BaseAttentionMechanism):
 
   To enable the second form, construct the object with parameter
   `normalize=True`.
+
+  ====BahdanauAttention===
+  有两种形式
   """
 
   def __init__(self,
@@ -1044,9 +1051,11 @@ def hardmax(logits, name=None):
         math_ops.argmax(logits, -1), depth, dtype=logits.dtype)
 
 
-def _compute_attention(attention_mechanism, cell_output, attention_state,
-                       attention_layer):
-  """Computes the attention and alignments for a given attention_mechanism."""
+def _compute_attention(attention_mechanism, cell_output, attention_state, attention_layer):
+  """
+  Computes the attention and alignments for a given attention_mechanism.
+  """
+  # 计算normalized alignments，shape [batch_size, memory_time]，详见下文
   alignments, next_attention_state = attention_mechanism(
       cell_output, state=attention_state)
 
@@ -1077,15 +1086,17 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
   """
 
   def __init__(self,
-               cell,
-               attention_mechanism,
-               attention_layer_size=None,
-               alignment_history=False,
-               cell_input_fn=None,
-               output_attention=True,
-               initial_cell_state=None,
+               cell,   # RNN cell实例，可以是单个cell，也可以是多个cell stack后的multi cell
+               attention_mechanism,  # 上述的attention mechanism的实例
+               attention_layer_size=None,  # 用来控制我们最后生成的attention是怎么得来的。
+                                           # 如果是None，则直接返回对应的attention mechanism计算得到的加权和向量
+                                           # 如果不是None，则在调用_compute_attention方法时，得到的加权和向量还会和output进行concat，然后再进行一个线性映射，变成维度为attention_layer_size的向量。
+               alignment_history=False,    # 主要用于后期的可视化，如果为真，则输出state中的alignment_history为TensorArray,记录每个时刻的alignment
+               cell_input_fn=None,         # inout送入decoder_cell的方式，默认是将input和上一步计算得到的attention拼接起来送入decoder_cell
+               output_attention=True,      # 是否返回attention，如果为False则直接返回rnn_cell的输出。无论是否为True，每一个时间步的attention都会存储在AttentionWrapperState的一个实例中
+               initial_cell_state=None,    # 初始状态，此时如果传入，需确保其batch_size与成员函数zero_state所需的参数一致。
                name=None,
-               attention_layer=None):
+               attention_layer=None):      # 如果attention_layer_size设置了，该参数就必须为空。
     """Construct the `AttentionWrapper`.
 
     **NOTE** If you are using the `BeamSearchDecoder` with a cell wrapped in
@@ -1121,6 +1132,7 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
 
     Args:
       cell: An instance of `RNNCell`.
+
       attention_mechanism: A list of `AttentionMechanism` instances or a single
         instance.
       attention_layer_size: A list of Python integers or a single Python
@@ -1175,7 +1187,7 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
               "AttentionMechanism, saw type: %s"
               % type(attention_mechanism).__name__)
     else:
-      self._is_multi = False
+      self._is_multi = False   # _is_multi = False表示单个Attention_mechanism
       if not isinstance(attention_mechanism, AttentionMechanism):
         raise TypeError(
             "attention_mechanism must be an AttentionMechanism or list of "
@@ -1183,6 +1195,8 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
             % type(attention_mechanism).__name__)
       attention_mechanisms = (attention_mechanism,)
 
+    # cell_input_fn 默认将attention与input最后一维连接，返回当前的输入，此处可以根据需要对
+    # lambda函数进行修改，比如： lambda inputs, attention:attention
     if cell_input_fn is None:
       cell_input_fn = (
           lambda inputs, attention: array_ops.concat([inputs, attention], -1))
@@ -1408,8 +1422,10 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
 
     # Step 1: Calculate the true inputs to the cell based on the
     # previous attention value.
+    # 调用 _cell_input_fn函数，求取cell_inputs
     cell_inputs = self._cell_input_fn(inputs, state.attention)
     cell_state = state.cell_state
+    # 调用self._cell函数，求取当前cell的 cell_output, next_cell_state
     cell_output, next_cell_state = self._cell(cell_inputs, cell_state)
 
     cell_batch_size = (
@@ -1437,6 +1453,8 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
     all_attentions = []
     all_attention_states = []
     maybe_all_histories = []
+
+    # 计算当前cell的attention、alignments、next_attention_state
     for i, attention_mechanism in enumerate(self._attention_mechanisms):
       attention, alignments, next_attention_state = _compute_attention(
           attention_mechanism, cell_output, previous_attention_state[i],
@@ -1458,6 +1476,7 @@ class AttentionWrapper(rnn_cell_impl.RNNCell):
         alignments=self._item_or_tuple(all_alignments),
         alignment_history=self._item_or_tuple(maybe_all_histories))
 
+    # attention返回与否，都会保存在next_state中
     if self._output_attention:
       return attention, next_state
     else:
