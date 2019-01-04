@@ -1,7 +1,7 @@
 #-*- coding:utf-8 _*-
 """
 @author:charlesXu
-@file: utils.py
+@file: Utils.py
 @desc: 实体提取预处理工具类
 @time: 2018/08/08
 """
@@ -28,7 +28,8 @@ def get_entity(tag_seq, char_seq):
     # LOC = get_LOC_entity(tag_seq, char_seq)
     LOC = get_LOC_entitys(tag_seq, char_seq)
     ORG = get_ORG_entity(tag_seq, char_seq)
-    return PER, LOC, ORG
+    TIM = get_TIM_entity(tag_seq, char_seq)
+    return PER, LOC, ORG, TIM
 
 
 def get_PER_entity(tag_seq, char_seq):
@@ -101,7 +102,7 @@ def get_LOC_entitys(tag_seq, char_seq):
                 t = reduce(lambda x, y: str(x) + str(y), location)
                 LOC.append(t)
                 location = []
-        # LOC = list(set(LOC))  # 去重
+        LOC = list(set(LOC))  # 去重
         for i in range(len(LOC)):
             strs = '中华人民共和国'
             txt = LOC[i]
