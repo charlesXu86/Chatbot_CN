@@ -3,7 +3,7 @@
 """
 -------------------------------------------------
    File Name：     Data_group.py
-   Description :   将文本整合到train、test、val三个文件中
+   Description :  数据预处理 -> 将文本整合到train、test、val三个文件中
    Author :       charl
    date：          2018/12/25
 -------------------------------------------------

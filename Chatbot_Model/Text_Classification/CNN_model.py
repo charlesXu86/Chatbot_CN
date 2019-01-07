@@ -56,6 +56,8 @@ class TextCNN(object):
             embedding_inputs = tf.nn.embedding_lookup(embedding, self.input_x)
 
             with tf.name_scope("cnn"):
+                # 这里用的是一维卷积，图像是二维数据，经过词向量表达的文本为一维数据，因此在TextCNN卷积用的是一维卷积。
+                # 一维卷积带来的问题是需要设计通过不同 filter_size 的 filter 获取不同宽度的视野。
                 conv = tf.layers.conv1d(embedding_inputs, self.config.num_filters, self.config.kernel_size, name='conv')
                 # global max pooling layer
                 gmp = tf.reduce_max(conv, reduction_indices=[1], name='gpm')
