@@ -68,9 +68,7 @@ def Dense(inputs, ouput_size, bias=True, seq_len=None):
     else:
         b = 0
     outputs = tf.matmul(tf.reshape(inputs, (-1, input_size)), W) + b
-    outputs = tf.reshape(outputs, \
-                         tf.concat([tf.shape(inputs)[:-1], [ouput_size]], 0)
-                        )
+    outputs = tf.reshape(outputs, tf.concat([tf.shape(inputs)[:-1], [ouput_size]], 0))
     if seq_len != None:
         outputs = Mask(outputs, seq_len, 'mul')
     return outputs
