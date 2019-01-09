@@ -4,7 +4,7 @@
 -------------------------------------------------
    File Name：     Self_Attention.py
    Description :  Attention Is All You Need 部分方法实现
-   Author :       charl
+   Author :       charlesXu
    date：          2019/1/9
 -------------------------------------------------
    Change Activity: 2019/1/9:
