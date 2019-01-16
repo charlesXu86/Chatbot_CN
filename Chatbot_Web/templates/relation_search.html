@@ -3,106 +3,98 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <meta charset="utf-8" />
-    <script src="/static/js/echarts.common.min.js"></script>   
+    <script src="/static/js/lib/echarts.common.min.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
 </head>
 <title>关系</title>
 <div class="container">
     <div class="row">
-    <!--head start-->
-    <div class="col-md-12">
-        <h3 class="page-header"><i class="fa fa-link" aria-hidden="true"></i> 关系查询 </h3>
-            <ol class="breadcrumb">
-                <li><i class="fa fa-home"></i><a href="\">Home</a></li>
-                <li><i class="fa fa-link" aria-hidden="true"></i>关系查询</li>
-            </ol>
-    </div>
-    
-    <div class = "col-md-12">
-    	<div class = "panel panel-default">
-			<header class="panel-heading">
-            查询条件：
-       		</header>
-       		<div class = "panel-body">
+        <!--head start-->
+        <div class="col-md-12">
+            <h3 class="page-header"><i class="fa fa-link" aria-hidden="true"></i> 关系查询 </h3>
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="\">Home</a></li>
+                    <li><i class="fa fa-link" aria-hidden="true"></i>关系查询</li>
+                </ol>
+        </div>
 
-			    <form  id ="searchRelationForm" class="form-inline" style="padding-left: 10% ; padding-right: 10%" method="get">
-			    	<div id = "entity1" class="form-group" style="padding: 2%">
-			        	<input type="text" id = "entity1_text" name = "entity1_text" class ="form-control" placeholder="实体１" aria-describedby="basic-addon1">
-			 		</div>
-			 		<!--dropdown combobox start-->
-			        <div class="btn-group" style="padding: 2%" > <a class="btn btn-default dropdown-toggle btn-select form-control" data-toggle="dropdown" id="btnCountry">Select a Relation <span class="caret"></span></a>
-			            <ul class="dropdown-menu">
-			                <li><a href="#">Instance of</a></li>
-			                <li><a href="#">Country</a></li>
-			                <li><a href="#">Taxon rank</a></li>
-			                <li><a href="#">Subclass of</a></li>
-			                <li><a href="#">Has part</a></li>
-			                <li><a href="#">Parent Taxon</a></li>
-			                <li><a href="#">Sex or gender</a></li>
-			                <li><a href="#">Part of</a></li>
-			                <li><a href="#">Different from</a></li>
-			                <li><a href="#">Found in taxon</a></li>
-			                <li class="divider"></li>
-			                <li><a href="#"><span class="glyphicon glyphicon-star"></span>Other</a></li>
-			            </ul>
-			        </div>
-			        <!--dropdown combobox end-->
-			        <div id = "relation_name" class = "form-group hide" style="padding: 2%">
-			        	 <input type="text" id = "relation_name_input" name = "relation_name_text" class ="form-control" placeholder="输入关系名称" aria-describedby="basic-addon1">
-			        </div>
-			        <div id = "entity2" class = "form-group" style="padding: 2%">
-			        	 <input type="text" id = "entity2_text" name = "entity2_text" class ="form-control" placeholder="实体２" aria-describedby="basic-addon1">
-			        </div>
-			        <div class="btn-group" style="padding: 2%">
-			            <button type="button" id="btnSearch" class="btn btn-primary" onclick = "document.getElementById('searchRelationForm').submit();">Search</button>
-			        </div>
-				</form>
-			</div>
-		</div>
-	</div>
-	{% if ctx %}
-	<div class = "col-md-12">
-		<div class = "panel panel-default">
-			<header class = "panel-heading">
-				查询结果：
-			</header>
-			<div class = "panel-body">
-				<div style="padding: 2%">
-					<h2>暂未找到相应的匹配</h2>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %}
+        <div class = "col-md-12">
+            <div class = "panel panel-default">
+                <header class="panel-heading">
+                查询条件：
+                </header>
+                <div class = "panel-body">
 
-    {% if searchResult %}
-
-    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div class = "col-md-12">
-        <div class="panel panel-default ">
-	        <header class="panel-heading">
-	            关系图 :
-	        </header>
-            <div class = "panel-body ">
-                <div id="graph" style="width: 100%;height:600px;"></div>
+                    <form  id ="searchRelationForm" class="form-inline" style="padding-left: 10% ; padding-right: 10%" method="get">
+                        <div id = "entity1" class="form-group" style="padding: 2%">
+                            <input type="text" id = "entity1_text" name = "entity1_text" class ="form-control" placeholder="实体１" aria-describedby="basic-addon1">
+                        </div>
+                        <!--dropdown combobox start-->
+                        <div class="btn-group" style="padding: 2%" > <a class="btn btn-default dropdown-toggle btn-select form-control" data-toggle="dropdown" id="btnCountry">Select a Relation <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Instance of</a></li>
+                                <li><a href="#">Country</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-star"></span>Other</a></li>
+                            </ul>
+                        </div>
+                        <!--dropdown combobox end-->
+                        <div id = "relation_name" class = "form-group hide" style="padding: 2%">
+                             <input type="text" id = "relation_name_input" name = "relation_name_text" class ="form-control" placeholder="输入关系名称" aria-describedby="basic-addon1">
+                        </div>
+                        <div id = "entity2" class = "form-group" style="padding: 2%">
+                             <input type="text" id = "entity2_text" name = "entity2_text" class ="form-control" placeholder="实体２" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="btn-group" style="padding: 2%">
+                            <button type="button" id="btnSearch" class="btn btn-primary" onclick = "document.getElementById('searchRelationForm').submit();">Search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Footable -->
-    <div class = "col-md-12">
-	    <div class="panel panel-default">
-	    	<header class="panel-heading">
-	       	 关系列表 :
-	   		</header>
-	        <div class = "panel-body">
-	            <table class = "table" data-paging =  "true" data-sorting="true"></table>
-	        </div>
-	    </div>
-	</div>
-    {% endif %}
+        {% if ctx %}
+        <div class = "col-md-12">
+            <div class = "panel panel-default">
+                <header class = "panel-heading">
+                    查询结果：
+                </header>
+                <div class = "panel-body">
+                    <div style="padding: 2%">
+                        <h2>暂未找到相应的匹配</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
+        {% if searchResult %}
+
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div class = "col-md-12">
+            <div class="panel panel-default ">
+                <header class="panel-heading">
+                    关系图 :
+                </header>
+                <div class = "panel-body ">
+                    <div id="graph" style="width: 100%;height:600px;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Footable -->
+        <div class = "col-md-12">
+            <div class="panel panel-default">
+                <header class="panel-heading">
+                 关系列表 :
+                </header>
+                <div class = "panel-body">
+                    <table class = "table" data-paging =  "true" data-sorting="true"></table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </div>
-<script src="/static/js/jquery-1.8.3.min.js"></script>
+<script src="../static/js/lib/jquery-3.3.1.min.js"></script>
 {% if searchResult %}
 <script type="text/javascript">
 	var searchResult = {{searchResult|safe}}
@@ -202,8 +194,27 @@
         	relation['symbolSize'] = 10;
         	links.push(relation) ;
         }
-
     }
+
+    // Entity1 點擊
+    $(function () {
+        $(".footable-first-visible").each(function (index,el) {
+            $(el).css({"cursor":"pointer"});
+            $(el).click(function () {
+                window.open("detail?title="+$(el).html(),"_blank");
+            });
+        })
+    })
+
+    //Entity2點擊
+    $(function () {
+        $(".footable-last-visible").each(function (index,el) {
+            $(el).css({"cursor":"pointer"});
+            $(el).click(function () {
+                window.open("detail?title="+$(el).html(),"_blank");
+            });
+        })
+    })
 
 
      // 基于准备好的dom，初始化echarts实例
