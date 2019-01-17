@@ -27,6 +27,7 @@
     <!-- font icon -->
     <link href="../static/css/elegant-icons-style.css" rel="stylesheet" />
     <link href="../static/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../static/css/AdminLTE.css" rel="stylesheet" />
     <!-- full calendar css-->
     <!-- <link href="/static/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
     <link href="/static/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" /> -->
@@ -71,13 +72,12 @@
             <a href="/" class="logo"> 蜘蛛侠 </a>
             <!--logo end-->
 
-
             <div class="top-nav notification-row">
                 <!-- notificatoin dropdown start-->
                 <ul class="nav pull-right top-menu">
                     <li>
                         <a href='https://github.com/charlesXu86/Chatbot_CN'>
-                            <i class="fa fa-github" aria-hidden="true"> open Github</i>
+                            <i class="fa fa-github" aria-hidden="true"> 有桐科技 </i>
                         </a>
                     </li>
                 </ul>
@@ -86,35 +86,61 @@
         <!--header end-->
 
         <!--sidebar start-->
-        <aside>
+        <aside class="main-sidebar">
+            <section class="sidebar">
             <div id="sidebar" class="nav-collapse ">
+
                 <!-- sidebar menu start-->
-                <ul class="sidebar-menu">
+                <ul class="sidebar-menu" data-widget="tree">
                     <!--<li class="active"><a class="" href="knowledge_graph/detail"><i class="icon_house_alt"></i><span>首页</span></a></li> -->
 
-                    <li class="active"><a class="" href="/cws_view"><i class="icon_house_alt"></i><span>中文分词</span></a></li>
+                    <li class="active treeview">
+                        <a class="" href="/cws_view">
+                            <i class="icon_house_alt"></i><span>中文分词</span>
+                        </a>
+                    </li>
 
-                    <li class="active"><a class="" href="/tagging_view"><i class="icon_house_alt"></i><span>词性标注</span></a></li>
+                    <li class="active">
+                        <a class="" href="/tagging_view">
+                            <i class="fa fa-files-o"></i>
+                            <span>词性标注</span>
+                        </a>
+                    </li>
 
-                    <li class="active treeview-menu menu-open">
-                        <a class="treeview-menu" href="/info_extraction_view"><i class="icon_house_alt"></i><span>信息抽取(IE)</span>
+                    <li class="active treeview">
+                        <a href="/info_extraction_view">
+                            <i class="fa fa-th"></i><span>信息抽取(IE)</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/">实体抽取</a></li>
-                            <li><a href="#">事件抽取</a></li>
-                            <li><a href="#">术语抽取</a></li>
+                            <li class="active"><a href="/"><i class="fa fa-circle-o"></i>实体抽取</a></li>
+                            <li class="active"><a href="#"><i class="fa fa-address-card"></i>事件抽取</a></li>
+                            <li class="active"><a href="#"><i class="fa fa-android"></i>关系抽取</a></li>
                         </ul>
                     </li>
 
-                    <li class="active"><a class="" href="/dp_view"><i class="icon_house_alt"></i><span>句法分析(DP)</span></a></li>
+                    <li class="active">
+                        <a class="" href="/dp_view">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>句法分析(DP)</span>
+                        </a>
+                    </li>
 
-                    <li class="active"><a class="" href="/sp_view"><i class="icon_house_alt"></i><span>语义分析(SP)</span></a></li>
+                    <li class="active">
+                        <a class="" href="/sp_view">
+                            <i class="fa fa-laptop"></i>
+                            <span>语义分析(SP)</span>
+                        </a>
+                    </li>
 
-                    <!--<li class="active"><a class="" href="/"><i class="icon_house_alt"></i><span>自然语言生成(NLG)</span></a></li> -->
-                    <li class="active"><a class="" href="/semantic_retrieval_view"><i class="icon_house_alt"></i><span>信息检索(IE)</span></a></li>
+                    <li class="active">
+                        <a class="" href="/semantic_retrieval_view">
+                            <i class="fa fa fa-edit"></i>
+                            <span>信息检索(IE)</span>
+                        </a>
+                    </li>
                     <!--<li class="treeview">
                       <a href="#"><i class="fa fa-link"></i> <span>多伦对话</span>
                         <span class="pull-right-container">
@@ -128,39 +154,41 @@
                       </ul>
                     </li> -->
 
-                    <li class="active">
-                        <a class="" href="/kg_view"><i class="icon_house_alt" ></i><span>知识图谱 K-G </span></a>
+                    <li class="active treeview">
+                        <a class="" href="/kg_view">
+                            <i class="fa fa-taxi"></i> <span>知识图谱 K-G</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
                         <ul class="treeview-menu">
-                            <li><a href="/relation_view">关系查询</a></li>
-                            <li><a href="/entity_view">实体查询</a></li>
-                            {% comment %}<li><a href="#">事件抽取</a></li>
-                            <li><a href="#">金融K-G概览</a></li>{% endcomment %}
+                            <li>
+                                <a class="" href="/search_relation">
+                                    <i class=" social_googledrive"></i>
+                                    <span>关系查询</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/entity_view">
+                                    <i class="icon_genius"></i>
+                                    <span>实体查询</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/kg_overview">
+                                    <i class="icon_piechart"></i>
+                                    <span>金融K-G概览</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
-                    {% comment %}<li>
-                        <a class="" href="/search_entity">
-                            <i class="icon_genius"></i>
-                            <span>实体查询</span>
-                        </a>
-                    </li>
-
-                     <li>
-                        <a class="" href="/search_relation">
-                            <i class=" social_googledrive"></i>
-                            <span>关系查询</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="" href="/overview?node=农业">
-                            <i class="icon_piechart"></i>
-                            <span>金融K-G概览</span>
-                        </a>
-                    </li>{% endcomment %}
 
                 </ul>
                 <!-- sidebar menu end-->
             </div>
+            </section>
         </aside>
         <!--sidebar end-->
         <!--main content start-->
@@ -235,6 +263,7 @@
     <!--Footable-->
     <script src="../static/js/lib/footable.min.js"> </script>
 
+
     <!-- 词云脚本 -->
     <script>
         //knob
@@ -256,6 +285,8 @@
                 singleItem: true
 
             });
+
+
         });
 
         //custom select box
@@ -323,7 +354,7 @@
     })();
     </script>
     <!--百度统计js end-->
-    e
+    <script src="../static/js/lib/adminlte.min.js"> </script>
 </body>
 
 </html>

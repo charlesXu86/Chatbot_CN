@@ -58,7 +58,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3" id="search-input">
-        <form action="./search" method="get" onsubmit="return check()">
+        <form action="/search" method="get" onsubmit="return check()">
           <div class="input-group input-group-lg">
             <input type="text" id="inputtext" class="form-control" name="question" autofocus/>
 
@@ -93,7 +93,7 @@
 
   </div>
 
-  <script src="{% static "jquery-1.11.3.min.js" %}"></script>
+  <script src="../static/js/lib/jquery-3.3.1.min.js"></script>
   <script>
     function check(){
       var name = document.getElementById("inputtext").value;
