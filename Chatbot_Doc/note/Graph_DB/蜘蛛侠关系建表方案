@@ -1,0 +1,9 @@
+一、建表
+ 1、debtor表：图数据库的node信息(债务人信息，包含人和机构) 被告：
+    字段信息：
+
+ 2、sipai_detail表：详情信息
+
+ 3、Property表：资产信息表
+
+ 4、categories表：资产类型表

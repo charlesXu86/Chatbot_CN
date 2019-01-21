@@ -1,0 +1,67 @@
+LOAD CSV WITH HEADERS  FROM "file:///Ner_detail_hainan.csv" AS line  
+CREATE (p:ZhizhuxiaItem{jud_id:line.jud_id,opps:line.opps,court:line.court,keywords:line.keywords,mon:line.mon,jud_text:line.jud_text});  
+
+
+LOAD CSV  WITH HEADERS FROM "file:///wikidata_relation2.csv" AS line
+MATCH (entity1:HudongItem{title:line.HudongItem}) , (entity2:NewNode{title:line.NewNode})
+CREATE (entity1)-[:RELATION { type: line.relation }]->(entity2)
+
+
+LOAD CSV WITH HEADERS FROM "file:///Ner_relation.csv" AS line
+MATCH (entity1:ZhizhuxiaItem{title:line.item1}) , (entity2:ZhizhuxiaItem{title:line.item2})
+CREATE (entity1)-[:RELATION { type: line.relation }]->(entity2);
+
+
+#1、详情表
+LOAD CSV WITH HEADERS  FROM "file:///Ner_detail_hainan.csv" AS line  
+CREATE (p:ZhizhuxiaItem{jud_id:line.jud_id,opps:line.opps,court:line.court,keywords:line.keywords,mon:line.mon,jud_text:line.jud_text});  
+
+#2、关系表
+LOAD CSV WITH HEADERS FROM "file:///Ner_relation.csv" AS line
+MATCH (entity1:ZhizhuxiaItem{title:line.item1}) , (entity2:ZhizhuxiaItem{title:line.item2})
+CREATE (entity1)-[:RELATION { type: line.relation }]->(entity2);
+
+#2、node表
+LOAD CSV WITH HEADERS FROM "file:///Ner_node_hainan.csv" AS line
+CREATE (:NewNode { title: line.title });
+
+
+LOAD CSV  WITH HEADERS FROM "file:///wikidata_relation2.csv" AS line
+MATCH (entity1:HudongItem{title:line.HudongItem}) , (entity2:NewNode{title:line.NewNode})
+CREATE (entity1)-[:RELATION { type: line.relation }]->(entity2)
+
+
+
+#3、关系表
+LOAD CSV WITH HEADERS FROM "file:///Ner_relation.csv" AS line
+MATCH (entity1:ZhizhuxiaItem{title:line.item1}) , (entity2:ZhizhuxiaItem{title:line.item2})
+CREATE (entity1)-[:RELATION { type: line.relation }]->(entity2);
+
+
+
+
+
+
+# 数据导入分为四个步骤：
+
+# 1、详情表
+LOAD CSV WITH HEADERS  FROM "file:///Ner_detail_guizhou.csv" AS line  
+CREATE (p:ZhizhuxiaItem{judgement_id:line.judgement_id,opps:line.opps,court:line.court,key_words:line.key_words,mon:line.mon,judgeText:line.judgeText});  
+
+# 2、node表
+LOAD CSV WITH HEADERS FROM "file:///Ner_node_guizhou.csv" AS line
+CREATE (:NerNode { title: line.title });
+
+# 3、关系表
+LOAD CSV WITH HEADERS FROM "file:///Ner_relation_guizhou2.csv" AS line
+MATCH (entity1:ZhizhuxiaItem{title:line.NerItem1}) , (entity2:ZhizhuxiaItem{title:line.NerItem2})
+CREATE (entity1)-[:RELATION { type: line.relation }]->(entity2);
+
+# 4、属性表
+LOAD CSV WITH HEADERS FROM "file:///Ner_attributes.csv" AS line
+MATCH (entity1:ZhizhuxiaItem{title:line.Entity}), (entity2:ZhizhuxiaItem{title:line.Attribute})
+CREATE (entity1)-[:RELATION { type: line.AttributeName }]->(entity2);
+                                                            
+LOAD CSV WITH HEADERS FROM "file:///Ner_attributes.csv" AS line
+MATCH (entity1:ZhizhuxiaItem{title:line.Entity}), (entity2:NerNode{title:line.Attribute})
+CREATE (entity1)-[:RELATION { type: line.AttributeName }]->(entity2);
