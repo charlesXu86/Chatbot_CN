@@ -22,6 +22,8 @@ from rest_framework import routers
 from Chatbot_Web.impl.view import welcome_view,ie_view,index_ERform_view,tagging_view,dp_view,cws_view,sp_view,semantic_retrieval_view
 from Chatbot_Web.impl.view import kg_view, relation_search_view
 
+from Chatbot_Web.impl.view import wx_view     # 接入微信视图跳转
+
 # web interface
 from Chatbot_Web.web_interface.test_interface import ReturnJson
 # from Chatbot_Web.impl.view import user_view
@@ -59,6 +61,7 @@ urlpatterns = [
     path('logout/', logout, name='logout'),
 
 
+    path('weixin/', wx_view.wechat, name='weixin'),    # 接入微信
 
 
     # ================= 接口url ===========================
