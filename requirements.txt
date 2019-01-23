@@ -5,3 +5,5 @@ jieba==0.39
 django==2.0.7
 sparqlwrapper==1.8.2
 langid==1.1.6
+wechatpy
+fasttext
