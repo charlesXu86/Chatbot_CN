@@ -1,7 +1,7 @@
 
 // tag::nodes[]
 // Create customers
-USING PERIODIC COMMIT    #
+USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///customers.csv" AS row
 CREATE (:Customer {companyName: row.CompanyName, customerID: row.CustomerID, fax: row.Fax, phone: row.Phone});
 
@@ -46,7 +46,7 @@ CREATE CONSTRAINT ON (o:Order) ASSERT o.orderID IS UNIQUE;
 // end::constraints[]
 
 
-schema await
+//schema await
 
 // tag::rels_orders[]   构建关系
 USING PERIODIC COMMIT
