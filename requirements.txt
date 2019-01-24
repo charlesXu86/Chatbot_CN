@@ -7,3 +7,4 @@ sparqlwrapper==1.8.2
 langid==1.1.6
 wechatpy
 fasttext
+pycrypto
