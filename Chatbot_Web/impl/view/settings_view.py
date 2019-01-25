@@ -13,6 +13,6 @@
 
 from django.shortcuts import render
 
-def dialogue_page(request):
+def settings_page(request):
     context = {}
     return render(request, 'settings.html', context)
