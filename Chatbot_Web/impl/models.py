@@ -13,3 +13,5 @@ class User(models.Model):
         verbose_name='用户表'
         verbose_name_plural='用户表'
         ordering=['name']
+        edit_date = models.DateTimeField('Edit the date', auto_now = True)
+
