@@ -13,6 +13,6 @@
 
 from django.shortcuts import render
 
-def dialogue_page(request):
+def specification_page(request):
     context = {}
     return render(request, 'specification.html', context)
