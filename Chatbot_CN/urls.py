@@ -21,6 +21,7 @@ from rest_framework import routers
 
 from Chatbot_Web.impl.view import welcome_view,ie_view,index_ERform_view,tagging_view,dp_view,cws_view,sp_view,semantic_retrieval_view
 from Chatbot_Web.impl.view import kg_view, relation_search_view
+from Chatbot_Web.impl.view import dialogue_view
 
 from Chatbot_Web.impl.view import wx_view     # 接入微信视图跳转
 
@@ -47,6 +48,7 @@ urlpatterns = [
     path('ER-post/',index_ERform_view.ER_post, name='ER_post'),
     path('dp_view/', dp_view.dp_page, name='dp_view'),  # 句法分析页面
     path('sp_view/', sp_view.sp_view, name='sp_view'),  # 语义分析页面
+    path('dialogue/', dialogue_view.dialogue_page, name='dialogue'),  # 人机对话页面
     path('semantic_retrieval_view/', semantic_retrieval_view.semantic_retrieval_view, name='semantic_retrieval_view'), # 信息检索页面
     path('search/', semantic_retrieval_view.search, name='search'),     # 语义搜索的搜索方法
 
