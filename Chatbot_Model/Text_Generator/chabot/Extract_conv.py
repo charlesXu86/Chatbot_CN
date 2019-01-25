@@ -59,7 +59,8 @@ def main(limit=20, x_limit=3, y_limit=6):
     word_vec = pickle.load(open(word_vec_path, 'rb'))
 
     print('extract lines')
-    data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Text_generator\dgk_shooter_min.conv'
+    # data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Text_generator\dgk_shooter_min.conv'
+    data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Text_generator\\xiaohuangji.conv'
     # fp = open('dgk_shooter_min.conv', 'r', errors='ignore')
     fp = open(data_path, 'r', encoding='utf-8', errors='ignore')
     last_line = None

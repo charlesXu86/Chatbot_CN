@@ -22,8 +22,8 @@ def drop_duplicate_data(file):
     '''
     df = pd.read_csv(file, header=None, quoting=3, encoding='utf-8', error_bad_lines=False)
     # print(df)
-    df = df.drop_duplicates(subset=None, keep='first', inplace=False)
-    df.to_csv('D:\ZhizhuxiaItem\\beijing\\Ner_node_beijing2.csv')
+    df = df.drop_duplicates(subset=['item1'], keep='first', inplace=False)
+    df.to_csv('D:\ZhizhuxiaItem\\guizhou\\Ner_relation_guizhou2.csv')
     print(df)
 
 def drop_speci_data(file):
@@ -35,9 +35,20 @@ def drop_speci_data(file):
 
     pass
 
+def drop_na(file):
+    '''
+
+    :param file:
+    :return:
+    '''
+    df = pd.read_csv(file, header=None, quoting=3, encoding='utf-8', error_bad_lines=False)
+    df = df.dropna(subset=['item1'])
+    df.to_csv('D:\ZhizhuxiaItem\\guizhou\\Ner_relation_guizhouNA.csv')
+
 
 
 
 if __name__ == '__main__':
-    data_path = 'D:\ZhizhuxiaItem\\beijing\\Ner_node_beijing.csv'
-    drop_duplicate_data(data_path)
+    data_path = 'D:\ZhizhuxiaItem\\guizhou\\Ner_relation_guizhou.csv'
+    # drop_duplicate_data(data_path)
+    drop_na(data_path)

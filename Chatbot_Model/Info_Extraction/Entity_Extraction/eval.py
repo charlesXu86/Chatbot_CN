@@ -17,7 +17,7 @@ def conlleval(label_predict, label_path, metric_path):
     :param metric_path:
     :return:
     """
-    eval_perl = "./conlleval_rev.pl"
+    eval_perl = "D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Entity_Extraction\conlleval_rev.pl"
     with open(label_path, "w") as fw:
         line = []
         for sent_result in label_predict:

@@ -1,7 +1,7 @@
 #-*- coding:utf-8 _*-
 """
 @author:charlesXu
-@file: utils.py
+@file: Utils.py
 @desc: 信息抽取程序主入口
 @time: 2018/08/08
 """
@@ -18,6 +18,8 @@ import re
 
 from elasticsearch import Elasticsearch
 from datetime import datetime
+
+from tensorflow.python.framework import graph_util
 
 from numba import jit
 
@@ -41,7 +43,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 设置只用一块显卡
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # default: 0
 config = tf.ConfigProto()
 # config.gpu_options.allow_growth = True
-config.gpu_options.per_process_gpu_memory_fraction = 0.2 # need ~700MB GPU memory
+config.gpu_options.per_process_gpu_memory_fraction = 0.4 # need ~700MB GPU memory
 
 # 数据库操作
 # db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
@@ -51,14 +53,14 @@ config.gpu_options.per_process_gpu_memory_fraction = 0.2 # need ~700MB GPU memor
 
 # 连接ES
 es = Elasticsearch(
-    # ['test.npacn.com'],  # 192.168.11.251
-    # http_auth=('admin', 'u1PJTXyzjVqT'),
-    ['192.168.11.211'],
-    port=9200,
+    ['test.npacn.com:21180'],  # 192.168.11.251
+    http_auth=('admin', 'gXvBgE43&B$8'),
+    # ['192.168.11.211'],
+    # port=9200,
     timeout= 30,
 )
 # 创建索引
-# es.indices.create(index='zhizhixia_ner')
+# es.indices.create(index='zhizhixia_hubei')
 print('索引创建成功。')
 
 text_list = []   # 创建一个tuple，用来装分句后的数据
@@ -68,7 +70,7 @@ text_list = []   # 创建一个tuple，用来装分句后的数据
 parser = argparse.ArgumentParser(description='BiLSTM-CRF for Chinese NER task')
 parser.add_argument('--train_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='train data source')
 parser.add_argument('--test_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='test data source')
-parser.add_argument('--batch_size', type=int, default=4, help='#sample of each minibatch')
+parser.add_argument('--batch_size', type=int, default=64, help='#sample of each minibatch')
 parser.add_argument('--epoch', type=int, default=100, help='#epoch of training')
 parser.add_argument('--hidden_dim', type=int, default=300, help='#dim of hidden state')
 parser.add_argument('--optimizer', type=str, default='Adam', help='Adam/Adadelta/Adagrad/RMSProp/Momentum/SGD')
@@ -159,6 +161,7 @@ elif args.mode == 'demo':
     model = BiLSTM_CRF(args, embeddings, tag2label, word2id, paths, config=config)
     model.build_graph()
     saver = tf.train.Saver()
+
     with tf.Session(config=config) as sess:
         print('============= demo =============')
         saver.restore(sess, ckpt_file)
@@ -167,31 +170,41 @@ elif args.mode == 'demo':
             # print('Please input your sentence:')
             # demo_sent = input()
 
+        # output_graph_def = graph_util.convert_variables_to_constants(
+        #     sess,
+        #     sess.graph.as_graph_def(add_shapes=True),
+        #     ['output']
+        # )
+        # with tf.gfile.GFile("ner.pb", "wb") as f:
+        #     f.write(output_graph_def.SerializeToString())
+
         # all_texts = get_datas()      # 数据库返回的按“一、二、三、四、”切割返回的文本 mysql数据库
-        all_texts = get_MONGO_data()
-        try:
-            for i, one_text in enumerate(all_texts):
+        # start_time = datetime.now()
+        # all_texts = get_MONGO_data()
+        # try:
+        #     for i, one_text in enumerate(all_texts):
                 # mongodb的数据格式
+        try:
+            for one_text in get_MONGO_data():
                 addr = one_text['addr']  # 归属地
                 charge = one_text['charge'] # 犯罪原因
                 judgementId = one_text['judgementId'] # 判决Id，唯一标示
+                print(judgementId)
                 keywords = one_text['keywords']      # 关键词
                 court = one_text['court']           # 法院信息
-                judge_text = one_text['judge_text']  # 判决结果，是一个列表，继续循环
+                text = one_text['judge_text']  # 判决结果，是一个列表，继续循环
                 proponents = one_text['proponents']   # 原告
                 opponents = one_text['opponents']     # 被告
 
-                for text in judge_text:     # 处理判决结果
-                    text = re.sub("<a.+?</a>",'', text)
-                    print('judge_text: ', text)
+                if text:
                     demo_data = [(text, ['O'] * len(text))]
                     tag = model.demo_one(sess, demo_data)
-                    PER, LOC, ORG = get_entity(tag, text)
+                    PER, LOC, ORG, TIM= get_entity(tag, text)
                     MON = get_MON_entity(text)
                     print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
 
                     # 将数据写入es
-                    es.index(index='zhizhuxia', doc_type='ner_type',
+                    es.index(index='zhizhuxia_neimenggu', doc_type='ner_type',
                              body={'addr': addr,
                                    'charge': charge,
                                    'judgementId': judgementId,
@@ -209,45 +222,48 @@ elif args.mode == 'demo':
                     # NER2CSV(judgementId,addr,charge, keywords, court, PER, LOC, ORG, MON, proponents, opponents, judge_text, timestamp)
 
 
-                # 根据judgement_id删除数据
-                # del_ = del_MONGO_data(judgementId)
-                # print('Del succeed')
+                    # 根据judgement_id删除数据
+                    del_MONGO_data(judgementId)
+                    print('Del succeed')
+                    # end_time = datetime.now()
+                    # cost_time = end_time - start_time
+                    # print('cost_time:', cost_time)
 
-                # mysql数据格式
-                # uuid = one_text[0]        # 获取每条数据的uuid
-                # obligors = one_text[1]    # 原告
-                # creditors = one_text[2]   # 被告
-                # texts = one_text[3]
-                # text_sent = split_sentence.split_sentence_thr(texts)    # 分句
+                    # mysql数据格式
+                    # uuid = one_text[0]        # 获取每条数据的uuid
+                    # obligors = one_text[1]    # 原告
+                    # creditors = one_text[2]   # 被告
+                    # texts = one_text[3]
+                    # text_sent = split_sentence.split_sentence_thr(texts)    # 分句
 
-                # 这里的逻辑是处理提取出来的判决文本数据
-                # for text in text_sent:
-                #     print(text)
-                #     text_strip = list(text.strip())    #
-                #     demo_data = [(text, ['O'] * len(text))]
-                #     tag = model.demo_one(sess, demo_data)
-                #     PER, LOC, ORG = get_entity(tag, text)
-                #     LOC_RE = get_add(text)
-                    # 调用money处理方法，获取金额实体
-                    # MON = get_MON_entity(text)
-                    #
-                    # print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
-                    # print('LOC_RE :{}'.format(LOC_RE))
+                    # 这里的逻辑是处理提取出来的判决文本数据
+                    # for text in text_sent:
+                    #     print(text)
+                    #     text_strip = list(text.strip())    #
+                    #     demo_data = [(text, ['O'] * len(text))]
+                    #     tag = model.demo_one(sess, demo_data)
+                    #     PER, LOC, ORG = get_entity(tag, text)
+                    #     LOC_RE = get_add(text)
+                        # 调用money处理方法，获取金额实体
+                        # MON = get_MON_entity(text)
+                        #
+                        # print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
+                        # print('LOC_RE :{}'.format(LOC_RE))
 
-                    # 将数据写入ES
-                    # es.index(index='chatbot', doc_type='test_type',
-                    #          body={'uuid': uuid,
-                    #                'text': text,    # 原文
-                    #                'PER': PER,
-                    #                'LOC': LOC,
-                    #                'ORG': ORG,
-                    #                'MON': MON,
-                    #                # 'LOC_RE': LOC_RE,
-                    #                'obligors': obligors,
-                    #                'creditors': creditors,
-                    #                'timestamp': datetime.now()})
+                        # 将数据写入ES
+                        # es.index(index='chatbot', doc_type='test_type',
+                        #          body={'uuid': uuid,
+                        #                'text': text,    # 原文
+                        #                'PER': PER,
+                        #                'LOC': LOC,
+                        #                'ORG': ORG,
+                        #                'MON': MON,
+                        #                # 'LOC_RE': LOC_RE,
+                        #                'obligors': obligors,
+                        #                'creditors': creditors,
+                        #                'timestamp': datetime.now()})
 
 
                     # 调用关系抽取
         except Exception as e:
-            print('Error is', e)
+            print('Info Error is', e)

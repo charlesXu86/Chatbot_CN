@@ -13,6 +13,13 @@
 
 import re
 
+from Entity_Extraction.utils import get_entity
+
 def get_assert_owner(judge_res):
     addr = ''
     match_addr3 = re.search(r'(名下位于)', judge_res)
+    pass
+
+def judge_owner():
+    LOC = get_entity()
+    pass

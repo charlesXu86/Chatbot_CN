@@ -2,7 +2,7 @@
 
 """
 -------------------------------------------------
-   File Name：     train.py
+   File Name：     Train.py
    Description :
    Author :       charl
    date：          2018/11/27

@@ -7,6 +7,7 @@
 """
 
 import pymysql
+import re
 import pprint
 import json
 import split_sentence
@@ -94,7 +95,9 @@ def get_datas():
     db.close()
 
 # 从数据库获取数据  mongo
-uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + 'test.npacn.com' + ':' + '8017' +'/'+ 'itslaw'
+# uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + 'test.npacn.com' + ':' + '8017' +'/'+ 'itslaw'
+# uri = 'mongodb://test.npacn.com' + ':' + '20000' +'/'+ 'testdb'  # 集群
+uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + 'test.npacn.com' + ':' + '20000' +'/'+ 'itslaw'
 client = MongoClient(uri)
 def get_MONGO_data():
     '''
@@ -102,33 +105,37 @@ def get_MONGO_data():
     :return: 嵌套的字典-提取后的信息
     '''
     datas = []
-    # judge_text = []
-    # result = {}   # 存放结果数据
     try:
         db = client.itslaw      # 连接所需要的数据库
-        collection = db.itslaw_collection    # collection名
+        collection = db.neimenggu   # collection名
         print('Connect Successfully')
         # 查询数据
-        data_result = collection.find({"content.caseType":"民事"}).limit(20000)
-        # data_result = collection.find({"content.caseType": "行政"}).limit(10000)
-        # data_result = collection.find({"content.caseType": "民事"}).limit(10000)
-        # if len(data_result) < 500:
-
+        #data_result = collection.find({"doc_province":"湖北省"}).limit(200)
+        data_result = collection.find().limit(30000)
+        n = 0
         for item in data_result:
-            # datas = []
-            result = {}
-            keywords = []
-            addr = []
+            n += 1
+            result = {"judge_text": " ",
+                      "addr": " ",
+                      "charge": "",
+                      "keywords": "", "court": "", "proponents": "", "opponents": ""}
+            pros = []
+            opps = []
+            text = []
             judgementId = item['judgementId']   # 判决文书id   唯一标示
+            result['judgementId'] = judgementId
             if 'doc_province' in item.keys() and 'doc_city' in item.keys():
                 addr = str(item['doc_province']) + str(item['doc_city'])  # 案件的归属地
-
+                result['addr'] = addr
             # 获取罪名
             if 'reason' in item['content'].keys():
                 charge = item['content']['reason']['name']
+                result['charge'] = charge
             # 获取关键词
             if 'keywords' in item['content'].keys():
                 keywords = item['content']['keywords']
+                result['keywords'] = keywords
+
             # 获取法院信息
             if 'court' in item['content'].keys():
                 court = item['content']['court']['name']
@@ -137,37 +144,33 @@ def get_MONGO_data():
                 proponents = item['content']['proponents']  # 原告
                 for i in range(len(proponents)):
                     pro = proponents[i]['name']
-            # 获取被告
+                    pros.append(pro)
+                result['proponents'] = pros
+
+            # # 获取被告
             if 'opponents' in item['content'].keys():
                 opponents = item['content']['opponents']   # 被告
                 for i in range(len(opponents)):
                     opp = opponents[i]['name']
+                    opps.append(opp)
+                result['opponents'] = opps
 
             # 获取当事人及判决等信息
             detail = item['content']['paragraphs']  # 这是一个list
             for i in range(len(detail)):
-                # judge_text = []
                 if 'typeText' in detail[i].keys():
-
-                    if detail[i]['typeText'] == '裁判结果':
-                        judge_text = []
+                    if detail[i]['typeText'] == '裁判结果' or detail[i]['typeText'] == '本院认为':
                         texts = detail[i]['subParagraphs']
                         for i in range(len(texts)):
-                            judge_text.append(texts[i]['text'])   # 判决文本内容，list形式存储
-            result['judgementId'] = judgementId
-            result['addr'] = addr
-            result['charge'] = charge
-            result['judge_text'] = judge_text
-            result['keywords'] = keywords
+                            text.append(texts[i]['text'])   # 判决文本内容，list形式存储
+            text_temp = ','.join(text)
+            result["judge_text"] = re.sub("<a.+?</a>", '', text_temp)
             result['court'] = court
-            result['proponents'] = pro
-            result['opponents'] = opp
-            # pprint.pprint(result)
-            datas.append(result)
+            print('当前数为：', n)
+            yield result
     except Exception as e:
         print('Mongo Error is', e)
-    # pprint.pprint(datas)
-    return datas
+    # return datas
 
 def del_MONGO_data(judgementId):
     '''
@@ -175,11 +178,10 @@ def del_MONGO_data(judgementId):
     :param judgementId:
     :return:
     '''
-    db = client.itslaw  # 连接所需要的数据库
-    collection = db.itslaw_collection  # collection名
-    del_data = collection.delete_one({"judgementId": judgementId})
-    # print('del success:', del_data)
 
+    db = client.itslaw  # 连接所需要的数据库
+    collection = db.neimenggu  # collection名
+    return collection.delete_one({"judgementId": judgementId})
 
 def write_data():
     db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
@@ -195,6 +197,6 @@ def write_to_mongo():
     pass
 
 # get_datas()
-get_MONGO_data()
-# ju_id = 'bbebc4ba-a6a0-416e-a716-4c1205fa17d6'
+# get_MONGO_data()
+# ju_id = '999b0cc2-0a8e-49ec-a00b-2e91e3123cd7'
 # del_MONGO_data(ju_id)

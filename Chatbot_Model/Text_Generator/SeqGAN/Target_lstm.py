@@ -2,12 +2,11 @@
 
 """
 -------------------------------------------------
-   File Name：     Clean_NER.py
+   File Name：     Target_lstm.py
    Description :
-   Author :       charlesXu
-   date：          2019/1/8
+   Author :       charl
+   date：          2019/1/2
 -------------------------------------------------
-   Change Activity: 2019/1/8:
+   Change Activity: 2019/1/2:
 -------------------------------------------------
 """
-

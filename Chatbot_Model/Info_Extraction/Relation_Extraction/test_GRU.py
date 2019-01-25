@@ -2,9 +2,7 @@ from pprint import pprint
 
 import tensorflow as tf
 import numpy as np
-import time
 import datetime
-import os
 import re_network
 from sklearn.metrics import average_precision_score
 

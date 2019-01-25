@@ -2,12 +2,12 @@
 
 """
 -------------------------------------------------
-   File Name：     Clean_NER.py
+   File Name：     mainBackup.py
    Description :
-   Author :       charlesXu
-   date：          2019/1/8
+   Author :       charl
+   date：          2018/9/4
 -------------------------------------------------
-   Change Activity: 2019/1/8:
+   Change Activity: 2018/9/4:
 -------------------------------------------------
 """
 

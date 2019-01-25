@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 # conlleval_rev.perl: evaluate result of processing SIGHAN NER task
 # usage:     conlleval_rev.perl [-l] [-r] [-d delimiterTag]  < file
-#            README: http://cnts.uia.ac.be/conll2000/chunking/output.html
+#            README: http://cnts.uia.ac.be/conll2000/chunking/output.templates
 # options:   l: generate LaTeX output for tables like in
 #               http://cnts.uia.ac.be/conll2003/ner/example.tex
 #            r: accept raw result tags (without B- and I- prefix;
@@ -19,6 +19,7 @@
 #            modified to handle SIGHAN coding and non-phrase tags
 
 use strict;
+use warnings FATAL => 'all';
 
 my $false = 0;
 my $true = 42;

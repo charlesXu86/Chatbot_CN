@@ -1,8 +1,8 @@
 #-*- coding:utf-8 _*-
 """
 @author:charlesXu
-@file: Info_Ext_main.py
-@desc: 数据预处理
+@file: data.py
+@desc: 构建字向量、词向量
 @time: 2018/08/08
 """
 
@@ -12,11 +12,12 @@ import numpy as np
 
 import pdb
 
-## tags, BIO 标注策略
+## tags, BIO 标注策略   标签矩阵
 tag2label = {"O": 0,
              "B-PER": 1, "I-PER": 2,
              "B-LOC": 3, "I-LOC": 4,
-             "B-ORG": 5, "I-ORG": 6
+             "B-ORG": 5, "I-ORG": 6,
+             # "B-TIM": 7, "I-TIM": 8 # 时间标签
              }
 
 
@@ -44,7 +45,6 @@ def read_corpus(corpus_path):
 
 def vocab_build(vocab_path, corpus_path, min_count):
     """
-
     :param vocab_path:
     :param corpus_path:
     :param min_count:
@@ -148,12 +148,12 @@ def batch_yield(data, batch_size, vocab, tag2label, shuffle=False):
     :param data:
     :param batch_size:
     :param vocab:
-    :param tag2label:
+    :param tag2label:   标签矩阵转化为数字
     :param shuffle:
     :return:
     """
     if shuffle:
-        random.shuffle(data)
+        random.shuffle(data)     # 每次训练都打乱数据
 
     seqs, labels = [], []
     for (sent_, tag_) in data:
@@ -169,4 +169,11 @@ def batch_yield(data, batch_size, vocab, tag2label, shuffle=False):
 
     if len(seqs) != 0:
         yield seqs, labels
+
+
+# 构建word2id.pkl
+# vocab_path = 'D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Entity_Extraction\data\word2id_tim.pkl'
+# corpus_path = 'D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction\\train_data_tim'
+# min = 5
+# vocab_build(vocab_path, corpus_path, min)
 

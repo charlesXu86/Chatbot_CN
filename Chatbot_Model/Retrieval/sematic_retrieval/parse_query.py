@@ -2,12 +2,11 @@
 
 """
 -------------------------------------------------
-   File Name：     Clean_NER.py
-   Description :
-   Author :       charlesXu
-   date：          2019/1/8
+   File Name：     parse_query.py
+   Description :   解析查询语句
+   Author :       charl
+   date：          2018/11/14
 -------------------------------------------------
-   Change Activity: 2019/1/8:
+   Change Activity: 2018/11/14:
 -------------------------------------------------
 """
-

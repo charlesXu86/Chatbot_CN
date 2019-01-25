@@ -365,6 +365,9 @@ class LuongAttention(_BaseAttentionMechanism):
 
   To enable the second form, construct the object with parameter
   `scale=True`.
+  ================================
+
+
   """
 
   def __init__(self,
@@ -514,7 +517,7 @@ class BahdanauAttention(_BaseAttentionMechanism):
   `normalize=True`.
 
   ====BahdanauAttention===
-  有两种形式
+
   """
 
   def __init__(self,

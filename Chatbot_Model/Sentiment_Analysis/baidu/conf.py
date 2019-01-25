@@ -3,10 +3,10 @@ from baidu import bcesigner
 import datetime
 
 host = "trends.baidubce.com"
-access_key = "please put your access key here"
-secret_key = "please put your secret access key here"
-api_key = 'To get API key, please send an apply email to cloud-martech-support@baidu.com'
-api_secret = 'To get API secret, please send an apply email to cloud-martech-support@baidu.com'
+access_key = "bf7509e669df46759624770b424eba46"
+secret_key = "da2c20be3a0148e98500cf54d9d6853f"
+api_key = "MAgY5KObFySpBmrHddhb17pI"
+api_secret = "ZXGZOkpsgyyixxZeNrWqUH81KwD4EGTX"
 
 def gen_authorization(method, url):
     """

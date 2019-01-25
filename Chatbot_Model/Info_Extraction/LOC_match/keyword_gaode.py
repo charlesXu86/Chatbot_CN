@@ -112,7 +112,7 @@ def get_detail_info(keyword):
     # pprint.pprint(len(pois))
     return result
 
-keyword = "浙江大学紫荆港校区"
+keyword = "迪凯国际中心"
 # pois = getpois(keyword)
 # pprint.pprint(pois)
 

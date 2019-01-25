@@ -17,13 +17,16 @@ import json
 import jieba
 import re
 import pickle as pkl
+import ahocorasick
 
 from Chatbot_Model.Retrieval.sematic_retrieval.build_dict import load_attr_map, load_entity_dict, load_val_dict
-
+# 调用信息抽取中的get_entity方法
+from Chatbot_Model.Info_Extraction.Entity_Extraction.utils import get_entity
 
 data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\\'
 attr_map = load_attr_map(data_path + "attr_mapping.txt")
-attr_ac = pkl.load(open(data_path + "attr_ac.pkl","rb"), encoding='bytes')   # py3
+out_path_file = data_path + "attr_ac.pkl"
+attr_ac = pkl.load(open(data_path + "attr_ac.pkl","rb"))   # py3
 ent_dict = load_entity_dict(data_path + "all_entity.txt")
 val_dict = load_val_dict(data_path + "Person_val.txt")
 
@@ -80,8 +83,13 @@ def _search_multi_SP(parts):
     return v, 'done'
 
 def _search_single_subj(entity_name):
+    '''
+    查询单个实体
+    :param entity_name: 实体的名称
+    :return:
+    '''
     query = json.dumps({"query": { "bool":{"filter":{"term" :{"subj" : entity_name}}}}})
-    response = requests.get("http://localhost:9200/demo/person/_search", data=query)
+    response = requests.get("http://192.168.11.251:9200/demo/person/_search", data=query)
     res = json.loads(response.content)
 
     if res['hits']['total'] == 0:
@@ -102,6 +110,13 @@ def _search_single_subj(entity_name):
         return card, 'done'
 
 def _search_multi_PO(exps, bool_ops):
+    '''
+    多跳查询： 根据实体和第一个属性查询对应的属性值
+             将此属性值作为下一步的实体，根据第二个属性接着查询属性值
+    :param exps:
+    :param bool_ops:
+    :return:
+    '''
     ans_list = []
     po_list = []
     cmp_dir = {
@@ -201,7 +216,7 @@ def _search_multi_PO(exps, bool_ops):
         query += '}}}'
 
     query = query.encode('utf-8')
-    response = requests.get("http://localhost:9200/demo/person/_search", data = query)
+    response = requests.get("http://192.168.11.251:9200/demo/person/_search", data = query)
     res = json.loads(response.content)
 
     if res['hits']['total'] == 0:
@@ -219,7 +234,7 @@ def _search_single_subj_pred_pair(entity_name, attr_name):
     query = '{"query": {"constant_score": {"filter": {"bool": {"must": {"term": {"pred": "' + \
             attr_name + '"}},"must":{"term":{"subj":"' + entity_name + '"}}}}}}}'
     query = query.encode('utf-8')
-    response = requests.get("http://localhost:9200/demo/person/_search", data = query)
+    response = requests.get("http://192.168.11.251:9200/demo/person/_search", data = query)
     res = json.loads(response.content)
 
     if res['hits']['total'] == 0:
@@ -255,15 +270,17 @@ def _entity_linking(entity_name):
 def translate_NL2LF(nl_query):
     '''
     使用基于模板的方法将自然语言查询转化为logic_form （重要）
-    :param question:
-    :return:
+    实体：属性值
+    :param nl_query: 自然语言查询语句
+    :return: lf_query：logical form 查询语句
     '''
-    entity_list = _entity_linking(nl_query)
-    attr_list = _map_predicate(nl_query, False)
+    entity_list = _entity_linking(nl_query)   # 获取entity，这里要调用信息抽取的结果，Chatbot_Model下提供接口
+    # entity_list = get_entity(tag, nl_query)
+    attr_list = _map_predicate(nl_query, False) # 识别属性名
     lf_query = ""
     if entity_list:
         if not attr_list:
-            lf_query = entity_list[0]
+            lf_query = entity_list[0]   # 生成对应的Logical form
         else:
             first_entity_pos = nl_query.find(entity_list[0])
             first_attr_pos = nl_query.find(attr_list[0])
@@ -382,7 +399,7 @@ def _map_predicate(pred_name, map_attr=True):
         return ans
 
     match = []
-    for w in attr_ac.iter(pred_name.encode('utf-8')):
+    for w in attr_ac.iter(pred_name):
         match.append(w[1][1].decode('utf-8'))
     if not len(match):
         return []

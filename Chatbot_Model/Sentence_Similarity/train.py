@@ -2,7 +2,7 @@
 
 """
 -------------------------------------------------
-   File Name：     train.py
+   File Name：     Train.py
    Description :  模型训练
    Author :       charl
    date：          2018/8/28

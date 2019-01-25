@@ -4,7 +4,7 @@ This code is used to reproduce the result of synthetic data experiments in "SeqG
 
 ## Introduction
 The baisc idea of SeqGAN is to regard sequence generator as an agent in reinforcement learning. To train this agent, it applies REINFORCE (Williams, 1992) algorithm to train the generator and a discriminator is trained to provide the reward. To calculate the reward of partially generated sequence, Monte-Carlo sampling is used to rollout the unfinished sequence to get the estimated reward.
-![seqgan](https://github.com/ChenChengKuan/SeqGAN_tensorflow/blob/master/misc/seqgan.png)
+![misc](misc/seqgan.png)
 
 Some works based on training method used in SeqGAN:
    * Recurrent Topic-Transition GAN for Visual Paragraph Generation (Liang et.al, ICCV 2017)

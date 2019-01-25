@@ -4,7 +4,7 @@
 -------------------------------------------------
    File Name：     Train.py
    Description :   训练  对SequenceToSequence模型进行基本的参数组合测试
-   Author :       charl
+   Author :       charlesXu
    date：          2018/12/28
 -------------------------------------------------
    Change Activity: 2018/12/28:
@@ -25,14 +25,16 @@ from Sequence_to_sequence import SequenceToSequence
 from Data_utils import batch_flow_bucket
 from threadedgenerator import ThreadedGenerator
 
+from sklearn.utils import shuffle
 
-def test(bidirectional, cell_type, depth, attention_type, use_residual, use_dropout, time_major, hidden_units):
+
+def test(bidirectional, cell_type, depth, attention_type, use_residual, use_dropout, time_major, hidden_units, optimizer, embedding_size):
     '''
     测试不同参数在生成的假数据上的运行结果
     :param bidirectional:
     :param cell_type:
-    :param depth:
-    :param attention_type:
+    :param depth: 模型深度
+    :param attention_type: attention的类型
     :param use_residual:
     :param use_dropout:
     :param time_major:
@@ -48,9 +50,16 @@ def test(bidirectional, cell_type, depth, attention_type, use_residual, use_drop
     x_data, y_data, ws = pickle.load(open(chatbot_path, 'rb'))
 
     # 训练部分
-    n_epoch = 10
+    n_epoch = 40
     batch_size = 60
-    # x_data, y_data = shuffle(x_data, y_data, random_state=0)
+
+    # 每训练一轮将数据打乱。 [shuffle的重要性]
+    # np.random.permutation 和 shuffle的区别：
+    # 函数shuffle与permutation都是对原来的数组进行重新洗牌（即随机打乱原来的元素顺序）；
+    # 区别在于shuffle直接在原来的数组上进行操作，改变原来数组的顺序，无返回值。
+    # 而permutation不直接在原来的数组上进行操作，而是返回一个新的打乱顺序的数组，并不改变原来的数组。
+
+    x_data, y_data = shuffle(x_data, y_data, random_state=0)
     # x_data = x_data[:10000]
     # y_data = y_data[:10000]
     steps = int(len(x_data) / batch_size) + 1   # 控制训练的步数
@@ -61,7 +70,7 @@ def test(bidirectional, cell_type, depth, attention_type, use_residual, use_drop
         log_device_placement=False
     )
 
-    save_path = './chatbot/S2S_Chatbot.ckpt'
+    save_path = './chatbots/S2S_Chatbot.ckpt'
 
     tf.reset_default_graph()
     with tf.Graph().as_default():
@@ -83,7 +92,8 @@ def test(bidirectional, cell_type, depth, attention_type, use_residual, use_drop
                 hidden_units=hidden_units,
                 time_major=time_major,
                 learning_rate=0.001,
-                optimizer='adam',
+                optimizer= optimizer,
+                embedding_size= embedding_size,
                 share_embedding=True,
                 dropout=0.2,
                 pretrained_embedding=True
@@ -119,91 +129,91 @@ def test(bidirectional, cell_type, depth, attention_type, use_residual, use_drop
 
             flow.close()
 
-        # 测试部分
-        tf.reset_default_graph()
-        model_pred = SequenceToSequence(
-            input_vocab_size=len(ws),
-            target_vocab_size=len(ws),
-            batch_size=1,
-            mode='decode',
-            beam_width=12,
-            bidirectional=bidirectional,
-            cell_type=cell_type,
-            depth=depth,
-            attention_type=attention_type,
-            use_residual=use_residual,
-            use_dropout=use_dropout,
-            hidden_units=hidden_units,
-            time_major=time_major,
-            parallel_iterations=1,
-            learning_rate=0.001,
-            optimizer='adam',
-            share_embedding=True,
-            pretrained_embedding=True
-        )
-        init = tf.global_variables_initializer()
+    # 测试部分
+    tf.reset_default_graph()
+    model_pred = SequenceToSequence(
+        input_vocab_size=len(ws),
+        target_vocab_size=len(ws),
+        batch_size=1,
+        mode='decode',
+        beam_width=12,
+        bidirectional=bidirectional,
+        cell_type=cell_type,
+        depth=depth,
+        attention_type=attention_type,
+        use_residual=use_residual,
+        use_dropout=use_dropout,
+        hidden_units=hidden_units,
+        time_major=time_major,
+        parallel_iterations=1,
+        learning_rate=0.001,
+        optimizer='adam',
+        share_embedding=True,
+        pretrained_embedding=True
+    )
+    init = tf.global_variables_initializer()
 
-        with tf.Session(config=config) as sess:
-            sess.run(init)
-            model_pred.load(sess, save_path)
+    with tf.Session(config=config) as sess:
+        sess.run(init)
+        model_pred.load(sess, save_path)
 
-            bar = batch_flow_bucket([x_data, y_data], ws, 1)
-            t = 0
-            for x, xl, y, yl in bar:
-                x = np.flip(x, axis=1)
-                pred = model_pred.predict(
-                    sess,
-                    np.array(x),
-                    np.array(xl)
-                )
-                print(ws.inverse_transform(x[0]))
-                print(ws.inverse_transform(y[0]))
-                print(ws.inverse_transform(pred[0]))
-                t += 1
-                if t >= 3:
-                    break
+        bar = batch_flow_bucket([x_data, y_data], ws, 1)
+        t = 0
+        for x, xl, y, yl in bar:
+            x = np.flip(x, axis=1)
+            pred = model_pred.predict(
+                sess,
+                np.array(x),
+                np.array(xl)
+            )
+            print(ws.inverse_transform(x[0]))
+            print(ws.inverse_transform(y[0]))
+            print(ws.inverse_transform(pred[0]))
+            t += 1
+            if t >= 3:
+                break
 
-        tf.reset_default_graph()
-        model_pred = SequenceToSequence(
-            input_vocab_size=len(ws),
-            target_vocab_size=len(ws),
-            batch_size=1,
-            mode='decode',
-            beam_width=1,
-            bidirectional=bidirectional,
-            cell_type=cell_type,
-            depth=depth,
-            attention_type=attention_type,
-            use_residual=use_residual,
-            use_dropout=use_dropout,
-            hidden_units=hidden_units,
-            time_major=time_major,
-            parallel_iterations=1,
-            learning_rate=0.001,
-            optimizer='adam',
-            share_embedding=True,
-            pretrained_embedding=True
-        )
-        init = tf.global_variables_initializer()
+    tf.reset_default_graph()
+    model_pred = SequenceToSequence(
+        input_vocab_size=len(ws),
+        target_vocab_size=len(ws),
+        batch_size=1,
+        mode='decode',
+        beam_width=1,
+        bidirectional=bidirectional,
+        cell_type=cell_type,
+        depth=depth,
+        attention_type=attention_type,
+        use_residual=use_residual,
+        use_dropout=use_dropout,
+        hidden_units=hidden_units,
+        time_major=time_major,
+        parallel_iterations=1,
+        learning_rate=0.001,
+        optimizer='adam',
+        share_embedding=True,
+        pretrained_embedding=True
+    )
+    init = tf.global_variables_initializer()
 
-        with tf.Session(config=config) as sess:
-            sess.run(init)
-            model_pred.load(sess, save_path)
+    with tf.Session(config=config) as sess:
+        sess.run(init)
+        model_pred.load(sess, save_path)
 
-            bar = batch_flow_bucket([x_data, y_data], ws, 1)
-            t = 0
-            for x, xl, y, yl in bar:
-                pred = model_pred.predict(
-                    sess,
-                    np.array(x),
-                    np.array(xl)
-                )
-                print(ws.inverse_transform(x[0]))
-                print(ws.inverse_transform(y[0]))
-                print(ws.inverse_transform(pred[0]))
-                t += 1
-                if t >= 3:
-                    break
+        bar = batch_flow_bucket([x_data, y_data], ws, 1)
+        t = 0
+        for x, xl, y, yl in bar:
+            pred = model_pred.predict(
+                sess,
+                np.array(x),
+                np.array(xl)
+            )
+            print(ws.inverse_transform(x[0]))
+            print(ws.inverse_transform(y[0]))
+            print(ws.inverse_transform(pred[0]))
+            t += 1
+            if t >= 3:
+                break
 
 
 def main():
@@ -218,12 +228,14 @@ def main():
     test(
         bidirectional=True,
         cell_type='lstm',
-        depth=2,
+        depth=4,
         attention_type='Bahdanau',
         use_residual=False,
         use_dropout=False,
         time_major=False,
-        hidden_units=512
+        hidden_units=512,
+        optimizer='adam',
+        embedding_size=300
     )
 
 if __name__ == '__main__':

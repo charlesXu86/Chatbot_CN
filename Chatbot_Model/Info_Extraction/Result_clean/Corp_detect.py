@@ -2,12 +2,11 @@
 
 """
 -------------------------------------------------
-   File Name：     Clean_NER.py
+   File Name：     Corp_detect.py
    Description :
    Author :       charlesXu
-   date：          2019/1/8
+   date：          2019/1/11
 -------------------------------------------------
-   Change Activity: 2019/1/8:
+   Change Activity: 2019/1/11:
 -------------------------------------------------
 """
-
