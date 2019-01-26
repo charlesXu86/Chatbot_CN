@@ -14,7 +14,7 @@ class Neo4j():
 		print("create neo4j class ...")
 
 	def connectDB(self):
-		self.graph = Graph("http://localhost:7474", username="neo4j", password="123456")
+		self.graph = Graph("http://localhost:7474", username="neo4j", password="Aa123456")
 
 	def matchItembyTitle(self,value):
 		'''
@@ -22,15 +22,15 @@ class Neo4j():
 		:param value: 前端传过来的实体的值
 		:return:
 		'''
-		csql = "MATCH (n:Item {title:\“" + str(value) + "\"}) return n"   # 注意cython语句的写法
-		answer = self.graph.run(csql).data()
+		cql = "MATCH (n:Item {title:\“" + str(value) + "\"}) return n"   # 注意cython语句的写法
+		answer = self.graph.run(cql).data()
 		return answer
 
 	# 根据title值返回互动百科item
-	# def matchHudongItembyTitle(self,value):
-	# 	sql = "MATCH (n:HudongItem { title: \"" + str(value) + "\" }) return n;"
-	# 	answer = self.graph.run(sql).data()
-	# 	return answer
+	def matchHudongItembyTitle(self,value):
+		sql = "MATCH (n:HudongItem { title: \"" + str(value) + "\" }) return n;"
+		answer = self.graph.run(sql).data()
+		return answer
 
 	# 根据entity的名称返回关系
 	def getEntityRelationbyEntity(self,value):
