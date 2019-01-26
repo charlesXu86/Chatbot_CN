@@ -17,7 +17,7 @@ def knowledge_graph_view(request):  # 知识图谱主页面跳转
     context = {}
     return render(request, 'knowledge_graph/knowledge_graph.html', context)
 
-def relation_search_view(request):  # 跳转到关系搜索页面
+def relation_search_page(request):  # 跳转到关系搜索页面
     context = {}
     return render(request, 'relation_search.html', context)
 
