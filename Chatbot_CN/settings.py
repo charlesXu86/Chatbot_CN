@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     #'rest_framework_swagger',
     'rest_framework',
-    'rest_framework_docs',
+   # 'rest_framework_docs',
     'Chatbot_Web.authdata',
 ]
 
