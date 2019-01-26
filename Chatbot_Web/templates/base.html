@@ -459,5 +459,99 @@
 <script src="../static/js/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../static/js/demo.js"></script>
+
+<!--Footable-->
+<script src="../static/js/footable.min.js"> </script>
+
+<!-- 词云脚本 -->
+    <script>
+        //knob
+        $(function() {
+            $(".knob").knob({
+                'draw': function() {
+                    $(this.i).val(this.cv + '%')
+                }
+            })
+        });
+
+        //carousel
+        $(document).ready(function() {
+
+            $("#owl-slider").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true
+
+            });
+        });
+
+        //custom select box
+
+        $(function() {
+            $('select.styled').customSelect();
+        });
+
+        /* ---------- Map ---------- */
+        $(function() {
+            $('#map').vectorMap({
+                map: 'world_mill_en',
+                series: {
+                    regions: [{
+                        values: gdpData,
+                        scale: ['#000', '#000'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                backgroundColor: '#eef3f7',
+                onLabelShow: function(e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                }
+            });
+        });
+
+        tagcloud({ //开启词云
+            //参数名: 默认值
+            selector: ".tagcloud", //元素选择器
+            fontsize: 15, //基本字体大小
+            radius: 55, //滚动半径
+            mspeed: "slow", //滚动最大速度
+            ispeed: "slow", //滚动初速度
+            direction: 135, //初始滚动方向
+            keep: true //鼠标移出组件后是否继续随鼠标滚动
+        });
+    </script>
+
+    <!-- 分类树脚本 -->
+    <script>
+        $(function() {
+            $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+            $('.tree li.parent_li > span').on('click', function(e) {
+                var children = $(this).parent('li.parent_li').find(' > ul > li');
+                if (children.is(":visible")) {
+                    children.hide('fast');
+                    $(this).attr('title', 'Expand this branch').find(' > i').addClass('fa-plus-square').removeClass('fa-minus-square');
+                } else {
+                    children.show('fast');
+                    $(this).attr('title', 'Collapse this branch').find(' > i').addClass('fa-minus-square').removeClass('fa-plus-square');
+                }
+                e.stopPropagation();
+            });
+        });
+    </script>
+
+    <!--百度统计js start-->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4b9ba24d3558dc47262908cf3de1b385";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <!--百度统计js end-->
+
+
 </body>
 </html>
