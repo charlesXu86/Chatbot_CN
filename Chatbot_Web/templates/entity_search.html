@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <meta charset="utf-8" />
-    <script src="../../static/js/echarts.common.min.js"></script>
-    <script type="text/javascript" src="../../static/js/echarts.min.js"></script>
+    <script src="../static/js/echarts.common.min.js"></script>
+    <script type="text/javascript" src="../static/js/echarts.min.js"></script>
 </head>
 <title>实体</title>
 <div class="container">
@@ -79,15 +79,15 @@
 {% endif %}
 </div>
 </div>
+
 {% if entityRelation %}
-<script src="../../static/js/jquery-3.3.1.min.js"></script>
+<script src="../static/js/jquery.min.js"></script>
 <script type="text/javascript">
         // 将后端的查询结果使用echarts展示
         var ctx = [ {{ ctx|safe }} ] ;
 
         //{entity2,rel}
         var entityRelation = [ {{ entityRelation|safe }} ] ;
-
         var data = [] ;
         var links = [] ;
         if(ctx.length == 0){
@@ -99,7 +99,7 @@
             }
             //实体１
             node['name'] = str;
-            //alert(document.getElementById('user_text').value)
+           // alert(document.getElementById('entity_text').value)
             node['draggable'] = true ;
             var id = 0; 
             node['id'] = id.toString() ;
