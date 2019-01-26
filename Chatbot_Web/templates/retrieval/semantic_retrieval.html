@@ -1,9 +1,9 @@
-{% load staticfiles %}
+{% extends "base.html" %} {% block mainbody %}
 <html>
 <head>
   <title>语义检索</title>
-  <link rel="stylesheet" href="../static/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="../static/fonts/font-awesome/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="../../static/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="../../static/fonts/font-awesome/css/font-awesome.min.css" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
   <meta charset="utf-8">
   <style>
@@ -93,7 +93,7 @@
 
   </div>
 
-  <script src="../static/js/lib/jquery-3.3.1.min.js"></script>
+  <script src="../../static/js/jquery-3.3.1.min.js"></script>
   <script>
     function check(){
       var name = document.getElementById("inputtext").value;
@@ -103,3 +103,5 @@
   </script>
 </body>
 </html>
+
+{% endblock %}
