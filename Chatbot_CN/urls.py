@@ -20,10 +20,13 @@ from django.contrib import admin
 from rest_framework import routers
 
 from Chatbot_Web.impl.view import welcome_view,ie_view,index_ERform_view,tagging_view,dp_view,cws_view,sp_view,semantic_retrieval_view
+from Chatbot_Web.impl.view import info_extraction_view
 from Chatbot_Web.impl.view import kg_view, relation_search_view
 from Chatbot_Web.impl.view import dialogue_view
 from Chatbot_Web.impl.view import settings_view
 from Chatbot_Web.impl.view import specification_view
+from Chatbot_Web.impl.view import decisions_making_view
+from Chatbot_Web.impl.view import dialogue_view
 
 from Chatbot_Web.impl.view import wx_view     # 接入微信视图跳转
 
@@ -45,8 +48,11 @@ urlpatterns = [
     path('register/', welcome_view.register, name='register'),   # 注册
     path('do_login/', welcome_view.do_login, name='do_login'),       # 登录
     path('cws_view/', cws_view.cws_view, name='cws_view'),   # 中文分词
-    path('tagging_view/', tagging_view.tagging_view, name='tagging_view'),   # 词性标注
+    path('tagging_view/', tagging_view.tagging_page, name='tagging_view'),   # 词性标注
     path('info_extraction_view/', ie_view.info_extraction_view, name='info_extraction_view'),  # 信息抽取
+    path('entity_extraction', info_extraction_view.entity_extraction_page, name='entity_extraction'), # 实体抽取页面
+    path('event_extraction', info_extraction_view.event_extraction_page, name='event_extraction'), # 实体抽取页面
+    path('relation_extraction', info_extraction_view.relation_extraction_page, name='relation_extraction'), # 实体抽取页面
     path('ER-post/',index_ERform_view.ER_post, name='ER_post'),
     path('dp_view/', dp_view.dp_page, name='dp_view'),  # 句法分析页面
     path('sp_view/', sp_view.sp_view, name='sp_view'),  # 语义分析页面
@@ -58,9 +64,10 @@ urlpatterns = [
 
     # 知识图谱模块
     path('kg_view/', kg_view.knowledge_graph_view, name='kg_view'),  # kg预览页面
-    path('relation_view/', kg_view.relation_search_view, name='relation_view'), # 关系查询页面
-    path('search_relation/', relation_search_view.search_relation, name='search_relation'),
-    path('entity_view/', kg_view.entity_search_view, name='entity_view'), # 实体查询页面
+    path('search_relation/', relation_search_view.search_relation, name='search_relation'),  # 关系查询
+    path('search_entity/', relation_search_view.search_entity, name='search_entity'), # 实体查询页面
+
+    path('decision/', decisions_making_view.decisions_making_page, name='decision'), # 辅助决策页面
     path('kg_overview/', kg_view.overview, name='kg_overview'),   # 概览页面
 
 
