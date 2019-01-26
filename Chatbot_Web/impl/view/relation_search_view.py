@@ -52,15 +52,15 @@ def search_entity(request):
 		if len(entityRelation) == 0:
 			#若数据库中无法找到该实体，则返回数据库中无该实体
 			ctx= {'title' : '<h1>数据库中暂未添加该实体</h1>'}
-			return render(request,'knowledge_graph/entity_search.html',{'ctx':json.dumps(ctx,ensure_ascii=False)})
+			return render(request,'entity_search.html',{'ctx':json.dumps(ctx,ensure_ascii=False)})
 		else:
 			#返回查询结果
 			#将查询结果按照"关系出现次数"的统计结果进行排序
 			entityRelation = sortDict(entityRelation)
 
-			return render(request,'knowledge_graph/entity_search.html',{'entityRelation':json.dumps(entityRelation,ensure_ascii=False)})
+			return render(request,'entity_search.html',{'entityRelation':json.dumps(entityRelation,ensure_ascii=False)})
 
-	return render(request,"knowledge_graph/entity_search.html",{'ctx':ctx})
+	return render(request,"entity_search.html",{'ctx':ctx})
 
 def search_relation(request):
 	ctx = {}
