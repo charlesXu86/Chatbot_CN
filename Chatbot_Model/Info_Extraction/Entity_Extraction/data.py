@@ -17,7 +17,7 @@ tag2label = {"O": 0,
              "B-PER": 1, "I-PER": 2,
              "B-LOC": 3, "I-LOC": 4,
              "B-ORG": 5, "I-ORG": 6,
-             # "B-TIM": 7, "I-TIM": 8 # 时间标签
+             "B-TIM": 7, "I-TIM": 8 # 时间标签
              }
 
 
