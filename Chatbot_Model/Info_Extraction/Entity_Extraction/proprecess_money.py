@@ -11,8 +11,10 @@ import csv
 from enum import Enum, unique
 import jieba
 import re
+import sys
 
-from Chatbot_Model.Info_Extraction.Entity_Extraction import log
+
+from Entity_Extraction import log
 
 @unique
 class Consts(Enum):
