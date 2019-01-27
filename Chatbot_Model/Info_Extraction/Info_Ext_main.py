@@ -21,7 +21,6 @@ from datetime import datetime
 
 from tensorflow.python.framework import graph_util
 
-from numba import jit
 
 # import pdb
 
@@ -33,44 +32,32 @@ from Entity_Extraction.utils import str2bool, get_logger, get_entity, get_MON_en
 from Entity_Extraction.data import read_corpus, read_dictionary, tag2label, random_embedding
 from Entity_Extraction.get_data import get_datas, get_MONGO_data, del_MONGO_data
 
-from Chatbot_Model.utils.WriteToCSV import NER2CSV
-
-from Entity_Extraction.get_location import get_add, cut_addr
-
 
 ## Session configuration
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 设置只用一块显卡
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # default: 0
 config = tf.ConfigProto()
-# config.gpu_options.allow_growth = True
-config.gpu_options.per_process_gpu_memory_fraction = 0.4 # need ~700MB GPU memory
+config.gpu_options.allow_growth = True
+# config.gpu_options.per_process_gpu_memory_fraction = 0.3 # need ~700MB GPU memory
 
-# 数据库操作
-# db = pymysql.Connect("localhost", "root", "Aa123456", "zhizhuxia")
-# print('Connect successful')
-# cursor = db.cursor()
-# redis = redis.Redis(host='127.0.0.1', port=6379)
 
 # 连接ES
-es = Elasticsearch(
-    ['test.npacn.com:21180'],  # 192.168.11.251
-    http_auth=('admin', 'gXvBgE43&B$8'),
+# es = Elasticsearch(
+#     ['test.npacn.com:21180'],  # 192.168.11.251
+#     http_auth=('admin', 'gXvBgE43&B$8'),
     # ['192.168.11.211'],
     # port=9200,
-    timeout= 30,
-)
-# 创建索引
-# es.indices.create(index='zhizhixia_hubei')
-print('索引创建成功。')
+    # timeout= 30,
+# )
 
 text_list = []   # 创建一个tuple，用来装分句后的数据
 
 
 ## hyperparameters
 parser = argparse.ArgumentParser(description='BiLSTM-CRF for Chinese NER task')
-parser.add_argument('--train_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='train data source')
-parser.add_argument('--test_data', type=str, default='D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='test data source')
-parser.add_argument('--batch_size', type=int, default=64, help='#sample of each minibatch')
+parser.add_argument('--train_data', type=str, default='F:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='train data source')
+parser.add_argument('--test_data', type=str, default='F:\project\Chatbot_CN\Chatbot_Data\Info_Extraction', help='test data source')
+parser.add_argument('--batch_size', type=int, default=2, help='#sample of each minibatch')
 parser.add_argument('--epoch', type=int, default=100, help='#epoch of training')
 parser.add_argument('--hidden_dim', type=int, default=300, help='#dim of hidden state')
 parser.add_argument('--optimizer', type=str, default='Adam', help='Adam/Adadelta/Adagrad/RMSProp/Momentum/SGD')
@@ -88,7 +75,7 @@ args = parser.parse_args()
 
 
 ## get char embeddings
-word2id = read_dictionary(os.path.join('.', args.train_data, 'word2id.pkl'))
+word2id = read_dictionary(os.path.join('.', args.train_data, 'word2id_tim.pkl'))
 if args.pretrain_embedding == 'random':
     embeddings = random_embedding(word2id, args.embedding_dim)
 else:
@@ -98,7 +85,7 @@ else:
 
 ## read corpus and get training data
 if args.mode != 'demo':
-    train_path = os.path.join('.', args.train_data, 'train_data')   # 训练数据
+    train_path = os.path.join('.', args.train_data, 'train_data_tim')   # 训练数据
     test_path = os.path.join('.', args.test_data, 'test_data')
     train_data = read_corpus(train_path)
     test_data = read_corpus(test_path);
@@ -204,27 +191,27 @@ elif args.mode == 'demo':
                     print('PER: {}\nLOC: {}\nORG: {}\nMON: {}\n'.format(PER, LOC, ORG, MON))
 
                     # 将数据写入es
-                    es.index(index='zhizhuxia_neimenggu', doc_type='ner_type',
-                             body={'addr': addr,
-                                   'charge': charge,
-                                   'judgementId': judgementId,
-                                   'keywords': keywords,
-                                   'court': court,
-                                   'judge_text': text,
-                                   'PER': PER,
-                                   'LOC': LOC,
-                                   'ORG': ORG,
-                                   'MON': MON,
-                                   'proponents': proponents,
-                                   'opponents': opponents,
-                                   'timestamp': datetime.now()})
+                    # es.index(index='zhizhuxia_neimenggu', doc_type='ner_type',
+                    #          body={'addr': addr,
+                    #                'charge': charge,
+                    #                'judgementId': judgementId,
+                    #                'keywords': keywords,
+                    #                'court': court,
+                    #                'judge_text': text,
+                    #                'PER': PER,
+                    #                'LOC': LOC,
+                    #                'ORG': ORG,
+                    #                'MON': MON,
+                    #                'proponents': proponents,
+                    #                'opponents': opponents,
+                    #                'timestamp': datetime.now()})
                     # 将数据写入csv
                     # NER2CSV(judgementId,addr,charge, keywords, court, PER, LOC, ORG, MON, proponents, opponents, judge_text, timestamp)
 
 
                     # 根据judgement_id删除数据
-                    del_MONGO_data(judgementId)
-                    print('Del succeed')
+                    # del_MONGO_data(judgementId)
+                    # print('Del succeed')
                     # end_time = datetime.now()
                     # cost_time = end_time - start_time
                     # print('cost_time:', cost_time)
@@ -267,3 +254,5 @@ elif args.mode == 'demo':
                     # 调用关系抽取
         except Exception as e:
             print('Info Error is', e)
+
+# def extrac_entity(text, )
