@@ -20,10 +20,10 @@
                     输入文本 :
                 </header>
                 <div class="panel-body">
-                    <form action="/ER-post" method="post">
+                    <form action="/sentence_entity/" method="post">
                         <div class="form-group">
                             {% csrf_token %}
-                            <textarea type="text" name="user_text" class="form-control" placeholder="Enter text" style="height:140px"> </textarea>
+                            <textarea type="text" name="sentence_text" class="form-control" placeholder="Enter text" style="height:140px"> </textarea>
                         </div>
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
