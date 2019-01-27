@@ -7,10 +7,10 @@
             <!--overview start-->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="page-header"><i class="fa fa-search"></i> 中文分词 </h3>
+                    <h3 class="page-header"><i class="fa fa-battery"></i> 中文分词 </h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="\">Home</a></li>
-                        {% comment %}<li><i class="fa fa-search"></i>POS-Tagging</li>{% endcomment %}
+                        {% comment %}<li><i class="fa fa-battery"></i>CWS</li>{% endcomment %}
                     </ol>
                 </div>
             </div>
@@ -20,10 +20,10 @@
                     输入文本 :
                 </header>
                 <div class="panel-body">
-                    <form action="/ER-post" method="post">
+                    <form action="/ER-post/" method="post">
                         <div class="form-group">
                             {% csrf_token %}
-                            <textarea type="text" name="user_text" class="form-control" placeholder="Enter text" style="height:140px"> </textarea>
+                            <textarea type="text" name="entity_text" class="form-control" placeholder="Enter text" style="height:140px"> </textarea>
                         </div>
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
