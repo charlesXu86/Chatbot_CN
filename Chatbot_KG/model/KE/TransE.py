@@ -12,7 +12,7 @@
 """
 
 import tensorflow as tf
-from .Model import Model
+from Chatbot_KG.model.KE.Model import Model
 
 class TransE(Model):
 	r'''
