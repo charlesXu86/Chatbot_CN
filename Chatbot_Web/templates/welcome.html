@@ -16,7 +16,7 @@
                 <p>你已登录，欢迎你：<a href="#">{{ user.username }}</a></p>
                 <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">注销登录</a>
                 </button>
-                <button class="btn btn-default"><a href="{% url 'password_change' %}?next={{ request.path }}">修改密码</a>
+                <button class="btn btn-default"><a href="{% url 'website：password_change' %}?next={{ request.path }}">修改密码</a>
                 </button>
             {% else %}
                 <p>你还没有登录，请
