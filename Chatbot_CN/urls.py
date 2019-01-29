@@ -13,6 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from django.conf.urls import url
+
 from Chatbot_Web.impl.views import index, logout
 from django.urls import path, include
 from rest_framework.schemas import get_schema_view
@@ -25,7 +28,7 @@ from Chatbot_Web.impl.info_extraction import entity_extraction
 from Chatbot_Web.impl.info_extraction import event_extraction
 from Chatbot_Web.impl.info_extraction import relation_extraction
 
-from Chatbot_Web.impl.view import kg_view, relation_search_view
+from Chatbot_Web.impl.view import kg_view, relation_search_view, kg_overview
 from Chatbot_Web.impl.view import dialogue_view
 from Chatbot_Web.impl.view import settings_view
 from Chatbot_Web.impl.view import specification_view
@@ -73,8 +76,8 @@ urlpatterns = [
     path('search_relation/', relation_search_view.search_relation, name='search_relation'),  # 关系查询
     path('search_entity/', relation_search_view.search_entity, name='search_entity'), # 实体查询页面
     path('decision/', decisions_making_view.decisions_making_page, name='decision'), # 辅助决策页面
-    path('kg_overview/', kg_view.overview, name='kg_overview'),   # 概览页面
-
+    # path('kg_overview/', kg_overview.show_overview, name='kg_overview'),   # 概览页面
+    url(r'^overview', kg_overview.show_overview),
 
     path('logout/', logout, name='logout'),
 
