@@ -115,6 +115,8 @@ Chatbot_CN
 ![image](Chatbot_Data/image/login.png)
 註冊頁
 ![image](Chatbot_Data/image/register.png)
+首頁
+
 
 
 #### 有关paper代码复现请关注另一个开源项目：
