@@ -12,11 +12,7 @@
     Chatbot_KG       知识图谱实现
     Chatbot_Web      页面展示
 
-#### 安装教程
 
-    1、项目的依赖包请参考Chatbot_CN根目录下的requirement.txt文件。
-    2、导入sql文件到mysql
-    3、导入数据到Neo4J
 
 #### 项目结构图
 
@@ -107,10 +103,24 @@ Chatbot_CN
 
 ```
 
+#### 安装教程
+
+    1、项目的依赖包请参考Chatbot_CN根目录下的requirement.txt文件。
+    2、导入sql文件到mysql
+    3、导入数据到Neo4J
+    
+    
+#### 項目展示
+登錄頁
+![image][https://github.com/charlesXu86/Chatbot_CN/blob/master/Chatbot_Data/image/login.png]
+
+
 #### 有关paper代码复现请关注另一个开源项目：
 https://github.com/charlesXu86/PAPER-In-CODE
 
 #### 博客 ：https://blog.csdn.net/Q_S_Y_Q
+
+#### 知乎专栏：聊天机器人开发实战
 
 #### QQ群： [聊天机器人开发实战](点击链接加入群聊【聊天机器人开发实战】：https://jq.qq.com/?_wv=1027&k=5ypCd1S) (718607564)
 
@@ -120,6 +130,11 @@ https://github.com/charlesXu86/PAPER-In-CODE
 
 #### 说明
 持续更新中。。。
+
+
+#### Referrence
+    OpenKE
+    OpenNRE
 
 License(s)
 ----------
