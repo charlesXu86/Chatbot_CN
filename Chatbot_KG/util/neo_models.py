@@ -22,7 +22,7 @@ class Neo4j():
 		:param value: 前端传过来的实体的值
 		:return:
 		'''
-		cql = "MATCH (n:Item {title:\“" + str(value) + "\"}) return n"   # 注意cython语句的写法
+		cql = "MATCH (n:Item {title:\"" + str(value) + "\"}) return n"   # 注意cython语句的写法
 		answer = self.graph.run(cql).data()
 		return answer
 
@@ -54,8 +54,7 @@ class Neo4j():
 
 	#根据entity1和关系查找enitty2
 	def findOtherEntities(self,entity,relation):
-		answer = self.graph.run("MATCH (n1 {title:\"" + str(entity) + "\"})- [rel {type:\"" + str(
-			relation) + "\"}] -> (n2) RETURN n1,rel,n2").data()
+		answer = self.graph.run("MATCH (n1 {title:\"" + str(entity) + "\"})- [rel {type:\"" + str(relation) + "\"}] -> (n2) RETURN n1,rel,n2").data()
 		# if(answer is None):
 		#	answer = self.graph.run("MATCH (n1:NewNode {title:\"" + entity + "\"})- [rel:RELATION {type:\""+relation+"\"}] -> (n2) RETURN n1,rel,n2" ).data()
 
