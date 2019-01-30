@@ -112,7 +112,9 @@ Chatbot_CN
     
 #### 項目展示
 登錄頁
-![image](https://github.com/charlesXu86/Chatbot_CN/blob/master/Chatbot_Data/image/login.png)
+![image](Chatbot_Data/image/login.png)
+註冊頁
+![image](Chatbot_Data/image/register.png)
 
 
 #### 有关paper代码复现请关注另一个开源项目：
