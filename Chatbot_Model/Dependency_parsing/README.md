@@ -9,8 +9,21 @@
 tensorflow_gpu = 1.9, #更低的应该也可以<br>
 <br>
 
+## 数据集说明
+![image]()
+第一列是单词在句子中的序号，第二列是单词，第五列是POS tags，第七列是所依赖的序号，第八列是依赖关系也是arc labels。
+
 ## 实现说明
-####   1、依赖词性标注
+   1、分词
+   2、依赖词性标注(pos-tagging)
+   3、句法解析树的构造
+   4、歧义问题处理
+   
+   分词和词性标注这里没有自己实现，调用的第三方接口(thulac，初步感觉效果还不错，具体安装和使用方法请自行百度)。(有空的时候会自己实现)
+   
+## 模型结构
+![image](Chatbot_Model/Dependency_parsing/img/architecture.png)
+![image]()
 
 ## 测试结果
 现在为初始版本，使用THU语义依存语料库，输出格式为conll格式。<br>

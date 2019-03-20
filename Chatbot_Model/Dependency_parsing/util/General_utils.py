@@ -2,7 +2,7 @@
 """
 @author:charlesXu
 @file: General_utils.py
-@desc:
+@desc: 批处理工具类
 @time: 2019/03/08
 """
 

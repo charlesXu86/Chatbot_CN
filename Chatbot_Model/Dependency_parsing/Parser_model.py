@@ -2,13 +2,12 @@
 """
 @author:charlesXu
 @file: Parser_model.py
-@desc: 解析模型
+@desc: 解析模型   (训练部分)
 @time: 2019/03/08
 """
 
 import os
 import time
-import sys
 import tensorflow as tf
 import numpy as np
 from Base_model import Model
@@ -18,7 +17,6 @@ from util.General_utils import get_minibatches
 from Feature_extraction import DataConfig, Flags, punc_pos, pos_prefix, load_datasets
 from util.Tf_utils import visualize_sample_embeddings
 
-from Feature_extraction import all_dep_label
 
 class ParserModel(Model):
     def __init__(self, config, word_embeddings, pos_embeddings, dep_embeddings):

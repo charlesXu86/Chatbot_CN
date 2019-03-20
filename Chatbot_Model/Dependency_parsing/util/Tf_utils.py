@@ -1,7 +1,7 @@
 import os
 import tensorflow as tf
 from tensorflow.contrib.tensorboard.plugins import projector
-from feature_extraction import DataConfig
+from Feature_extraction import DataConfig
 import numpy as np
 
 

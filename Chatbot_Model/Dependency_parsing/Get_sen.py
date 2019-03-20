@@ -1,5 +1,10 @@
-#!/usr/bin/env python
-# coding=utf-8
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: Get_sen.py
+@desc:
+@time: 2019/03/08
+"""
 
 import os
 import sys

@@ -2,7 +2,20 @@
 """ 
 @author:charlesXu
 @file: Feature_extraction.py 
-@desc: 特征提取
+@desc: 读取数据、提取特征，解析句子
+
+    Transition-based Dependency parsing
+
+
+
+
+
+
+
+
+
+
+
 @time: 2019/03/08 
 """
 
@@ -13,9 +26,9 @@ import datetime
 from enum import Enum
 from util.General_utils import get_pickle,dump_pickle,get_vocab_dict
 
-NULL = "<null>"
+NULL = "<null>"     # 空字符
 UNK = "<unk>"
-ROOT = "<root>"
+ROOT = "<root>"     # Root结点
 pos_prefix = "<p>:"
 dep_prefix = "<d>:"
 punc_pos = ["''", "``", ":", ".", ","]
@@ -26,7 +39,7 @@ today_date = str(datetime.datetime.now().date())
 
 class DataConfig:  # data, embedding, model path etc.
     # Data Paths
-    data_dir_path = "/../data"
+    data_dir_path = "./data"
     train_path = "train.conll"
     valid_path = "dev.conll"
     test_path = "test.conll"
@@ -55,13 +68,13 @@ class DataConfig:  # data, embedding, model path etc.
     dep_emb_file = "dep_emb.pkl"  # 2d array
 
 
-class ModelConfig(object):  # Takes care of shape, dimensions used for tf model
+class ModelConfig(object):  # 模型参数  Takes care of shape, dimensions used for tf model
     # Input
     word_features_types = None
     pos_features_types = None
     dep_features_types = None
     num_features_types = None
-    embedding_dim = 50
+    embedding_dim = 50      # 输入词嵌入的维度
 
     # hidden_size
     l1_hidden_size = 200
@@ -113,6 +126,10 @@ class Flags(Enum):
 
 
 class Token(object):
+    '''
+    定义Token类，用来保存训练模型数据，包括单词，依赖、关系等
+    '''
+
     def __init__(self, token_id, word, pos, dep, head_id):
         self.token_id = token_id  # token index
         self.word = word.lower() if SettingsConfig.is_lower else word
@@ -153,8 +170,12 @@ ROOT_TOKEN = Token(-1, ROOT, ROOT, ROOT, -1)
 UNK_TOKEN = Token(-1, UNK, UNK, UNK, -1)
 
 
-# 解析句子
+
 class Sentence(object):
+    '''
+    解析句子
+    定义句子类，用来保存栈、buffer、依赖、预测结果等
+    '''
     def __init__(self, tokens):
         self.Root = Token(-1, ROOT, ROOT, ROOT, -1)
         self.tokens = tokens
@@ -179,6 +200,11 @@ class Sentence(object):
             token.right_children.keys().sort()
 
     def update_child_dependencies(self, curr_transition):
+        '''
+        更新左右子树
+        :param curr_transition:
+        :return:
+        '''
         if curr_transition > 0 and curr_transition <= len(all_dep_label):
             head = self.stack[-1]
             dependent = self.stack[-2]
@@ -194,7 +220,15 @@ class Sentence(object):
             head.right_children.keys().sort()
             # dependent.head_id = head.token_id
 
-    def get_child_by_index_and_depth(self, token, index, direction, depth):  # Get child token
+    def get_child_by_index_and_depth(self, token, index, direction, depth):
+        '''
+        判断若有子依赖，则返回子依赖，没有则返回空
+        :param token:
+        :param index:
+        :param direction:
+        :param depth:
+        :return:
+        '''
         if depth == 0:
             return token
 
@@ -210,6 +244,11 @@ class Sentence(object):
             return NULL_TOKEN
 
     def get_legal_labels(self):
+        '''
+        当前可允许的移位操作
+        :return:
+        '''
+
         #labels = ([1] * 70 if len(self.stack) > 2 else [0] * 70)
         #labels += ([1] * 70 if len(self.stack) >= 2 else [0]* 70)
         #labels += [1] * 70 if len(self.buff) > 0 else [0]* 70
@@ -218,7 +257,11 @@ class Sentence(object):
         labels += ([1] * len(all_dep_label) if len(self.stack) >= 2 else [0]* len(all_dep_label) )
         return labels
 
-    def get_transition_from_current_state(self):  # logic to get next transition
+    def get_transition_from_current_state(self):
+        '''
+        由栈和buffer的数据根据标准弧生成移位操作
+        :return:
+        '''
         if len(self.stack) < 2:
             return 0  # shift
 
@@ -236,11 +279,17 @@ class Sentence(object):
         else:
             return 0 if len(self.buff) != 0 else None
 
-    def update_state_by_transition(self, transition, gold=True):  # updates stack, buffer and dependencies
+    def update_state_by_transition(self, transition, gold=True):
+        '''
+        根据移位更新栈和buffer
+        :param transition:
+        :param gold:
+        :return:
+        '''
         if transition is not None:
             if transition == 0:  # shift
-                self.stack.append(self.buff[0])
-                self.buff = self.buff[1:] if len(self.buff) > 1 else []
+                self.stack.append(self.buff[0])  # 栈中增加第一个数据
+                self.buff = self.buff[1:] if len(self.buff) > 1 else []    # buffer删除第一个数据
             elif transition >= 1 and transition <= len(all_dep_label):  # left arc
                 dep_label = all_dep_label[transition - 1]
                 self.dependencies.append(
@@ -255,13 +304,15 @@ class Sentence(object):
                 self.stack = self.stack[:-1]
 
     def reset_to_initial_state(self):
+        '''
+        栈和buffer复原
+        :return:
+        '''
         self.buff = [token for token in self.tokens]
         self.stack = [self.Root]
 
-
     def clear_prediction_dependencies(self):
         self.predicted_dependencies = []
-
 
     def clear_children_info(self):
         for token in self.tokens:
@@ -270,6 +321,9 @@ class Sentence(object):
 
 
 class Dataset(object):
+    '''
+    数据集和索引
+    '''
     def __init__(self, model_config, train_data, valid_data, test_data, feature_extractor):
         self.model_config = model_config
         self.train_data = train_data
@@ -296,7 +350,10 @@ class Dataset(object):
         self.test_inputs, self.test_targets = None, None
 
     def build_vocab(self):
-
+        '''
+        生成三种类型输入的字典索引矩阵
+        :return:
+        '''
         all_words = set()
         all_pos = set()
         all_dep = set()
@@ -341,7 +398,10 @@ class Dataset(object):
         self.idx2dep = idx2dep
 
     def build_embedding_matrix(self):
-
+        '''
+        生成特征矩阵
+        :return:
+        '''
         # load word vectors
         word_vectors = {}
         embedding_lines = open(os.path.join(DataConfig.data_dir_path, DataConfig.embedding_file), "r").readlines()
@@ -376,6 +436,10 @@ class Dataset(object):
         self.dep_embedding_matrix = dep_embedding_matrix
 
     def convert_data_to_ids(self):
+        '''
+        将数据转换成模型的输入
+        :return:
+        '''
         self.train_inputs, self.train_targets = self.feature_extractor. \
             create_instances_for_data(self.train_data, self.word2idx, self.pos2idx, self.dep2idx, self.idx2dep)
 
@@ -394,12 +458,17 @@ class Dataset(object):
                 idx += 1
 
 class FeatureExtractor(object):
+    '''
+    栈和buffer的移位操作
+    '''
+
     def __init__(self, model_config):
         self.model_config = model_config
 
     def extract_from_stack_and_buffer(self, sentence, num_words=3):
-        tokens = []
 
+        tokens = []
+        # 栈中后三个数据和前三个数据，不够则步null
         tokens.extend([NULL_TOKEN for _ in range(num_words - len(sentence.stack))])
         tokens.extend(sentence.stack[-num_words:])
 
@@ -410,6 +479,7 @@ class FeatureExtractor(object):
     def extract_children_from_stack(self, sentence, num_stack_words=2):
         children_tokens = []
 
+        # 递归，栈中后两个词的左右子依赖
         for i in range(num_stack_words):
             if len(sentence.stack) > i:
                 lc0 = sentence.get_child_by_index_and_depth(sentence.stack[-i - 1], 0, "left", 1)
@@ -461,14 +531,14 @@ class FeatureExtractor(object):
         word_inputs = []
         pos_inputs = []
         dep_inputs = []
-        for i, sentence in enumerate(data):
-            num_words = len(sentence.tokens)
+        for i, sentence in enumerate(data):   # 按句子输入总数
+            num_words = len(sentence.tokens)  # 句子总共单词数
 
             for _ in range(num_words * 2):
                 word_input, pos_input, dep_input = self.extract_for_current_state(sentence, word2idx, pos2idx, dep2idx,
                                                                                   idx2dep)
-                legal_labels = sentence.get_legal_labels()
-                curr_transition = sentence.get_transition_from_current_state()
+                legal_labels = sentence.get_legal_labels()   # 确认当前可进行的位移方式
+                curr_transition = sentence.get_transition_from_current_state()  # 标准弧解析，获取当前进行的移位操作,0rigth，1left，2shift
                 if curr_transition is None:
                     break
                 assert legal_labels[curr_transition] == 1
@@ -484,7 +554,7 @@ class FeatureExtractor(object):
                 dep_inputs.append(dep_input)
 
             else:
-                sentence.reset_to_initial_state()
+                sentence.reset_to_initial_state()   # 一个句子结束
 
             # reset stack and buffer to default state
             sentence.reset_to_initial_state()
