@@ -6,8 +6,12 @@
 原项目是用于英文的，这里将其修改为中文的分析器, 同时添加了LAS的计算。<br>
 <br>
 ## 依赖
-tensorflow >=1.3, #更低的应该也可以<br>
+tensorflow_gpu = 1.9, #更低的应该也可以<br>
 <br>
+
+## 实现说明
+####   1、依赖词性标注
+
 ## 测试结果
 现在为初始版本，使用THU语义依存语料库，输出格式为conll格式。<br>
 test UAS: 79.3430018128<br>
@@ -30,8 +34,9 @@ Gold原文：<br>
 6   出现    出现    v   v   _   0   核心成分<br>
 可改进的地方为模型参数（未细调)/embeding（在该语料库上训练的)等处<br>
 <br>
+
 ## 运行
 训练模型： python parser_model.py<br>
 测试模型： python parser_test.py<br>
+
 ## 其他
-如有问题，可以发邮件联系我:me@pelhans.com
