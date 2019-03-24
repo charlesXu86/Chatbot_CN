@@ -10,7 +10,7 @@ tensorflow_gpu = 1.9, #更低的应该也可以<br>
 <br>
 
 ## 数据集说明
-![image]()
+![image](https://github.com/charlesXu86/Chatbot_CN/blob/f24fe4b366189c7fda62662b25ac10c75caf7974/Chatbot_Model/Dependency_parsing/img/data.png)
 第一列是单词在句子中的序号，第二列是单词，第五列是POS tags，第七列是所依赖的序号，第八列是依赖关系也是arc labels。
 
 ## 实现说明

@@ -57,7 +57,7 @@ class DataConfig:  # data, embedding, model path etc.
     test_summ_dir = "valid_summaries"
 
     # dump - vocab
-    dump_dir = "/../data/pkl"
+    dump_dir = "./data/pkl"
     word_vocab_file = "word2idx.pkl"
     pos_vocab_file = "pos2idx.pkl"
     dep_vocab_file = "dep2idx.pkl"
