@@ -7,7 +7,7 @@ sys.setdefaultencoding('utf8')
 import tensorflow as tf
 import numpy as np
 import os
-from joint_intent_slots_knowledge_conditional_model import joint_knowledge_conditional_model
+from joint_intent_slots_knowledge_domain_model import joint_knowledge_domain_model
 from Data_util import generate_training_data
 import jieba
 
@@ -26,7 +26,7 @@ tf.app.flags.DEFINE_integer("validate_step", 1000, "how many step to validate.")
 tf.app.flags.DEFINE_integer("hidden_size",128,"hidden size")
 tf.app.flags.DEFINE_float("l2_lambda", 0.0001, "l2 regularization")
 
-tf.app.flags.DEFINE_string("data_source","knowledge_67800/training_data_1w.txt","file for data source") #knowledge_67800/training_data_38_50w.txt
+tf.app.flags.DEFINE_string("data_source","knowledge_67800/training_data _10w.txt","file for data source") #knowledge/sht_20171125.txt
 tf.app.flags.DEFINE_string("knowledge_path","knowledge_67800","file for data source") #skill3_train_20171114.txt
 tf.app.flags.DEFINE_boolean("test_mode",False,"whether use test mode. if true, only use a small amount of data")
 
@@ -44,7 +44,7 @@ def main(_):
     with tf.Session(config=config) as sess:
         # Instantiate Model
         sequence_length_batch=[FLAGS.sequence_length]*FLAGS.batch_size
-        model=joint_knowledge_conditional_model(intent_num_classes, FLAGS.learning_rate, FLAGS.decay_steps, FLAGS.decay_rate, FLAGS.sequence_length,
+        model=joint_knowledge_domain_model(intent_num_classes, FLAGS.learning_rate, FLAGS.decay_steps, FLAGS.decay_rate, FLAGS.sequence_length,
                  vocab_size, FLAGS.embed_size,FLAGS.hidden_size, sequence_length_batch,slots_num_classes,FLAGS.is_training,domain_num_classes)
         # Initialize Save
         saver = tf.train.Saver()

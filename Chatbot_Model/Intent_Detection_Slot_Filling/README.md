@@ -26,6 +26,14 @@ for slot filling: count label each number to 0 or 1. if sum of a number together
 in this case, output of slot filling will be:[0,0,1,1,1,0]
 for intent detection, count how many number totally is marked as 1. in this case, output of intent will be:3.
 
+
+# 技术实现(意图识别归结为一个分类问题)
+   1、正则库
+   
+   2、深度学习模型
+   
+# Model
+![image](image/slot_filling.png)
 Performance:
 -------------------------------------------------------------------------------------
 
@@ -121,7 +129,7 @@ by providing hidden states of domain together with other features before doing i
 
 -----------------------------
 
-![alt text](https://github.com/brightmart/slot_filling_intent_joint_model/blob/master/resources/JOINT_MODEL.JPG)
+![img](https://github.com/charlesXu86/Chatbot_CN/blob/eda347ad19596571b860622e14e045b24bf9c49d/Chatbot_Model/Intent_Detection_Slot_Filling/resource/JOINT_MODEL.JPG)
 
 ![alt text](https://github.com/brightmart/slot_filling_intent_joint_model/blob/master/resources/TextCNN.JPG)
 

@@ -1,4 +1,11 @@
-# -*- coding: utf-8 -*-
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: Data_util.py
+@desc: 数据工具类
+@time: 2019/03/22
+"""
+
 import jieba
 import collections
 import codecs
@@ -6,7 +13,7 @@ import os
 import numpy as np
 import random
 import json
-from a1_generate_knowledges import get_knowledge
+from Generate_resource_data import get_knowledge
 
 UNK = u'_UNK'
 O = u'_O'
@@ -183,6 +190,8 @@ def generate_raw_data_singel(sline):
 
 short_splitter="_"
 slot_value_splitter="<"
+
+
 def get_domain_and_real_intent(dialog_template_id):
     """
     get domain information from dialog_template_id.e.g. dialog_template_id:'医疗问诊__问诊_疾病概述__2c9081a4602b882801602b8b468d0055'
@@ -486,13 +495,14 @@ def write_data_for_fasttext(training_array, target_file, test_file):
         target_object.close()
         test_object.close()
 
-# data_source='knowledge/sht_20171125.txt'
-# traing_data, valid_data, test_data=generate_training_data(data_source)
-# print("length of training data:",len(traing_data))
-# for i,element in enumerate(traing_data):
-#    if i<10:
-#        print(i,element)
-
+data_source='F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data\sht_20190319.txt'
+knowledge_path = 'F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data'
+traing_data, valid_data, test_data=generate_training_data(data_source, knowledge_path)
+print("length of training data:",len(traing_data))
+for i,element in enumerate(traing_data):
+   if i<10:
+       print(i,element)
+#
 # target_file='knowledge/train_joint_train.txt'
 # test_file='knowledge/train_joint_test.txt'
 # write_data_for_fasttext(training_array,target_file,test_file)

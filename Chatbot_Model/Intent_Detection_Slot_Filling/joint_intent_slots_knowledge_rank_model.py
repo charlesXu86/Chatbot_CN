@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # -*- coding: utf-8 -*-
-# seq2seq_attention: 1.word embedding 2.encoder 3.decoder(optional with attention). for more detail, please check:Neural Machine Translation By Jointly Learning to Align And Translate
+# seq2seq_attention:
+#      1.word embedding
+#      2.encoder
+#      3.decoder(optional with attention).
+#      for more detail, please check:Neural Machine Translation By Jointly Learning to Align And Translate
 
 import tensorflow as tf
 import numpy as np

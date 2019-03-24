@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import jieba
 import codecs
-from a1_data_util import generate_raw_data
+from Data_util import generate_raw_data
 
 slot_values_file='knowledge_all/slot_values.txt'
 

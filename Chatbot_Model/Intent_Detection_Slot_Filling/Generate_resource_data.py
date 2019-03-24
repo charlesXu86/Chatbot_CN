@@ -1,10 +1,20 @@
-# -*- coding: utf-8 -*-
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: Generate_resource_data.py
+@desc: 生成训练数据
+@time: 2019/03/22
+"""
+
 #1.read a line
 #2.get 1)user_speech, 2)intent, 3)slots, 4)get knowledges for the slots
+
 import json
 import codecs
 import os
 import random
+
+
 slot_values_file='slot_values.txt'
 slot_value_name_pair_file='slot_pairs.txt'
 slot_names_file='slot_names.txt'
@@ -86,6 +96,6 @@ def get_knowledge(data_source_file,knowledge_path,test_mode=False):
 
     #print("knowledge_dict:",knowledge_dict)
 
-data_source='knowledge/sht_20171125.txt'
-knowledge_path='skill3'
-#get_knowledge(data_source,knowledge_path)
+data_source='F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data\sht_20190323.txt'
+knowledge_path='F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data'
+get_knowledge(data_source,knowledge_path)

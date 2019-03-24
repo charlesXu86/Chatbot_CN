@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # -*- coding: utf-8 -*-
 # seq2seq_attention: 1.word embedding 2.encoder 3.decoder(optional with attention). for more detail, please check:Neural Machine Translation By Jointly Learning to Align And Translate
-
 import tensorflow as tf
 import numpy as np
 import tensorflow.contrib as tf_contrib
@@ -9,11 +8,11 @@ import random
 import copy
 import os
 
-class joint_knowledge_conditional_model:
+class joint_knowledge_domain_model:
     def __init__(self, intent_num_classes, learning_rate, decay_steps, decay_rate, sequence_length,
                  vocab_size, embed_size,hidden_size, sequence_length_batch,slots_num_classes,is_training,domain_num_classes,
                  initializer=tf.random_normal_initializer(stddev=0.1),clip_gradients=3.0,l2_lambda=0.0001,use_hidden_states_slots=True,
-                 filter_sizes=[1,2,3],num_filters=64,S_Q_len=1):
+                 filter_sizes=[1,2,3,4,5],num_filters=128,S_Q_len=1):
         """init all hyperparameter here"""
         # set hyperparamter
         self.intent_num_classes = intent_num_classes
@@ -53,21 +52,11 @@ class joint_knowledge_conditional_model:
         self.decay_steps, self.decay_rate = decay_steps, decay_rate
 
         self.instantiate_weights()
-        self.encoder_bi_directional_alime()
 
-        self.logits_domain = self.inference_domain() #[none,domain_num_classes]
-        logits_domian_max=tf.reduce_max(self.logits_domain, axis=-1, keep_dims=True) #[none,domain_num_classes]
-        logits_domain_smooth = self.logits_domain - logits_domian_max
-        self.domain_scores=tf.nn.softmax(logits_domain_smooth)
-
-        self.logits_intent = self.inference_intent() #[none,intent_num_classes]
-
-        logits_intent_max = tf.reduce_max(self.logits_intent, axis=-1, keep_dims=True)
-        logits_intent_smooth = self.logits_intent - logits_intent_max
-        self.intent_scores = tf.nn.softmax(logits_intent_smooth)
-
-        self.logits_slots = self.inference_slot() #[none,sequence_length,slots_num_classes]
-
+        self.encoder_bi_directional_alime() #encoder input
+        self.logits_domain = self.inference_domain() #inference for domain.[none,intent_num_classes]
+        self.logits_intent = self.inference_intent() #inference for intent.[none,intent_num_classes]
+        self.logits_slots = self.inference_slot() #inference for slot.[none,sequence_length,slots_num_classes]
 
         self.predictions_intent = tf.argmax(self.logits_intent, axis=1,name="predictions_intent")  # [batch_size]
         correct_prediction_intent = tf.equal(tf.cast(self.predictions_intent, tf.int32),self.y_intent)  # [batch_size]
@@ -120,20 +109,16 @@ class joint_knowledge_conditional_model:
                                                           sequence_length=self.sequence_length_batch, time_major=False, swap_memory=True)
         self.inputs_representation=tf.concat([bi_outputs[0],bi_outputs[1]],-1) #should be:[none, self.sequence_length,self.hidden_size*2]
 
-    def inference_domain(self): #domain
+    def inference_domain(self): #intent
         with tf.variable_scope("hidden_layer_domain"): #some inference structure with intent, but parameters is not the same.
             hidden_states=self.conv_layer() #[None,num_filters_total]
-        self.domain_hidden_states=hidden_states
         logits_domain = tf.matmul(hidden_states, self.W_projection_domain) + self.b_projection_domain #[none,domain_num_classes]
         return logits_domain
 
     def inference_intent(self): #intent
         with tf.variable_scope("hidden_layer_intent"):
             hidden_states=self.conv_layer() #[None,num_filters_total]
-        self.intent_hidden_states=hidden_states
-        hidden_states_concat=tf.concat([hidden_states,self.domain_hidden_states],axis=1) #[None,num_filters_total*2]
-        hidden_states_concat=tf.layers.dense(hidden_states_concat,self.num_filters_total,activation=tf.nn.tanh)
-        logits = tf.matmul(hidden_states_concat, self.W_projection_intent) + self.b_projection_intent #[none,intent_num_classes]
+        logits = tf.matmul(hidden_states, self.W_projection_intent) + self.b_projection_intent #[none,intent_num_classes]
         return logits
 
     def inference_slot(self): #slot
@@ -141,7 +126,6 @@ class joint_knowledge_conditional_model:
         hidden_states_list=[]
         for i in range(self.sequence_length):
             feature=self.inputs_representation[:,i,:] #[none,self.hidden_size*2]
-            feature=tf.concat([feature,self.intent_hidden_states],axis=1) #ADD.201712.20.slot contional on intent#[none,self.hidden_size*2+self.num_filters_total*2]
             hidden_states = tf.layers.dense(feature, self.hidden_size, activation=tf.nn.tanh) #[none,hidden_size]
             output=tf.matmul(hidden_states, self.W_projection_slot) + self.b_projection_slot #[none,slots_num_classes]
             logits.append(output)
@@ -185,6 +169,7 @@ class joint_knowledge_conditional_model:
         query_representation=tf.reduce_sum(query_representation,axis=1) #[none,self.hidden_size*2]
         inputs_representation=tf.reduce_sum(self.inputs_representation,axis=1) #[none,self.hidden_size*2]
         self.similiarity_list = self.cos_similiarity_vectorized(inputs_representation, query_representation) ##[1,None]
+
 
     def cos_similiarity_vectorized(self,v,V):
         """
@@ -292,3 +277,153 @@ class joint_knowledge_conditional_model:
             # w projection is used for domain. domain_num_classes mean target side classes.
             self.W_projection_domain = tf.get_variable("W_projection_domain",shape=[self.num_filters_total, self.domain_num_classes],initializer=self.initializer)  # [self.hidden_size,self.domain_num_classes]
             self.b_projection_domain = tf.get_variable("b_projection_domain", shape=[self.domain_num_classes])
+
+
+# test started: for slot_filling part,for each element,learn to predict whether its value with previous and next element(let's say,sub_sum) is great than a threshold;
+# for intent, predict total elements that its sub_sum greater than threshold.
+def train():
+    # below is a function test; if you use this for text classifiction, you need to tranform sentence to indices of vocabulary first. then feed data to the graph.
+    intent_num_classes = 100 #additional two classes:one is for _GO, another is for _END
+    learning_rate = 0.0001
+    batch_size = 1
+    decay_steps = 1000
+    decay_rate = 0.9
+    sequence_length = 5
+    vocab_size = 300
+    embed_size = 1000 #100
+    hidden_size = 1000
+    is_training = True
+    dropout_keep_prob = 0.5  # 0.5 #num_sentences
+    decoder_sent_length=6
+    l2_lambda=0.0001
+    slots_num_classes=2
+    sequence_length_batch=[sequence_length]*batch_size
+    model = joint_knowledge_model(intent_num_classes, learning_rate, decay_steps, decay_rate, sequence_length,
+                                    vocab_size, embed_size,hidden_size, sequence_length_batch,slots_num_classes,is_training,l2_lambda=l2_lambda)
+    ckpt_dir = 'checkpoint_dmn/dummy_test/'
+    if not os.path.exists(ckpt_dir):
+        os.makedirs(ckpt_dir)
+    saver=tf.train.Saver()
+    with tf.Session() as sess:
+        sess.run(tf.global_variables_initializer())
+        for i in range(1500): #1500
+            # prepare data
+            label_list=get_unique_labels(sequence_length)
+            encoder_input = np.array([label_list],dtype=np.int32) #[2,3,4,5,6]
+            input_knowledges=np.array([get_knowledge_list(label_list,slots_num_classes)],dtype=np.int32)
+            target_list=get_target_from_list(label_list)
+            decoder_slot_input=np.array([[0]+target_list],dtype=np.int32) #[[0,2,3,4,5,6]] #'0' is used to represent start token.
+            decoder_slot_output=np.array([target_list+[1]],dtype=np.int32) #[[2,3,4,5,6,1]] #'1' is used to represent end token.
+            decoder_intent=[np.sum(target_list)]
+            # feed the data and run.
+            loss, predictions_intent,predictions_slots,accuracy_intent, accuracy_slot,_ = sess.run([model.loss_val,model.predictions_intent,
+                                                                           model.predictions_slots,model.accuracy_intent,model.accuracy_slot, model.train_op],
+                                                     feed_dict={model.encoder_input:encoder_input,
+                                                                model.decoder_slot_input:decoder_slot_input,
+                                                                model.decoder_slot_output: decoder_slot_output,
+                                                                model.decoder_intent:decoder_intent,
+                                                                model.input_knowledges: input_knowledges,
+                                                                model.dropout_keep_prob: dropout_keep_prob})
+            if i%1000==0:
+                save_path = ckpt_dir + "model.ckpt"
+                saver.save(sess,save_path,global_step=i)
+
+            print(i,";loss:", loss, ";inputX:",label_list,";dec_slot_output:", list(decoder_slot_output[0]), ";preds_slots:", list(predictions_slots[0]),
+                  ";dec_intent:",list(decoder_intent),";pred_intent:",list(predictions_intent),"acc_intent:",accuracy_intent,"acc_slot:",accuracy_slot)
+
+def predict():
+    # below is a function test; if you use this for text classifiction, you need to tranform sentence to indices of vocabulary first. then feed data to the graph.
+    intent_num_classes =100  # additional two classes:one is for _GO, another is for _END
+    learning_rate = 0.0001
+    batch_size = 1
+    decay_steps = 1000
+    decay_rate = 0.9
+    sequence_length = 5
+    vocab_size = 300
+    embed_size = 1000
+    hidden_size = 1000
+    is_training = False #THIS IS DIFFERENT FROM TRAIN()
+    dropout_keep_prob = 1.0
+    decoder_sent_length = 6
+    l2_lambda = 0.0001
+    slots_num_classes=2
+    sequence_length_batch=[sequence_length]*batch_size
+    model = joint_knowledge_model(intent_num_classes, learning_rate, batch_size, decay_steps, decay_rate, sequence_length,
+                                    vocab_size, embed_size, hidden_size, sequence_length_batch,slots_num_classes,is_training,
+                                    decoder_sent_length=decoder_sent_length, l2_lambda=l2_lambda)
+    ckpt_dir = 'checkpoint_dmn/dummy_test/'
+    saver=tf.train.Saver()
+    with tf.Session() as sess:
+        sess.run(tf.global_variables_initializer())
+        saver.restore(sess,tf.train.latest_checkpoint(ckpt_dir))
+        for i in range(100):
+            # prepare data
+            label_list=get_unique_labels(sequence_length)
+            encoder_input = np.array([label_list],dtype=np.int32) #[2,3,4,5,6]
+            input_knowledges=np.array([get_knowledge_list(label_list,slots_num_classes)],dtype=np.int32)
+            decoder_slot_input=np.array([[0]+[0]*len(label_list)],dtype=np.int32) #[[0,2,3,4,5,6]] #'0' is used to represent start token.
+            # feed the data and run.
+            predictions_intent,predictions_slots = sess.run([model.predictions_intent,model.predictions_slots],
+                                                     feed_dict={model.encoder_input:encoder_input,
+                                                                model.decoder_slot_input:decoder_slot_input,
+                                                                model.input_knowledges: input_knowledges,
+                                                                model.dropout_keep_prob: dropout_keep_prob})
+            target_list=get_target_from_list(label_list)
+            decoder_slot_output=np.array([target_list+[1]],dtype=np.int32) #[[2,3,4,5,6,1]] #'1' is used to represent end token.
+            decoder_intent=[np.sum(target_list)]
+            print(i, "input x:", label_list,";decoder_slot_output[right]:", decoder_slot_output,
+                  "pred_slots:",predictions_slots,"decoder_intent:",decoder_intent,"pred_intent:", predictions_intent)
+
+
+def get_unique_labels(size):
+    x=[2,3,4,5,6,7,8,9]
+    random.shuffle(x)
+    x=x[0:size]
+    return x
+
+def get_target_from_list(list, threshold=15):
+    #result_list = [int(e % 2 == 0) for e in list]
+    result_list=[]
+    previous=0
+    next=0
+    length=len(list)
+    for i,element in enumerate(list):
+        if i-1<0:
+            previous=0
+        else:
+            previous=list[i-1]
+        if i+1>length-1:
+            next=0
+        else:
+            next=list[i+1]
+        sub_sum=np.sum(previous+element+next)
+        value=1 if  sub_sum>=threshold else 0
+        result_list.append(value)
+    return result_list
+
+#result=get_target_from_list([2,5,7,4,9])
+#print("result:",result)
+
+def get_knowledge_list(label_list,slots_voc_size,threshold=15):
+    result_list=[] #[0]*slots_voc_size
+    singel_threshold=threshold/3
+    for i,element in enumerate(label_list):
+        sub_list = 1 if element>=singel_threshold else 0
+        result_list.append(sub_list)
+    result_list.append(0)
+    return result_list
+
+def get_knowledge_listOLD(label_list,slots_voc_size,threshold=15):
+    result_list=[] #[0]*slots_voc_size
+    singel_threshold=5
+    for i,element in enumerate(label_list):
+        sub_list = [1 if element>=singel_threshold else 0 for e in range(slots_voc_size)]
+        result_list.append(sub_list)
+    result_list.append([ 0 for e in  range(slots_voc_size)])
+    return result_list
+
+#result=get_knowledge_list([4,3,5,2,6],2)
+#print("result:",result)
+
+#train()
+#predict()

@@ -10,8 +10,7 @@ sys.setdefaultencoding('utf8')
 import tensorflow as tf
 import numpy as np
 import os
-from joint_intent_slots_knowledge_conditional_model import joint_knowledge_conditional_model
-
+from joint_intent_slots_knowledge_domain_model import joint_knowledge_domain_model
 from Data_util import *
 import math
 import pickle
@@ -33,7 +32,7 @@ tf.app.flags.DEFINE_float("l2_lambda", 0.0001, "l2 regularization")
 
 tf.app.flags.DEFINE_boolean("enable_knowledge",True,"whether to use knwoledge or not.")
 tf.app.flags.DEFINE_string("knowledge_path","knowledge_67800","file for data source") #skill3_train_20171114.txt
-tf.app.flags.DEFINE_string("data_source","knowledge_67800/training_data_1w.txt","file for data source") #knowledge/sht_20171125.txt training_data_38_50w.txt
+tf.app.flags.DEFINE_string("data_source","knowledge_67800/training_data _10w.txt","file for data source") #knowledge/sht_20171125.txt
 tf.app.flags.DEFINE_boolean("test_mode",False,"whether use test mode. if true, only use a small amount of data")
 
 tf.app.flags.DEFINE_string("validation_file","wzz_training_data_20171211_20w_validation.txt","validation file")
@@ -67,7 +66,7 @@ sequence_length_batch = [FLAGS.sequence_length] * FLAGS.batch_size
 
 S_Q_len=len(q_list_index)
 print("S_Q_len:",S_Q_len)
-model = joint_knowledge_conditional_model(intent_num_classes, FLAGS.learning_rate, FLAGS.decay_steps, FLAGS.decay_rate,
+model = joint_knowledge_domain_model(intent_num_classes, FLAGS.learning_rate, FLAGS.decay_steps, FLAGS.decay_rate,
                           FLAGS.sequence_length, vocab_size, FLAGS.embed_size, FLAGS.hidden_size,
                           sequence_length_batch, slots_num_classes, FLAGS.is_training,domain_num_classes,S_Q_len=S_Q_len)
 # initialize Saver
@@ -82,56 +81,20 @@ jieba.load_userdict(slot_values_file)
 def main(_):
     sentence=u'开灯' #u'帮我打开厕所的灯'
     #indices=[240, 277, 104, 274, 344, 259, 19, 372, 235, 338, 338, 338, 338, 338, 338] #[283, 180, 362, 277, 99, 338, 338, 338, 338, 338, 338, 338, 338, 338, 338] #u'帮我把客厅的灯打开'
-    intent,intent_logits, slots,slot_list,similiarity_list_result,domain,domain_score=predict(sentence)
+    intent,intent_logits, slots,slot_list,similiarity_list_result,domain=predict(sentence)
     print(sentence)
     print('intent:{},intent_logits:{},domain:{}'.format(intent, intent_logits,domain))
     for slot_name,slot_value in slots.items():
-        print('slots.slot_name:{},slot_value:{}'.format(slot_name, slot_value))
+        print('slot_name:{},slot_value:{}'.format(slot_name, slot_value))
     for i,element in enumerate(slot_list):
         slot_name,slot_value=element
-        print('slot_list.slot_name:{},slot_value:{}'.format(slot_name, slot_value))
+        print('slot_name:{},slot_value:{}'.format(slot_name, slot_value))
 
     #accuracy_similiarity, accuracy_classification=accuarcy_for_similiarity_validation_set()
     #print("accuracy_similiarity:",accuracy_similiarity,";accuracy_classification:",accuracy_classification)
 
     predict_interactive()
 
-def predict_joint(context_list,query):
-    """
-    :param context_list: a list of string
-    :param query: a string
-    :return:
-        predicted_intent: string
-        score: a string
-        slots: a dict
-    """
-    intent, intent_logits, slots, slot_list, similiarity_list_result, domain,domain_logits = predict(query)
-    return intent,intent_logits,slots
-
-def predict_with_one_single_question_add_scores(context_list,query):
-    """
-    :param context_list: a list of string
-    :param query: a string
-    :return:
-        predicted_intent: string
-        score: a string
-        slots: a dict
-    """
-    intent, intent_logits, slots, slot_list, similiarity_list_result, domain,domain_logits = predict(query)
-    return intent,intent_logits
-
-def predict_slots(context_list,current_intent):
-    """
-    :param context_list: a list of string
-    :param query: a string
-    :return:
-        predicted_intent: string
-        score: a string
-        slots: a dict
-    """
-    query=context_list[-1]
-    intent, intent_logits, slots, slot_list, similiarity_list_result, domain,domain_score = predict(query)
-    return slots
 
 def accuarcy_for_similiarity_validation_set():#read validation data from outside file, and compute accuarcy for classification model and similiarity model
     #1.get validation set
@@ -145,7 +108,7 @@ def accuarcy_for_similiarity_validation_set():#read validation data from outside
     i=0
     for sentence,value in dict_pair.items():
         #3.call predict
-        intent, intent_logits, slots, slot_list, similiarity_list_result,domain,domain_score = predict(sentence)
+        intent, intent_logits, slots, slot_list, similiarity_list_result,domain = predict(sentence)
         y_intent_target=value['intent']
         similiar_intent=similiarity_list_result[0]
         if similiar_intent ==y_intent_target:
@@ -209,9 +172,9 @@ def predict(sentence,enable_knowledge=1):
                  model.y_slots:np.reshape(y_slots,(1,FLAGS.sequence_length)),
                  model.S_Q:np.reshape(q_list_index,(qa_list_length,FLAGS.sequence_length)), #should be:[self.S_Q_len, self.sentence_len]
                  model.dropout_keep_prob:1.0}
-    logits_intent,logits_slots,similiarity_list,logits_domain = sess.run([model.intent_scores,model.logits_slots,model.similiarity_list,model.domain_scores], feed_dict) #similiarity_list:[1,None]
-    intent,intent_logits,slots,slot_list,similiarity_list_result,domain,domain_logits=get_result(logits_intent,logits_slots,sentence_indices,similiarity_list,logits_domain)
-    return intent,intent_logits,slots,slot_list,similiarity_list_result,domain,domain_logits
+    logits_intent,logits_slots,similiarity_list,logits_domain = sess.run([model.logits_intent,model.logits_slots,model.similiarity_list,model.logits_domain], feed_dict) #similiarity_list:[1,None]
+    intent,intent_logits,slots,slot_list,similiarity_list_result,domain=get_result(logits_intent,logits_slots,sentence_indices,similiarity_list,logits_domain)
+    return intent,intent_logits,slots,slot_list,similiarity_list_result,domain
 
 def get_y_slots_by_knowledge(sentence,sequence_length,enable_knowledge=1,knowledge_path=None):
     """get y_slots using dictt.e.g. dictt={'slots': {'全部范围': '全', '房间': '储藏室', '设备名': '四开开关'}, 'user': '替我把储藏室四开开关全关闭一下', 'intent': '关设备<房间><全部范围><设备名>'}"""
@@ -250,37 +213,22 @@ def predict_interactive():
             question = sys.stdin.readline()
 
         #1.predict using quesiton
-        intent, intent_logits,slots,slot_list,similiarity_list,domain,domain_score=predict(question,enable_knowledge=enable_knowledge)
+        intent, intent_logits,slots,slot_list,similiarity_list,domain=predict(question,enable_knowledge=enable_knowledge)
         #2.print
-        print('技能:{},置信度:{}'.format(domain,domain_score))
         print('意图:{},置信度:{}'.format(intent, intent_logits))
+        print('技能:{}'.format(domain))
+        #for i,similiarity in enumerate(similiarity_list):
+        #    print('i:{},similiarity:{}'.format(i, similiarity))
         for slot_name, slot_value in slots.items():
             print('slot_name:{}-->slot_value:{}'.format(slot_name, slot_value))
-        score, is_noise=compute_score_noise(domain_score,intent_logits,slots)
-        print('噪声输入：{},综合分数:{}'.format("是" if is_noise==True else "否",score)) #1 if 5>3 else 0
+        #for i, element in enumerate(slot_list):
+         #   slot_name, slot_value = element
+         #   print('slot_name:{},slot_value:{}'.format(slot_name, slot_value))
         #3.read new input
         print("Please Input Story>")
         sys.stdout.flush()
         question = sys.stdin.readline()
 
-def compute_score_noise(domain_score,intent_logits,slots,domain_weight=0.4,intent_weight=0.4,slots_weight=0.2):
-    """
-    compute whether it is a noise or not.今天
-    :param domain_score:
-    :param intent_logits:
-    :param slots:
-    :return:
-    """
-    score=0.0
-    is_noise=False
-    slots_score=min(1.0,float(len(slots))/2.0)
-    score=domain_weight*domain_score+intent_logits*intent_weight+slots_weight*slots_score
-    if score>=0.5:
-        is_noise=False
-    else:
-        is_noise=True
-    return score,is_noise
-    pass
 
 def get_result(logits_intent,logits_slots,sentence_indices,similiarity_list,logits_domain,top_number=3):
     index_intent= np.argmax(logits_intent[0]) #index of intent
@@ -290,7 +238,6 @@ def get_result(logits_intent,logits_slots,sentence_indices,similiarity_list,logi
 
     index_domain=np.argmax(logits_domain[0]) #index of domain
     domain=id2word_domain[index_domain]
-    domain_score=logits_domain[0][index_domain]
 
     slots=[]
     indices_slots=np.argmax(logits_slots[0],axis=1) #[sequence_length]
@@ -314,8 +261,8 @@ def get_result(logits_intent,logits_slots,sentence_indices,similiarity_list,logi
         question=q_list[index]
         answer=q2a_dict[question]
         similiarity_list_result.append(answer)
-        print('问题{}：{}, action:{}'.format(k,question, answer))
-    return intent,intent_logits,slots_dict,slot_list,similiarity_list_result,domain,domain_score
+        print('index:{}.问题{}：{}, intent:{}'.format(index,k,question, answer))
+    return intent,intent_logits,slots_dict,slot_list,similiarity_list_result,domain
 
 if __name__ == "__main__":
     tf.app.run()

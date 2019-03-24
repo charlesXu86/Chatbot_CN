@@ -1,7 +1,14 @@
-# -*- coding: utf-8 -*-
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: Generate_training_data.py
+@desc: 生成训练数据
+@time: 2019/03/22
+"""
+
 import json
 import codecs
-from  a1_generate_raw_data_single import generate_raw_data_singel
+from  Generate_raw_data_single import generate_raw_data_singel
 
 test_mode=True
 def generate_raw_data(source_file_name):
@@ -20,5 +27,5 @@ def generate_raw_data(source_file_name):
     i=0
     return result_dict
 
-#source_file_name='knowledge/sht_20171125.txt'
-#generate_raw_data(source_file_name)
+source_file_name='F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data\sht_20190319.txt'
+generate_raw_data(source_file_name)
