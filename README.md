@@ -115,8 +115,29 @@ Chatbot_CN
 ![image](Chatbot_Data/image/login.png)
 註冊頁
 ![image](Chatbot_Data/image/register.png)
-首頁
+首页
+![image](Chatbot_Data/image/main.png)
+模型（参考图）
+![image](Chatbot_Data/image/model.png)
+SPARQL查询
+![image](Chatbot_Data/image/sparql.png)
+信息检索
+![image](Chatbot_Data/image/信息检索.png)
 
+#### 知识图谱模块
+关系查询
+![image](Chatbot_Data/image/关系查询.png)
+问答
+![image](Chatbot_Data/image/农业问答.png)
+概览
+![image](Chatbot_Data/image/知识图谱概览.png)
+
+#### 演示
+
+
+
+#### 备注
+各个模块的说明请参考各个模块下的README文件
 
 
 #### 有关paper代码复现请关注另一个开源项目：
