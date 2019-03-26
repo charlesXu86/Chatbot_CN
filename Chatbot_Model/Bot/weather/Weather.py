@@ -2,7 +2,7 @@
 """ 
 @author:charlesXu
 @file: Weather.py 
-@desc: 天气查询
+@desc: 天气查询api服务调用
 @time: 2019/03/16 
 """
 
