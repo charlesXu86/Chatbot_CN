@@ -133,7 +133,11 @@ SPARQL查询
 ![image](Chatbot_Data/image/知识图谱概览.png)
 
 #### 演示
+1、闲聊部分
+![image](Chatbot_Data/image/chat_1.jpg)
+![image](Chatbot_Data/image/chat_2.jpg)
 
+2、任务型
 
 
 #### 备注
