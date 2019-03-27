@@ -1,6 +1,6 @@
-# Text Classification with CNN and RNN
+# Text Classification with TextRNN + Attention
 
-使用卷积神经网络以及循环神经网络进行中文文本分类
+使用TextRNN + Attention机制进行中文文本分类
 
 CNN做句子分类的论文可以参看: [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/abs/1408.5882)
 
@@ -66,7 +66,6 @@ CNN做句子分类的论文可以参看: [Convolutional Neural Networks for Sent
 | x_val | [5000, 600] | y_val | [5000, 10] |
 | x_test | [10000, 600] | y_test | [10000, 10] |
 
-## CNN卷积神经网络
 
 ### 配置项
 
@@ -95,13 +94,21 @@ class TCNNConfig(object):
     save_per_batch = 10      # 每多少轮存入tensorboard
 ```
 
-### CNN模型
+### TextRNN + Attention 模型
 
-具体参看`cnn_model.py`的实现。
+具体参看`rnn_model.py`的实现。
 
 大致结构如下：
 
-![images/cnn_architecture](images/cnn_architecture.png)
+![image](image/TextRNN.png)
+
+
+![image](image/text_classifacation.png)
+
+数据流程：
+Embedding layer -> BiLSTM layer -> concat output -> FC layer -> Softmax
+会在其中加入word level的Attention机制
+
 
 ### 训练与验证
 
@@ -144,7 +151,6 @@ No optimization for a long time, auto-stopping...
 
 准确率和误差如图所示：
 
-![images](images/acc_loss.png)
 
 
 ### 测试
