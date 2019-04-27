@@ -4,7 +4,7 @@
 -------------------------------------------------
    File Name：     pre_load.py
    Description :   模型预加载
-   Author :       charl
+   Author :       charles
    date：          2018/10/26
 -------------------------------------------------
    Change Activity: 2018/10/26:
@@ -30,8 +30,8 @@ print('neo4j connected!')
 
 predict_labels = {}   # 预加载实体到标注的映射字典
 # filePath = os.getcwd()
-filePath = 'D:\project\Chatbot_CN\Chatbot_KG\label_data'
-with open(filePath+'/predict_labels.txt','r',encoding="utf-8") as csvfile:
+filePath = 'F:\project\Chatbot_CN\Chatbot_KG\label_data'
+with open(filePath + '/predict_labels.txt','r',encoding="utf-8") as csvfile:
 	reader = csv.reader(csvfile, delimiter=' ')
 	for row in reader:
 		predict_labels[str(row[0])] = int(row[1])
@@ -46,8 +46,8 @@ wv_model.read_vec(filePath+'/vector_15.txt') # 降到15维了
 
 # 读取农业层次树
 tree = TREE()
-tree.read_edge(filePath+'/micropedia_tree.txt')
-tree.read_leaf(filePath+'/leaf_list.txt')
+tree.read_edge(filePath + '/micropedia_tree.txt')
+tree.read_leaf(filePath + '/leaf_list.txt')
 		
 print('level tree load over~~~')
 
@@ -58,7 +58,7 @@ mongo.makeConnection()
 print("mongodb connected")
 #连接数据库
 mongodb = mongo.getDatabase("agricultureKnowledgeGraph")
-print("connect to agricultureKnowledgeGraph")
+print("connect to Chatbot_CN")
 # 得到collection
 collection = mongo.getCollection("train_data")
 print("get connection train_data")
