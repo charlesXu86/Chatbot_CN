@@ -23,12 +23,12 @@ from Chatbot_Model.Retrieval.sematic_retrieval.build_dict import load_attr_map, 
 # 调用信息抽取中的get_entity方法
 from Chatbot_Model.Info_Extraction.Entity_Extraction.utils import get_entity
 
-data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\\'
+data_path = 'F:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\\'
 attr_map = load_attr_map(data_path + "attr_mapping.txt")
 out_path_file = data_path + "attr_ac.pkl"
-attr_ac = pkl.load(open(data_path + "attr_ac.pkl","rb"))   # py3
+# attr_ac = pkl.load(open(data_path + "attr_ac.pkl","rb"))   # py3
 ent_dict = load_entity_dict(data_path + "all_entity.txt")
-val_dict = load_val_dict(data_path + "Person_val.txt")
+# val_dict = load_val_dict(data_path + "Person_val.txt")
 
 def _parse_query(question):
     '''
@@ -399,8 +399,8 @@ def _map_predicate(pred_name, map_attr=True):
         return ans
 
     match = []
-    for w in attr_ac.iter(pred_name):
-        match.append(w[1][1].decode('utf-8'))
+    # for w in attr_ac.iter(pred_name):
+    #     match.append(w[1][1].decode('utf-8'))
     if not len(match):
         return []
 
@@ -447,14 +447,14 @@ def _remove_dup(word_list):
 def _val_linking(nl_query):
     parts = re.split(r'的|是|有', nl_query)
     hit_val = []
-    for p in parts:
-        for phrase in _generate_ngram_word(p):
-            if phrase.encode('utf-8') in val_dict:
-                hit_val.append(phrase)
+    # for p in parts:
+    #     for phrase in _generate_ngram_word(p):
+            # if phrase.encode('utf-8') in val_dict:
+            #     hit_val.append(phrase)
 
     hit_val = _remove_dup(hit_val)
     ans = {}
-    for p in hit_val:
-        ans[p] = val_dict[p.encode('utf-8')].decode('utf-8')
+    # for p in hit_val:
+    #     ans[p] = val_dict[p.encode('utf-8')].decode('utf-8')
 
     return ans
