@@ -16,7 +16,7 @@ import pickle as pkl
 
 from collections import defaultdict
 
-data_path = 'D:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\\'
+data_path = 'F:\project\Chatbot_CN\Chatbot_Data\Semantic_retrieval_data\\'
 entity_list_file =data_path + 'all_entity.txt'
 entity_out_path =data_path + 'ent_ac.pkl'
 attr_list_file =data_path + 'attr_mapping.txt'
