@@ -17,7 +17,7 @@ from Chatbot_KG.toolkit.NER import get_NE,temporaryok,get_explain,get_detail_exp
 def ER_post(request):
 	ctx ={}
 	if request.POST:
-		key = request.POST['user_text']
+		key = request.POST['entity_text']
 		thu1 = pre_load_thu  #提前加载好了
 		# 使用thulac进行分词 TagList[i][0]代表第i个词
 		# TagList[i][1]代表第i个词的词性
@@ -80,5 +80,5 @@ def ER_post(request):
 			seg_word += t[0]+" <strong><small>["+t[1]+"]</small></strong> "
 		seg_word += ""
 		ctx['seg_word'] = seg_word
-	return render(request, "ie/info_extraction.html", ctx)
+	return render(request, "cws/cws.html", ctx)
 	
