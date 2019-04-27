@@ -4,18 +4,17 @@
 -------------------------------------------------
    File Name：     TransH.py
    Description :   TransH 模型
-   Author :       charl
+   Author :       charlesXu
    date：          2018/11/14
 -------------------------------------------------
    Change Activity: 2018/11/14:
 -------------------------------------------------
 """
-import numpy as np
 import tensorflow as tf
 from .Model import Model
 
 class TransH(Model):
-	r'''
+	'''
 	To preserve the mapping propertities of 1-N/N-1/N-N relations, 
 	TransH inperprets a relation as a translating operation on a hyperplane. 
 	'''

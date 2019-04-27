@@ -4,7 +4,7 @@
 -------------------------------------------------
    File Name：     Model.py
    Description :   模型
-   Author :       charl
+   Author :       charlesXu
    date：          2018/11/14
 -------------------------------------------------
    Change Activity: 2018/11/14:

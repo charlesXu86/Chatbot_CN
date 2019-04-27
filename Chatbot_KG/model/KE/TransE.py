@@ -4,7 +4,7 @@
 -------------------------------------------------
    File Name：     TransE.py
    Description :   TransE 模型
-   Author :       charl
+   Author :       charlesXu
    date：          2018/11/14
 -------------------------------------------------
    Change Activity: 2018/11/14:
@@ -18,6 +18,14 @@ class TransE(Model):
 	r'''
 	TransE is the first model to introduce translation-based embedding, 
 	which interprets relations as the translations operating on entities.
+	================================================================
+
+	TransE算法的一个假定：
+	   他将关系看做是实体间的平移向量
+
+	缺点：
+		不能处理一对多，多对一和多对多的问题，所以有了TransH
+
 	'''
 	def _calc(self, h, t, r):
 		return abs(h + r - t)
@@ -33,12 +41,14 @@ class TransE(Model):
 
 	def loss_def(self):
 		#Obtaining the initial configuration of the model
+		# 計算TransE的損失函數
 		config = self.get_config()
 		#To get positive triples and negative triples for training
 		#The shapes of pos_h, pos_t, pos_r are (batch_size, 1)
 		#The shapes of neg_h, neg_t, neg_r are (batch_size, negative_ent + negative_rel)
 		pos_h, pos_t, pos_r = self.get_positive_instance(in_batch = True)
 		neg_h, neg_t, neg_r = self.get_negative_instance(in_batch = True)
+
 		#Embedding entities and relations of triples, e.g. p_h, p_t and p_r are embeddings for positive triples
 		p_h = tf.nn.embedding_lookup(self.ent_embeddings, pos_h)
 		p_t = tf.nn.embedding_lookup(self.ent_embeddings, pos_t)

@@ -1,5 +1,16 @@
-#coding:utf-8
-import numpy as np
+# -*- coding: utf-8 -*-
+
+"""
+-------------------------------------------------
+   File Name：     TransH.py
+   Description :   TransH 模型
+   Author :       charlesXu
+   date：          2018/11/14
+-------------------------------------------------
+   Change Activity: 2018/11/14:
+-------------------------------------------------
+"""
+
 import tensorflow as tf
 from .Model import Model
 
