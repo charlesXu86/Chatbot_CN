@@ -19,7 +19,7 @@ from poems import process_poems, generate_batch
 
 data_path = 'F:\project\Chatbot_CN\Chatbot_Data\Text_generator\poem\poems.txt'
 
-flags.DEFINE_integer('batch_size', 64, 'batch size.')
+flags.DEFINE_integer('batch_size', 64, 'batch size.')    # 每次取64首进行训练
 flags.DEFINE_float('learning_rate', 0.01, 'learning rate.')
 flags.DEFINE_string('model_dir', os.path.abspath('./model'), 'model save path.')
 flags.DEFINE_string('file_path', os.path.abspath(data_path), 'file name of poems.')

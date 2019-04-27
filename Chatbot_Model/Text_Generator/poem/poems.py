@@ -20,7 +20,7 @@ end_token = 'E'
 def process_poems(file_name):
     # poems -> list of numbers
     poems = []
-    with open(file_name, "r", encoding='utf-8', ) as f:
+    with open(file_name, "r", encoding='utf-8') as f:
         for line in f.readlines():
             try:
                 title, content = line.strip().split(':')
@@ -36,19 +36,26 @@ def process_poems(file_name):
                 print('Error is:', e)
     # poems = sorted(poems, key=len)
 
-    all_words = [word for poem in poems for word in poem]
+    all_words = [word for poem in poems for word in poem]   # 统计每个字出现的次数
     counter = collections.Counter(all_words)
     count_pairs = sorted(counter.items(), key=lambda x: x[1], reverse=True)
     words, _ = zip(*count_pairs)
 
     words = words + (' ',)
-    word_int_map = dict(zip(words, range(len(words))))
-    poems_vector = [list(map(lambda word: word_int_map.get(word, len(words)), poem)) for poem in poems]
+    word_int_map = dict(zip(words, range(len(words))))  # 生成单词到id的映射
+    poems_vector = [list(map(lambda word: word_int_map.get(word, len(words)), poem)) for poem in poems]  # 把诗转换成向量形式
 
     return poems_vector, word_int_map, words
 
 
 def generate_batch(batch_size, poems_vec, word_to_int):
+    """
+
+    :param batch_size:
+    :param poems_vec:
+    :param word_to_int:
+    :return:
+    """
     n_chunk = len(poems_vec) // batch_size
     x_batches = []
     y_batches = []

@@ -2,7 +2,7 @@
 
 import torch
 from Models import EncoderRNN, LuongAttnDecoderRNN
-from utils import *
+from Utils import *
 
 if __name__ == '__main__':
     input_lang = Lang('data/WORDMAP_zh.json')

@@ -3,7 +3,7 @@ from torch import optim
 
 from Data_gen import TranslationDataset
 from Models import EncoderRNN, LuongAttnDecoderRNN
-from utils import *
+from Utils import *
 
 
 def train(input_variable, lengths, target_variable, mask, max_target_len, encoder, decoder, encoder_optimizer,

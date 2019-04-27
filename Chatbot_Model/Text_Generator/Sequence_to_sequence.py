@@ -35,6 +35,7 @@ from tensorflow.contrib.rnn import GRUCell
 from tensorflow.contrib.rnn import MultiRNNCell
 from tensorflow.contrib.rnn import DropoutWrapper
 from tensorflow.contrib.rnn import ResidualWrapper
+from tensorflow.python.ops.rnn import dynamic_rnn, bidirectional_dynamic_rnn
 # from tensorflow.contrib.rnn import LSTMStateTuple
 
 from word_sequence import WordSequence
@@ -410,7 +411,7 @@ class SequenceToSequence(object):
                 (
                     encoder_outputs,
                     encoder_state
-                ) = tf.nn.dynamic_rnn(
+                ) = dynamic_rnn(
                     cell=encoder_cell,
                     inputs=inputs,
                     sequence_length=self.encoder_inputs_length,
@@ -425,7 +426,7 @@ class SequenceToSequence(object):
                 (
                     (encoder_fw_outputs, encoder_bw_outputs),
                     (encoder_fw_state, encoder_bw_state)
-                ) = tf.nn.bidirectional_dynamic_rnn(
+                ) = bidirectional_dynamic_rnn(
                     cell_fw=encoder_cell,
                     cell_bw=encoder_cell_bw,
                     inputs=inputs,
