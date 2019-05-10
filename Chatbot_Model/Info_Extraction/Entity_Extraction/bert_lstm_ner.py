@@ -2,7 +2,7 @@
 """ 
 @author:charlesXu
 @file: bert_lstm_ner.py 
-@desc:  继 bilstm + crf 之后，用bert优化ner的结果
+@desc:  bert优化ner
 @time: 2019/05/09 
 """
 
