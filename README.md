@@ -7,11 +7,11 @@
 
     Chatbot_CN       存放项目的整理配置文件
     Chatbot_Data     存放项目的数据文件以及模型训练文件
-    Chatbot_Doc      存放项目的参考文献等文档文件
+    Chatbot_Doc      存放项目的参考文献、笔记、收集的资料等文档文件
     Chatbot_Model    项目的模型实现
     Chatbot_KG       知识图谱实现
     Chatbot_Web      页面展示
-    Chatbot_Rest     RESTful接口模块(Chatbot_Rest/README.md)
+    Chatbot_Rest     RESTful接口模块 (Chatbot_Rest/README.md)
 
 
 
@@ -107,8 +107,16 @@ Chatbot_CN
 #### 安装教程
 
     1、项目的依赖包请参考Chatbot_CN根目录下的requirement.txt文件。
-    2、导入sql文件到mysql
-    3、导入数据到Neo4J
+    2、1、导入sql文件到mysql，mysql数据主要作用为项目数据表，如用户注册、登录等。sql脚本文件上传在Chatbot_Data/DATA目录下，运行项目前需要将数据导入到mysql数据库，否则会启动报错
+       步骤：1、在Chatbot_CN目录下修改settings.py文件里的数据库配置
+            2、执行sql脚本，将数据导入到本地
+    3、导入数据到Neo4J，Neo4j为支持知识图谱的图数据库查询，数据也存放在Chatbot_Data/DATA目录下。
+       步骤：1、启动图数据库，将数据复制到import目录下
+            2、导入。图数据库的部分教程以及数据的导入命令，关系查询构建请移步：Chatbot_Doc/图数据库  目录下
+            3、修改项目中的Neo4j连接。文件位置在：Chatbot_KG/util下，neo_models.py
+            4、启动图数据库。启动命令为： neo4j.bat console   （win环境下）
+    4、启动sparql。对项目启动可选        
+    
     
 #### 项目架构
     
@@ -144,7 +152,10 @@ SPARQL查询
 
 
 #### 备注
-各个模块的说明请参考各个模块下的README文件
+    1、各个模块的说明请参考各个模块下的README文件
+    2、代码会有一些冗余，不是所有代码在Chatbot运行流程中都会用上，有一些代码供学习用
+    3、目前正在封装接口，这样可以将Chatbot_Model 和 Chatbot_KG模块全部以RESTful api形式对外开放，提供远程调用。
+
 
 
 #### 有关paper代码复现请关注另一个开源项目：
