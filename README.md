@@ -3,7 +3,7 @@
 #### 项目介绍(Chatbot_CN)
 该项目的目的为实现闲聊的聊天机器人，目前的领域主要针对金融领域
 
-项目共分为六个模块：
+项目共分为七个模块，具体介绍可参照各模块目录下README文件：
 
     Chatbot_CN       存放项目的整理配置文件
     Chatbot_Data     存放项目的数据文件以及模型训练文件
@@ -11,6 +11,7 @@
     Chatbot_Model    项目的模型实现
     Chatbot_KG       知识图谱实现
     Chatbot_Web      页面展示
+    Chatbot_Rest     RESTful接口模块(Chatbot_Rest/README.md)
 
 
 
@@ -108,6 +109,8 @@ Chatbot_CN
     1、项目的依赖包请参考Chatbot_CN根目录下的requirement.txt文件。
     2、导入sql文件到mysql
     3、导入数据到Neo4J
+    
+#### 项目架构
     
     
 #### 項目展示
