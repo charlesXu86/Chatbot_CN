@@ -1,9 +1,9 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time    : 2017/11/20 15:42
 # @Author  : zhm
 # @File    : StringPreHandler.py
 # @Software: PyCharm
+
 import regex as re
 
 # * 字符串预处理模块，为分析器TimeNormalizer提供相应的字符串预处理服务
