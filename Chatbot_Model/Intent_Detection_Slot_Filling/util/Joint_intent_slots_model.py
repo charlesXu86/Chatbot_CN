@@ -12,9 +12,8 @@ import tensorflow as tf
 import numpy as np
 import tensorflow.contrib as tf_contrib
 import random
-import copy
 import os
-from a1_seq2seq import rnn_decoder_with_attention,extract_argmax_and_embed,attention_util
+from seq2seq_attention import rnn_decoder_with_attention,extract_argmax_and_embed,attention_util
 #from data_util import _GO_ID,_END_ID
 
 class seq2seq_attention_model:

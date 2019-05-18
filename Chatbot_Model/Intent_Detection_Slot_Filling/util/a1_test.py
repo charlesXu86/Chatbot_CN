@@ -1,9 +1,17 @@
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: Ticket_Action.py
+@desc: 测试
+@time: 2019/03/16
+"""
+
 # -*- coding: utf-8 -*-
 import jieba
 import codecs
 from Data_util import generate_raw_data
 
-slot_values_file='knowledge_all/slot_values.txt'
+slot_values_file='data/slot_values.txt'
 
 #jieba.load_userdict(slot_values_file)
 def test_jieba(string):

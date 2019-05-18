@@ -29,8 +29,18 @@ splitter_slot_names = '||'
 # ('y_slots_train[start:end]:', [[12, 12, 12, 5, 15, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12], [12, 12, 12, 5, 12, 15, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12], [12, 12, 12, 12, 12, 14, 12, 12, 12, 12, 12, 12, 12, 8, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12]])
 
 def generate_training_data(data_file, knowledge_path, test_mode=False, vocabulary_size=None, sequence_length=15):
-    """generate training data from a file, return training,validation and test set.
-      traininig data contain x,y_intent,y_slots: x for sentence,y_intent for intent,y_slots for slots"""
+    '''
+    生成训练数据
+    generate training data from a file, return training,validation and test set.
+      traininig data contain x,y_intent,y_slots: x for sentence,y_intent for intent,y_slots for slots
+    :param data_file:
+    :param knowledge_path:
+    :param test_mode:
+    :param vocabulary_size:
+    :param sequence_length:
+    :return:
+    '''
+
 
     cache_file = knowledge_path + '/cache_data.npy'
     print(cache_file, "exists or not:", os.path.exists(cache_file))
@@ -495,7 +505,7 @@ def write_data_for_fasttext(training_array, target_file, test_file):
         target_object.close()
         test_object.close()
 
-data_source='F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data\sht_20190319.txt'
+data_source='F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data\sht_20190323.txt'
 knowledge_path = 'F:\project\Chatbot_CN\Chatbot_Model\Intent_Detection_Slot_Filling\data'
 traing_data, valid_data, test_data=generate_training_data(data_source, knowledge_path)
 print("length of training data:",len(traing_data))
@@ -506,3 +516,5 @@ for i,element in enumerate(traing_data):
 # target_file='knowledge/train_joint_train.txt'
 # test_file='knowledge/train_joint_test.txt'
 # write_data_for_fasttext(training_array,target_file,test_file)
+
+

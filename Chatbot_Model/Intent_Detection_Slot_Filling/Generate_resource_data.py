@@ -22,6 +22,13 @@ splitter='|&|'
 splitter_slot_names='||'
 
 def get_knowledge(data_source_file,knowledge_path,test_mode=False):
+    '''
+
+    :param data_source_file:
+    :param knowledge_path:
+    :param test_mode:
+    :return:
+    '''
     #if target file not exist, create; otherwise return
     slot_value_name_pair_filee=knowledge_path+"/"+slot_value_name_pair_file
     slot_values_filee=knowledge_path + "/" + slot_values_file
