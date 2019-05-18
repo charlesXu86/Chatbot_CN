@@ -15,10 +15,12 @@
 
 from django.urls import path
 
-# from intent_rest_view
+from intent_rest_controller import intent_controller
+from entity_extraction_controller import entity_ext_controller
 
 
 urlpatterns = [
 
-    # path()
+    path('entity', entity_ext_controller), # 实体抽取
+    path('intent', intent_controller),     # 意图识别
 ]
