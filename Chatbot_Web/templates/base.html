@@ -310,6 +310,12 @@
           </a>
         </li>
 
+        <li >
+          <a href="/word2vec_view">
+            <i class="fa fa-amazon"></i><span>Word Embedding</span>
+          </a>
+        </li>
+
         <li class="treeview">
           <a href="/info_extraction_view">
             <i class="fa fa-pie-chart"></i>
@@ -348,7 +354,7 @@
 
         <li class="treeview">
           <a href="/kg_view">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-ambulance"></i>
             <span>知识图谱</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -362,8 +368,27 @@
           </ul>
         </li>
 
-        <li><a href="/dialogue"><i class="fa fa-amazon"></i> <span>人机对话</span></a></li>
-        <li><a href="/settings"><i class="fa fa-bandcamp"></i> <span>系统设置</span></a></li>
+        {#<li><a href="/dialogue"><i class="fa fa-area-chart"></i> <span>人机对话</span></a></li>#}
+
+        <li class="treeview">
+          <a href="/dialogue">
+            <i class="fa fa-audio-description"></i>
+            <span>人机对话</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/search_relation"><i class="fa fa-circle-o"></i> Domain Intection </a></li>
+            <li><a href="/intent_detect"><i class="fa fa-address-card"></i> Intent Detection </a></li>
+            <li><a href="/qa"><i class="fa fa-address-book"></i> 智能问答</a></li>
+            <li><a href="/overview?node=农业"><i class="fa fa-amazon"></i> K-G概览</a></li>
+          </ul>
+        </li>
+
+
+
+        <li><a href="/settings"><i class="fa fa-ambulance"></i> <span>系统设置</span></a></li>
         <li><a href="/specification"><i class="fa fa-book"></i> <span>说明文档</span></a></li>
       </ul>
     </section>

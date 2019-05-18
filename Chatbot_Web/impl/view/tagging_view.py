@@ -13,6 +13,6 @@
 
 from django.shortcuts import render
 
-def tagging_view(request):  # index页面需要一开始就加载的内容写在这里
+def tagging_page(request):  # index页面需要一开始就加载的内容写在这里
     context = {}
     return render(request, 'tagging/tagging.html', context)

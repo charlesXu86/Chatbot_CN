@@ -7,10 +7,10 @@
             <!--overview start-->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="page-header"><i class="fa fa-bathtub"></i> 实体抽取 </h3>
+                    <h3 class="page-header"><i class="fa fa-battery"></i> 意图识别 </h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="\">Home</a></li>
-                        <li><i class="fa fa-bathtub"></i>实体抽取</li>
+                        {% comment %}<li><i class="fa fa-battery"></i>Intent Detection</li>{% endcomment %}
                     </ol>
                 </div>
             </div>
@@ -20,10 +20,10 @@
                     输入文本 :
                 </header>
                 <div class="panel-body">
-                    <form action="/sentence_entity/" method="post">
+                    <form action="/intent_post/" method="post">
                         <div class="form-group">
                             {% csrf_token %}
-                            <textarea type="text" name="sentence_text" class="form-control" placeholder="Enter text" style="height:140px"> </textarea>
+                            <textarea type="text" name="query_text" class="form-control" placeholder="Enter text" style="height:140px"> </textarea>
                         </div>
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
@@ -40,14 +40,14 @@
                     <div class="panel-heading">
 
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                    [查看抽取结果]
+                                    [查看意图识别结果]
                             </a>
 
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
                             {% autoescape off %}
-                            <h5> {{ entity_result }}</h5>
+                            <h5> {{ seg_word }}</h5>
                             {% endautoescape %}
                         </div>
                     </div>

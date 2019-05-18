@@ -13,7 +13,7 @@ import random
 import hashlib
 import time
 import struct
-from crypto.Cipher import AES
+from Crypto.Cipher import AES
 import xml.etree.cElementTree as ET
 import sys
 import socket
