@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block mainbody %}
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/common-page.css">
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/css/toastr.css">
+    <script src="../../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../../static/js/lib/bootstrap.min.js"></script>
+    <script src="../../static/js/toastr.js"></script>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row cnt">
+                    <div class="col-md-12">
+                        <h3><i class="fa fa-commenting"></i>欢迎来到Chatbot</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row" id="MessageContent">
+                        </div>
+                    </div>
+                    <div class="col-md12">
+                        <hr>
+                        <textarea class="form-control" style="width: 100%" rows="6"
+                                  placeholder="Enter your message here" id="Message"></textarea>
+                        <button class="cus-btn-normal" id="Reply">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    toastr.options.positionClass = 'toast-bottom-left';
+
+    var msgText = $('#Message');
+
+    $('#Reply').click(function () {
+
+        var msg = msgText.val()
+        if (msg == '') {
+            toastr.error("Message can not be empty")
+            return;
+        }
+
+        var data = {
+            "msg": msg
+        }
+        $.ajax({
+            url: 'api/v1',
+            data: JSON.stringify(data),
+            method: 'POST',
+            success: function (res) {
+                drawMessage(res)
+            },
+            error: function (err) {
+                if (err.desc == null)
+                    err.desc = "Something went wrong"
+                toastr.error(err.desc)
+            }
+        })
+
+    })
+
+
+    var msgContent = $('#MessageContent');
+
+    function drawMessage(res) {
+        msgContent.append("<div class='col-md-6 owner-message'><p>"+res.ques+"</p><p class='time'>"+res.time+"</p></div>");
+        msgContent.append("<div class='col-md-6 guest-message'><p>"+res.res+"</p><p class='time'>"+res.time+"</p></div>")
+        msgText.val('')
+    }
+
+</script>
+
+</body>
+{% endblock %}
