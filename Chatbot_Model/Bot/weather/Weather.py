@@ -10,8 +10,8 @@ import requests
 import json
 import itchat
 
-def weather_main():
-    city = input('请输入要查询的城市名称：')
+def weather_main(city):
+    # city = input('请输入要查询的城市名称：')
     url = 'http://api.map.baidu.com/telematics/v3/weather?location=%s&output=json&ak=TueGDhCvwI6fOrQnLM0qmXxY9N0OkOiQ&callback=?'%city
     # 使用requests发起请求，接受返回的结果
     rs = requests.get(url)
@@ -46,10 +46,9 @@ def weather_main():
             # users = itchat.search_friends(name=nickname)
             users = itchat.search_friends(name='起风了')  # 使用备注名来查找实际用户名
             # 获取好友全部信息,返回一个列表,列表内是一个字典
-            print(users)
             # 获取`UserName`,用于发送消息
-            userName = users[0]['UserName']
-            itchat.send(date+weather+wind+temperature, toUserName=userName)
+            # userName = users[0]['UserName']
+            # itchat.send(date+weather+wind+temperature, toUserName=userName)
 
             print('succeed')
 
@@ -57,4 +56,5 @@ def weather_main():
         print('没有查询到天气信息')
 
 # itchat.auto_login()
-weather_main()
+city = '杭州'
+weather_main(city)
