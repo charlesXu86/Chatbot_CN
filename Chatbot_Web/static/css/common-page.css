@@ -1,0 +1,252 @@
+.navbar a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    padding-bottom: 14px;
+    border-bottom: 2px solid #478EE8;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.dropdown-menu li a {
+    color: white;
+}
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: #008000;
+}
+
+.blue-text {
+    color: #4674e7;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f3f3f3;
+}
+
+
+.cnt {
+    padding: 20px;
+    background-size: cover;
+    border-color: #e1e1e1;
+    margin: 20px 0 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    background: #ffffff;
+}
+
+.cnt:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+section {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+h3, .h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+i {
+    color: #4692e7;
+    margin-right: 8px;
+    font-size: inherit;
+    font-style: normal;
+}
+
+p {
+    margin-top: 10px;
+    color: #5a5a5a;
+}
+
+.btn {
+    width: 60%;
+    margin-top: 10px;
+    font-weight: 700;
+    border-radius: 0;
+    font-size: 13px;
+    padding: 13px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.container figure {
+    width: 100%;
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container figure img {
+    width: 100%;
+    height: auto;
+    transform: scale(1);
+    transition: all 0.5s;
+    overflow: hidden;
+}
+
+.container figure img:hover {
+    transform: scale(1.15);
+}
+
+h4 {
+    color: #383838;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 0;
+    color: #666666;
+    border-color: #f3f3f3;
+    box-shadow: none;
+    background-color: #f3f3f3;
+    height: 45px;
+}
+
+.cus-btn-normal {
+    width: 200px;
+    margin-top: 10px;
+    color: #ffffff;
+    font-weight: 700;
+    border-color: #4674e7;
+    box-shadow: none;
+    background-color: #4674e7;
+    border-radius: 0;
+    font-size: 13px;
+    padding: 13px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.cus-btn-normal:hover {
+    color: #e6ecf7;
+}
+
+.content-full {
+    width: 100%;
+}
+
+.content-half {
+    width: 50%;
+}
+
+input, select {
+    margin-top: 8px;
+}
+
+label {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.frameImage figure {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #000000;
+    overflow: hidden;
+}
+
+.white-text {
+    color: #ffffff;
+}
+
+.figure-center {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.figure-center h5 {
+    font-size: 18px;
+}
+
+.figure-center .btn {
+    width: 30%;
+    text-transform: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+hr {
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.col-md-6 .form-control {
+    width: 70%;
+}
+
+.button label {
+    margin-bottom: 0;
+}
+
+.button .cus-btn-normal {
+    margin-top: 08px;
+}
+
+.active {
+    background-color: #000000;
+}
+
+.peice p {
+    color: aqua;
+}
+
+table thead td {
+    color: #4674e7;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+table {
+    margin-top: 20px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.guest-message {
+    background-color: #f3f3f3;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+}
+.owner-message {
+    background-color: #d9d9d9;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-bottom: 0;
+    float: right;
+    margin-bottom: 20px;
+}
+#Reply{
+    width: 100%;
+}
