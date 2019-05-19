@@ -28,14 +28,14 @@ from Chatbot_Web.impl.info_extraction import event_extraction
 from Chatbot_Web.impl.info_extraction import relation_extraction
 
 from Chatbot_Web.impl.view import kg_view, relation_search_view, kg_overview
-from Chatbot_Web.impl.view import dialogue_view
+from Chatbot_Web.impl.view import chatbot_view
 from Chatbot_Web.impl.view import settings_view
 from Chatbot_Web.impl.view import specification_view
 from Chatbot_Web.impl.view import decisions_making_view
 from Chatbot_KG.kbqa import question_answering         # 这个在KG大模块下的kb-qa下
 
 
-from Chatbot_Web.impl.view import dialogue_view
+from Chatbot_Web.impl.view import chatbot_view         # 对话
 from Chatbot_Web.impl.view import intent_detection_view  # 意图识别
 from Chatbot_Web.impl.dialogue import intent_detection   # 意图识别数据交互方法
 
@@ -69,14 +69,14 @@ urlpatterns = [
     path('sp_view/', sp_view.sp_view, name='sp_view'),  # 语义分析页面
 
     # 人机对话模块
-    path('dialogue/', dialogue_view.dialogue_page, name='dialogue'),  # 人机对话页面
+    # path('dialogue/', chatbot_view.dialogue_page, name='dialogue'),  # 人机对话页面
     path('intent_detect/', intent_detection_view.intent_view, name='intent_detect'),   # 意图识别
     path('intent_post/', intent_detection.intent_post, name='intent_post'),             # 意图识别数据交互
 
 
 
-    path('send_msg/', dialogue_view.send_msg, name='send_msg'),  # 发送消息
-    path('get_new_msgs/', dialogue_view.get_new_msgs, name='get_new_msgs'),  # 发送消息
+    path('send_msg/', chatbot_view.send_msg, name='send_msg'),  # 发送消息
+    path('get_new_msgs/', chatbot_view.get_new_msgs, name='get_new_msgs'),  # 发送消息
 
     path('settings/', settings_view.settings_page, name='settings'),  # 系统设置页面
     path('specification/', specification_view.specification_page, name='specification'),  # 系统说明
@@ -87,7 +87,8 @@ urlpatterns = [
     path('kg_view/', kg_view.knowledge_graph_view, name='kg_view'),  # kg预览页面
     path('search_relation/', relation_search_view.search_relation, name='search_relation'),  # 关系查询
     path('search_entity/', relation_search_view.search_entity, name='search_entity'), # 实体查询页面
-    path('qa/', question_answering.question_answering, name='qa'),
+    path('qa/', question_answering.question_answering, name='qa'),     # qa
+    path('chatbot/', chatbot_view.chatbot_page, name='chatbot'),
     path('decision/', decisions_making_view.decisions_making_page, name='decision'), # 辅助决策页面
     # path('kg_overview/', kg_overview.show_overview, name='kg_overview'),   # 概览页面
     # url(r'^overview', kg_overview.show_overview),
