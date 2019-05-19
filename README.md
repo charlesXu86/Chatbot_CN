@@ -13,7 +13,15 @@
     Chatbot_Web      页面展示
     Chatbot_Rest     RESTful接口模块 (Chatbot_Rest/README.md)
 
-
+#### 各个子模块介绍
+如上所示，目前Chatbot_CN包括七个子模块，现做简单介绍：
+1、
+2、
+3、
+4、
+5、
+6、
+7、接口使用websocket通信协议
 
 #### 项目结构图
 
@@ -110,15 +118,29 @@ Chatbot_CN
     2、1、导入sql文件到mysql，mysql数据主要作用为项目数据表，如用户注册、登录等。sql脚本文件上传在Chatbot_Data/DATA目录下，运行项目前需要将数据导入到mysql数据库，否则会启动报错
        步骤：1、在Chatbot_CN目录下修改settings.py文件里的数据库配置
             2、执行sql脚本，将数据导入到本地
-    3、导入数据到Neo4J，Neo4j为支持知识图谱的图数据库查询，数据也存放在Chatbot_Data/DATA目录下。
+    3、导入数据到Neo4J，Neo4j为支持知识图谱的图数据库查询，数据也存放在Chatbot_Data/DATA目录下。导入脚本也放在该目录下。
        步骤：1、启动图数据库，将数据复制到import目录下
             2、导入。图数据库的部分教程以及数据的导入命令，关系查询构建请移步：Chatbot_Doc/图数据库  目录下
             3、修改项目中的Neo4j连接。文件位置在：Chatbot_KG/util下，neo_models.py
             4、启动图数据库。启动命令为： neo4j.bat console   （win环境下）
-    4、启动sparql。对项目启动可选        
+    4、启动mongodb。 mongodb
+    5、启动sparql。对项目启动可选
+    
+### 启动项目
+
+启动该项目可以选用两种方式：
+
+    1、命令行启动： 启动命令为：  python manage.py runserver 
+    2、在pycharm里配置，debug运行项目（断点运行），这样方便调试 
+    
+### 额外说明
+
+    1、由于该项目涉及到前端、后台、深度学习、模型部署等等方面的问题，目前该项目是我一个人开发维护，还有不少前端和后台的问题存在，具体在项目运行中存在的问题，请参见PROBLEM_RESOLVE.md      
     
     
 #### 项目架构
+
+
     
     
 #### 項目展示
