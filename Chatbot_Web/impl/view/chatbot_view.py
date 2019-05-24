@@ -2,7 +2,7 @@
 
 """
 -------------------------------------------------
-   File Name：     dialogue_view.py
+   File Name：     chatbot_view.py
    Description :   人机对话页面视图
    Author :       charl
    date：          2019/1/25
@@ -19,9 +19,9 @@ GLOBAL_MSG_QUEUES = {
 
 }
 
-def dialogue_page(request):
+def chatbot_page(request):
     context = {}
-    return render(request, 'dialogue/dialogue.html', context)
+    return render(request, 'dialogue/dialogue_v2.html', context)
 
 def send_msg(request):
     '''
