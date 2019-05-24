@@ -29,9 +29,11 @@
 
 ## RESTful API调用
 传入参数一个json格式的字符串，具体调用方式请参看接口文档
+![image](../Time_Convert/image/test1.jpg)
+![image](../Time_Convert/image/test2.jpg)
 
 
-优化说明
+## 优化说明
     1、需将时间精确到小时    
 
 
