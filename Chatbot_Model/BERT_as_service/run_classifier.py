@@ -12,7 +12,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+
 """BERT_as_service finetuning runner."""
+# 微调
+# 微调阶段分类模型
 
 from __future__ import absolute_import
 from __future__ import division

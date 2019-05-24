@@ -14,6 +14,9 @@
 # limitations under the License.
 """Functions and classes related to optimization (weight updates)."""
 
+# 设置优化器，学习率，各种学习参数
+# 用在预训练和微调的阶段
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function

@@ -14,6 +14,8 @@
 # limitations under the License.
 """Run BERT_as_service on SQuAD 1.1 and SQuAD 2.0."""
 
+# 微调阶段问答模型
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function

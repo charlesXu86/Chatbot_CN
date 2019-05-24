@@ -14,6 +14,8 @@
 # limitations under the License.
 """Create masked LM/next sentence masked_lm TF examples for BERT_as_service."""
 
+# 构建预训练结构数据
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
