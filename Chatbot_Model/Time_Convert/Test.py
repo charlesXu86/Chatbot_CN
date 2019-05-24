@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2017/11/22 10:21
-# @Author  : zhm
-# @File    : Test.py
-# @Software: PyCharm
-# @Changed : tianyuningmou
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: Test.py
+@desc: 测试
+@time: 2019/05/23
+"""
 
 from TimeNormalizer import TimeNormalizer # 引入包
 

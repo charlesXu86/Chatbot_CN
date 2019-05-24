@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2017/11/20 16:27
-# @Author  : zhm
-# @File    : RangeTimeEnum.py
-# @Software: PyCharm
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: RangeTimeEnum.py
+@desc: 时间段枚举
+@time: 2019/05/23
+"""
 
 
 

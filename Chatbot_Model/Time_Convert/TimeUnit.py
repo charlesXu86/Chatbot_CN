@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2017/11/20 17:01
-# @Author  : zhm
-# @File    : TimeUnit.py
-# @Software: PyCharm
-# @Changed : tianyuningmou
-
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: TimeUtil.py
+@desc: 时间处理工具类
+@time: 2019/05/24
+"""
 
 import regex as re
 import arrow

@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2017/12/5 15:10
-# @Author  : zhm
-# @File    : setup.py.py
-# @Software: PyCharm
-# @Changed : tianyuningmou
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: setup.py
+@desc: 设置
+@time: 2019/05/23
+"""
 
 from setuptools import setup
 

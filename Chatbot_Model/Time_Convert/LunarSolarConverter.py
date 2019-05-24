@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2017/12/11 11:08
-# @Author  : zhm
-# @File    : LunarSolarConverter.py
-# @Software: PyCharm
-
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: LunarSolarConvert.py
+@desc: 农历转换
+@time: 2019/05/23
+"""
 
 from pprint import pprint
 

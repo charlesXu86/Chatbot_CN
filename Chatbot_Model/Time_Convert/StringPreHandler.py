@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2017/11/20 15:42
-# @Author  : zhm
-# @File    : StringPreHandler.py
-# @Software: PyCharm
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: StringPreHandler.py
+@desc: 字符串处理
+@time: 2019/05/23
+"""
 
 import regex as re
 

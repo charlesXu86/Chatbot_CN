@@ -1,9 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Time    : 2017/11/20 15:37
-# @Author  : zhm
-# @File    : TimePoint.py
-# @Software: PyCharm
+#-*- coding:utf-8 _*-
+"""
+@author:charlesXu
+@file: TimePoint.py
+@desc: 时间表达式单元规范化对应的内部类
+@time: 2019/05/24
+"""
 
 
 #  * 时间表达式单元规范化对应的内部类,
