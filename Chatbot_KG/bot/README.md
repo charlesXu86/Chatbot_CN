@@ -1,4 +1,4 @@
-# Judiciary-Financial Knowledge Graph
+# Judiciary-Financial Knowledge Graph BOT核心模块
 
 
 ## 项目介绍：
