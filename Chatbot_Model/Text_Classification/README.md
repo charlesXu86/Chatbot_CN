@@ -1,4 +1,9 @@
-# Text Classification with TextRNN + Attention
+# Text Classification
+以下将提供几种文本分类的方案，并进行准确率的对比
+
+ - FastText
+ - Text Classification with TextRNN + Attention
+
 
 使用TextRNN + Attention机制进行中文文本分类
 

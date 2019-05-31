@@ -8,3 +8,11 @@ langid==1.1.6
 wechatpy
 fasttext
 pycrypto
+dss
+elasticsearch
+pinyin
+tensorflow-serving-api
+dwebsocket
+djangorestframework
+pyneo4j
+pyinstaller

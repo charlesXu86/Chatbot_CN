@@ -3,7 +3,7 @@
 """
 -------------------------------------------------
    File Name：     Create_pretraining_data.py
-   Description :  Create masked LM/next sentence masked_lm TF examoles for BERT
+   Description :  Create masked LM/next sentence masked_lm TF examoles for BERT_as_service
    Author :       charl
    date：          2018/11/28
 -------------------------------------------------
@@ -32,7 +32,7 @@ flags.DEFINE_string(
     "Output TF example file (or comma-separated list of files).")
 
 flags.DEFINE_string("vocab_file", None,
-                    "The vocabulary file that the BERT model was trained on.")
+                    "The vocabulary file that the BERT_as_service model was trained on.")
 
 flags.DEFINE_bool(
     "do_lower_case", True,

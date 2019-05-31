@@ -9,14 +9,14 @@
 import pprint
 from pymongo import MongoClient
 
-uri = 'mongodb://' + 'wusong' + ':' + 'wusong' + '@' + '10.0.0.8' + ':' + '27017' +'/'+ 'wusong'
+uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + 'test.npacn.com' + ':' + '20000' +'/'+ 'itslaw'
 client = MongoClient(uri)
 
 class Mongo():
 	clent = None
 	db = None
 	collection = None
-	uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + '47.96.15.176' + ':' + '27017' +'/'+ 'itslaw'
+	uri = 'mongodb://' + 'root' + ':' + '123456' + '@' + 'test.npacn.com' + ':' + '20000' +'/'+ 'itslaw'
 	def makeConnection(self):
 		self.client = MongoClient('localhost',27017)
 		# self.client = MongoClient(uri)
@@ -40,7 +40,7 @@ def find_MONGO_one(ids):
 	datas = collection.find_one({'judgementId':ids})
 	pprint.pprint(datas)
 
-judgementId = 'cc37da75-3655-4155-9221-27bcae5bc393'
-find_MONGO_one(judgementId)
+# judgementId = 'cc37da75-3655-4155-9221-27bcae5bc393'
+# find_MONGO_one(judgementId)
 
 
