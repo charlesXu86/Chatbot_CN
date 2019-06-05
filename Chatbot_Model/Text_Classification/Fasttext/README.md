@@ -21,3 +21,5 @@ python train.py
 ```
 python predict.py
 ```
+
+# 说明

@@ -7,7 +7,7 @@
 """
 
 
-from config import config
+from Chatbot_Model.Text_Classification.Fasttext.parameters import parameters
 from collections import Counter
 import os
 import json
@@ -132,5 +132,5 @@ def load_json(json_file_path):
         return json.loads(f.read(), encoding='utf-8')
 
 
-if __name__ == '__main__':
-    generate_vocab(['abcd', 'dbgj'], [1, 0], config)
+# if __name__ == '__main__':
+#     generate_vocab(['abcd', 'dbgj'], [1, 0], config)

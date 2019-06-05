@@ -1,14 +1,21 @@
-#-*- coding:utf-8 _*-
-"""
-@author:charlesXu
-@file: train.py
-@desc: fasttext文本分类训练
-@time: 2019/05/23
-"""
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   train.py
+
+@Time    :   2019-05-30 15:20
+
+@Desc    :
+
+'''
 
 import tensorflow as tf
-from fast_text import FastText
-from config import config
+from Chatbot_Model.Text_Classification.Fasttext.fast_text import FastText
+from Chatbot_Model.Text_Classification.Fasttext.parameters import config
 import time
 import os
 import datetime
