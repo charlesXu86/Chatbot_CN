@@ -6,19 +6,20 @@
 @time: 2019/05/23 
 """
 
-
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from time import gmtime, strftime
-
-import numpy as np
-import base64
 import json
 
+from django.http import HttpResponse, JsonResponse
+from time import gmtime, strftime
 
-def text_classification_server(request):
+from Chatbot_Model.Text_Classification.Fasttext.predict import Predict
+from Chatbot_Model.Text_Classification.Fasttext import parameters
+
+
+
+
+def text_classification_server_fc(request):
     '''
-    文本分类接口（深度学习）
+    意象度分类接口（深度学习）
     :param request: 前端传来的msg
     :return: 返回label对应的分类
     '''
@@ -26,14 +27,13 @@ def text_classification_server(request):
         jsonData = json.loads(request.body.decode('utf-8'))
         msg = jsonData["msg"]
 
-        # 这里调用深度学习部分
-        res = ''
+        fc = Predict()
+        res = fc.fc_predicts(msg)
         time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         return JsonResponse({
             "desc": "Success",
             "ques": msg,
             "res": res,
-
             "time": time
         })
     else:
