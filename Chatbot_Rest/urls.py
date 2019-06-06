@@ -19,6 +19,9 @@ from intent_rest_controller import intent_controller
 from entity_extraction_controller import entity_ext_controller
 from bot_controller import get_chat_msg    # 聊天
 from time_convert_server import time_convert  # 时间转换器
+from Chatbot_Rest.Api.text_classification.classification_controller import text_classification_server_fc
+
+from Chatbot_Rest.Api.Sensitive_word.Sensitive_word_controller import sensitive_controller
 
 
 urlpatterns = [
@@ -26,5 +29,9 @@ urlpatterns = [
     path('entity', entity_ext_controller), # 实体抽取
     path('intent', intent_controller),     # 意图识别
     path('chat', get_chat_msg),            # chatbot接口
-    path('time_convert', time_convert)     # 时间转换器
+    path('time_convert', time_convert),     # 时间转换器
+
+    path('tcfc', text_classification_server_fc),      # Fasttext 文本分类接口
+
+    path('sensitive', sensitive_controller),          # 敏感词检测
 ]
