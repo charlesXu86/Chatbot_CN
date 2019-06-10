@@ -83,8 +83,8 @@ class TimeNormalizer:
         :param target: 待分析字符串
         :return: 时间单元数组
         """
-        self.isTimeSpan = False
-        self.invalidSpan = False
+        self.isTimeSpan = False            #
+        self.invalidSpan = False           #
         self.timeSpan = ''
         self.target = self._filter(target)
         self.timeBase = arrow.get(timeBase).format('YYYY-M-D-H-m-s')
@@ -124,10 +124,10 @@ class TimeNormalizer:
                 dic['date'] = res[0].time.format("YYYY-MM-DD HH:mm:ss")
             else:
                 dic['type'] = 'timespan'
-                dic['timespan'] = [res[0].time.format("YYYY-MM-DD HH:mm:ss"), res[1].time.format("YYYY-MM-DD HH:mm:ss")]
+                # dic['timespan'] = [res[0].time.format("YYYY-MM-DD HH:mm:ss"), res[1]]
+                dic['timespan'] = ','.join([x.time.format("YYYY-MM-DD HH:mm:ss") for x in res])
         res = json.dumps(dic)
         res_date = json.loads(res)
-        # return json.dumps(dic)
         return res_date
 
     def __preHandling(self):

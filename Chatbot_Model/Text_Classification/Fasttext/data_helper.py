@@ -28,6 +28,7 @@ def process_data(config):
     with open(data_path, 'r', encoding='utf-8') as f:
         for line in f:
             lis = line.strip().split('\t')
+            ss = re.sub('\s+', '', lis[1])
             X.append(re.sub('\s+', '', lis[1])[:sequence_length])
             y.append(lis[0])
     return X, y
@@ -77,6 +78,15 @@ def generate_vocab(X, y, config):
 
 
 def padding(X, y, config, word_to_index, label_to_index):
+    '''
+    padding 长度不够的文本会在后面补0
+    :param X:
+    :param y:
+    :param config:
+    :param word_to_index:
+    :param label_to_index:
+    :return:
+    '''
     sequence_length = config['sequence_length']
     num_classes = config['num_classes']
     input_x = []
@@ -111,6 +121,14 @@ def split_data(input_x, input_y, config):
 
 
 def generate_batchs(x_train, y_train, config, shuffle=True):
+    '''
+     生成batch数据
+    :param x_train:
+    :param y_train:
+    :param config:
+    :param shuffle:
+    :return:
+    '''
     data = np.array(list(zip(x_train, y_train)))
     data_size = len(data)
     num_batches_per_epoch = int((len(data)-1)/config['batch_size']) + 1

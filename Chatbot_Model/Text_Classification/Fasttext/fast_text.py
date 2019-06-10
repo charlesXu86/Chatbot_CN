@@ -16,7 +16,7 @@ class FastText():
         self.input_y = tf.placeholder(tf.float32, [None, self.num_classes], name='input_y')
         self.dropout_keep_prob = tf.placeholder(tf.float32, name='dropout_keep_prob')
 
-        # embedding layer
+        # embedding
         with tf.device(self.device), tf.name_scope('embedding'):
             self.W = tf.Variable(
                 tf.random_uniform([self.vocab_size, self.embedding_size], -1.0, 1.0),
@@ -24,7 +24,7 @@ class FastText():
             )
             self.embedded_chars = tf.nn.embedding_lookup(self.W, self.input_x)
 
-            # average vectors, to get the representation of the sentence
+            # 对词向量进行平均
             self.embedded_chars_mean = tf.reduce_mean(self.embedded_chars, axis=1)
 
         # final scores and predictions
@@ -38,7 +38,7 @@ class FastText():
             self.scores = tf.nn.xw_plus_b(self.embedded_chars_mean, W, b, name='scores')
             self.predictions = tf.argmax(self.scores, 1, name='predictions')
 
-        # loss
+        # 损失函数
         with tf.name_scope('loss'):
             losses = tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.scores, labels=self.input_y)
             self.loss = tf.reduce_mean(losses)

@@ -15,7 +15,7 @@
 
 import tensorflow as tf
 from Chatbot_Model.Text_Classification.Fasttext.fast_text import FastText
-from Chatbot_Model.Text_Classification.Fasttext.parameters import config
+from Chatbot_Model.Text_Classification.Fasttext.parameters import parameters
 import time
 import os
 import datetime
@@ -26,23 +26,23 @@ from Chatbot_Model.Text_Classification.Fasttext import data_helper
 
 def train(config):
     print('parameters: ')
-    print(json.dumps(config, indent=4, ensure_ascii=False))
+    print(json.dumps(parameters, indent=4, ensure_ascii=False))
 
     # load data
     print('load data .....')
-    X, y = data_helper.process_data(config)
+    X, y = data_helper.process_data(parameters)
 
     # make vocab
     print('make vocab .....')
-    word_to_index, label_to_index = data_helper.generate_vocab(X, y, config)
+    word_to_index, label_to_index = data_helper.generate_vocab(X, y, parameters)
 
     # padding data
     print('padding data .....')
-    input_x, input_y = data_helper.padding(X, y, config, word_to_index, label_to_index)
+    input_x, input_y = data_helper.padding(X, y, parameters, word_to_index, label_to_index)
 
     # split data
     print('split data .....')
-    x_train, y_train, x_test, y_test, x_dev, y_dev = data_helper.split_data(input_x, input_y, config)
+    x_train, y_train, x_test, y_test, x_dev, y_dev = data_helper.split_data(input_x, input_y, parameters)
 
     print('length train: {}'.format(len(x_train)))
     print('length test: {}'.format(len(x_test)))
@@ -51,8 +51,8 @@ def train(config):
     print('training .....')
     with tf.Graph().as_default():
         sess_config = tf.ConfigProto(
-            allow_soft_placement=config['allow_soft_placement'],
-            log_device_placement=config['log_device_placement']
+            allow_soft_placement=config['allow_soft_placement'],       # 如果你指定的设备不存在，则允许TF自动分配设备
+            log_device_placement=config['log_device_placement']        # 石佛打印设备分配日志
         )
         with tf.Session(config=sess_config) as sess:
             fast_text = FastText(config)
@@ -91,14 +91,6 @@ def train(config):
             dev_summary_op = tf.summary.merge([loss_summary, acc_summary])
             # dev_summary_dir = os.path.join(outdir, 'summaries', 'dev')
             # dev_summary_writer = tf.summary.FileWriter(dev_summary_dir, sess.graph)
-
-            # checkpoint dirctory
-            # checkpoint_dir = os.path.abspath(os.path.join(outdir, 'checkpoints'))
-
-            # checkpoint_prefix = os.path.join(checkpoint_dir, 'model')
-
-            # if not os.path.exists(checkpoint_dir):
-            #     os.mkdir(checkpoint_dir)
 
             # 保存模型
             # saver = tf.train.Saver(tf.global_variables(), max_to_keep=config['num_checkpoints'])
@@ -168,13 +160,8 @@ def train(config):
             print('Test dataset accuracy: {}'.format(test_accuracy))
 
 
-            # 接口调用
-            def interface(msg):
-
-                return
-
 if __name__ == '__main__':
-    train(config)
+    train(parameters)
 
 
 

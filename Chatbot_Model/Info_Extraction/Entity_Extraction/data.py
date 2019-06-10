@@ -7,7 +7,7 @@
 """
 
 
-import sys, pickle, os, random
+import pickle, os, random
 import numpy as np
 
 import pdb
@@ -106,7 +106,8 @@ def read_dictionary(vocab_path):
     :param vocab_path:
     :return:
     """
-    vocab_path = os.path.join(vocab_path)
+    # vocab_path = os.path.join(vocab_path)
+    # vocab_path = '/Chatbot_CN/Chatbot_Model/Info_Extraction/Entity_Extraction/data/word2id.pkl'
     with open(vocab_path, 'rb') as fr:
         word2id = pickle.load(fr)
     print('vocab_size:', len(word2id))

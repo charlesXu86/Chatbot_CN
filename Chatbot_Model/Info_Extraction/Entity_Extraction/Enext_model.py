@@ -15,8 +15,8 @@ from Entity_Extraction.utils import get_logger
 from Entity_Extraction.eval import conlleval
 
 # 解决与win10系统不兼容的row_write返回无效长度问题。
-import win_unicode_console
-win_unicode_console.enable()
+# import win_unicode_console
+# win_unicode_console.enable()
 
 
 class BiLSTM_CRF(object):
@@ -320,4 +320,3 @@ class BiLSTM_CRF(object):
         metric_path = os.path.join(self.result_path, 'result_metric_' + epoch_num)
         for _ in conlleval(model_predict, label_path, metric_path):
             self.logger.info(_)
-
