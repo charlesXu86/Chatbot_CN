@@ -45,8 +45,8 @@ module.exports = function (grunt) {
             ' * Copyright 2011-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' * Licensed under the <%= pkg.license %> license\n' +
             ' */\n',
-    jqueryCheck: configBridge.config.jqueryCheck.join('\n'),
-    jqueryVersionCheck: configBridge.config.jqueryVersionCheck.join('\n'),
+    jqueryCheck: configBridge.parameters.jqueryCheck.join('\n'),
+    jqueryVersionCheck: configBridge.parameters.jqueryVersionCheck.join('\n'),
 
     // Task configuration.
     clean: {
@@ -179,7 +179,7 @@ module.exports = function (grunt) {
 
     autoprefixer: {
       options: {
-        browsers: configBridge.config.autoprefixerBrowsers
+        browsers: configBridge.parameters.autoprefixerBrowsers
       },
       core: {
         options: {
@@ -494,7 +494,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('commonjs', 'Generate CommonJS entrypoint module in dist dir.', function () {
-    var srcFiles = grunt.config.get('concat.bootstrap.src');
+    var srcFiles = grunt.parameters.get('concat.bootstrap.src');
     var destFilepath = 'dist/js/npm.js';
     generateCommonJSModule(grunt, srcFiles, destFilepath);
   });

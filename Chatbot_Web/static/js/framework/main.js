@@ -134,7 +134,7 @@ var paths = {
 
 var baseUrl = '/adminlte-plus/';
 
-require.config({
+require.parameters({
     baseUrl: baseUrl,
     paths: paths,
     //css插件配置

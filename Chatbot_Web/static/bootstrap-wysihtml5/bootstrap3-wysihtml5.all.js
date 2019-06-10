@@ -2741,7 +2741,7 @@ var wysihtml5 = {
 
             // IE 9 and above have both implementations and Rangy makes both available. The next few lines sets which
             // implementation to use by default.
-            if (!api.features.implementsDomRange || api.config.preferTextRange) {
+            if (!api.features.implementsDomRange || api.parameters.preferTextRange) {
                 // Add WrappedTextRange as the Range property of the global object to allow expression like Range.END_TO_END to work
                 var globalObj = (function() { return this; })();
                 if (typeof globalObj.Range == "undefined") {
@@ -2793,7 +2793,7 @@ var wysihtml5 = {
     // This module creates a selection object wrapper that conforms as closely as possible to the Selection specification
     // in the HTML Editing spec (http://dvcs.w3.org/hg/editing/raw-file/tip/editing.html#selections)
     api.createCoreModule("WrappedSelection", ["DomRange", "WrappedRange"], function(api, module) {
-        api.config.checkSelectionRanges = true;
+        api.parameters.checkSelectionRanges = true;
 
         var BOOLEAN = "boolean";
         var NUMBER = "number";
@@ -2856,7 +2856,7 @@ var wysihtml5 = {
         features.implementsWinGetSelection = implementsWinGetSelection;
         features.implementsDocSelection = implementsDocSelection;
 
-        var useDocumentSelection = implementsDocSelection && (!implementsWinGetSelection || api.config.preferTextRange);
+        var useDocumentSelection = implementsDocSelection && (!implementsWinGetSelection || api.parameters.preferTextRange);
 
         if (useDocumentSelection) {
             getNativeSelection = getDocSelection;
@@ -3289,7 +3289,7 @@ var wysihtml5 = {
 
                                 // Check whether the range that we added to the selection is reflected in the last range extracted from
                                 // the selection
-                                if (api.config.checkSelectionRanges) {
+                                if (api.parameters.checkSelectionRanges) {
                                     var nativeRange = getSelectionRangeAt(this.nativeSelection, this.rangeCount - 1);
                                     if (nativeRange && !rangesEqual(nativeRange, range)) {
                                         // Happens in WebKit with, for example, a selection placed at the start of a text node
@@ -10725,7 +10725,7 @@ wysihtml5.Commands = Base.extend(
     exec: function(composer, command, nodeName, className, classRegExp, cssStyle, styleRegExp) {
       var doc             = composer.doc,
           blockElements    = this.state(composer, command, nodeName, className, classRegExp, cssStyle, styleRegExp),
-          useLineBreaks   = composer.config.useLineBreaks,
+          useLineBreaks   = composer.parameters.useLineBreaks,
           defaultNodeName = useLineBreaks ? "DIV" : "P",
           selectedNodes, classRemoveAction, blockRenameFound, styleRemoveAction, blockElement;
       nodeName = typeof(nodeName) === "string" ? nodeName.toUpperCase() : nodeName;
@@ -11041,7 +11041,7 @@ wysihtml5.commands.formatCode = {
 
       composer.selection.executeAndRestore(function() {
         if (state) {
-          if (composer.config.useLineBreaks) {
+          if (composer.parameters.useLineBreaks) {
              wysihtml5.dom.lineBreaks(state).add();
           }
           wysihtml5.dom.unwrap(state);
@@ -11286,9 +11286,9 @@ wysihtml5.commands.formatCode = {
       } else {
         innerLists = getListsInSelection(['OL', 'UL'], composer);
         for (var i = innerLists.length; i--;) {
-          wysihtml5.dom.resolveList(innerLists[i], composer.config.useLineBreaks);
+          wysihtml5.dom.resolveList(innerLists[i], composer.parameters.useLineBreaks);
         }
-        wysihtml5.dom.resolveList(el, composer.config.useLineBreaks);
+        wysihtml5.dom.resolveList(el, composer.parameters.useLineBreaks);
       }
     });
   };
@@ -11339,7 +11339,7 @@ wysihtml5.commands.formatCode = {
       
       if (tempElement) {
         isEmpty = wysihtml5.lang.array(["", "<br>", wysihtml5.INVISIBLE_SPACE]).contains(tempElement.innerHTML);
-        list = wysihtml5.dom.convertToList(tempElement, nodeName.toLowerCase(), composer.parent.config.uneditableContainerClassname);
+        list = wysihtml5.dom.convertToList(tempElement, nodeName.toLowerCase(), composer.parent.parameters.uneditableContainerClassname);
         if (isEmpty) {
           composer.selection.selectNode(list.querySelector("li"), true);
         }
@@ -13756,17 +13756,17 @@ wysihtml5.views.View = Base.extend(
       this._observe();
       if (showOnInit) { this.show(); }
 
-      if (editor.config.classNameCommandDisabled != null) {
-        CLASS_NAME_COMMAND_DISABLED = editor.config.classNameCommandDisabled;
+      if (editor.parameters.classNameCommandDisabled != null) {
+        CLASS_NAME_COMMAND_DISABLED = editor.parameters.classNameCommandDisabled;
       }
-      if (editor.config.classNameCommandsDisabled != null) {
-        CLASS_NAME_COMMANDS_DISABLED = editor.config.classNameCommandsDisabled;
+      if (editor.parameters.classNameCommandsDisabled != null) {
+        CLASS_NAME_COMMANDS_DISABLED = editor.parameters.classNameCommandsDisabled;
       }
-      if (editor.config.classNameCommandActive != null) {
-        CLASS_NAME_COMMAND_ACTIVE = editor.config.classNameCommandActive;
+      if (editor.parameters.classNameCommandActive != null) {
+        CLASS_NAME_COMMAND_ACTIVE = editor.parameters.classNameCommandActive;
       }
-      if (editor.config.classNameActionActive != null) {
-        CLASS_NAME_ACTION_ACTIVE = editor.config.classNameActionActive;
+      if (editor.parameters.classNameActionActive != null) {
+        CLASS_NAME_ACTION_ACTIVE = editor.parameters.classNameActionActive;
       }
 
       var speechInputLinks  = this.container.querySelectorAll("[data-wysihtml5-command=insertSpeech]"),
@@ -13932,7 +13932,7 @@ wysihtml5.views.View = Base.extend(
         that.bookmark = null;
       });
 
-      if (this.editor.config.handleTables) {
+      if (this.editor.parameters.handleTables) {
           editor.on("tableselect:composer", function() {
               that.container.querySelectorAll('[data-wysihtml5-hiddentools="table"]')[0].style.display = "";
           });
@@ -14657,31 +14657,31 @@ function program17(depth0,data) {
       },
 
       loadParserRules: function() {
-        if($.type(this.config.parserRules) === 'string') {
+        if($.type(this.parameters.parserRules) === 'string') {
           $.ajax({
             dataType: 'json',
-            url: this.config.parserRules,
+            url: this.parameters.parserRules,
             context: this,
             error: function (jqXHR, textStatus, errorThrown) {
               console.log(errorThrown);
             },
             success: function (parserRules) {
-              this.config.parserRules = parserRules;
+              this.parameters.parserRules = parserRules;
               console.log('parserrules loaded');
             }
           });
         }
 
-        if(this.config.pasteParserRulesets && $.type(this.config.pasteParserRulesets) === 'string') {
+        if(this.parameters.pasteParserRulesets && $.type(this.parameters.pasteParserRulesets) === 'string') {
           $.ajax({
             dataType: 'json',
-            url: this.config.pasteParserRulesets,
+            url: this.parameters.pasteParserRulesets,
             context: this,
             error: function (jqXHR, textStatus, errorThrown) {
               console.log(errorThrown);
             },
             success: function (pasteParserRulesets) {
-              this.config.pasteParserRulesets = pasteParserRulesets;
+              this.parameters.pasteParserRulesets = pasteParserRulesets;
             }
           });
         }

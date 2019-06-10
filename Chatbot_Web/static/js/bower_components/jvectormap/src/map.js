@@ -476,7 +476,7 @@ jvm.Map.prototype = {
           type = baseVal.indexOf('jvectormap-region') === -1 ? 'marker' : 'region',
           code = type == 'region' ? jvm.$(this).attr('data-code') : jvm.$(this).attr('data-index'),
           element = type == 'region' ? map.regions[code].element : map.markers[code].element,
-          tipText = type == 'region' ? map.mapData.paths[code].name : (map.markers[code].config.name || ''),
+          tipText = type == 'region' ? map.mapData.paths[code].name : (map.markers[code].parameters.name || ''),
           tipShowEvent = jvm.$.Event(type+'TipShow.jvectormap'),
           overEvent = jvm.$.Event(type+'Over.jvectormap');
 
@@ -885,7 +885,7 @@ jvm.Map.prototype = {
         point;
 
     for (i in this.markers) {
-      point = this.getMarkerPosition( this.markers[i].config );
+      point = this.getMarkerPosition( this.markers[i].parameters );
       if (point !== false) {
         this.markers[i].element.setStyle({cx: point.x, cy: point.y});
       }

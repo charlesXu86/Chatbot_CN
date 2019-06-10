@@ -30,12 +30,12 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 				editor.on( 'configLoaded', function() {
 
 					// Remove unnecessary plugins to make the editor simpler.
-					editor.config.removePlugins = 'colorbutton,find,flash,font,' +
+					editor.parameters.removePlugins = 'colorbutton,find,flash,font,' +
 						'forms,iframe,image,newpage,removeformat,' +
 						'smiley,specialchar,stylescombo,templates';
 
 					// Rearrange the layout of the toolbar.
-					editor.config.toolbarGroups = [
+					editor.parameters.toolbarGroups = [
 						{ name: 'editing',		groups: [ 'basicstyles', 'links' ] },
 						{ name: 'undo' },
 						{ name: 'clipboard',	groups: [ 'selection', 'clipboard' ] },

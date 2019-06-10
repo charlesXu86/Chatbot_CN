@@ -27,4 +27,4 @@ def entity_search_view(request):    # 跳转到实体查询页面
 
 def overview(request):    # 跳轉到概覽頁面
     context = {}
-    return render(request, 'kg_overview.html', context)
+    return render(request, 'knowledge_graph/kg_overview.html', context)

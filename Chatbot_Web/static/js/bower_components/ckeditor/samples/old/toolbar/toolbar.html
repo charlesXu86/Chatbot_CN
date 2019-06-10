@@ -104,7 +104,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 	CKEDITOR.on( 'instanceReady', function( evt ) {
 		var editor = evt.editor,
 			editorCurrent = editor.name == 'editorCurrent',
-			defaultToolbar = !( editor.config.toolbar || editor.config.toolbarGroups || editor.config.removeButtons ),
+			defaultToolbar = !( editor.parameters.toolbar || editor.parameters.toolbarGroups || editor.parameters.removeButtons ),
 			pre = CKEDITOR.document.getById( editor.name + 'Cfg' ),
 			output = '';
 
@@ -120,7 +120,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 			buttonsNames = createButtonsNamesHash( editor.ui.items );
 
 		// Toolbar isn't set explicitly, so it was created automatically from toolbarGroups.
-		if ( !editor.config.toolbar ) {
+		if ( !editor.parameters.toolbar ) {
 			output +=
 				'// Toolbar configuration generated automatically by the editor based on config.toolbarGroups.\n' +
 				dumpToolbarConfiguration( editor ) +
@@ -158,7 +158,7 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 				output.push( group );
 		}
 
-		return 'config.toolbar' + ( printGroups ? 'Groups' : '' ) + ' = [\n\t' + output.join( ',\n\t' ) + '\n];';
+		return 'parameters.py.toolbar' + ( printGroups ? 'Groups' : '' ) + ' = [\n\t' + output.join( ',\n\t' ) + '\n];';
 	}
 
 	function dumpToolbarGroup( group, printGroups ) {

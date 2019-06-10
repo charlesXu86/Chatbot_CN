@@ -6,8 +6,6 @@
 @time: 2019/01/28 
 """
 
-import sys
-
 from django.shortcuts import render
 from pinyin import pinyin
 

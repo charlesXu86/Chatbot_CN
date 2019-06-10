@@ -136,9 +136,9 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			},
 
 			getData: function( editor ) {
-				var descriptions = editor.config.smiley_descriptions,
-					images = editor.config.smiley_images,
-					path = editor.config.smiley_path,
+				var descriptions = editor.parameters.smiley_descriptions,
+					images = editor.parameters.smiley_images,
+					path = editor.parameters.smiley_path,
 					data = [];
 
 				for ( var i = 0; i < descriptions.length; ++i ) {

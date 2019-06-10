@@ -3,9 +3,9 @@ jvm.MapObject = function(config){};
 jvm.MapObject.prototype.getLabelText = function(key){
   var text;
 
-  if (this.config.label) {
-    if (typeof this.config.label.render === 'function') {
-      text = this.config.label.render(key);
+  if (this.parameters.label) {
+    if (typeof this.parameters.label.render === 'function') {
+      text = this.parameters.label.render(key);
     } else {
       text = key;
     }
@@ -18,11 +18,11 @@ jvm.MapObject.prototype.getLabelText = function(key){
 jvm.MapObject.prototype.getLabelOffsets = function(key){
   var offsets;
 
-  if (this.config.label) {
-    if (typeof this.config.label.offsets === 'function') {
-      offsets = this.config.label.offsets(key);
-    } else if (typeof this.config.label.offsets === 'object') {
-      offsets = this.config.label.offsets[key];
+  if (this.parameters.label) {
+    if (typeof this.parameters.label.offsets === 'function') {
+      offsets = this.parameters.label.offsets(key);
+    } else if (typeof this.parameters.label.offsets === 'object') {
+      offsets = this.parameters.label.offsets[key];
     }
   }
   return offsets || [0, 0];

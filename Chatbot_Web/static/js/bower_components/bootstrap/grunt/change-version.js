@@ -10,7 +10,7 @@
 var fs = require('fs');
 var path = require('path');
 var sh = require('shelljs');
-sh.config.fatal = true;
+sh.parameters.fatal = true;
 var sed = sh.sed;
 
 // Blame TC39... https://github.com/benjamingr/RegExp.escape/issues/37

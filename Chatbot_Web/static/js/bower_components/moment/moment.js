@@ -1902,7 +1902,7 @@
 
             if (localeFamilies[name]) {
                 localeFamilies[name].forEach(function (x) {
-                    defineLocale(x.name, x.config);
+                    defineLocale(x.name, x.parameters);
                 });
             }
 

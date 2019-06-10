@@ -482,7 +482,7 @@ extend( QUnit, {
 				throw new Error( "Called start() outside of a test context too many times" );
 			} else if ( config.autostart ) {
 				throw new Error( "Called start() outside of a test context when " +
-					"QUnit.config.autostart was true" );
+					"QUnit.parameters.py.autostart was true" );
 			} else if ( !config.pageLoaded ) {
 
 				// The page isn't completely loaded yet, so bail out and let `QUnit.load` handle it
