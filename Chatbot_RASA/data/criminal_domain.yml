@@ -1,0 +1,40 @@
+slots:
+  case:
+    type: text
+  item:
+    type: text
+  defendant:
+    type: text
+
+intents:
+ - greet
+ - goodbye
+ - viewCase
+ - viewCaseDetail
+ - viewCaseDefendants
+ - viewCaseDefendantsNum
+ - viewDefendantData
+
+
+entities:
+ - case
+ - item
+ - defendant
+
+templates:
+  utter_greet:
+    - '你好~ 有什么可以帮你'
+  utter_goodbye:
+    - '再见~'
+    - '一会见~'
+  utter_ask_case:
+    - '哪个案件?'
+
+actions:
+ - utter_greet
+ - utter_goodbye
+ - utter_ask_case
+ - action_view_case_defendants
+ - action_view_case_defendants_num
+ - action_view_defendant_data
+ - action_view_case_detail
