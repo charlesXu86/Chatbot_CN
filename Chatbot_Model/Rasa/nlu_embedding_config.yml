@@ -1,9 +1,0 @@
-language: "zh"
-
-pipeline:
-- name: "tokenizer_jieba"
-- name: "ner_crf"
-- name: "intent_featurizer_count_vectors"
-  OOV_token: oov
-  token_pattern: '(?u)\b\w+\b'
-- name: "intent_classifier_tensorflow_embedding"

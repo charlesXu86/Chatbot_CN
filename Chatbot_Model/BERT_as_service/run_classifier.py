@@ -25,9 +25,9 @@ from __future__ import print_function
 import collections
 import csv
 import os
-import modeling
-import optimization
-import tokenization
+import Chatbot_Model.BERT_as_service.modeling
+import Chatbot_Model.BERT_as_service.optimization
+import Chatbot_Model.BERT_as_service.tokenization
 import tensorflow as tf
 
 flags = tf.flags
