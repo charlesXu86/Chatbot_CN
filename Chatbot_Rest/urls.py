@@ -15,10 +15,10 @@
 
 from django.urls import path
 
-from intent_rest_controller import intent_controller
-from entity_extraction_controller import entity_ext_controller
-from bot_controller import get_chat_msg    # 聊天
-from time_convert_server import time_convert  # 时间转换器
+from Chatbot_Rest.Api.intent_detection.intent_rest_controller import intent_controller
+from Chatbot_Rest.Api.info_extraction.entity_extraction_controller import entity_ext_controller
+from Chatbot_Rest.Api.bot.bot_controller import get_chat_msg    # 聊天
+from Chatbot_Rest.Api.time_convert.time_convert_server import time_convert  # 时间转换器
 from Chatbot_Rest.Api.text_classification.classification_controller import text_classification_server_fc
 
 from Chatbot_Rest.Api.Sensitive_word.Sensitive_word_controller import sensitive_controller
