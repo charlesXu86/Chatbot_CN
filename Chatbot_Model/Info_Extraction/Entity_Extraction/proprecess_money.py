@@ -14,7 +14,7 @@ import re
 import sys
 
 
-from Entity_Extraction import log
+from Chatbot_Model.Info_Extraction.Entity_Extraction import log
 
 @unique
 class Consts(Enum):

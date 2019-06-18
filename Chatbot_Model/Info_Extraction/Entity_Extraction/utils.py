@@ -10,7 +10,7 @@ import logging, sys, argparse, re
 
 from functools import reduce
 
-from Entity_Extraction import proprecess_money
+from Chatbot_Model.Info_Extraction.Entity_Extraction import proprecess_money
 
 
 def str2bool(v):
