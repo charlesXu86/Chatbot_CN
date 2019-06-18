@@ -17,7 +17,6 @@ from tensorflow.python.framework import graph_util
 
 # os.environ['CUDA_VISIBLE_DEVICES']='0'   # 设置只用一块显卡
 
-from Entity_Extraction import proprecess_money
 from Entity_Extraction.Enext_model import BiLSTM_CRF
 from Entity_Extraction.utils import str2bool, get_logger, get_entity, get_MON_entity
 from Entity_Extraction.data import read_corpus, read_dictionary, tag2label, random_embedding
