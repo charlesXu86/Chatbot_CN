@@ -1,41 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fedeb65-4821-4a94-a7c1-a6bf09342f10" name="Default" comment="" />
+    <list default="true" id="8fedeb65-4821-4a94-a7c1-a6bf09342f10" name="Default" comment="提交">
+      <change afterPath="$PROJECT_DIR$/Chatbot_Doc/bert/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Model/BERT_as_service/run_NER.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Model/BERT_as_service/tf_metrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/BERT_train_helper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/predict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_RASA/bash/action_run.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_RASA/bash/core_interactive_train.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_RASA/bash/core_run.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_RASA/bash/core_train.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_RASA/bash/nlu_run.bash" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/util/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/word2vec/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Web/impl/text_classification/text_classification.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Web/impl/view/text_classification_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Chatbot_Web/templates/text_classification/text_classification.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/start_server.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Chatbot_CN.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Chatbot_CN.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_CN/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_CN/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_CN/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_CN/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Data/Info_Extraction/1万篇训练数据集.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Data/Info_Extraction/1万篇训练数据集.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Data/Info_Extraction/train_data_tim" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Data/Info_Extraction/train_data_tim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_KG/kbqa/question_answering.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_KG/kbqa/question_answering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_KG/label_data/leaf_list.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_KG/label_data/leaf_list.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_KG/label_data/micropedia_tree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_KG/label_data/micropedia_tree.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_KG/toolkit/pre_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_KG/toolkit/pre_load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_KG/toolkit/tree_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_KG/toolkit/tree_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/Enext_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/Enext_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Info_Ext_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Info_Ext_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/action_run.bash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/core_interactive_train.bash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/core_run.bash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/core_train.bash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/data/stories.md" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_RASA/data/stories.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/nlu_run.bash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/nlu_train.bash" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_RASA/bash/nlu_train.bash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_RASA/nlu_weather.json" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_RASA/data/nlu_weather.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/bot/bot_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/bot/bot_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/cws/cws_rest_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/cws/cws_rest_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/info_extraction/entity_extraction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/info_extraction/entity_extraction_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/info_extraction/entity_extraction_remote.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/intent_detection/intent_rest_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/intent_detection/intent_rest_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/time_convert/time_convert_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/time_convert/time_convert_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/util/enum.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/util/enum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Rest/word2vec/word2vec_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Rest/Api/word2vec/word2vec_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Web/impl/info_extraction/entity_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Web/impl/info_extraction/entity_extraction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Web/static/js/bower_components/ckeditor/ckeditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Web/static/js/bower_components/ckeditor/ckeditor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Web/static/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Web/static/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Web/static/js/jquery.mobile-1.4.0-rc.1.js" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Web/static/js/jquery.mobile-1.4.0-rc.1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Web/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Web/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chatbot_Web/templates/dialogue/dialogue_v2.html" beforeDir="false" afterPath="$PROJECT_DIR$/Chatbot_Web/templates/dialogue/dialogue_v2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="view.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chatbot_CN/view.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/predict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+            <state relative-caret-position="216">
+              <caret line="15" column="151" selection-start-line="15" selection-start-column="151" selection-end-line="15" selection-end-column="151" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Chatbot_CN/urls.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Chatbot_CN/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+            <state relative-caret-position="186">
+              <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/start_server.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_CN/view.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/text_classification/text_classification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
-                <element signature="e#634#666#0" expanded="true" />
+                <element signature="e#172#207#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Chatbot_CN/settings.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_Rest/Api/text_classification/classification_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-240" />
+            <state relative-caret-position="369">
+              <caret line="30" column="33" selection-start-line="29" selection-start-column="8" selection-end-line="30" selection-end-column="33" />
+              <folding>
+                <element signature="e#137#148#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_CN/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="59" column="42" lean-forward="true" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="42" />
+              <folding>
+                <element signature="e#635#683#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="87" column="4" selection-start-line="87" selection-start-column="4" selection-end-line="87" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/welcome_view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/text_classification_view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -48,28 +189,76 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="charlesXu86 &lt;charlesxu86@163.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Chatbot_CN/view.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/parameters.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Text_Classification/TextRNN/TextRNN_model.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/fast_text.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/data_helper.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/train.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Text_Classification/README.md" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/utils/Sensitive_word_filter.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Rest/Api/Sensitive_word/Sensitive_word_controller.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Rest/urls.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Time_Convert/TimeNormalizer.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/impl/view/kg_view.py" />
+        <option value="$PROJECT_DIR$/Chatbot_KG/toolkit/tree_API.py" />
+        <option value="$PROJECT_DIR$/Chatbot_KG/label_data/micropedia_tree.txt" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/impl/view/kg_overview.py" />
+        <option value="$PROJECT_DIR$/Chatbot_KG/label_data/leaf_list.txt" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/BERT_as_service/README.md" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/BERT_as_service/run_classifier.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/templates/dialogue/dialogue_v2.html" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/core_run.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/core_interactive_train.bash" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/core_train.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/nlu_run.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/action_run.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/data/nlu.json" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/data/nlu_model_config.json" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/config/mobile_domain.yml" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/data/stories.md" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/urls.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/impl/view/rasa_bot_view.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/impl/info_extraction/entity_extraction.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/BERT_as_service/tf_metrics.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/BERT_as_service/run_NER.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Info_Ext_main.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/Enext_model.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/predict.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/BERT_train_helper.py" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/bash/core_train.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/bash/action_run.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/bash/core_interactive_train.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/bash/core_run.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/bash/nlu_run.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_RASA/bash/nlu_train.bash" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/impl/view/text_classification_view.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/templates/base.html" />
         <option value="$PROJECT_DIR$/Chatbot_CN/urls.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/templates/text_classification/text_classification.html" />
+        <option value="$PROJECT_DIR$/Chatbot_Web/impl/text_classification/text_classification.py" />
+        <option value="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/predict.py" />
+        <option value="$PROJECT_DIR$/start_server.sh" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="873" />
-    <option name="y" value="311" />
-    <option name="width" value="1029" />
-    <option name="height" value="890" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="90" />
+    <option name="y" value="23" />
+    <option name="width" value="1345" />
+    <option name="height" value="825" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -89,6 +278,63 @@
               <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
               <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="info_extraction" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="knowledge_graph" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="dependency_parsing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Chatbot_CN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chatbot_CN" type="462c0819:PsiDirectoryNode" />
+              <item name="Chatbot_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="text_classification" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -96,11 +342,36 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Chatbot_Web/templates/text_classification" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Chatbot_Web/templates/text_classification" />
+      <recent name="$PROJECT_DIR$/Chatbot_Model/BERT_as_service" />
+      <recent name="$PROJECT_DIR$/Chatbot_RASA/data" />
+      <recent name="$PROJECT_DIR$/Chatbot_RASA" />
+      <recent name="$PROJECT_DIR$/Chatbot_RASA/config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Chatbot_RASA/bash" />
+      <recent name="$PROJECT_DIR$/Chatbot_RASA/data" />
+      <recent name="$PROJECT_DIR$/Chatbot_Rest/Api" />
+      <recent name="$PROJECT_DIR$/Chatbot_Data/Sensitive_word" />
+      <recent name="$PROJECT_DIR$/Chatbot_Doc/文本分类" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -114,6 +385,32 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Chatbot_CN" type="Python.DjangoServer" factoryName="Django server">
+      <module name="Chatbot_CN" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Chatbot_CN.settings" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8008" />
+      <option name="host" value="172.18.99.170" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -124,61 +421,613 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533102643074</updated>
+      <workItem from="1557286791344" duration="1224000" />
+      <workItem from="1557365539969" duration="3977000" />
+      <workItem from="1557837578879" duration="1384000" />
+      <workItem from="1557927019952" duration="198000" />
+      <workItem from="1557927419428" duration="1080000" />
+      <workItem from="1558016712169" duration="125000" />
+      <workItem from="1558624294816" duration="136000" />
+      <workItem from="1558703563098" duration="595000" />
+      <workItem from="1558952061774" duration="1669000" />
+      <workItem from="1559010547115" duration="65000" />
+      <workItem from="1559027947937" duration="1255000" />
+      <workItem from="1559031028334" duration="429000" />
+      <workItem from="1559034167072" duration="1882000" />
+      <workItem from="1559043905716" duration="3422000" />
+      <workItem from="1559047520681" duration="771000" />
+      <workItem from="1559090135345" duration="1529000" />
+      <workItem from="1559098865139" duration="1505000" />
+      <workItem from="1559110770339" duration="498000" />
+      <workItem from="1559114805110" duration="3092000" />
+      <workItem from="1559125167685" duration="2160000" />
+      <workItem from="1559180023161" duration="766000" />
+      <workItem from="1559181039249" duration="1488000" />
+      <workItem from="1559183091382" duration="1600000" />
+      <workItem from="1559184917455" duration="2143000" />
+      <workItem from="1559188199430" duration="90000" />
+      <workItem from="1559200902023" duration="1301000" />
+      <workItem from="1559217027399" duration="2695000" />
+      <workItem from="1559267987967" duration="34000" />
+      <workItem from="1559270372742" duration="5495000" />
+      <workItem from="1559553842288" duration="142000" />
+      <workItem from="1559559359382" duration="3768000" />
+      <workItem from="1559608945728" duration="5621000" />
+      <workItem from="1559637271276" duration="355000" />
+      <workItem from="1559642869148" duration="21187000" />
+      <workItem from="1559724946199" duration="9164000" />
+      <workItem from="1559790810228" duration="1676000" />
+      <workItem from="1559804208287" duration="14095000" />
+      <workItem from="1560137551540" duration="591000" />
+      <workItem from="1560146206121" duration="754000" />
+      <workItem from="1560151857542" duration="1341000" />
+      <workItem from="1560165042202" duration="5564000" />
+      <workItem from="1560254710824" duration="98000" />
+      <workItem from="1560308900491" duration="6553000" />
+      <workItem from="1560422606123" duration="25275000" />
+      <workItem from="1560820453999" duration="142000" />
+      <workItem from="1560822458445" duration="1998000" />
+      <workItem from="1560845519115" duration="948000" />
+      <workItem from="1560846534946" duration="5140000" />
     </task>
+    <task id="LOCAL-00001" summary="js">
+      <created>1559364801940</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559364801940</updated>
+    </task>
+    <task id="LOCAL-00002" summary="文本分类之fasttext">
+      <created>1559709069272</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559709069272</updated>
+    </task>
+    <task id="LOCAL-00003" summary="文本分类之fasttext">
+      <created>1559789130202</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1559789130202</updated>
+    </task>
+    <task id="LOCAL-00004" summary="敏感词，包含政治，色情，暴力，反动等">
+      <created>1559805021825</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1559805021825</updated>
+    </task>
+    <task id="LOCAL-00005" summary="敏感词过滤工具类">
+      <created>1559811817150</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1559811817150</updated>
+    </task>
+    <task id="LOCAL-00006" summary="敏感词检测接口">
+      <created>1559811886749</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1559811886749</updated>
+    </task>
+    <task id="LOCAL-00007" summary="敏感词检测接口">
+      <created>1559811910692</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1559811910692</updated>
+    </task>
+    <task id="LOCAL-00008" summary="文本分类接口">
+      <created>1559818532966</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1559818532966</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Chatbot_Model">
+      <created>1560133863381</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560133863381</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Chatbot_Web">
+      <created>1560134149642</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560134149642</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Chatbot_RASA">
+      <created>1560341450553</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560341450553</updated>
+    </task>
+    <task id="LOCAL-00012" summary="requirements">
+      <created>1560406486930</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560406486930</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Chatbot_Model">
+      <created>1560422684752</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560422684752</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="147020000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="873" y="311" width="1029" height="890" extended-state="1" />
+    <frame x="90" y="23" width="1345" height="825" extended-state="0" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.28496042" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27966976" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="SciView" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19646968" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49917492" weight="0.14417177" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917492" weight="0.04761905" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.78960395" weight="0.521146" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3298292" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.28785813" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.38352525" side_tool="true" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.4985694" visible="true" weight="0.46793997" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.61647475" weight="0.2522996" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" sideWeight="0.49917492" weight="0.32822084" />
+      <window_info anchor="bottom" id="Messages" order="14" />
+      <window_info anchor="bottom" id="File Transfer" order="15" weight="0.123521686" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49489796" weight="0.024213076" />
+      <window_info anchor="right" id="Database" order="4" weight="0.026572188" />
+      <window_info anchor="right" id="Remote Host" order="5" sideWeight="0.4846154" visible="true" weight="0.12432847" />
+      <window_info anchor="right" x="0" y="0" width="242" height="522" id="Documentation" order="6" sideWeight="0.5153846" side_tool="true" visible="true" weight="0.12432847" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="js" />
+    <MESSAGE value="文本分类之fasttext" />
+    <MESSAGE value="敏感词，包含政治，色情，暴力，反动等" />
+    <MESSAGE value="敏感词过滤工具类" />
+    <MESSAGE value="敏感词检测接口" />
+    <MESSAGE value="文本分类接口" />
+    <MESSAGE value="Chatbot_Web" />
+    <MESSAGE value="Chatbot_RASA" />
+    <MESSAGE value="requirements" />
+    <MESSAGE value="Chatbot_Model" />
+    <MESSAGE value="提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Chatbot_Model/Text_corrector/Text_auto_correct_v1.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Chatbot_Model/Time_Convert/TimeNormalizer.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Chatbot_CN$train.coverage" NAME="train Coverage Results" MODIFIED="1559717071770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext" />
+    <SUITE FILE_PATH="coverage/Chatbot_CN$predict.coverage" NAME="predict Coverage Results" MODIFIED="1559726925265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext" />
+    <SUITE FILE_PATH="coverage/Chatbot_CN$tc_test.coverage" NAME="tc_test Coverage Results" MODIFIED="1559219774948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Chatbot_Model/Text_corrector" />
+    <SUITE FILE_PATH="coverage/Chatbot_CN$express.coverage" NAME="express Coverage Results" MODIFIED="1559115347398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Chatbot_Model/Bot/express" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Chatbot_CN/settings.py">
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/training_online.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-240" />
+        <state>
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/data/nlu_model_config.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/tmp.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/data/nlu.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/config/mobile_domain.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1206">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Rest/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="36" column="1" lean-forward="true" selection-start-line="9" selection-end-line="36" selection-end-column="1" />
+          <folding>
+            <element signature="e#157#185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/rasa_bot_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Rest/Api/bot/bot_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding>
+            <element signature="e#112#123#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/BERT_as_service/tf_metrics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="114" column="19" lean-forward="true" selection-end-line="114" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Info_Ext_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="107" column="13" selection-start-line="107" selection-start-column="13" selection-end-line="107" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/templates/info_extraction/entity.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Rest/Api/info_extraction/entity_extraction_remote.py" />
+    <entry file="file://$PROJECT_DIR$/Chatbot_Rest/Api/info_extraction/entity_extraction_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1068">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/Enext_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="290" column="69" selection-start-line="290" selection-start-column="69" selection-end-line="290" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/data/stories.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="165420">
+            <caret line="9190" selection-start-line="9190" selection-end-line="9190" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/data/criminal_domain.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/BERT_train_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-657">
+          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/bash/core_train.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/bash/nlu_run.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/bash/nlu_train.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Rest/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/BERT_as_service/run_NER.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="245" selection-start-line="245" selection-end-line="245" />
+          <folding>
+            <element signature="e#696#734#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/bash/action_run.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/bash/core_interactive_train.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_RASA/bash/core_run.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/tagging_view.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/specification_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" selection-start-line="13" selection-end-line="17" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/knowledge_graph/entity_and_relation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-864" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/info_extraction/entity_extraction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="30" column="62" selection-start-line="12" selection-end-line="30" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="333" column="13" selection-start-line="333" selection-start-column="13" selection-end-line="333" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/templates/text_classification/text_classification.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/index_ERform_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Rest/Api/text_classification/classification_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="30" column="33" selection-start-line="29" selection-start-column="8" selection-end-line="30" selection-end-column="33" />
+          <folding>
+            <element signature="e#137#148#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/text_classification/text_classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#172#207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Model/Text_Classification/Fasttext/predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="15" column="151" selection-start-line="15" selection-start-column="151" selection-end-line="15" selection-end-column="151" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Chatbot_CN/view.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/text_classification_view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+        <state relative-caret-position="324">
+          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/view/welcome_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/templates/welcome.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_Web/impl/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="87" column="4" selection-start-line="87" selection-start-column="4" selection-end-line="87" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Chatbot_CN/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        <state relative-caret-position="219">
+          <caret line="59" column="42" lean-forward="true" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="42" />
           <folding>
-            <element signature="e#634#666#0" expanded="true" />
+            <element signature="e#635#683#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start_server.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chatbot_CN/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="17" />
         </state>
       </provider>
     </entry>

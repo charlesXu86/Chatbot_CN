@@ -30,7 +30,7 @@ print('neo4j connected!')
 
 predict_labels = {}   # 预加载实体到标注的映射字典
 # filePath = os.getcwd()
-filePath = 'F:\project\Chatbot_CN\Chatbot_KG\label_data'
+filePath = 'Chatbot_KG/label_data'
 with open(filePath + '/predict_labels.txt','r',encoding="utf-8") as csvfile:
 	reader = csv.reader(csvfile, delimiter=' ')
 	for row in reader:

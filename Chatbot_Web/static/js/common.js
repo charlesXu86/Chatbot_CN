@@ -325,7 +325,7 @@ define(['dialog', 'jquery'], function (dialog, $) {
         async: false,
         success: function (response) {
             if (common.dealResponse(response)) {
-                common.domain = response.data.domain;
+                common.domain = response.data.mobile_domain;
                 common.dic = {
                     dutyData: response.data.dutyData,
                     tenantTypeData: response.data.tenantTypeData,

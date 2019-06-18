@@ -25,7 +25,7 @@ SECRET_KEY = 'ivn=h(3#0efy(qx%q^x^@w+#yj1#fe#jfti)4q@q6!s!5nnss*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Chatbot_CN.apps.RegisterLoginConfig',
-    'bootstrap3',
+    'bootstrap4',
     #'rest_framework_swagger',
     'rest_framework',
    # 'rest_framework_docs',

@@ -1832,7 +1832,7 @@ $.mobile.widget = $.Widget;
       // been set, update that as well.
       history_set = function( hash, history_hash ) {
         var iframe_doc = iframe.document,
-          domain = $.fn[ str_hashchange ].domain;
+          domain = $.fn[ str_hashchange ].mobile_domain;
         
         if ( hash !== history_hash ) {
           // Update Iframe with any initial `document.title` that might be set.
@@ -2560,7 +2560,7 @@ if ( !$.support.boxShadow ) {
 			//could be mailto, etc
 			isExternal: function( url ) {
 				var u = path.parseUrl( url );
-				return u.protocol && u.domain !== this.documentUrl.domain ? true : false;
+				return u.protocol && u.domain !== this.documentUrl.mobile_domain ? true : false;
 			},
 
 			hasProtocol: function( url ) {

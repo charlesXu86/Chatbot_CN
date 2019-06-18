@@ -161,14 +161,22 @@ class BiLSTM_CRF(object):
         :param dev:
         :return:
         """
-        saver = tf.train.Saver(tf.global_variables())
+        # saver = tf.train.Saver(tf.global_variables())
 
         with tf.Session(config=self.config) as sess:
+            saver = sess.run(tf.global_variables_initializer())
+
+            timestamp = str(int(time.time()))
+            outdir = os.path.abspath(os.path.join(os.path.curdir, 'runs', timestamp))
             sess.run(self.init_op)
             self.add_summary(sess)
 
             for epoch in range(self.epoch_num):
                 self.run_one_epoch(sess, train, dev, self.tag2label, epoch, saver)
+
+            builder = tf.saved_model.builder.SavedModelBuilder(outdir)
+            builder.add_meta_graph_and_variables(sess, ['ner_string'])
+            builder.save()
 
     def test(self, test):
         saver = tf.train.Saver()

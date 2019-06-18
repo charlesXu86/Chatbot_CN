@@ -13,7 +13,7 @@ from Chatbot_Model.Text_Classification.Fasttext.data_helper import load_json, pa
 
 
 class Predict():
-    def __init__(self, config=parameters, model='/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Model/Text_Classification/Fasttext/runs/1559726272', word_to_index='/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Model/Text_Classification/Fasttext/vocabs/word_to_index.json',
+    def __init__(self, config=parameters, model='/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Model/Text_Classification/Fasttext/runs/1559726102', word_to_index='/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Model/Text_Classification/Fasttext/vocabs/word_to_index.json',
                  index_to_label='/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Model/Text_Classification/Fasttext/vocabs/index_to_label.json'):
         self.word_to_index = load_json(word_to_index)
         self.index_to_label = load_json(index_to_label)
@@ -46,7 +46,7 @@ class Predict():
         return [self.index_to_label[str(idx)] for idx in predictions]
 
 
-if __name__ == '__main__':
-    prediction = Predict(parameters)
-    result = prediction.fc_predicts(["""我破产了"""])
-    print(result)
+# if __name__ == '__main__':
+#     prediction = Predict(parameters)
+#     result = prediction.fc_predicts(["""我破产了"""])
+#     print(result)

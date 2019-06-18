@@ -12,17 +12,20 @@
     Chatbot_KG       知识图谱实现
     Chatbot_Web      页面展示
     Chatbot_Rest     RESTful接口模块 (Chatbot_Rest/README.md)
+    Chatbot_RASA     rasa模块，包含部分nlu和部分任务型对话。
 
 #### 各个子模块介绍
 如上所示，目前Chatbot_CN包括七个子模块，现做简单介绍：
-1、
-2、
-3、
-4、
-5、
-6、
-7、接口使用websocket通信协议
-
+  
+    1、
+    2、
+    3、
+    4、
+    5、
+    6、
+    7、
+    8、
+    
 #### 项目结构图
 
 ```
@@ -123,7 +126,7 @@ Chatbot_CN
             2、导入。图数据库的部分教程以及数据的导入命令，关系查询构建请移步：Chatbot_Doc/图数据库  目录下
             3、修改项目中的Neo4j连接。文件位置在：Chatbot_KG/util下，neo_models.py
             4、启动图数据库。启动命令为： neo4j.bat console   （win环境下）
-    4、启动mongodb。 mongodb
+    4、启动mongodb。 mongodb可选
     5、启动sparql。对项目启动可选
     
 ### 启动项目

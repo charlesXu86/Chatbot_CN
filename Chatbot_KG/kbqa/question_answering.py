@@ -15,7 +15,7 @@ from Chatbot_KG.toolkit.pre_load import neo_con
 
 city_list = []
 
-filePath = 'F:\project\Agriculture_KnowledgeGraph\demo\label_data\city_list.txt'
+filePath = 'Chatbot_KG/label_data/city_list.txt'
 
 
 with open(filePath, 'r', encoding='utf8') as fr:

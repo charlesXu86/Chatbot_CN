@@ -17,7 +17,7 @@ import random
 class TREE:
     edge = None  # 层次树邻接表
     leaf = None  # 记录叶子节点
-    root = '农业'  # 树的根结点
+    root = '财经'  # 树的根结点
     curpath = None  # 路径栈
     anspath = None  # 返回路径结果
     UI_str = None  # 动态生成的树状图代码

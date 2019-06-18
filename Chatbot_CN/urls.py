@@ -27,6 +27,9 @@ from Chatbot_Web.impl.info_extraction import entity_extraction
 from Chatbot_Web.impl.info_extraction import event_extraction
 from Chatbot_Web.impl.info_extraction import relation_extraction
 
+from Chatbot_Web.impl.view.text_classification_view import text_classification_page
+from Chatbot_Web.impl.text_classification.text_classification import text_cls_post
+
 from Chatbot_Web.impl.view import kg_view, relation_search_view, kg_overview
 from Chatbot_Web.impl.view import chatbot_view
 from Chatbot_Web.impl.view import settings_view
@@ -65,6 +68,10 @@ urlpatterns = [
     path('entity_extraction', info_extraction_view.entity_extraction_page, name='entity_extraction'), # 实体抽取页面
     path('event_extraction', info_extraction_view.event_extraction_page, name='event_extraction'), # 实体抽取页面
     path('relation_extraction', info_extraction_view.relation_extraction_page, name='relation_extraction'), # 实体抽取页面
+
+    path('text_cls', text_classification_page, name='text_cls'),                      # 文本分类页面
+    path('cls_post', text_cls_post, name='cls_post'),
+
     path('dp_view/', dp_view.dp_page, name='dp_view'),  # 句法分析页面
     path('sp_view/', sp_view.sp_view, name='sp_view'),  # 语义分析页面
 
@@ -90,8 +97,7 @@ urlpatterns = [
     path('qa/', question_answering.question_answering, name='qa'),     # qa
     path('chatbot/', chatbot_view.chatbot_page, name='chatbot'),
     path('decision/', decisions_making_view.decisions_making_page, name='decision'), # 辅助决策页面
-    # path('kg_overview/', kg_overview.show_overview, name='kg_overview'),   # 概览页面
-    # url(r'^overview', kg_overview.show_overview),
+    path('kg_overview/', kg_overview.show_overview, name='kg_overview'),   # 概览页面
 
     # path('logout/', logout, name='logout'),
 

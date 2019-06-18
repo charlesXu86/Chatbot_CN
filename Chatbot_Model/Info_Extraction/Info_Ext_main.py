@@ -25,11 +25,11 @@ from Entity_Extraction.get_data import get_datas, get_MONGO_data
 
 
 ## Session configuration
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 设置只用一块显卡
+os.environ['CUDA_VISIBLE_DEVICES'] = '1,2,3'  # 设置只用一块显卡
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # default: 0
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
-# config.gpu_options.per_process_gpu_memory_fraction = 0.3 # need ~700MB GPU memory
+# config.gpu_options.per_process_gpu_memory_fraction = 0.6 # need ~700MB GPU memory
 
 text_list = []   # 创建一个tuple，用来装分句后的数据
 
@@ -37,8 +37,8 @@ text_list = []   # 创建一个tuple，用来装分句后的数据
 parser = argparse.ArgumentParser(description='BiLSTM-CRF for Chinese NER task')
 parser.add_argument('--train_data', type=str, default='../Chatbot_Data/Info_Extraction', help='train data source')
 parser.add_argument('--test_data', type=str, default='../Chatbot_Data/Info_Extraction', help='test data source')
-parser.add_argument('--batch_size', type=int, default=16, help='#sample of each minibatch')
-parser.add_argument('--epoch', type=int, default=100, help='#epoch of training')
+parser.add_argument('--batch_size', type=int, default=4, help='#sample of each minibatch')
+parser.add_argument('--epoch', type=int, default=5, help='#epoch of training')
 parser.add_argument('--hidden_dim', type=int, default=300, help='#dim of hidden state')
 parser.add_argument('--optimizer', type=str, default='Adam', help='Adam/Adadelta/Adagrad/RMSProp/Momentum/SGD')
 parser.add_argument('--CRF', type=str2bool, default=True, help='use CRF at the top layer. if False, use Softmax')
@@ -68,7 +68,7 @@ if args.mode != 'demo':
     train_path = os.path.join('..', args.train_data, 'train_data_tim')   # 训练数据
     test_path = os.path.join('..', args.test_data, 'test_data')
     train_data = read_corpus(train_path)
-    test_data = read_corpus(test_path);
+    test_data = read_corpus(test_path)
     test_size = len(test_data)
 
 
@@ -132,18 +132,7 @@ elif args.mode == 'demo':
     with tf.Session(config=config) as sess:
         print('============= demo =============')
         saver.restore(sess, ckpt_file)
-        # saver.restore(sess, tf.train.latest_checkpoint("Chatbot_Data/Info_Extraction_save"))
-        # while(1):
-            # print('Please input your sentence:')
-            # demo_sent = input()
 
-        # output_graph_def = graph_util.convert_variables_to_constants(
-        #     sess,
-        #     sess.graph.as_graph_def(add_shapes=True),
-        #     ['output']
-        # )
-        # with tf.gfile.GFile("ner.pb", "wb") as f:
-        #     f.write(output_graph_def.SerializeToString())
         try:
             for one_text in get_MONGO_data():
                 addr = one_text['addr']  # 归属地
