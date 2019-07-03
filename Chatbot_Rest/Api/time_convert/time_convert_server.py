@@ -7,10 +7,14 @@
 """
 
 import json
+import logging
+import datetime
 
 from django.http import HttpResponse, JsonResponse
-from time import gmtime, strftime
 from Chatbot_Model.Time_Convert.TimeNormalizer import TimeNormalizer
+
+
+logger = logging.getLogger(__name__)
 
 def time_convert(request):
     '''
@@ -20,16 +24,22 @@ def time_convert(request):
     '''
     if request.method == 'POST':
         jsonData = json.loads(request.body.decode('utf-8'))
-        msg = jsonData["msg"]
+        try:
+            msg = jsonData["msg"]
 
-        tn = TimeNormalizer()
-        res = tn.parse(msg)
-        time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-        return JsonResponse({
-            "desc": "Success",
-            "ques": msg,
-            "res": res,
-            "time": time
-        })
+            tn = TimeNormalizer()
+            res = tn.parse(msg)
+            localtime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            dic = {
+                "desc": "Success",
+                "ques": msg,
+                "res": res,
+                "time": localtime,
+            }
+            log_res = json.dumps(dic)
+            logger.info(log_res)
+            return JsonResponse(dic)
+        except Exception as e:
+            logger.info(e)
     else:
         return JsonResponse({"desc": "Bad request"}, status=400)
