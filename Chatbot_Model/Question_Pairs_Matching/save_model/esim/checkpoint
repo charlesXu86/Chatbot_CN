@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/charlesxu/Downloads/text_matching-master/save_model/esim/model.ckpt"
+all_model_checkpoint_paths: "/Users/charlesxu/Downloads/text_matching-master/save_model/esim/model.ckpt"
