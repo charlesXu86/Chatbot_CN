@@ -23,6 +23,8 @@ from Chatbot_Rest.Api.text_classification.classification_controller import text_
 
 from Chatbot_Rest.Api.Sensitive_word.Sensitive_word_controller import sensitive_controller
 
+from Chatbot_Rest.Api.sim_sentence import Sim_sentence_controller
+
 
 urlpatterns = [
 
@@ -34,4 +36,5 @@ urlpatterns = [
     path('tcfc', text_classification_server_fc),      # Fasttext 文本分类接口
 
     path('sensitive', sensitive_controller),          # 敏感词检测
+    path('sim_sentence', Sim_sentence_controller.sim_sentence_controller),   # 短文本相似度
 ]
