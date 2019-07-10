@@ -9,7 +9,7 @@
  
 @Time    :   2019-06-13 17:51
  
-@Desc    :
+@Desc    :   日志工具类
  
 '''
 
@@ -25,8 +25,8 @@ class Logger(object):
         'crit':logging.CRITICAL
     }
 
-    all_log = './all.log'
-    info_log = './info.log'
+    all_log = 'all.log'
+    info_log = 'info.log'
 
     def __init__(self,filename,level='info',when='D',backCount=None,fmt='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'):
         self.logger = logging.getLogger(filename)
