@@ -1,3 +1,0 @@
-CREATE TABLE weixin_xiaoshuo(title TEXT, publishTime VARCHAR(200), article TEXT, publicName VARCHAR(200), cite VARCHAR(200));
-ALTER TABLE weixin_xiaoshuo CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-SHOW FULL COLUMNS FROM weixin_xiaoshuo;
