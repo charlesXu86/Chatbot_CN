@@ -12,9 +12,12 @@ import datetime
 
 from django.http import HttpResponse, JsonResponse
 from Chatbot_Model.Time_Convert.TimeNormalizer import TimeNormalizer
+from Chatbot_Rest.Api.util import LogUtils2
 
 
 logger = logging.getLogger(__name__)
+
+tn = TimeNormalizer()
 
 def time_convert(request):
     '''
@@ -27,7 +30,6 @@ def time_convert(request):
         try:
             msg = jsonData["msg"]
 
-            tn = TimeNormalizer()
             res = tn.parse(msg)
             localtime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             dic = {
@@ -36,7 +38,7 @@ def time_convert(request):
                 "res": res,
                 "time": localtime,
             }
-            log_res = json.dumps(dic)
+            log_res = json.dumps(dic, ensure_ascii=False)
             logger.info(log_res)
             return JsonResponse(dic)
         except Exception as e:
