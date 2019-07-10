@@ -17,7 +17,7 @@ from Chatbot_Rest.Api.util import LogUtils2
 
 logger = logging.getLogger(__name__)
 
-tn = TimeNormalizer()
+tn = TimeNormalizer()    # 初始化时间提取
 
 def time_convert(request):
     '''

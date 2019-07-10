@@ -1,6 +1,6 @@
 #-*- coding:utf-8 _*-
 """
-@author:charlesXu
+@author:Xu
 @file: TimeNormalizer.py
 @desc: 时间表达式识别的主要工作类
 @time: 2019/05/23
@@ -93,7 +93,10 @@ class TimeNormalizer:
         self.__preHandling()
         self.timeToken = self.__timeEx()
         dic = {}
-        res = self.timeToken
+        res = self.timeToken[1]
+        temp = self.timeToken[0]
+        dic['key'] = ','.join(temp)
+        # dic['target'] = self.target
 
         if self.isTimeSpan:
             if self.invalidSpan:
@@ -126,7 +129,7 @@ class TimeNormalizer:
                 dic['type'] = 'timespan'
                 # dic['timespan'] = [res[0].time.format("YYYY-MM-DD HH:mm:ss"), res[1]]
                 dic['timespan'] = ','.join([x.time.format("YYYY-MM-DD HH:mm:ss") for x in res])
-        res = json.dumps(dic)
+        res = json.dumps(dic, ensure_ascii=False)
         res_date = json.loads(res)
         return res_date
 
@@ -164,8 +167,8 @@ class TimeNormalizer:
         res = []
         # 时间上下文： 前一个识别出来的时间会是下一个时间的上下文，用于处理：周六3点到5点这样的多个时间的识别，第二个5点应识别到是周六的。
         contextTp = TimePoint()
-        print(self.timeBase)
-        print('temp',temp)
+        # print(self.timeBase)
+        # print('temp',temp)
         for i in range(0, rpointer):
             # 这里是一个类嵌套了一个类
             res.append(TimeUnit(temp[i], self, contextTp))
@@ -175,7 +178,7 @@ class TimeNormalizer:
             # print(contextTp.tunit)
         res = self.__filterTimeUnit(res)
 
-        return res
+        return [temp, res]
 
     def __filterTimeUnit(self, tu_arr):
         """
