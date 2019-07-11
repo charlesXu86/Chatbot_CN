@@ -165,15 +165,20 @@ class TimeNormalizer:
             endline = m.end()
             rpointer += 1
         res = []
+
         # 时间上下文： 前一个识别出来的时间会是下一个时间的上下文，用于处理：周六3点到5点这样的多个时间的识别，第二个5点应识别到是周六的。
         contextTp = TimePoint()
         # print(self.timeBase)
         # print('temp',temp)
         for i in range(0, rpointer):
             # 这里是一个类嵌套了一个类
+            # y = temp[i]
+            # ss = TimeUnit(temp[i], self, contextTp)
             res.append(TimeUnit(temp[i], self, contextTp))
+
             # res[i].tp.tunit[3] = -1
             contextTp = res[i].tp
+            self.timeBase = arrow.get(arrow.now()).format('YYYY-M-D-H-m-s')
             # print(self.nowTime.year)
             # print(contextTp.tunit)
         res = self.__filterTimeUnit(res)
