@@ -10,14 +10,11 @@
 import pickle, os, random
 import numpy as np
 
-import pdb
-
 ## tags, BIO 标注策略   标签矩阵
 tag2label = {"O": 0,
              "B-PER": 1, "I-PER": 2,
              "B-LOC": 3, "I-LOC": 4,
              "B-ORG": 5, "I-ORG": 6,
-             "B-TIM": 7, "I-TIM": 8 # 时间标签
              }
 
 
@@ -107,7 +104,7 @@ def read_dictionary(vocab_path):
     :return:
     """
     # vocab_path = os.path.join(vocab_path)
-    # vocab_path = '/Chatbot_CN/Chatbot_Model/Info_Extraction/Entity_Extraction/data/word2id.pkl'
+    vocab_path = '/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Model/Info_Extraction/Entity_Extraction/data/word2id.pkl'
     with open(vocab_path, 'rb') as fr:
         word2id = pickle.load(fr)
     print('vocab_size:', len(word2id))
@@ -173,8 +170,8 @@ def batch_yield(data, batch_size, vocab, tag2label, shuffle=False):
 
 
 # 构建word2id.pkl
-# vocab_path = 'D:\project\Chatbot_CN\Chatbot_Model\Info_Extraction\Entity_Extraction\data\word2id_tim.pkl'
-# corpus_path = 'D:\project\Chatbot_CN\Chatbot_Data\Info_Extraction\\train_data_tim'
+# vocab_path = '/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Model/Info_Extraction/Entity_Extraction/data/word2id.pkl'
+# corpus_path = '/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Data/Info_Extraction/train_data_BAK'
 # min = 5
 # vocab_build(vocab_path, corpus_path, min)
 

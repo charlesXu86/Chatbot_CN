@@ -2,7 +2,7 @@
 
 """
 -------------------------------------------------
-   File Name：     train.py
+   File Name：     bilstm_crf.py
    Description :   train及参数设置
    Author :       charlesXu
    date：          2018/12/28

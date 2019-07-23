@@ -118,6 +118,9 @@ class TimeNormalizer:
                 result['hour'] = int(time[0])
                 result['minute'] = int(time[1])
                 result['second'] = int(time[2])
+
+                # 这里优化
+
                 dic['timedelta'] = result
         else:
             if len(res) == 0:

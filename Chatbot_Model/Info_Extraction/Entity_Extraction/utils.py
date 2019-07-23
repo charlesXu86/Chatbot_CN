@@ -10,7 +10,7 @@ import logging, sys, argparse, re
 
 from functools import reduce
 
-from Chatbot_Model.Info_Extraction.Entity_Extraction import proprecess_money
+import proprecess_money
 
 
 def str2bool(v):
@@ -28,8 +28,8 @@ def get_entity(tag_seq, char_seq):
     # LOC = get_LOC_entity(tag_seq, char_seq)
     LOC = get_LOC_entitys(tag_seq, char_seq)
     ORG = get_ORG_entity(tag_seq, char_seq)
-    TIM = get_TIM_entity(tag_seq, char_seq)
-    return PER, LOC, ORG, TIM
+    # TIM = get_TIM_entity(tag_seq, char_seq)
+    return PER, LOC, ORG
 
 
 def get_PER_entity(tag_seq, char_seq):
@@ -201,11 +201,6 @@ def get_MON_entity(text):
     return MON
 
 def get_logger(filename):
-    '''
-    日志处理
-    :param filename:
-    :return:
-    '''
     logger = logging.getLogger('logger')
     logger.setLevel(logging.DEBUG)
     logging.basicConfig(format='%(message)s', level=logging.DEBUG)

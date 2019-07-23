@@ -11,10 +11,6 @@ import csv
 from enum import Enum, unique
 import jieba
 import re
-import sys
-
-
-from Chatbot_Model.Info_Extraction.Entity_Extraction import log
 
 @unique
 class Consts(Enum):
@@ -154,7 +150,6 @@ def get_properties_and_values(sentence):
                         if k in range(5):
                             if not quick_get_disabled:
                                 pv_dict[seg] = v
-                                log.p(seg)
                                 break
                         else:
                             pr_index_list.append(word_index)
@@ -166,7 +161,7 @@ def get_properties_and_values(sentence):
                     if belong_propery(seg):
                         if len(seg) < 3:
                             if word_index - 1 > last_index:
-                                log.n(cut_words[word_index - 1] + seg)
+                               pass
                         if word_index not in pr_index_list:
                             pr_index_list.append(word_index)
                 # end for
@@ -179,13 +174,11 @@ def get_properties_and_values(sentence):
                         ind = pr_index_list[count]
                         p = cut_words[ind]
                         pv_dict[p] = v
-                        log.p(p)
                         last_index = i
                         break
                 if length > 0:
                     p = cut_words[pr_index_list[0]]
                     pv_dict[p] = v
-                    log.p(p)
                 break
     return pv_dict
 
@@ -278,7 +271,6 @@ class JIO(object):
                 p_v_dict = {}
                 for sentence in sentences:
                     for (p, v) in get_properties_and_values(sentence).items():
-                        log.a(document_id, p, v)
                         p = adjust(p)
                         if p is not None:
                             if p in p_v_dict:

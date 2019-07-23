@@ -29,7 +29,7 @@ class NaiveFilter():
 
     def parse(self, path):
         for keyword in open(path):
-            self.keywords.add(keyword.strip().decode('utf-8').lower())
+            self.keywords.add(keyword.strip().encode('utf-8').lower())
 
     def filter(self, message, repl="*"):
         message = message.lower()
@@ -121,7 +121,7 @@ class DFAFilter():
             level[self.delimit] = 0
 
     def parse(self, path):
-        data = '/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Data/Sensitive_word/keywords'
+        data = 'Chatbot_CN/Chatbot_Data/Sensitive_word/keywords'
         with open(data) as f:
             for keyword in f:
                 self.add(keyword.strip())
@@ -156,7 +156,7 @@ if __name__ == "__main__":
     # gfw = NaiveFilter()
     # gfw = BSFilter()
 
-    data = '/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Data/Sensitive_word/keywords'
+    data = 'Chatbot_CN/Chatbot_Data/Sensitive_word/keywords'
     gfw = DFAFilter()
     gfw.parse(data)
     import time

@@ -7,10 +7,14 @@
 """
 
 import json
+import logging
+import datetime
 
 from django.http import JsonResponse
-from rest_framework.parsers import JSONParser
-from time import gmtime, strftime
+# from Chatbot_Model.Info_Extraction.Entity_Extraction.Info_Ext_main import NER_predict
+from Chatbot_Rest.Api.util import LogUtils2
+
+logger = logging.getLogger(__name__)
 
 def entity_ext_controller(request):
     '''
@@ -20,17 +24,23 @@ def entity_ext_controller(request):
     '''
     if request.method == 'POST':
         jsonData = json.loads(request.body.decode('utf-8'))
-        msg = jsonData['msg']
+        try:
+            msg = jsonData["msg"]
 
-        res = '中国'
-        time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-
-        return JsonResponse({
-            "desc": "Success",
-            "query": msg,
-            "res": res,
-            "time": time
-        })
+            # res = NER_predict(msg)
+            res = ''
+            localtime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            dic = {
+                "desc": "Success",
+                "ques": msg,
+                "res": res,
+                "time": localtime,
+            }
+            log_res = json.dumps(dic, ensure_ascii=False)
+            logger.info(log_res)
+            return JsonResponse(dic)
+        except Exception as e:
+            logger.info(e)
     else:
         return JsonResponse({"desc": "Bad request"}, status=400)
 

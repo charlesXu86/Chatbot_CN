@@ -25,7 +25,7 @@ def showdetail(request):
 		title = request.GET['title']
 		answer = db.matchHudongItembyTitle(title)
 		if answer == None:
-			return render(request, "404.html", ctx) 
+			return render(request, "404/404.html", ctx)
 			
 		ctx['detail'] = answer['detail']
 		ctx['title'] = answer['title']
@@ -110,9 +110,9 @@ def showdetail(request):
 		ctx['entity_type'] = entity_type	
 			
 	else:
-		return render(request, "404.html", ctx) 		
+		return render(request, "404/404.html", ctx)
 			
-	return render(request, "detail.html", ctx)
+	return render(request, "knowledge_graph/detail.html", ctx)
 	
 #	
 ## -*- coding: utf-8 -*-

@@ -18,7 +18,6 @@ from Chatbot_Web.impl.views import index, logout
 from django.urls import path, include
 # from rest_framework.schemas import get_schema_view
 from django.contrib import admin
-from rest_framework import routers
 
 from Chatbot_Web.impl.view import welcome_view,ie_view,index_ERform_view,tagging_view,dp_view,cws_view,sp_view,semantic_retrieval_view
 from Chatbot_Web.impl.view import word2vec_view
@@ -28,7 +27,6 @@ from Chatbot_Web.impl.info_extraction import event_extraction
 from Chatbot_Web.impl.info_extraction import relation_extraction
 
 from Chatbot_Web.impl.view.text_classification_view import text_classification_page
-from Chatbot_Web.impl.text_classification.text_classification import text_cls_post
 
 from Chatbot_Web.impl.view import kg_view, relation_search_view, kg_overview
 from Chatbot_Web.impl.view import chatbot_view
@@ -70,7 +68,7 @@ urlpatterns = [
     path('relation_extraction', info_extraction_view.relation_extraction_page, name='relation_extraction'), # 实体抽取页面
 
     path('text_cls', text_classification_page, name='text_cls'),                      # 文本分类页面
-    path('cls_post', text_cls_post, name='cls_post'),
+
 
     path('dp_view/', dp_view.dp_page, name='dp_view'),  # 句法分析页面
     path('sp_view/', sp_view.sp_view, name='sp_view'),  # 语义分析页面

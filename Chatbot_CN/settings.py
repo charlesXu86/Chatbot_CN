@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'Chatbot_CN.apps.RegisterLoginConfig',
     'bootstrap4',
     #'rest_framework_swagger',
-    'rest_framework',
+    #'rest_framework',
    # 'rest_framework_docs',
     'Chatbot_Web.authdata',
     # 'Chatbot_Rest'
@@ -126,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'  # zh-hans
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 

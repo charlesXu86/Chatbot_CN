@@ -21,7 +21,7 @@ from time import gmtime, strftime
 from Chatbot_Model.utils.Sensitive_word_filter import DFAFilter
 
 
-data = '/Users/charlesxu/PycharmProjects/Chatbot_CN/Chatbot_Data/Sensitive_word/keywords'
+data = 'Chatbot_CN/Chatbot_Data/Sensitive_word/keywords'
 def sensitive_controller(request):
     '''
     敏感词检测

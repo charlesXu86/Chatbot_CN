@@ -43,7 +43,8 @@
     $('#Reply').click(function () {
 
         var msg = msgText.val()
-        var urls = 'http://172.18.99.170:8009/api/v1/chat'
+        {#var urls = 'http://172.18.99.170:8009/api/v1/chat'#}
+        urls = 'http://localhost:5005/webhooks/rest/webhook'
         if (msg == '') {
             toastr.error("Message can not be empty")
             return;

@@ -18,8 +18,6 @@ djangorestframework==3.9.4
 gensim==3.7.3
 jieba==0.39
 py2neo==4.3.0
-rasa-core==0.14.5
-rasa-nlu==0.15.1
 textrank4zh==0.3
 thulac==0.2.0
 tqdm==4.32.1
