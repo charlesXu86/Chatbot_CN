@@ -76,13 +76,15 @@ class TimeNormalizer:
             holi_lunar = json.load(f)
         return pattern, holi_solar, holi_lunar
 
-    def parse(self, target, timeBase=arrow.now()):
+    def parse(self, target, timeBase=None):
         """
         TimeNormalizer的构造方法，timeBase取默认的系统当前时间
         :param timeBase: 基准时间点
         :param target: 待分析字符串
         :return: 时间单元数组
         """
+        if timeBase is None:
+            timeBase = arrow.now()
         self.isTimeSpan = False            #
         self.invalidSpan = False           #
         self.timeSpan = ''
