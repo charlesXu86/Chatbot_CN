@@ -1,16 +1,33 @@
+# -*- coding: utf-8 -*-
+
+'''
+@Author  :   Xu
+
+@Software:   PyCharm
+
+@File    :   LogUtils2.py
+
+@Time    :   2019-06-13 17:51
+
+@Desc    :
+
+'''
+
 import tensorflow as tf
-from Chatbot_Model.Question_Pairs_Matching import data_prepare
+from Question_Pairs_Matching import data_prepare
 from tensorflow.contrib import learn
 import numpy as np
-from Chatbot_Model.Question_Pairs_Matching import esim_model
-import Chatbot_Model.Question_Pairs_Matching.config as config
+from Question_Pairs_Matching import esim_model
+import Question_Pairs_Matching.config as config
 from tqdm import tqdm
 from sklearn.metrics import f1_score
 from sklearn import metrics
 import os
+import pathlib
 
 con = config.Config()
-parent_path = os.path.dirname(os.getcwd())
+
+parent_path = str(pathlib.Path(os.path.abspath(__file__)).parent)
 data_pre = data_prepare.Data_Prepare()
 
 

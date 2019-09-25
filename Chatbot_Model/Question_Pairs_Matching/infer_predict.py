@@ -16,19 +16,25 @@
 import tensorflow.contrib.learn as learn
 import tensorflow as tf
 import numpy as np
+import pathlib
+import os
 
 from Chatbot_Model.Question_Pairs_Matching import data_prepare
 
 data_pre = data_prepare.Data_Prepare()
 
+baseDir = str(pathlib.Path(os.path.abspath(__file__)).parent)
+print(baseDir)
+
+os.environ["CUDA_VISIBLE_DIVICES"] = '3'
 
 class Infer(object):
     """
         ues model to predict classification.
     """
     def __init__(self):
-        self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore('./Chatbot_Model/Question_Pairs_Matching/save_model/esim/vocab.pickle')
-        self.checkpoint_file = tf.train.latest_checkpoint('./Chatbot_Model/Question_Pairs_Matching/save_model/esim')
+        self.vocab_processor = learn.preprocessing.VocabularyProcessor.restore(baseDir + '/save_model/esim/vocab.pickle')
+        self.checkpoint_file = tf.train.latest_checkpoint(baseDir + '/save_model/esim')
         graph = tf.Graph()
         with graph.as_default():
             session_conf = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)

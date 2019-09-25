@@ -87,7 +87,6 @@ def get_candidates(error_phrase):
 
 def auto_correct(error_phrase):
     c1_order, c2_order, c3_order = get_candidates(error_phrase)
-    # print c1_order, c2_order, c3_order
     if c1_order:
         return max(c1_order, key=phrase_freq.get)
     elif c2_order:

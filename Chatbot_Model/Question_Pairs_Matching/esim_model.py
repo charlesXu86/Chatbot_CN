@@ -6,7 +6,7 @@ class ESIM(object):
 
     def __init__(self, is_trainning, seq_length, class_num, vocabulary_size, embedding_size, hidden_num,
                  l2_lambda, learning_rate):
-        self.is_trainning = is_trainning
+        self.is_trainning = False
         self.vocabulary_size = vocabulary_size
         self.embedding_size = embedding_size
         self.hidden_num = hidden_num
@@ -116,5 +116,5 @@ class ESIM(object):
             return a_bar
 
 
-if __name__ == '__main__':
-    esim = ESIM(True, 20, 2, 10000, 300, 300, 0.001, 0.0001)
+# if __name__ == '__main__':
+#     esim = ESIM(True, 20, 2, 10000, 300, 300, 0.001, 0.0001)

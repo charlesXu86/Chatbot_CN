@@ -15,7 +15,7 @@
 
 import os
 import pickle
-import json
+import pathlib
 import itertools
 import tensorflow as tf
 import numpy as np
@@ -30,6 +30,9 @@ from utils import print_config, save_config, load_config, test_ner
 from data_utils import load_word2vec, create_input, input_from_line, BatchManager
 
 from parameters import parameters
+
+basedir = str(pathlib.Path(os.path.abspath(__file__)).parent)
+
 
 class NER():
 
@@ -59,6 +62,8 @@ class NER():
         self.dev_file = parameters['dev_file']
         self.test_file = parameters['test_file']
         self.steps_check = parameters['steps_check']
+        self.model = Model(load_config(self.config_file))
+        # self.model = Model()
 
 
     def config_model(self, char_to_id, tag_to_id):
@@ -194,10 +199,48 @@ class NER():
         # limit GPU memory
         tf_config = tf.ConfigProto()
         tf_config.gpu_options.allow_growth = True
+        # saver = tf.train.Saver()
         with open(self.map_file, "rb") as f:
             char_to_id, id_to_char, tag_to_id, id_to_tag = pickle.load(f)
+
         with tf.Session(config=tf_config) as sess:
             model = create_model(sess, Model, self.ckpt_path, load_word2vec, config, id_to_char, logger)
             result = model.evaluate_line(sess, input_from_line(msg, char_to_id), id_to_tag)
+
+            return result
+
+
+    def interface(self, msg):
+        ckpt = tf.train.get_checkpoint_state(self.ckpt_path)
+        # model = Model(load_config(self.config_file))
+        logger = get_logger(self.log_file)
+
+        tf_config = tf.ConfigProto()
+        tf_config.gpu_options.allow_growth = True
+
+
+        with open(self.map_file, "rb") as f:
+            char_to_id, id_to_char, tag_to_id, id_to_tag = pickle.load(f)
+
+        self.model.saver = tf.train.import_meta_graph(basedir + '/ckpt/ner.ckpt.meta')
+        sess = tf.Session(config=tf_config)
+        # with tf.Session(config=tf_config) as sess:
+        with sess.as_default():
+            # sess.run(tf.global_variables_initializer())
+            if ckpt and tf.train.checkpoint_exists(ckpt.model_checkpoint_path):
+                # self.model = tf.saved_model.loader.load(sess, ckpt.model_checkpoint_path)
+                # self.model.saver = tf.train.import_meta_graph(basedir + '/ckpt/ner.ckpt.meta')
+                self.model.saver.restore(sess, ckpt.model_checkpoint_path)
+                # self.model.saver.restore(sess, tf.train.latest_checkpoint(basedir + '/ckpt/'))
+            else:
+                logger.info("Created model with fresh parameters.")
+                sess.run(tf.global_variables_initializer())
+                if self.config_file["pre_emb"]:
+                    emb_weights = sess.run(self.model.char_lookup.read_value())
+                    emb_weights = load_word2vec(self.config_file["emb_file"], id_to_char, self.config_file["char_dim"], emb_weights)
+                    sess.run(self.model.char_lookup.assign(emb_weights))
+                    logger.info("Load pre-trained embedding.")
+            if msg:
+                result = self.model.evaluate_line(sess, input_from_line(msg, char_to_id), id_to_tag)
 
             return result

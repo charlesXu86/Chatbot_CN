@@ -22,7 +22,6 @@ import pickle as pkl
 from Chatbot_Model.Retrieval.sematic_retrieval.build_dict import load_attr_map, load_entity_dict, load_val_dict
 
 # 调用信息抽取中的get_entity方法
-from Chatbot_Model.Info_Extraction.Entity_Extraction.utils import get_entity
 
 data_path = 'Chatbot_Data/Semantic_retrieval_data/'
 attr_map = load_attr_map(data_path + "attr_mapping.txt")
