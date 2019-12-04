@@ -12,7 +12,7 @@ pymongo
 tushare
 mitie==0.7.36
 joblib
-django==2.2.1
+django==2.0.12
 django-bootstarp4==0.0.8
 djangorestframework==3.9.4
 gensim==3.7.3
