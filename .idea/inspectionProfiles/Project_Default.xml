@@ -1,0 +1,34 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="21">
+            <item index="0" class="java.lang.String" itemvalue="fasttext" />
+            <item index="1" class="java.lang.String" itemvalue="tenssorflow_gpu" />
+            <item index="2" class="java.lang.String" itemvalue="numpy" />
+            <item index="3" class="java.lang.String" itemvalue="pandas" />
+            <item index="4" class="java.lang.String" itemvalue="jieba" />
+            <item index="5" class="java.lang.String" itemvalue="django" />
+            <item index="6" class="java.lang.String" itemvalue="sparqlwrapper" />
+            <item index="7" class="java.lang.String" itemvalue="wechatpy" />
+            <item index="8" class="java.lang.String" itemvalue="langid" />
+            <item index="9" class="java.lang.String" itemvalue="pycrypto" />
+            <item index="10" class="java.lang.String" itemvalue="ahocorasick" />
+            <item index="11" class="java.lang.String" itemvalue="pinyin" />
+            <item index="12" class="java.lang.String" itemvalue="tushare" />
+            <item index="13" class="java.lang.String" itemvalue="django-bootstarp4" />
+            <item index="14" class="java.lang.String" itemvalue="tqdm" />
+            <item index="15" class="java.lang.String" itemvalue="gensim" />
+            <item index="16" class="java.lang.String" itemvalue="joblib" />
+            <item index="17" class="java.lang.String" itemvalue="textrank4zh" />
+            <item index="18" class="java.lang.String" itemvalue="djangorestframework" />
+            <item index="19" class="java.lang.String" itemvalue="py2neo" />
+            <item index="20" class="java.lang.String" itemvalue="thulac" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
