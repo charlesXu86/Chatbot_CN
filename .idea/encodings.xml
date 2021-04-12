@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/articles.txt" charset="ISO-8859-9" />
-    <file url="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/new_prop.txt" charset="x-MacIceland" />
-    <file url="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/prop.txt" charset="GB18030" />
-    <file url="file://$PROJECT_DIR$/Chatbot_Model/Info_Extraction/Entity_Extraction/result.csv" charset="ISO-8859-1" />
-  </component>
-</project>
