@@ -74,6 +74,11 @@
     
     3、Chatbot_CN 系列项目还存在不少细节问题，正在慢慢完善中。
 
+项目思维导图
+
+<p align="center">
+    <img src="https://github.com/charlesXu86/Chatbot_CN/blob/master/image/wechatter_1130.png?raw=true">
+</p>
 
 
 <h2 align="center">项目结构</h2>
@@ -91,17 +96,14 @@
 
 <table>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_CN">Chatbot_CN</a></td><td>总体项目介绍，包含文档（这里不包含代码）</td></tr>
-<tr><td><a href="https://github.com/charlesXu86/Chatbot_KG">Chatbot_KG</a></td><td>知识图谱模块、关系网络、实体连接、知识推理等</td></tr>
+<tr><td><a href="https://github.com/we-chatter/chatbot_kg">chatbot_kg</a></td><td>知识图谱模块、关系网络、实体连接、知识推理等</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_S2S">Chatbot_S2S</a></td><td>训练端到端的对话模型，目前这个模块只为了项目的完整，作用不大，不过这个是一个研究方向</td></tr>
-<tr><td><a href="https://github.com/charlesXu86/Chatbot_Utils">Chatbot_Utils</a></td><td>机器人的基本算法组件，比如query纠错、实体识别等，他是机器人的基础</td></tr>
+<tr><td><a href="https://github.com/we-chatter/chatbot_utils">chatbot_utils</a></td><td>机器人的基本算法组件，比如query纠错、实体识别等，他是机器人的基础</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_RASA">Chatbot_RASA</a></td><td>机器人的核心对话引擎，基于RASA开源框架</td></tr>
-<tr><td><a href="https://github.com/charlesXu86/Chatbot_DM">Chatbot_DM</a></td><td>对话管理模块，包含对话策略，策略优化等，引入强化学习</td></tr>
-<tr><td><a href="https://github.com/charlesXu86/Chatbot_NLU">Chatbot_NLU</a></td><td>自然语言理解模块（基于RASA），包含意图识别、slot提取、情感分类</td></tr>
-<tr><td><a href="https://github.com/charlesXu86/Chatbot_Skills">Chatbot_Skills</a></td><td>对话技能管理，实现对话场景的快速配置、管理、切换</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_Doc">Chatbot_Doc</a></td><td>NLP和对话系统的一些文献、收集的文章等等</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_Data">Chatbot_Data</a></td><td>机器人的一些语料收集</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_Crawler">Chatbot_Crawler</a></td><td>爬虫</td></tr>
-<tr><td><a href="https://github.com/charlesXu86/Chatbot_Retrieval">Chatbot_Retrieval</a></td><td>基于检索的对话模型，他在机器人无法处理用户意图时发挥重要作用</td></tr>
+<tr><td><a href="https://github.com/we-chatter/chatbot_retrieval">chatbot_retrieval</a></td><td>基于检索的对话模型，他在机器人无法处理用户意图时发挥重要作用</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_Evaluate_">Chatbot_Evaluate</a></td><td>对话质量评估、评价、对话诊断、数据回流模块，对话模型优化</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_Help">Chatbot_Help</a></td><td>一个将机器人接入第三方平台的工具、如钉钉群、微信公众号等，可快速实现工程化</td></tr>
 <tr><td><a href="https://github.com/charlesXu86/Chatbot_Recommendation">Chatbot_Recommendation</a></td><td>对话系统与推荐系统结合，目前正在规划中、暂未开始</td></tr>
